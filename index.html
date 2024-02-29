@@ -6,8 +6,10 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="assets/css/bootstrap.min.css">
     <link rel="stylesheet" href="assets/css/style.css">
+    <script src="https://kit.fontawesome.com/3ab31dc8a0.js" crossorigin="anonymous"></script>
+
 </head>
 
 <body>
@@ -21,46 +23,67 @@
         </button>
         <div class="collapse navbar-collapse justify-content-center" id="navbarSupportedContent">
             <ul id="nav-length" class="navbar-nav justify-content-between border-top border-2 text-center">
-                <li class="nav-item">
-                    <a href="#" class="nav-link border-hover py-3 text-white">Home</a>
+
+                <li class="nav-item nav-logo">
+                    <a href="#" class="nav-link border-hover py-3 text-white"><i class="fa-solid fa-microphone"></i> Open Mic Hub</a>
                 </li>
+
                 <li class="nav-item">
                     <a href="#" class="nav-link border-hover py-3 text-white">Our Services</a>
                 </li>
+
                 <li class="nav-item">
                     <a href="#" class="nav-link border-hover py-3 text-white">About Us</a>
                 </li>
-                <li class="nav-item">
-                    <a href="#" class="nav-link border-hover py-3 text-white">Contact Us</a>
+
+                <li class="nav-item w-50">
+                    <form class="input-group py-2">
+                        <input type="search" class="form-control" placeholder="Search... ">
+                        <button class="btn btn-outline-secondary" type="submit">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </form>
                 </li>
+
                 <li class="nav-item dropdown position-static">
                     <a href="#" class="nav-link border-hover dropdown-toggle py-3 text-white" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                         Artists
                     </a>
-                    <div class="dropdown-menu mt-0 w-100" aria-labelledby="navbarDropdown">
-                        <div class="border-outline-success shadow d-flex justify-content-between w-75 mx-auto nav-display nav-dropdown">
-                            <ul>
+                    <div class="dropdown-menu mt-0 w-100 nav-artists-dropdown" aria-labelledby="navbarDropdown">
+                        <div class="border-outline-success shadow w-75 mx-auto nav-display nav-dropdown">
+                            <ul class="d-flex justify-content-between">
                                 <li>
-                                    <a href="#">Musician</a>
+                                    <a href="#">
+                                        <img src="assets/images/4.png">
+                                        Singers
+                                    </a>
                                 </li>
-                            </ul>
-                            <ul>
+
                                 <li>
-                                    <a href="#">Comedians</a>
+                                    <a href="#">
+                                        <img src="assets/images/2.png">
+                                        Poetry Slammers
+                                    </a>
                                 </li>
-                            </ul>
-                            <ul>
+
                                 <li>
-                                    <a href="#">Story Tellers</a>
+                                    <a href="#">
+                                        <img src="assets/images/1.png">
+                                        Stand Up Comedians
+                                    </a>
+                                </li>
+
+                                <li>
+                                    <a href="#">
+                                        <img src="assets/images/3.png">
+                                        Story Tellers
+                                    </a>
                                 </li>
                             </ul>
                         </div>
                     </div>
                 </li>
 
-                <li class="nav-item">
-                    <a href="#" class="nav-link border-hover py-3 text-white">Sign up</a>
-                </li>
                 <li class="nav-item">
                     <a href="#" id="sign-in" class="nav-link my-2 px-4 text-white">
                         <img class=" nav-img me-3" src="/assets/images/user.png" alt="person-circle icon">
@@ -72,10 +95,42 @@
     </div>
     </div>
 </nav>
-<main id="body-content">
+<!--<main id="body-content">-->
+
+<!--</main>-->
+<!--<main class="d-flex flex-row mb-5">-->
+<main>
+    <main class="mt-4">
+        <section class="hero-banner">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-8">
+                        <div class="content-block bg-gradient shadow"> <div class="text-block">
+                            <h2 class="mb-16">
+                                Welcome to OPEN MIC HUB
+                            </h2>
+                            <h5>We are a platform for artists to showcase their talent.
+                                We provide a stage for singers, poets, comedians and story tellers to perform in front
+                                of a live audience. We also provide a platform for artists to connect with their audience
+                                and grow their fan base.
+                            </h5>
+                            <a href="#contact" class="cus-btn primary">Contact Me</a>
+                        </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4">
+                        <div class="img-block bg-gradient shadow br-30 text-center">
+                            <img src="assets/images/hero-image.png" alt="image">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
 
 </main>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+<script src="/assets/js/bootstrap.bundle.min.js"></script>
 </body>
 
 </html>
