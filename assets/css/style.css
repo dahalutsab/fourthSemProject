@@ -1,17 +1,18 @@
 
 
 :root {
-    /*--background-color: #001730;*/
+    --background-color: #001730;
     --button-color: #BD1E51;
-    --text-color: #F1B814;
-    --nav-color: #fff
+    /*--text-color: #F1B814;*/
+    --text-color: #fff;
 }
 body {
     /*overflow: hidden;*/
-    background: #3A3E4B;
+    /*background: #3A3E4B;*/
     margin: 0;
     padding: 0;
-    /*background: var(--background-color);*/
+    background: var(--background-color);
+    color: var(--text-color);
 }
 
 .brand {
@@ -22,6 +23,7 @@ body {
     border-top: 5px solid transparent;
     transform: translateY(-4px);
 }
+
 
 .border-hover:hover {
     border-top: 5px solid var(--button-color);
@@ -56,18 +58,33 @@ body {
 }
 
 .navbar-nav .dropdown-menu {
-    background-color: inherit;
+    background-color: var(--background-color);
     animation: ease-in-out 0.5s;
     border: none;
+}
+
+
+.nav-dropdown ul li a{
+    text-decoration: none;
+    color: var(--text-color);
+}
+
+.nav-dropdown ul li a:hover{
+    color: var(--button-color);
+    text-decoration: none;
+}
+
+.nav-dropdown ul li img{
+    display: block;
+    height: 100px;
+    width: 100px;
+    margin-right: 0.5rem;
 }
 
 .nav-dropdown ul li{
     list-style: none;
 }
 
-.nav-dropdown ul li a {
-    color: var(--nav-color);
-}
 
 .dropdown-item {
     display: inline-block;
@@ -83,6 +100,67 @@ body {
         opacity: 1;
         transform: scaleY(1);
     }
+}
+
+/*hero section*/
+/*.hero {*/
+/*    color: var(--text-color);*/
+/*}*/
+
+/*.hero-carousel .carousel-item h1 span {*/
+/*    font-weight: bold;*/
+/*    color: var(--button-color);*/
+/*}*/
+
+.content-block {
+    height: 527px;
+    padding: 48px 32px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+.content-block .text-block {
+    max-width: 543px;
+}
+
+/*.bg-gradient {*/
+/*    background: linear-gradient(180deg, #E8F3FF 0%, var(--button-color) 100%) !important;*/
+/*}*/
+
+.cus-btn.primary {
+    background: var(--button-color);
+}
+
+.cus-btn {
+    padding: 16px 32px;
+    border-radius: 20px;
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 150%;
+    letter-spacing: 0.32px;
+    display: inline-flex;
+    gap: 8px;
+    align-items: center;
+    transition: all 0.5s ease;
+    color: #F8F8FF;
+    width: fit-content;
+}
+
+.content-block, .img-block {
+    border-radius: 20px;
+}
+
+.img-block {
+    height: 527px;
+    display: grid;
+    align-content: end;
+    justify-content: center;
+}
+
+.img-block img {
+    max-width: 100%;
+    height: auto;
+    vertical-align: middle;
 }
 
 @media screen and (max-width : 992px) {
