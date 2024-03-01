@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/fourthSemProject.iml" filepath="$PROJECT_DIR$/.idea/fourthSemProject.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/OpenMicHub.iml" filepath="$PROJECT_DIR$/.idea/OpenMicHub.iml" />
     </modules>
   </component>
 </project>
