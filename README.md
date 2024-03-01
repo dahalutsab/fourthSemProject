@@ -1,1 +1,1 @@
-# fourthSemProject
+# Open Mic Hub
