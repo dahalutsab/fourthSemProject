@@ -1,11 +1,14 @@
-
-
+/*---------------------------------------
+  CUSTOM PROPERTIES ( VARIABLES )
+-----------------------------------------*/
 :root {
     --background-color: #001730;
     --button-color: #BD1E51;
-    /*--text-color: #F1B814;*/
+    --card-color: #0a2644;
     --text-color: #fff;
 }
+
+
 body {
     /*overflow: hidden;*/
     /*background: #3A3E4B;*/
@@ -15,6 +18,9 @@ body {
     color: var(--text-color);
 }
 
+/*---------------------------------------
+  NAV BAR
+-----------------------------------------*/
 .brand {
     color: var(--button-color);
 }
@@ -22,12 +28,15 @@ body {
 .border-hover {
     border-top: 5px solid transparent;
     transform: translateY(-4px);
+    color: var(--text-color);
 }
 
-
+.border-hover.active,
+.border-hover:focus,
 .border-hover:hover {
-    border-top: 5px solid var(--button-color);
+    border-top: 4px solid var(--button-color);
     transform: translateY(-4px);
+    color: var(--button-color) !important;
 }
 
 #sign-in {
@@ -53,8 +62,13 @@ body {
 }
 
 .nav-img {
-    height: inherit;
+    height: auto;
     width: 20px;
+}
+
+.nav-item a .logo {
+    height: auto;
+    width: 100px;
 }
 
 .navbar-nav .dropdown-menu {
@@ -85,33 +99,28 @@ body {
     list-style: none;
 }
 
+@media screen and (max-width : 992px) {
+    #nav-length {
+        width: 100%;
+    }
 
-.dropdown-item {
-    display: inline-block;
-    margin: 0.5rem;
+    .border-hover {
+        border-top: 0;
+    }
+
+    .border-hover:hover {
+        border-top: 0;
+    }
+
+    .nav-item .dropdown-menu .d-flex {
+        display: block;
+    }
 }
 
-@keyframes ease-in-out {
-    0% {
-        opacity: 0;
-        transform: scaleY(0);
-    }
-    100% {
-        opacity: 1;
-        transform: scaleY(1);
-    }
-}
 
-/*hero section*/
-/*.hero {*/
-/*    color: var(--text-color);*/
-/*}*/
-
-/*.hero-carousel .carousel-item h1 span {*/
-/*    font-weight: bold;*/
-/*    color: var(--button-color);*/
-/*}*/
-
+/*---------------------------------------
+  MAIN HERO SECTION
+-----------------------------------------*/
 .content-block {
     height: 527px;
     padding: 48px 32px;
@@ -123,15 +132,19 @@ body {
     max-width: 543px;
 }
 
-/*.bg-gradient {*/
-/*    background: linear-gradient(180deg, #E8F3FF 0%, var(--button-color) 100%) !important;*/
-/*}*/
+.content-block span {
+    display: block;
+    color: var(--button-color);
+    font-weight: bold;
+}
+
 
 .cus-btn.primary {
     background: var(--button-color);
 }
 
 .cus-btn {
+    text-decoration: none;
     padding: 16px 32px;
     border-radius: 20px;
     font-weight: 600;
@@ -163,20 +176,84 @@ body {
     vertical-align: middle;
 }
 
-@media screen and (max-width : 992px) {
-    #nav-length {
-        width: 100%;
+@media (max-width: 992px) {
+    .hero-banner .content-block {
+        height: auto;
+        margin-bottom: 24px;
     }
 
-    .border-hover {
-        border-top: 0;
+    .hero-banner .img-block {
+        height: auto;
+        padding-top: 32px;
     }
+}
 
-    .border-hover:hover {
-        border-top: 0;
-    }
+/*---------------------------------------
+  SOCIAL ICON
+-----------------------------------------*/
+.social-icon {
+    margin: 0;
+    padding: 0;
+}
 
-    .nav-item .dropdown-menu .d-flex {
-        display: block;
-    }
+.social-icon-item {
+    list-style: none;
+    display: inline-block;
+    vertical-align: top;
+}
+
+.social-icon-link {
+    color: var(--text-color);
+}
+
+.social-icon-item .social-icon-link .svg-inline--fa{
+    margin-right: 10px;
+    text-align: center;
+    width: 30px;
+    height: 30px;
+    line-height: 36px;
+    transition: background 0.2s, color 0.2s;
+}
+
+.social-icon-link:hover {
+    color: var(--button-color);
+}
+
+
+/*---------------------------------------
+   ARTIST SECTION
+-----------------------------------------*/
+.artist-nav-tabs {
+    border-bottom: 1px solid #ecf3f2;
+    margin-bottom: 40px;
+    justify-content: center;
+}
+
+.artist-nav-tabs .nav-item .nav-link {
+    color: var(--text-color);
+    border-radius: 0;
+    border-top: 0;
+    border-right: 0;
+    border-left: 0;
+    padding: 15px 25px;
+    transition: all 0.3s;
+}
+
+.artist-nav-tabs .nav-link.active,
+.artist-nav-tabs .nav-link:focus,
+.artist-nav-tabs .nav-link:hover {
+    border-bottom: 2px solid var(--button-color);
+    color: var(--button-color);
+}
+
+
+/* Artist card */
+.artist-block {
+    background-color: var(--card-color);
+    border-radius: 15px;
+    position: relative;
+    overflow: hidden;
+    padding: 30px;
+    transition: all 0.3s ease;
+    height: 100%;
 }

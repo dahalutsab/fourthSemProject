@@ -13,109 +13,148 @@
 </head>
 
 <body>
-<nav>
-    <div class="container-fluid"> <div class="navbar navbar-expand-lg pt-4">
-        <a href="#" class="brand text-decoration-none d-block d-lg-none fw-bold fs-1 ">LOGO</a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
-                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
-                aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse justify-content-center" id="navbarSupportedContent">
-            <ul id="nav-length" class="navbar-nav justify-content-between border-top border-2 text-center">
+    <nav>
+        <div class="container-fluid"> <div class="navbar navbar-expand-lg pt-4">
+            <a href="#" class="brand text-decoration-none d-block d-lg-none fw-bold fs-1 ">LOGO</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                    aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse justify-content-center" id="navbarSupportedContent">
+                <ul id="nav-length" class="navbar-nav justify-content-between border-top border-2 text-center">
 
-                <li class="nav-item nav-logo">
-                    <a href="#" class="nav-link border-hover py-3 text-white"><i class="fa-solid fa-microphone"></i> Open Mic Hub</a>
-                </li>
+                    <li class="nav-item nav-logo">
+                        <a href="#" class="nav-link active border-hover py-3">
+                            <img src="assets/images/openMicLogo.png" class="logo" alt="Open Mic Hub">
+                        </a>
+                    </li>
 
-                <li class="nav-item">
-                    <a href="#" class="nav-link border-hover py-3 text-white">Our Services</a>
-                </li>
+                    <li class="nav-item dropdown position-static">
+                        <a href="#" class="nav-link border-hover dropdown-toggle py-3" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Artists
+                        </a>
+                        <div class="dropdown-menu mt-0 w-100 nav-artists-dropdown" aria-labelledby="navbarDropdown">
+                            <div class="border-outline-success shadow w-75 mx-auto nav-display nav-dropdown">
+                                <ul class="d-flex justify-content-between">
+                                    <li>
+                                        <a href="#singersTab">
+                                            <img src="assets/images/4.png" alt="singers">
+                                            Singers
+                                        </a>
+                                    </li>
 
-                <li class="nav-item">
-                    <a href="#" class="nav-link border-hover py-3 text-white">About Us</a>
-                </li>
+                                    <li>
+                                        <a href="#poetrySlammersTab">
+                                            <img src="assets/images/2.png" alt="Poetry Slammers">
+                                            Poetry Slammers
+                                        </a>
+                                    </li>
 
-                <li class="nav-item w-50">
-                    <form class="input-group py-2">
-                        <input type="search" class="form-control" placeholder="Search... ">
-                        <button class="btn btn-outline-secondary" type="submit">
-                            <i class="fa fa-search"></i>
-                        </button>
-                    </form>
-                </li>
+                                    <li>
+                                        <a href="#standUpComediansTab">
+                                            <img src="assets/images/1.png" alt="Stand Up Comedians">
+                                            Stand Up Comedians
+                                        </a>
+                                    </li>
 
-                <li class="nav-item dropdown position-static">
-                    <a href="#" class="nav-link border-hover dropdown-toggle py-3 text-white" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                        Artists
-                    </a>
-                    <div class="dropdown-menu mt-0 w-100 nav-artists-dropdown" aria-labelledby="navbarDropdown">
-                        <div class="border-outline-success shadow w-75 mx-auto nav-display nav-dropdown">
-                            <ul class="d-flex justify-content-between">
-                                <li>
-                                    <a href="#">
-                                        <img src="assets/images/4.png">
-                                        Singers
-                                    </a>
-                                </li>
-
-                                <li>
-                                    <a href="#">
-                                        <img src="assets/images/2.png">
-                                        Poetry Slammers
-                                    </a>
-                                </li>
-
-                                <li>
-                                    <a href="#">
-                                        <img src="assets/images/1.png">
-                                        Stand Up Comedians
-                                    </a>
-                                </li>
-
-                                <li>
-                                    <a href="#">
-                                        <img src="assets/images/3.png">
-                                        Story Tellers
-                                    </a>
-                                </li>
-                            </ul>
+                                    <li>
+                                        <a href="#storyTellersTab">
+                                            <img src="assets/images/3.png" alt="Story Tellers">
+                                            Story Tellers
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
                         </div>
-                    </div>
-                </li>
+                    </li>
 
-                <li class="nav-item">
-                    <a href="#" id="sign-in" class="nav-link my-2 px-4 text-white">
-                        <img class=" nav-img me-3" src="/assets/images/user.png" alt="person-circle icon">
-                        Sign In
-                    </a>
-                </li>
-            </ul>
+                    <li class="nav-item">
+                        <a href="#" class="nav-link border-hover py-3">Our Services</a>
+                    </li>
+
+
+                    <li class="nav-item w-50">
+                        <form class="input-group py-2">
+                            <input type="search" class="form-control" placeholder="Search... ">
+                            <button class="btn btn-outline-secondary" type="submit">
+                                <i class="fa fa-search"></i>
+                            </button>
+                        </form>
+                    </li>
+
+                    <li class="nav-item">
+                        <a href="#" class="nav-link border-hover py-3">Contact Us</a>
+                    </li>
+
+
+                    <li class="nav-item">
+                        <a href="#" id="sign-in" class="nav-link my-2 px-4">
+                            <img class=" nav-img me-3" src="/assets/images/user.png" alt="person-circle icon">
+                            Sign In
+                        </a>
+                    </li>
+                </ul>
+            </div>
         </div>
-    </div>
-    </div>
-</nav>
-<!--<main id="body-content">-->
+        </div>
+    </nav>
 
-<!--</main>-->
-<!--<main class="d-flex flex-row mb-5">-->
-<main>
+    <!-----------------------------------------
+                MAIN
+    ------------------------------------------->
+
     <main class="mt-4">
-        <section class="hero-banner">
+
+        <!-----------------------------------------
+                HERO SECTION
+                LANDING PAGE
+        ------------------------------------------->
+        <section class="hero-banner py-2">
             <div class="container">
                 <div class="row">
                     <div class="col-lg-8">
-                        <div class="content-block bg-gradient shadow"> <div class="text-block">
-                            <h2 class="mb-16">
-                                Welcome to OPEN MIC HUB
-                            </h2>
-                            <h5>We are a platform for artists to showcase their talent.
-                                We provide a stage for singers, poets, comedians and story tellers to perform in front
-                                of a live audience. We also provide a platform for artists to connect with their audience
-                                and grow their fan base.
-                            </h5>
-                            <a href="#contact" class="cus-btn primary">Contact Me</a>
-                        </div>
+                        <div class="content-block bg-gradient shadow">
+                            <div class="text-block">
+                                <h2 class="mb-16">
+                                    Welcome to <span>OPEN MIC HUB</span>
+                                </h2>
+                                <h5>We are a platform for artists to showcase their talent.
+                                    We provide a stage for singers, poets, comedians and story tellers to perform in front
+                                    of a live audience. We also provide a platform for artists to connect with their audience
+                                    and grow their fan base.
+                                </h5>
+                            </div>
+                            <div class="social-share d-flex">
+                                <ul class="social-icon">
+                                    <li class="social-icon-item mx-lg-3 m-md-2 mx-sm-1">
+                                        <a href="#" class="social-icon-link">
+                                            <i class="fa-brands fa-facebook"></i>
+                                        </a>
+                                    </li>
+
+                                    <li class="social-icon-item mx-lg-3 m-md-2 mx-sm-1">
+                                        <a href="#" class="social-icon-link">
+                                            <i class="fa-brands fa-twitter"></i>
+                                        </a>
+                                    </li>
+
+                                    <li class="social-icon-item mx-lg-3 m-md-2 mx-sm-1">
+                                        <a href="#" class="social-icon-link">
+                                            <i class="fa-brands fa-instagram"></i>
+                                        </a>
+                                    </li>
+
+                                    <li class="social-icon-item mx-lg-3 m-md-2 mx-sm-1">
+                                        <a href="#" class="social-icon-link">
+                                            <i class="fa-brands fa-youtube"></i>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="hero-button">
+                                <a href="#" class="cus-btn primary">Contact Us</a>
+                            </div>
                         </div>
                     </div>
                     <div class="col-lg-4">
@@ -127,10 +166,130 @@
             </div>
         </section>
 
-    </main>
 
-</main>
+        <!-----------------------------------------
+                ARTISTS SECTION
+        ------------------------------------------->
+        <section class="artists py-lg-5">
+            <!--artists heading-->
+            <div class="container">
+                <div class="col-12 text-center">
+                    <h2 class="mb-4">Artists</h2>
+                </div>
+            </div>
+
+            <!--artists nav-->
+            <div class="container-fluid">
+                <div class="row">
+                    <ul class="nav artist-nav-tabs" id="artistTab">
+                        <li class="nav-item">
+                            <button class="nav-link active" id="singersTab" type="button" data-bs-target="#singers-tab-pane">
+                                Singers
+                            </button>
+                        </li>
+                        <li class="nav-item">
+                            <button class="nav-link" id="poetrySlammersTab" type="button" data-bs-target="#poetrySlammers-tab-pane">
+                                Poetry Slammers
+                            </button>
+                        </li>
+
+                        <li class="nav-item">
+                            <button class="nav-link" id="standUpComediansTab" type="button" data-bs-target="#standUpComedians-tab-pane">
+                                StandUp Comedians
+                            </button>
+                        </li>
+                        <li class="nav-item">
+                            <button class="nav-link" id="storyTellersTab" type="button" data-bs-target="#storyTellers-tab-pane">
+                                Story Tellers
+                            </button>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <!--artists cards-->
+            <div class="container">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="artist-content" id="artist-content">
+
+                            <!--singers-->
+                            <div class="tab-pane fade show active" id="singers-tab-pane">
+
+                                <div class="row">
+                                    <!--artist description card-->
+                                    <div class="col-lg-4 col-md-6 col-12 mb-4 mb-lg-0">
+                                        <div class="card artist-block shadow-lg">
+                                            <img src="./assets/images/hero-image.png" class="card-img-top" alt="singer">
+                                            <div class="card-body">
+                                                <h5>Apson Jirel</h5>
+                                                <p class="card-text">Some quick example text to build on the card title
+                                                    and make up the bulk of the card's content.</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!--Poetry Slammers-->
+                            <div class="tab-pane fade" id="poetrySlammers-tab-pane">
+                                <div class="row">
+                                    <!--artist description card-->
+                                    <div class="col-lg-4 col-md-6 col-12 mb-4 mb-lg-0">
+                                        <div class="card artist-block shadow-lg">
+                                            <img src="./assets/images/hero-image.png" class="card-img-top" alt="singer">
+                                            <div class="card-body">
+                                                <h5>Dhiraj Jirel</h5>
+                                                <p class="card-text">Some quick example text to build on the card title
+                                                    and make up the bulk of the card's content.</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!--StandUp Comedians-->
+                            <div class="tab-pane fade" id="standUpComedians-tab-pane">
+                                <div class="row">
+                                    <!--artist description card-->
+                                    <div class="col-lg-4 col-md-6 col-12 mb-4 mb-lg-0">
+                                        <div class="card artist-block shadow-lg">
+                                            <img src="./assets/images/hero-image.png" class="card-img-top" alt="singer">
+                                            <div class="card-body">
+                                                <h5>Apson Jirel</h5>
+                                                <p class="card-text">Some quick example text to build on the card title
+                                                    and make up the bulk of the card's content.</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!--Story Tellers-->
+                            <div class="tab-pane fade" id="storyTellers-tab-pane">
+                                <div class="row">
+                                    <!--artist description card-->
+                                    <div class="col-lg-4 col-md-6 col-12 mb-4 mb-lg-0">
+                                        <div class="card artist-block shadow-lg">
+                                            <img src="./assets/images/hero-image.png" class="card-img-top" alt="singer">
+                                            <div class="card-body">
+                                                <h5>Apson Jirel</h5>
+                                                <p class="card-text">Some quick example text to build on the card title
+                                                    and make up the bulk of the card's content.</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
 <script src="/assets/js/bootstrap.bundle.min.js"></script>
+<script src="assets/js/script.js"></script>
 </body>
 
 </html>
