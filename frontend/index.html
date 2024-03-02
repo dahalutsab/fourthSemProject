@@ -14,97 +14,173 @@
 
 <body>
     <nav>
-        <div class="container-fluid"> <div class="navbar navbar-expand-lg pt-4">
-            <a href="#" class="brand text-decoration-none d-block d-lg-none fw-bold fs-1 ">LOGO</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
-                    data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
-                    aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse justify-content-center" id="navbarSupportedContent">
-                <ul id="nav-length" class="navbar-nav justify-content-between border-top border-2 text-center">
+        <div class="container-fluid">
+            <div class="navbar navbar-expand-lg pt-4">
+                <a href="#" class="brand text-decoration-none d-block d-lg-none fw-bold fs-1 ">LOGO</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse justify-content-center" id="navbarSupportedContent">
+                    <ul id="nav-length" class="navbar-nav justify-content-between border-top border-2 text-center">
 
-                    <li class="nav-item nav-logo">
-                        <a href="#" class="nav-link active border-hover py-3">
-                            <img src="assets/images/openMicLogo.png" class="logo" alt="Open Mic Hub">
-                        </a>
-                    </li>
+                        <li class="nav-item nav-logo">
+                            <a href="#" class="nav-link active border-hover py-3" id="home">
+                                <img src="assets/images/openMicLogo.png" class="logo" alt="Open Mic Hub">
+                            </a>
+                        </li>
 
-                    <li class="nav-item dropdown position-static">
-                        <a href="#" class="nav-link border-hover dropdown-toggle py-3" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                            Artists
-                        </a>
-                        <div class="dropdown-menu mt-0 w-100 nav-artists-dropdown" aria-labelledby="navbarDropdown">
-                            <div class="border-outline-success shadow w-75 mx-auto nav-display nav-dropdown">
-                                <ul class="d-flex justify-content-between">
-                                    <li>
-                                        <a href="#singersTab">
-                                            <img src="assets/images/4.png" alt="singers">
-                                            Singers
-                                        </a>
-                                    </li>
+                        <li class="nav-item dropdown position-static">
+                            <a href="#" class="nav-link border-hover dropdown-toggle py-3" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                Artists
+                            </a>
+                            <div class="dropdown-menu mt-0 w-100 nav-artists-dropdown" aria-labelledby="navbarDropdown">
+                                <div class="border-outline-success shadow w-75 mx-auto nav-display nav-dropdown">
+                                    <ul class="d-flex justify-content-between">
+                                        <li>
+                                            <a href="#singersTab">
+                                                <img src="assets/images/4.png" alt="singers">
+                                                Singers
+                                            </a>
+                                        </li>
 
-                                    <li>
-                                        <a href="#poetrySlammersTab">
-                                            <img src="assets/images/2.png" alt="Poetry Slammers">
-                                            Poetry Slammers
-                                        </a>
-                                    </li>
+                                        <li>
+                                            <a href="#poetrySlammersTab">
+                                                <img src="assets/images/2.png" alt="Poetry Slammers">
+                                                Poetry Slammers
+                                            </a>
+                                        </li>
 
-                                    <li>
-                                        <a href="#standUpComediansTab">
-                                            <img src="assets/images/1.png" alt="Stand Up Comedians">
-                                            Stand Up Comedians
-                                        </a>
-                                    </li>
+                                        <li>
+                                            <a href="#standUpComediansTab">
+                                                <img src="assets/images/1.png" alt="Stand Up Comedians">
+                                                Stand Up Comedians
+                                            </a>
+                                        </li>
 
-                                    <li>
-                                        <a href="#storyTellersTab">
-                                            <img src="assets/images/3.png" alt="Story Tellers">
-                                            Story Tellers
-                                        </a>
-                                    </li>
-                                </ul>
+                                        <li>
+                                            <a href="#storyTellersTab">
+                                                <img src="assets/images/3.png" alt="Story Tellers">
+                                                Story Tellers
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
                             </div>
-                        </div>
-                    </li>
+                        </li>
 
-                    <li class="nav-item">
-                        <a href="#" class="nav-link border-hover py-3">Our Services</a>
-                    </li>
-
-
-                    <li class="nav-item w-50">
-                        <form class="input-group py-2">
-                            <input type="search" class="form-control" placeholder="Search... ">
-                            <button class="btn btn-outline-secondary" type="submit">
-                                <i class="fa fa-search"></i>
-                            </button>
-                        </form>
-                    </li>
-
-                    <li class="nav-item">
-                        <a href="#" class="nav-link border-hover py-3">Contact Us</a>
-                    </li>
+                        <li class="nav-item">
+                            <a href="#" class="nav-link border-hover py-3">Our Services</a>
+                        </li>
 
 
-                    <li class="nav-item">
-                        <a href="#" id="sign-in" class="nav-link my-2 px-4">
-                            <img class=" nav-img me-3" src="/assets/images/user.png" alt="person-circle icon">
-                            Sign In
-                        </a>
-                    </li>
-                </ul>
+                        <li class="nav-item w-50">
+                            <form class="input-group py-2">
+                                <input type="search" class="form-control" placeholder="Search... ">
+                                <button class="btn btn-outline-secondary" type="submit">
+                                    <i class="fa fa-search"></i>
+                                </button>
+                            </form>
+                        </li>
+
+                        <li class="nav-item">
+                            <a href="#" class="nav-link border-hover py-3">Contact Us</a>
+                        </li>
+
+
+                        <li class="nav-item">
+                            <a href="#" id="sign-in" class="nav-link my-2 px-4" data-bs-toggle="modal" data-bs-target="#loginSignupModal">
+                                <i class="fa-solid fa-sign-in"></i>
+                                Sign In
+                            </a>
+                        </li>
+                    </ul>
+                </div>
             </div>
-        </div>
         </div>
     </nav>
 
+
     <!-----------------------------------------
-                MAIN
+                LOGIN/SIGNUP MODAL
     ------------------------------------------->
+    <div class="modal fade" id="loginSignupModal" tabindex="-1" aria-labelledby="loginSignupModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="loginSignupModalLabel">Open Mic Hub</h5>
+                    <button type="button" class="modal-btn-close" data-bs-dismiss="modal" aria-label="Close">
+                        <i class="fa-solid fa-times"></i>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <ul class="nav nav-tabs mb-lg-2 mb-md-2" id="loginSignupTab" role="tablist">
+                        <li class="nav-item" role="presentation">
+                            <button class="nav-link active" id="loginTab" data-bs-toggle="tab" data-bs-target="#login" type="button" role="tab" aria-controls="login" aria-selected="true">Login</button>
+                        </li>
+                        <li class="nav-item" role="presentation">
+                            <button class="nav-link" id="signupTab" data-bs-toggle="tab" data-bs-target="#signup" type="button" role="tab" aria-controls="signup" aria-selected="false">Sign Up</button>
+                        </li>
+                    </ul>
+
+                    <div class="tab-content" id="loginSignupTabContent">
+                        <div class="tab-pane fade show active" id="login" role="tabpanel" aria-labelledby="loginTab">
+                            <form>
+                                <div class="mb-3">
+                                    <label for="loginEmail" class="form-label">Email address</label>
+                                    <input type="email" class="form-control" id="loginEmail" aria-describedby="emailHelp">
+                                </div>
+                                <div class="mb-3">
+                                    <label for="loginPassword" class="form-label">Password</label>
+                                    <input type="password" class="form-control" id="loginPassword">
+                                </div>
+                                <div class="mb-3 form-check">
+                                    <input type="checkbox" class="form-check-input" id="rememberMe">
+                                    <label class="form-check-label" for="rememberMe">Remember me</label>
+                                </div>
+                                <button type="submit" class="login-signup btn-primary">Login</button>
+                            </form>
+                        </div>
+                        <div class="tab-pane fade" id="signup" role="tabpanel" aria-labelledby="signupTab">
+                            <form>
+                                <div class="mb-3">
+                                    <label for="signupEmail" class="form-label">Email address</label>
+                                    <input type="email" class="form-control" id="signupEmail" aria-describedby="emailHelp">
+                                </div>
+                                <div class="mb-3">
+                                    <label for="signupPassword" class="form-label">Password</label>
+                                    <input type="password" class="form-control" id="signupPassword">
+                                </div>
+                                <div class="mb-3">
+                                    <label for="signupConfirmPassword" class="form-label">Confirm Password</label>
+                                    <input type="password" class="form-control" id="signupConfirmPassword">
+                                </div>
+                                <div class="form-check mb-3">
+                                    <input class="form-check-input" type="checkbox" value="" id="signupTerms">
+                                    <label class="form-check-label" for="signupTerms">
+                                        I agree to the <a href="#">Terms and Conditions</a>
+                                    </label>
+                                </div>
+                                    <button type="submit" class="login-signup primary">Sign Up</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+                <!-----------------------------------------
+                            MAIN
+                ------------------------------------------->
 
     <main class="mt-4">
+
 
         <!-----------------------------------------
                 HERO SECTION
@@ -183,23 +259,23 @@
                 <div class="row">
                     <ul class="nav artist-nav-tabs" id="artistTab">
                         <li class="nav-item">
-                            <button class="nav-link active" id="singersTab" type="button" data-bs-target="#singers-tab-pane">
+                            <button class="nav-link active" id="singersTab" type="button">
                                 Singers
                             </button>
                         </li>
                         <li class="nav-item">
-                            <button class="nav-link" id="poetrySlammersTab" type="button" data-bs-target="#poetrySlammers-tab-pane">
+                            <button class="nav-link" id="poetrySlammersTab" type="button">
                                 Poetry Slammers
                             </button>
                         </li>
 
                         <li class="nav-item">
-                            <button class="nav-link" id="standUpComediansTab" type="button" data-bs-target="#standUpComedians-tab-pane">
+                            <button class="nav-link" id="standUpComediansTab" type="button">
                                 StandUp Comedians
                             </button>
                         </li>
                         <li class="nav-item">
-                            <button class="nav-link" id="storyTellersTab" type="button" data-bs-target="#storyTellers-tab-pane">
+                            <button class="nav-link" id="storyTellersTab" type="button">
                                 Story Tellers
                             </button>
                         </li>
@@ -214,13 +290,14 @@
                         <div class="artist-content" id="artist-content">
 
                             <!--singers-->
-                            <div class="tab-pane fade show active" id="singers-tab-pane">
+                            <div class="tab-pane fade show active" id="artist-tab-pane">
 
                                 <div class="row">
+
                                     <!--artist description card-->
                                     <div class="col-lg-4 col-md-6 col-12 mb-4 mb-lg-0">
                                         <div class="card artist-block shadow-lg">
-                                            <img src="./assets/images/hero-image.png" class="card-img-top" alt="singer">
+                                            <img src="assets/images/hero-image.png" class="card-img-top" alt="singer">
                                             <div class="card-body">
                                                 <h5>Apson Jirel</h5>
                                                 <p class="card-text">Some quick example text to build on the card title
@@ -228,67 +305,234 @@
                                             </div>
                                         </div>
                                     </div>
-                                </div>
-                            </div>
 
-                            <!--Poetry Slammers-->
-                            <div class="tab-pane fade" id="poetrySlammers-tab-pane">
-                                <div class="row">
-                                    <!--artist description card-->
-                                    <div class="col-lg-4 col-md-6 col-12 mb-4 mb-lg-0">
-                                        <div class="card artist-block shadow-lg">
-                                            <img src="./assets/images/hero-image.png" class="card-img-top" alt="singer">
-                                            <div class="card-body">
-                                                <h5>Dhiraj Jirel</h5>
-                                                <p class="card-text">Some quick example text to build on the card title
-                                                    and make up the bulk of the card's content.</p>
-                                            </div>
-                                        </div>
-                                    </div>
                                 </div>
-                            </div>
 
-                            <!--StandUp Comedians-->
-                            <div class="tab-pane fade" id="standUpComedians-tab-pane">
-                                <div class="row">
-                                    <!--artist description card-->
-                                    <div class="col-lg-4 col-md-6 col-12 mb-4 mb-lg-0">
-                                        <div class="card artist-block shadow-lg">
-                                            <img src="./assets/images/hero-image.png" class="card-img-top" alt="singer">
-                                            <div class="card-body">
-                                                <h5>Apson Jirel</h5>
-                                                <p class="card-text">Some quick example text to build on the card title
-                                                    and make up the bulk of the card's content.</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
                             </div>
-
-                            <!--Story Tellers-->
-                            <div class="tab-pane fade" id="storyTellers-tab-pane">
-                                <div class="row">
-                                    <!--artist description card-->
-                                    <div class="col-lg-4 col-md-6 col-12 mb-4 mb-lg-0">
-                                        <div class="card artist-block shadow-lg">
-                                            <img src="./assets/images/hero-image.png" class="card-img-top" alt="singer">
-                                            <div class="card-body">
-                                                <h5>Apson Jirel</h5>
-                                                <p class="card-text">Some quick example text to build on the card title
-                                                    and make up the bulk of the card's content.</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
                         </div>
                     </div>
                 </div>
             </div>
         </section>
+
+
+        <!-----------------------------------------
+                ARTISTS DESCRIPTION SECTION
+        ------------------------------------------->
+        <section class="artist-details py-5">
+            <div class="container">
+                <div class="row bg-gradient shadow">
+                    <div class="col-lg-8 col-md-8">
+                        <div class = "artist-landing">
+                            <nav aria-label="breadcrumb">
+                                <ol class="breadcrumb">
+                                    <li class="breadcrumb-item"><a href="#home">Homepage</a></li>
+
+                                    <li class="breadcrumb-item active" aria-current="page">Singers</li>
+                                </ol>
+                            </nav>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-4 text-end">
+                        <a href="#artist-content"><i class="fa-solid fa-backward"></i> Back to artists</a>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-8 col-md-12">
+                        <div class="video-block shadow">
+                            <div id="carouselVideoExample" class="carousel slide carousel-fade" data-bs-ride="carousel">
+                                <div class="carousel-indicators">
+                                    <button type="button" data-bs-target="#carouselVideoExample" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+                                    <button type="button" data-bs-target="#carouselVideoExample" data-bs-slide-to="1" aria-label="Slide 2"></button>
+                                    <button type="button" data-bs-target="#carouselVideoExample" data-bs-slide-to="2" aria-label="Slide 3"></button>
+                                </div>
+
+                                <div class="carousel-inner">
+                                    <div class="carousel-item active">
+                                        <video class="img-fluid" autoplay loop >
+                                            <source src="https://mdbcdn.b-cdn.net/img/video/Tropical.mp4" type="video/mp4" />
+                                        </video>
+                                    </div>
+
+                                    <div class="carousel-item">
+                                        <video class="img-fluid" autoplay loop >
+                                            <source src="https://mdbcdn.b-cdn.net/img/video/forest.mp4" type="video/mp4" />
+                                        </video>
+                                    </div>
+
+                                    <div class="carousel-item">
+                                        <video class="img-fluid" autoplay loop >
+                                            <source
+                                                    src="https://mdbcdn.b-cdn.net/img/video/Agua-natural.mp4"
+                                                    type="video/mp4"
+                                            />
+                                        </video>
+                                    </div>
+                                </div>
+                                <button class="carousel-control-prev" type="button" data-bs-target="#carouselVideoExample" data-bs-slide="prev">
+                                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                    <span class="visually-hidden">Previous</span>
+                                </button>
+                                <button class="carousel-control-next" type="button" data-bs-target="#carouselVideoExample" data-bs-slide="next">
+                                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                    <span class="visually-hidden">Next</span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-4 col-md-12">
+                        <div class="artist-aboutUs-content shadow">
+                            <div class="artist-img-block">
+                                <img src="assets/images/utsab.jpg" alt="image">
+                            </div>
+                            <div class="text-block">
+                                <h2>Apson Jirel</h2>
+                                <!--reference: https://codepen.io/FredGenkin/pen/eaXYGV-->
+                                <div class="Stars" style="--rating: 4.6;">
+                                </div>
+                                <p>Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                            </div>
+                            <div class="social-share">
+                                <ul class="social-icon">
+                                    <li class="social-icon-item mx-lg-3 m-md-2 mx-sm-1">
+                                        <a href="#" class="social-icon-link">
+                                            <i class="fa-brands fa-facebook"></i>
+                                        </a>
+                                    </li>
+
+                                    <li class="social-icon-item mx-lg-3 m-md-2 mx-sm-1">
+                                        <a href="#" class="social-icon-link">
+                                            <i class="fa-brands fa-twitter"></i>
+                                        </a>
+                                    </li>
+
+                                    <li class="social-icon-item mx-lg-3 m-md-2 mx-sm-1">
+                                        <a href="#" class="social-icon-link">
+                                            <i class="fa-brands fa-instagram"></i>
+                                        </a>
+                                    </li>
+
+                                    <li class="social-icon-item mx-lg-3 m-md-2 mx-sm-1">
+                                        <a href="#" class="social-icon-link">
+                                            <i class="fa-brands fa-youtube"></i>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="hero-button">
+                                <a href="#" class="cus-btn primary m-lg-2 m-md-1"> <i class="fa fa-message"></i> Message</a>
+                                <a href="#" class="cus-btn primary "> <i class="fa fa-calendar-check"></i> Book</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-12">
+                        <div class="artist-overview text-center my-lg-5 my-md-2">
+                            <h3>Overview</h3>
+                            <p>Some quick description text about artist.</p>
+                            <div class = "d-flex justify-content-evenly">
+                                <div class="description-icons">
+                                    <i class="fa-solid fa-location-dot"></i>
+                                    <p>Location</p>
+                                </div>
+                                <div class="description-icons">
+                                    <i class="fa-solid fa-coins"></i>
+                                    <p>Cost</p>
+                                </div>
+                                <div class="description-icons">
+                                    <i class="fa-solid fa-phone"></i>
+                                    <p>Phone</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-12">
+                        <div class="row d-flex justify-content-center">
+                            <div class="col-md-12 col-lg-10 col-xl-8">
+                                <div class="card">
+                                    <div class="card-body p-4">
+                                        <h4 class="text-center mb-4 pb-2">Comments</h4>
+
+                                        <div class="row">
+                                            <div class="col">
+                                                <div class="d-flex flex-start">
+                                                    <img class="rounded-circle shadow-1-strong me-3"
+                                                         src="https://mdbcdn.b-cdn.net/img/Photos/Avatars/img%20(10).webp" alt="avatar" width="65"
+                                                         height="65" />
+                                                    <div class="flex-grow-1 flex-shrink-1">
+                                                        <div>
+                                                            <div class="d-flex justify-content-between align-items-center">
+                                                                <p class="mb-1">
+                                                                    Maria Smantha <span class="small">- 2 hours ago</span>
+                                                                </p>
+                                                                <a href="#!"><i class="fas fa-reply fa-xs"></i><span class="small"> reply</span></a>
+                                                            </div>
+                                                            <p class="small mb-0">
+                                                                It is a long-established fact that a reader will be distracted by
+                                                                the readable content of a page.
+                                                            </p>
+                                                        </div>
+
+                                                        <div class="d-flex flex-start mt-4">
+                                                            <a class="me-3" href="#">
+                                                                <img class="rounded-circle shadow-1-strong"
+                                                                     src="https://mdbcdn.b-cdn.net/img/Photos/Avatars/img%20(11).webp" alt="avatar"
+                                                                     width="65" height="65" />
+                                                            </a>
+                                                            <div class="flex-grow-1 flex-shrink-1">
+                                                                <div>
+                                                                    <div class="d-flex justify-content-between align-items-center">
+                                                                        <p class="mb-1">
+                                                                            Simona Disa <span class="small">- 3 hours ago</span>
+                                                                        </p>
+                                                                    </div>
+                                                                    <p class="small mb-0">
+                                                                        letters, as opposed to using 'Content here, content here',
+                                                                        making it look like readable English.
+                                                                    </p>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="d-flex flex-start mt-4">
+                                                            <a class="me-3" href="#">
+                                                                <img class="rounded-circle shadow-1-strong"
+                                                                     src="https://mdbcdn.b-cdn.net/img/Photos/Avatars/img%20(32).webp" alt="avatar"
+                                                                     width="65" height="65" />
+                                                            </a>
+                                                            <div class="flex-grow-1 flex-shrink-1">
+                                                                <div>
+                                                                    <div class="d-flex justify-content-between align-items-center">
+                                                                        <p class="mb-1">
+                                                                            John Smith <span class="small">- 4 hours ago</span>
+                                                                        </p>
+                                                                    </div>
+                                                                    <p class="small mb-0">
+                                                                        the majority have suffered alteration in some form, by
+                                                                        injected humour, or randomised words.
+                                                                    </p>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
     </main>
-<script src="/assets/js/bootstrap.bundle.min.js"></script>
+<script src="/frontend/assets/js/bootstrap.bundle.min.js"></script>
 <script src="assets/js/script.js"></script>
 </body>
 
