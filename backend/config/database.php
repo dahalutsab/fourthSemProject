@@ -6,51 +6,46 @@ class Database {
     private string $password = "";
     private string $dbname = "open_mic_hub";
     private string $charset = "utf8mb4";
-    private PDO $connection;
 
-    // Constructor to establish the database connection
-    public function __construct() {
+    public function connect(): PDO {
         try {
-            $dsn = "mysql:host={$this->host};dbname={$this->dbname};charset={$this->charset}";
-            $options = [
-                PDO::ATTR_ERRMODE            => PDO::ERRMODE_EXCEPTION,
-                PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
-                PDO::ATTR_EMULATE_PREPARES   => false,
-            ];
-            $this->connection = new PDO($dsn, $this->username, $this->password, $options);
+            $dsn = "mysql:host=$this->host;dbname=$this->dbname;charset=$this->charset";
+            $this->pdo = new PDO($dsn, $this->username, $this->password);
+            $this->pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         } catch (PDOException $e) {
-            throw new PDOException("Database connection failed: " . $e->getMessage());
+            throw new PDOException($e->getMessage(), $e->getCode());
+        }
+
+        return $this->pdo;
+    }
+
+    public function query(string $sql, array $params = []): PDOStatement {
+        try {
+            $stmt = $this->connect()->prepare($sql);
+            $stmt->execute($params);
+            return $stmt;
+        } catch (PDOException $e) {
+            throw new PDOException($e->getMessage(), $e->getCode());
         }
     }
 
-    // Execute a query with optional parameters
-    public function query($sql, $params = []): false|PDOStatement
-    {
-        try {
-            $statement = $this->connection->prepare($sql);
-            $statement->execute($params);
-            return $statement;
-        } catch (PDOException $e) {
-            throw new PDOException("Query execution failed: " . $e->getMessage());
-        }
+    public function fetchAll(string $sql, array $params = []): array {
+        $stmt = $this->query($sql, $params);
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
-    // Fetch all rows from a query result
-    public function fetchAll($sql, $params = []): false|array
-    {
-        $statement = $this->query($sql, $params);
-        return $statement->fetchAll();
+    public function fetchAssoc(string $sql, array $params = []): ?array {
+        $stmt = $this->query($sql, $params);
+        return $stmt->fetch(PDO::FETCH_ASSOC);
     }
 
-    // Fetch a single row from a query result
-    public function fetch($sql, $params = []) {
-        $statement = $this->query($sql, $params);
-        return $statement->fetch();
+    public function fetchSingle(string $sql, array $params = []): string|int|null {
+        $stmt = $this->query($sql, $params);
+        return $stmt->fetchColumn();
     }
 
-    // Get the last inserted ID
-    public function lastInsertId(): false|string
-    {
-        return $this->connection->lastInsertId();
+    public function execute(string $sql, array $params = []): int {
+        $stmt = $this->query($sql, $params);
+        return $stmt->rowCount();
     }
 }

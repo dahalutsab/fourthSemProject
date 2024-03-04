@@ -16,7 +16,7 @@
     <nav>
         <div class="container-fluid">
             <div class="navbar navbar-expand-lg pt-4">
-                <a href="#" class="brand text-decoration-none d-block d-lg-none fw-bold fs-1 ">LOGO</a>
+                <a href="#" class="brand text-decoration-none d-block d-lg-none fw-bold fs-1 ">OMH</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                         data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
                         aria-expanded="false" aria-label="Toggle navigation">
@@ -111,11 +111,11 @@
                 <div class="modal-header">
                     <h5 class="modal-title" id="loginSignupModalLabel">Open Mic Hub</h5>
                     <button type="button" class="modal-btn-close" data-bs-dismiss="modal" aria-label="Close">
-                        <i class="fa-solid fa-times"></i>
+                        <i class="fas fa-times"></i>
                     </button>
                 </div>
                 <div class="modal-body">
-                    <ul class="nav nav-tabs mb-lg-2 mb-md-2" id="loginSignupTab" role="tablist">
+                    <ul class="nav nav-tabs mb-4" id="loginSignupTab" role="tablist">
                         <li class="nav-item" role="presentation">
                             <button class="nav-link active" id="loginTab" data-bs-toggle="tab" data-bs-target="#login" type="button" role="tab" aria-controls="login" aria-selected="true">Login</button>
                         </li>
@@ -139,30 +139,30 @@
                                     <input type="checkbox" class="form-check-input" id="rememberMe">
                                     <label class="form-check-label" for="rememberMe">Remember me</label>
                                 </div>
-                                <button type="submit" class="login-signup btn-primary">Login</button>
+                                <button type="submit" class="login-signup primary">Login</button>
                             </form>
                         </div>
                         <div class="tab-pane fade" id="signup" role="tabpanel" aria-labelledby="signupTab">
-                            <form>
+                            <form id="signupForm">
                                 <div class="mb-3">
                                     <label for="signupEmail" class="form-label">Email address</label>
-                                    <input type="email" class="form-control" id="signupEmail" aria-describedby="emailHelp">
+                                    <input type="email" class="form-control" id="signupEmail" aria-describedby="emailHelp" required>
                                 </div>
                                 <div class="mb-3">
                                     <label for="signupPassword" class="form-label">Password</label>
-                                    <input type="password" class="form-control" id="signupPassword">
+                                    <input type="password" class="form-control" id="signupPassword" required>
                                 </div>
                                 <div class="mb-3">
                                     <label for="signupConfirmPassword" class="form-label">Confirm Password</label>
-                                    <input type="password" class="form-control" id="signupConfirmPassword">
+                                    <input type="password" class="form-control" id="signupConfirmPassword" required>
                                 </div>
                                 <div class="form-check mb-3">
-                                    <input class="form-check-input" type="checkbox" value="" id="signupTerms">
+                                    <input class="form-check-input" type="checkbox" value="" id="signupTerms" required>
                                     <label class="form-check-label" for="signupTerms">
                                         I agree to the <a href="#">Terms and Conditions</a>
                                     </label>
                                 </div>
-                                    <button type="submit" class="login-signup primary">Sign Up</button>
+                                <button type="submit" class="login-signup primary" data-bs-toggle="modal" data-bs-target="#otpVerificationModal">Sign Up</button>
                             </form>
                         </div>
                     </div>
@@ -171,7 +171,83 @@
         </div>
     </div>
 
+    <div class="modal fade" id="otpVerificationModal" tabindex="-1" aria-labelledby="otpVerificationModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="otpVerificationModalLabel">Verify OTP</h5>
+                    <button type="button" class="modal-btn-close" data-bs-dismiss="modal" aria-label="Close">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form id="otpForm">
+                        <div class="mb-3">
+                            <label for="otpInput" class="form-label">Enter OTP</label>
+                            <input type="text" class="form-control" id="otpInput" maxlength="6" aria-describedby="otpHelp" required>
+                            <small id="otpHelp" class="text-muted">A 6-digit code has been sent to your email.</small>
+                        </div>
+                        <button type="submit" class="login-signup primary" data-bs-toggle="modal" data-bs-target="#editProfileModal">Verify OTP</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
 
+    <div class="modal fade" id="editProfileModal" tabindex="-1" aria-labelledby="editProfileModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <div class="col-6">
+                        <h5 class="modal-title" id="editProfileModalLabel">Edit Profile</h5>
+                    </div>
+                    <div class="col-6">
+                        <a href="#home" class="text-end button-color" data-bs-dismiss="modal" aria-label="Close">Skip For Now <i class="fa-solid fa-forward"></i> </a>
+                    </div>
+                    <button type="button" class="modal-btn-close" data-bs-dismiss="modal" aria-label="Close">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form id="profileForm">
+                        <div class="mb-3">
+                            <label for="profilePicture" class="form-label">Profile Picture</label>
+                            <input type="file" class="form-control" id="profilePicture" aria-describedby="profilePictureHelp">
+                            <small id="profilePictureHelp" class="text-muted">Upload a picture that represents you.</small>
+                        </div>
+                        <div class="mb-3">
+                            <label for="dateOfBirth" class="form-label">Date of Birth</label>
+                            <input type="date" class="form-control" id="dateOfBirth" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="address" class="form-label">Address</label>
+                            <textarea class="form-control" id="address" rows="3" required></textarea>
+                        </div>
+                        <div class="mb-3">
+                            <label for="phoneNumber" class="form-label">Phone Number</label>
+                            <div class="input-group">
+                                <span class="input-group-text">+977</span>
+                                <input type="tel" class="form-control" id="phoneNumber" aria-describedby="phoneNumberHelp" required>
+                            </div>
+                            <small id="phoneNumberHelp" class="text-muted">Please include your country code.</small>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Social Media Links (Optional)</label>
+                            <div class="input-group">
+                                <span class="input-group-text">Facebook</span>
+                                <input type="url" class="form-control" id="facebookLink" placeholder="https://www.facebook.com/...">
+                            </div>
+                            <div class="input-group mt-2">
+                                <span class="input-group-text">Twitter</span>
+                                <input type="url" class="form-control" id="twitterLink" placeholder="https://www.twitter.com/...">
+                            </div>
+                        </div>
+                        <button type="submit" class="login-signup primary">Save Changes</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
 
 
 
@@ -293,15 +369,47 @@
                             <div class="tab-pane fade show active" id="artist-tab-pane">
 
                                 <div class="row">
-
-                                    <!--artist description card-->
                                     <div class="col-lg-4 col-md-6 col-12 mb-4 mb-lg-0">
-                                        <div class="card artist-block shadow-lg">
-                                            <img src="assets/images/hero-image.png" class="card-img-top" alt="singer">
-                                            <div class="card-body">
-                                                <h5>Apson Jirel</h5>
-                                                <p class="card-text">Some quick example text to build on the card title
-                                                    and make up the bulk of the card's content.</p>
+                                        <div class="artist-aboutUs-content shadow">
+                                            <div class="artist-img-block">
+                                                <img src="assets/images/utsab.jpg" alt="image">
+                                            </div>
+                                            <div class="text-block">
+                                                <h2>Apson Jirel</h2>
+                                                <!--reference: https://codepen.io/FredGenkin/pen/eaXYGV-->
+                                                <div class="Stars" style="--rating: 4.6;">
+                                                </div>
+                                                <p>Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                                            </div>
+                                            <div class="social-share">
+                                                <ul class="social-icon">
+                                                    <li class="social-icon-item mx-lg-3 m-md-2 mx-sm-1">
+                                                        <a href="#" class="social-icon-link">
+                                                            <i class="fa-brands fa-facebook"></i>
+                                                        </a>
+                                                    </li>
+
+                                                    <li class="social-icon-item mx-lg-3 m-md-2 mx-sm-1">
+                                                        <a href="#" class="social-icon-link">
+                                                            <i class="fa-brands fa-twitter"></i>
+                                                        </a>
+                                                    </li>
+
+                                                    <li class="social-icon-item mx-lg-3 m-md-2 mx-sm-1">
+                                                        <a href="#" class="social-icon-link">
+                                                            <i class="fa-brands fa-instagram"></i>
+                                                        </a>
+                                                    </li>
+
+                                                    <li class="social-icon-item mx-lg-3 m-md-2 mx-sm-1">
+                                                        <a href="#" class="social-icon-link">
+                                                            <i class="fa-brands fa-youtube"></i>
+                                                        </a>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                            <div class="hero-button">
+                                                <a href="#artist-details" class="cus-btn primary m-lg-2 m-md-1"> <i class="fa-solid fa-circle-info"></i> View Details</a>
                                             </div>
                                         </div>
                                     </div>
@@ -319,7 +427,7 @@
         <!-----------------------------------------
                 ARTISTS DESCRIPTION SECTION
         ------------------------------------------->
-        <section class="artist-details py-5">
+        <section class="artist-details py-5" id="artist-details">
             <div class="container">
                 <div class="row bg-gradient shadow">
                     <div class="col-lg-8 col-md-8">
@@ -467,7 +575,7 @@
                                                                 <p class="mb-1">
                                                                     Maria Smantha <span class="small">- 2 hours ago</span>
                                                                 </p>
-                                                                <a href="#!"><i class="fas fa-reply fa-xs"></i><span class="small"> reply</span></a>
+                                                                <a href="#"><i class="fas fa-reply fa-xs"></i><span class="small"> reply</span></a>
                                                             </div>
                                                             <p class="small mb-0">
                                                                 It is a long-established fact that a reader will be distracted by

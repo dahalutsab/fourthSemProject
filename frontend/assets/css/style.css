@@ -22,6 +22,13 @@ a {
     text-decoration: none;
     color: var(--text-color);
 }
+small {
+    color: var(--text-color);
+}
+.button-color {
+    color: var(--button-color);
+}
+
 
 .card {
     background-color: var(--card-color);
@@ -149,7 +156,7 @@ a {
     transition: all 0.3s;
 }
 .modal-btn-close {
-    color: var(--text-color);
+    color: var(--button-color);
     font-size: 1.5rem;
     position: absolute;
     border: 0;
@@ -369,7 +376,7 @@ a {
 
 .artist-img-block img {
     width: 150px;
-    height: 100%;
+    height: inherit;
     object-fit: cover;
     vertical-align: middle;
     border-radius: inherit;
