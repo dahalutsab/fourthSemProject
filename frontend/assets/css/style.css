@@ -18,6 +18,10 @@ body {
     color: var(--text-color);
 }
 
+svg {
+    color: var(--text-color);
+}
+
 a {
     text-decoration: none;
     color: var(--text-color);
@@ -40,105 +44,6 @@ small {
     transition: all 0.3s ease;
 }
 
-/*---------------------------------------
-  NAV BAR
------------------------------------------*/
-.brand {
-    color: var(--button-color);
-}
-
-.border-hover {
-    border-top: 5px solid transparent;
-    transform: translateY(-4px);
-    color: var(--text-color);
-}
-
-.border-hover.active,
-.border-hover:focus,
-.border-hover:hover {
-    border-top: 4px solid var(--button-color);
-    transform: translateY(-4px);
-    color: var(--button-color) !important;
-}
-
-#sign-in {
-    background: var(--button-color);
-    border-radius: 50px;
-    color: var(--text-color);
-}
-
-.navbar-toggler {
-    border: 3px solid var(--button-color);
-}
-
-
-.navbar-toggler-icon {
-    color: var(--button-color);
-}
-
-.navbar-toggler:focus {
-    box-shadow: none;
-}
-
-#nav-length {
-    width: 90%;
-}
-
-.nav-img {
-    height: auto;
-    width: 20px;
-}
-
-.nav-item a .logo {
-    height: auto;
-    width: 100px;
-}
-
-.navbar-nav .dropdown-menu {
-    background-color: var(--background-color);
-    animation: ease-in-out 0.5s;
-    border: none;
-}
-
-
-.nav-dropdown ul li a{
-    text-decoration: none;
-    color: var(--text-color);
-}
-
-.nav-dropdown ul li a:hover{
-    color: var(--button-color);
-    text-decoration: none;
-}
-
-.nav-dropdown ul li img{
-    display: block;
-    height: 100px;
-    width: 100px;
-    margin-right: 0.5rem;
-}
-
-.nav-dropdown ul li{
-    list-style: none;
-}
-
-@media screen and (max-width : 992px) {
-    #nav-length {
-        width: 100%;
-    }
-
-    .border-hover {
-        border-top: 0;
-    }
-
-    .border-hover:hover {
-        border-top: 0;
-    }
-
-    .nav-item .dropdown-menu .d-flex {
-        display: block;
-    }
-}
 
 /*-----------------------------------------
     LOGIN/SIGNUP MODAL
@@ -272,7 +177,7 @@ small {
     color: var(--text-color);
 }
 
-.social-icon-item .social-icon-link .svg-inline--fa{
+.social-icon-link .svg-inline--fa{
     margin-right: 10px;
     text-align: center;
     width: 30px;
@@ -281,7 +186,7 @@ small {
     transition: background 0.2s, color 0.2s;
 }
 
-.social-icon-link:hover {
+.social-icon-link svg:hover {
     color: var(--button-color);
 }
 

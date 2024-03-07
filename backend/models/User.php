@@ -1,42 +1,29 @@
 <?php
 
+namespace models;
+
 class User {
     private int $id;
     private string $username;
     private string $email;
-    private string $passwordHash;
-    private string $firstName;
-    private string $lastName = "";
-    private string $bio = "";
-    private string $profilePicture = "";
-    private string $createdAt;
-    private string $updatedAt;
+    private string $password;
+    private int $role_id;
+    private string $phone_number;
+    private string $address;
+    private string $created_at;
 
-    public function __construct(
-        int $id,
-        string $username,
-        string $email,
-        string $passwordHash,
-        string $firstName,
-        string $lastName = "",
-        string $bio = "",
-        string $profilePicture = "",
-        string $createdAt = "",
-        string $updatedAt = ""
-    ) {
+    public function __construct(int $id, string $username, string $email, string $password, int $role_id, string $phone_number, string $address, string $created_at) {
         $this->id = $id;
         $this->username = $username;
         $this->email = $email;
-        $this->passwordHash = $passwordHash;
-        $this->firstName = $firstName;
-        $this->lastName = $lastName;
-        $this->bio = $bio;
-        $this->profilePicture = $profilePicture;
-        $this->createdAt = $createdAt;
-        $this->updatedAt = $updatedAt;
+        $this->password = $password;
+        $this->role_id = $role_id;
+        $this->phone_number = $phone_number;
+        $this->address = $address;
+        $this->created_at = $created_at;
     }
 
-//     Getters
+    // Getters and setters for each property
     public function getId(): int {
         return $this->id;
     }
@@ -45,74 +32,56 @@ class User {
         return $this->username;
     }
 
-    public function getEmail(): string {
-        return $this->email;
-    }
-
-    public function getPasswordHash(): string {
-        return $this->passwordHash;
-    }
-
-    public function getFirstName(): string {
-        return $this->firstName;
-    }
-
-    public function getLastName(): string {
-        return $this->lastName;
-    }
-
-    public function getBio(): string {
-        return $this->bio;
-    }
-
-    public function getProfilePicture(): string {
-        return $this->profilePicture;
-    }
-
-    public function getCreatedAt(): string {
-        return $this->createdAt;
-    }
-
-    public function getUpdatedAt(): string {
-        return $this->updatedAt;
-    }
-
-
-    // Setters
     public function setUsername(string $username): void {
         $this->username = $username;
+    }
+
+    public function getEmail(): string {
+        return $this->email;
     }
 
     public function setEmail(string $email): void {
         $this->email = $email;
     }
 
-    public function setPasswordHash(string $passwordHash): void {
-        $this->passwordHash = $passwordHash;
+    public function getPassword(): string {
+        return $this->password;
     }
 
-    public function setFirstName(string $firstName): void {
-        $this->firstName = $firstName;
+    public function setPassword(string $password): void {
+        $this->password = $password;
     }
 
-    public function setLastName(string $lastName): void {
-        $this->lastName = $lastName;
+    public function getRoleId(): int {
+        return $this->role_id;
     }
 
-    public function setBio(string $bio): void {
-        $this->bio = $bio;
+    public function setRoleId(int $role_id): void {
+        $this->role_id = $role_id;
     }
 
-    public function setProfilePicture(string $profilePicture): void {
-        $this->profilePicture = $profilePicture;
+    public function getPhoneNumber(): string {
+        return $this->phone_number;
     }
 
-    public function setCreatedAt(string $createdAt): void {
-        $this->createdAt = $createdAt;
+    public function setPhoneNumber(string $phone_number): void {
+        $this->phone_number = $phone_number;
     }
 
-    public function setUpdatesAt(string $updatedAt): void {
-        $this->createdAt = $updatedAt;
+    public function getAddress(): string {
+        return $this->address;
     }
+
+    public function setAddress(string $address): void {
+        $this->address = $address;
+    }
+
+    public function getCreatedAt(): string {
+        return $this->created_at;
+    }
+
+    public function setCreatedAt(string $created_at): void {
+        $this->created_at = $created_at;
+    }
+
 }
-

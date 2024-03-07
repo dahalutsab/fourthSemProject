@@ -1,0 +1,18 @@
+.submit-btn {
+    background-color: var(--button-color);
+    color: var(--text-color);
+    border: none;
+    padding: 8px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+#login-form svg, #signup-form svg {
+    color: var(--button-color);
+}
+
+.close-login svg {
+    color: var(--button-color);
+    font-size: 25px;
+}

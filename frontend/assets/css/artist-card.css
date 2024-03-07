@@ -1,0 +1,24 @@
+/* Artist card */
+.artist-block {
+    background-color: var(--card-color);
+    border-radius: 15px;
+    position: relative;
+    overflow: hidden;
+    padding: 30px;
+    transition: all 0.3s ease;
+    height: 100%;
+}
+
+.artist-block img {
+    width: 100%;
+    height: auto;
+    border-radius: 15px;
+    margin-bottom: 20px;
+}
+
+.artist-block .card-body h5{
+    color: var(--button-color);
+}
+.artist-block .card-body p{
+    color: var(--text-color);
+}
