@@ -62,7 +62,7 @@
         <div class="col-lg-4 col-md-12">
             <div class="artist-aboutUs-content shadow">
                 <div class="artist-img-block">
-                    <img src="assets/images/utsab.jpg" alt="image">
+                    <img src="../../../public/assets/images/utsab.jpg" alt="image">
                 </div>
                 <div class="text-block">
                     <h2>Apson Jirel</h2>
@@ -137,7 +137,7 @@
                                 <div class="col">
                                     <div class="d-flex flex-start">
                                         <img class="rounded-circle shadow-1-strong me-3"
-                                             src="../assets/images/utsab.jpg" alt="avatar" width="65"
+                                             src="../../../public/assets/images/utsab.jpg" alt="avatar" width="65"
                                              height="65" />
                                         <div class="flex-grow-1 flex-shrink-1">
                                             <div>
@@ -155,7 +155,7 @@
                                             <div class="d-flex flex-start mt-4">
                                                 <a class="me-3" href="#">
                                                     <img class="rounded-circle shadow-1-strong"
-                                                         src="../assets/images/utsab.jpg" alt="avatar"
+                                                         src="../../../public/assets/images/utsab.jpg" alt="avatar"
                                                          width="65" height="65" />
                                                 </a>
                                                 <div class="flex-grow-1 flex-shrink-1">
@@ -175,7 +175,7 @@
                                             <div class="d-flex flex-start mt-4">
                                                 <a class="me-3" href="#">
                                                     <img class="rounded-circle shadow-1-strong"
-                                                         src="../assets/images/utsab.jpg" alt="avatar"
+                                                         src="../../../public/assets/images/utsab.jpg" alt="avatar"
                                                          width="65" height="65" />
                                                 </a>
                                                 <div class="flex-grow-1 flex-shrink-1">

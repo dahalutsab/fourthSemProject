@@ -1,0 +1,14 @@
+{
+    "name": "legion/open-mic-hub",
+    "autoload": {
+        "psr-4": {
+            "App\\": "app/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Utsab Dahal"
+        }
+    ],
+    "require": {}
+}

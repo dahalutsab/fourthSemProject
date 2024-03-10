@@ -2,7 +2,7 @@
     <div class="col-lg-4 col-md-6 col-12 mb-4 mb-lg-0">
         <div class="card shadow">
             <div class="close-login position-absolute top-0 end-0 p-3">
-                <a href="../index.php?page="><i class="fa fa-close"></i> </a>
+                <a href="../../../index.php?page="><i class="fa fa-close"></i> </a>
             </div>
             <ul class="nav nav-tabs" role="tablist">
                 <li class="nav-item">
@@ -42,7 +42,7 @@
                 </div>
                 <div class="tab-pane" id="signup">
                     <h4 class="card-title mt-3 text-center">Create Account</h4>
-                    <form id="signup-form" action="../../backend/public/index.php" method="post">
+                    <form id="signup-form" action="/backend/public/index.php" method="post">
                         <div class="form-group mb-3">
                             <div class="input-group">
                                 <span class="input-group-text">

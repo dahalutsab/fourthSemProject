@@ -11,8 +11,8 @@
             <ul id="nav-length" class="navbar-nav justify-content-between border-top border-2 text-center">
 
                 <li class="nav-item nav-logo">
-                    <a href="../index.php#home_content" class="nav-link active border-hover py-3" id="home">
-                        <img src="../assets/images/openMicLogo.png" class="logo" alt="Open Mic Hub">
+                    <a href="/" class="nav-link active border-hover py-3" id="home">
+                        <img src="/public/assets/images/openMicLogo.png" class="logo" alt="Open Mic Hub">
                     </a>
                 </li>
 
@@ -25,28 +25,28 @@
                             <ul class="d-flex justify-content-between">
                                 <li>
                                     <a href="#singersTab">
-                                        <img src="../assets/images/4.png" alt="singers">
+                                        <img src="/public/assets/images/4.png" alt="singers">
                                         Singers
                                     </a>
                                 </li>
 
                                 <li>
                                     <a href="#poetrySlammersTab">
-                                        <img src="../assets/images/2.png" alt="Poetry Slammers">
+                                        <img src="/public/assets/images/2.png" alt="Poetry Slammers">
                                         Poetry Slammers
                                     </a>
                                 </li>
 
                                 <li>
                                     <a href="#standUpComediansTab">
-                                        <img src="../assets/images/1.png" alt="Stand Up Comedians">
+                                        <img src="/public/assets/images/1.png" alt="Stand Up Comedians">
                                         Stand Up Comedians
                                     </a>
                                 </li>
 
                                 <li>
                                     <a href="#storyTellersTab">
-                                        <img src="../assets/images/3.png" alt="Story Tellers">
+                                        <img src="/public/assets/images/3.png" alt="Story Tellers">
                                         Story Tellers
                                     </a>
                                 </li>
@@ -73,18 +73,12 @@
                     <a href="#" class="nav-link border-hover py-3">Contact Us</a>
                 </li>
 
-
-                <?php
-
-                    echo $GLOBALS['page'] == 'signin' ? "" :  '
-                            <li class="nav-item">
-                                <a href="../index.php?page=signin" id="sign-in" class="nav-link my-2 px-4">
-                                    <i class="fa-solid fa-sign-in"></i>
-                                    Sign In
-                                </a>
-                            </li>
-                            ';
-                ?>
+                <li class="nav-item">
+                    <a href="/signup" id="sign-in" class="nav-link my-2 px-4">
+                        <i class="fa-solid fa-sign-in"></i>
+                        Sign In
+                    </a>
+                </li>
 
             </ul>
         </div>

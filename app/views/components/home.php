@@ -46,7 +46,7 @@
         </div>
         <div class="col-lg-4">
             <div class="img-block bg-gradient shadow br-30 text-center">
-                <img src="../assets/images/hero-image.png" alt="image">
+                <img src="../../../public/assets/images/hero-image.png" alt="image">
             </div>
         </div>
     </div>
