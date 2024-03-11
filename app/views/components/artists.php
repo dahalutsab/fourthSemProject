@@ -1,4 +1,4 @@
-<section class="artists py-lg-5">
+<section class="artists py-lg-5" id="artist">
     <!--artists heading-->
     <div class="container">
         <div class="col-12 text-center">

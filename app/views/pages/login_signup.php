@@ -29,7 +29,7 @@
                                 <span class="input-group-text">
                                 <i class="fas fa-lock"></i>
                                 </span>
-                                <input type="password" class="form-control" placeholder="Create password" name="password" required>
+                                <input type="password" class="form-control" placeholder="Input password" name="password" required>
                             </div>
                         </div>
                         <div class="form-group mb-3">

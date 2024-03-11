@@ -40,7 +40,10 @@
                     </ul>
                 </div>
                 <div class="hero-button">
-                    <a href="#" class="cus-btn primary">Contact Us</a>
+                    <a href="#contact" class="cus-btn primary">
+                        <i class="fas fa-envelope"></i>
+                        Contact Us
+                    </a>
                 </div>
             </div>
         </div>

@@ -25,6 +25,11 @@ class Route
         $controller = $this->getControllerName();
         return new $controller;
     }
+//    public function getController(): object
+//    {
+//        $container = new Container();
+//        return $container->make($this->getControllerName());
+//    }
     private function getControllerName(): string
     {
         $parts = explode('@', $this->controllerMethod);

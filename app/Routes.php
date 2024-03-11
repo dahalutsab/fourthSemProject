@@ -3,11 +3,13 @@
 // This file is optional for defining routes (you can define them directly in Router.php if preferred)
 
 return [
-    "/home" => "App\Controllers\HomeController@index",
-    '/' => 'App\Controllers\HomeController@index',
-    '/signup' => 'App\Controllers\HomeController@signup',
-    '/artist-details' => 'App\Controllers\HomeController@artistDetails',
-    '/about-us' => 'App\Controllers\AboutUsController@index',
-    '/contact-us' => 'App\Controllers\ContactUsController@index',
+    "/home"  => "App\Controllers\ViewController@index",
+    '/' => 'App\Controllers\ViewController@index',
+    '/signup' => 'App\Controllers\ViewController@signup',
+    '/process-signup' => 'App\Controllers\UserController@signup',
+    '/login' => 'App\Controllers\ViewController@login',
+    '/artist-details' => 'App\Controllers\ViewController@artistDetails',
+    '/aboutUs' => 'App\Controllers\ViewController@aboutUs',
+    '/contact-us' => 'App\Controllers\ViewController@contactUs',
     // Add more routes as needed
 ];

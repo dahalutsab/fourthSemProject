@@ -4,7 +4,7 @@
             <div class = "artist-landing">
                 <nav aria-label="breadcrumb">
                     <ol class="breadcrumb">
-                        <li class="breadcrumb-item"><a href="#home">Homepage</a></li>
+                        <li class="breadcrumb-item"><a href="/">Homepage</a></li>
 
                         <li class="breadcrumb-item active" aria-current="page">Singers</li>
                     </ol>
@@ -12,7 +12,7 @@
             </div>
         </div>
         <div class="col-lg-4 col-md-4 text-end">
-            <a href="#artist-content"><i class="fa-solid fa-backward"></i> Back to artists</a>
+            <a href="/#artist"><i class="fa-solid fa-backward"></i> Back to artists</a>
         </div>
     </div>
     <div class="row">

@@ -10,5 +10,7 @@
             "name": "Utsab Dahal"
         }
     ],
-    "require": {}
+    "require": {
+        "ext-mysqli": "*"
+    }
 }

@@ -56,13 +56,13 @@
                 </li>
 
                 <li class="nav-item">
-                    <a href="#" class="nav-link border-hover py-3">Our Services</a>
+                    <a href="/services" class="nav-link border-hover py-3">Our Services</a>
                 </li>
 
 
                 <li class="nav-item search-width">
-                    <form class="input-group py-2">
-                        <input type="search" class="form-control" placeholder="Search... ">
+                    <form class="input-group py-2" >
+                        <input type="search" class="form-control" id="search" placeholder="Search... ">
                         <button class="btn btn-outline-secondary search" type="submit">
                             <i class="fa-solid fa-magnifying-glass"></i>
                         </button>
@@ -70,11 +70,11 @@
                 </li>
 
                 <li class="nav-item">
-                    <a href="#" class="nav-link border-hover py-3">Contact Us</a>
+                    <a href="#contact" class="nav-link border-hover py-3">Contact Us</a>
                 </li>
 
                 <li class="nav-item">
-                    <a href="/signup" id="sign-in" class="nav-link my-2 px-4">
+                    <a href="/login" id="sign-in" class="nav-link my-2 px-4">
                         <i class="fa-solid fa-sign-in"></i>
                         Sign In
                     </a>

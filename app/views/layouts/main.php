@@ -11,6 +11,7 @@
     <link rel="stylesheet" href="/public/assets/css/artists.css">
     <link rel="stylesheet" href="/public/assets/css/artist-card.css">
     <link rel="stylesheet" href="/public/assets/css/footer.css">
+    <link rel="stylesheet" href="/public/assets/css/contactUs.css">
     <link rel="stylesheet" href="/public/assets/css/style.css">
     <script src="https://kit.fontawesome.com/3ab31dc8a0.js" crossorigin="anonymous"></script>
 
@@ -20,27 +21,15 @@
 
 <div class="container">
 
-    <?php
-    // Determine which content to include based on route or controller action
-    // (Replace this logic with your routing system to identify the appropriate content)
-    $content = trim($_SERVER['REQUEST_URI'], '/') ?? 'home';
-
-    switch ($content) {
-        case 'home':
-            require_once __DIR__ . '/../components/home.php'; // Include home component
-            require_once __DIR__ . '/../components/artists.php'; // Include artists component
-            break;
-        case 'signup':
-            require_once __DIR__ . '/../pages/login_signup.php'; // Include signup view
-            break;
-        case 'artist-details':
-            require_once __DIR__ . '/../pages/artist_details.php'; // Include artist details view
-            break;
-        // ... (Add cases for other functionalities) ...
-        default:
-            // Handle cases where content cannot be determined
-    }
-    ?>
+    <div class="container">
+        <?php
+        // Loop through the content array and include each content file
+        $content = $content ?? [];
+        foreach ($content as $page) {
+            require_once __DIR__ . "/../{$page}.php";
+        }
+        ?>
+    </div>
 
 </div>
 

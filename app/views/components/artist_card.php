@@ -38,7 +38,7 @@
             </ul>
         </div>
         <div class="hero-button">
-            <a href="?page=artist_details" id="view-artist-details-btn" class="cus-btn primary m-lg-2 m-md-1">
+            <a href="/artist-details" id="view-artist-details-btn" class="cus-btn primary m-lg-2 m-md-1">
                 <i class="fa-solid fa-circle-info"></i> View Details
             </a>
         </div>

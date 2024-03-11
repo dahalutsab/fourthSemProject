@@ -24,7 +24,7 @@
                 </div>
                 <div class="col-md-2">
                     <h6 class="text-uppercase font-weight-bold footer-hover">
-                        <a href="#">Contact Us</a>
+                        <a href="#contact">Contact Us</a>
                     </h6>
                 </div>
             </div>
@@ -43,7 +43,7 @@
             </div>
         </section>
 
-        <section class="text-center mb-5">
+        <section class="text-center mb-3">
             <a href="" class="me-4">
                 <i class="fab fa-facebook-f"></i>
             </a>
@@ -56,6 +56,9 @@
             <a href="" class="me-4">
                 <i class="fab fa-youtube"></i>
             </a>
+        </section>
+        <section class="text-center mb-3">
+            <p>&copy; 2024 Open Mic Hub. All rights reserved.</p>
         </section>
 
     </div>
