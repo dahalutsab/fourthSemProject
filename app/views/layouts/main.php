@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="/public/assets/css/home.css">
     <link rel="stylesheet" href="/public/assets/css/artists.css">
     <link rel="stylesheet" href="/public/assets/css/artist-card.css">
+    <link rel="stylesheet" href="/public/assets/css/artist-details.css">
     <link rel="stylesheet" href="/public/assets/css/footer.css">
     <link rel="stylesheet" href="/public/assets/css/contactUs.css">
     <link rel="stylesheet" href="/public/assets/css/style.css">
