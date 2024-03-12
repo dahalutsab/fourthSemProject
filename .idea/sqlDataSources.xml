@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DdlMappings">
+    <mapping uuid="a780cf1c-3eec-4e07-80ec-8317680a937e" name="@open_mic_hub Mapping">
+      <data-sources db="73441bb6-d431-47e9-9d9c-5edf124603f6" />
+      <scope>
+        <node kind="schema" qname="open_mic_hub" />
+      </scope>
+    </mapping>
+  </component>
+</project>

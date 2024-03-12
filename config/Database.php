@@ -1,13 +1,31 @@
 <?php
+namespace Config;
 
-const DB_HOST = 'localhost';
-const DB_NAME = 'open_mic_hub';
-const DB_USER = 'root';
-const DB_PASSWORD = '';
+use Config\DatabaseConfig;
 
-$mysqli = new mysqli(DB_HOST, DB_USER, DB_PASSWORD, DB_NAME);
+class Database {
 
-if ($mysqli->connect_errno) {
-    echo "Failed to connect to MySQL: (" . $mysqli->connect_errno . ") " . $mysqli->connect_error;
-    exit();
+
+    public function __construct() {
+        $this->connect(new DatabaseConfig());
+    }
+
+    protected function connect(DatabaseConfig $config): void
+    {
+        $host = $config->getHost();
+        $username = $config->getUsername();
+        $password = $config->getPassword();
+        $database = $config->getDatabase();
+
+        $this->connection = new \mysqli($host, $username, $password, $database);
+
+        if ($this->connection->connect_error) {
+            die("Connection failed: " . $this->connection->connect_error);
+        }
+    }
+
+    public function getConnection(): \mysqli
+    {
+        return $this->connection;
+    }
 }

@@ -1,15 +1,49 @@
 <?php
+declare(strict_types=1);
 
-// This file is optional for defining routes (you can define them directly in Router.php if preferred)
+use App\Controllers\UserController;
+use App\Controllers\ViewController;
+use App\Handler\Contact;
+use App\Router;
 
-return [
-    "/home"  => "App\Controllers\ViewController@index",
-    '/' => 'App\Controllers\ViewController@index',
-    '/signup' => 'App\Controllers\ViewController@signup',
-    '/process-signup' => 'App\Controllers\UserController@signup',
-    '/login' => 'App\Controllers\ViewController@login',
-    '/artist-details' => 'App\Controllers\ViewController@artistDetails',
-    '/aboutUs' => 'App\Controllers\ViewController@aboutUs',
-    '/contact-us' => 'App\Controllers\ViewController@contactUs',
-    // Add more routes as needed
-];
+$router = new Router();
+
+//route to home
+$router->get('/', ViewController::class . '::index');
+$router->get('/home', ViewController::class . '::index');
+
+
+//route to signup
+$router->get('/signup', ViewController::class . '::signup');
+$router->post('/signup', UserController::class . '::signup');
+
+
+//route to log in
+$router->get('/login', ViewController::class . '::login');
+$router->post('/login', UserController::class . '::login');
+
+
+//route to otp verification
+$router->get('/verify-otp', ViewController::class . '::verifyOtp');
+$router->post('/verify-otp', UserController::class . '::verifyOtp');
+
+
+//route to artist details
+$router->get('/profile', ViewController::class . '::profile');
+$router->post('/profile', UserController::class . '::profile');
+
+
+$router->get('/contact', Contact::class . '::execute');
+$router->post('/contact', function () {
+    UserController::class . '::contact';
+    var_dump($_POST);
+});
+
+
+//route to 404 if any error
+$router->addNotFoundHandler(function () {
+    $title = '404 - Not Found';
+    require_once __DIR__ . '/../app/views/error/404.phtml';
+});
+
+$router->run();

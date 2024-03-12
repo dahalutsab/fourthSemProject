@@ -20,13 +20,24 @@ class Otp
         return $this->userId;
     }
 
+    public function setUserId($userId): void
+    {
+        $this->userId = $userId;
+    }
+
     public function getOtp()
     {
         return $this->otp;
     }
 
-    public function getCreatedDate()
+    public function setOtp($otp): void
+    {
+        $this->otp = $otp;
+    }
+
+    public function getCreatedDate(): \DateTime
     {
         return $this->createdDate;
     }
+
 }

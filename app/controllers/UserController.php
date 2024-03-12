@@ -1,40 +1,45 @@
 <?php
-
 namespace App\Controllers;
 
-use App\Services\UserService;
 
-class UserController
-{
-    private UserService $userService;
+use App\Services\Implementation\UserService;
 
-    public function __construct(UserService $userService)
-    {
-        $this->userService = $userService;
+require_once __DIR__ . '/../../app/service/implementation/UserService.php';
+class UserController {
+    protected UserService $userService;
+
+    public function __construct() {
+        $this->userService = new UserService;
     }
 
     public function signup(): void
     {
-        // Validate form data
-        // ...
+        // Retrieve form data sent by the router
+        $username = $_POST['username'] ?? '';
+        $email = $_POST['email'] ?? '';
+        $password = $_POST['password'] ?? '';
+        $role = $_POST['role'] ?? '';
 
-        // Delegate the business logic to the UserService
-        $this->userService->createUser($_POST);
-
-        // Redirect to otp.php
-        header('Location: /otp');
-    }
-
-    public function verifyOtp(): void
-    {
-        // Delegate the OTP verification to the UserService
-        if ($this->userService->verifyOtp($_POST['otp'])) {
-            // OTP is correct, redirect to the login page
-            header('Location: /login');
-        } else {
-            // OTP is incorrect, redirect back to otp.php with an error message
-            $_SESSION['error'] = 'Incorrect OTP. Please try again.';
-            header('Location: /otp');
+        // Perform basic validation
+        if (empty($username) || empty($email) || empty($password) || empty($role)) {
+            // Handle missing fields error
+            echo "All fields are required.";
+            return;
         }
+
+        if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+            // Handle invalid email format error
+            echo "Invalid email format.";
+            return;
+        }
+
+        // Perform password strength validation
+        if (strlen($password) < 8) {
+            // Handle weak password error
+            echo "Password must be at least 8 characters long.";
+            return;
+        }
+
+        $this->userService->createUser($username, $email, $password, $role);
     }
 }

@@ -32,7 +32,7 @@ class ViewController
         $this->render(compact('pageTitle', 'content'));
     }
 
-    public function artistDetails(): void
+    public function profile(): void
     {
         $pageTitle = 'Artist Details';
         $content = ['pages/artist_details']; // Make $content an array
@@ -43,6 +43,6 @@ class ViewController
     private function render(array $data): void
     {
         extract($data);
-        require_once __DIR__ . '/../views/layouts/main.php'; // Include main layout
+        require_once __DIR__ . '/../views/layouts/main.php';
     }
 }

@@ -10,8 +10,6 @@
 
 
 body {
-    /*overflow: hidden;*/
-    /*background: #3A3E4B;*/
     margin: 0;
     padding: 0;
     background: var(--background-color);

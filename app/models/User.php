@@ -4,13 +4,13 @@ namespace App\Models;
 
 class User
 {
-    private $username;
-    private $email;
-    private $password;
-    private $accountType;
-    private $createdDate;
-    private $updatedDate;
-    private $otp;
+    private int $id;
+    private string $username;
+    private string $email;
+    private string $password;
+    private int $accountType;
+    private \DateTime $createdDate;
+//    private $updatedDate;
 
     public function __construct($username, $email, $password, $accountType)
     {
@@ -21,22 +21,26 @@ class User
         $this->createdDate = new \DateTime();
     }
 
-    public function getUsername()
+    public function getId(): int
+    {
+        return $this->id;
+    }
+    public function getUsername(): string
     {
         return $this->username;
     }
 
-    public function getEmail()
+    public function getEmail(): string
     {
         return $this->email;
     }
 
-    public function getPassword()
+    public function getPassword(): string
     {
         return $this->password;
     }
 
-    public function getAccountType()
+    public function getAccountType(): int
     {
         return $this->accountType;
     }
@@ -46,18 +50,5 @@ class User
         return $this->createdDate;
     }
 
-    public function getUpdatedDate()
-    {
-        return $this->updatedDate;
-    }
 
-    public function setOtp($otp)
-    {
-        $this->otp = $otp;
-    }
-
-    public function getOtp()
-    {
-        return $this->otp;
-    }
 }
