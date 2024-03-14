@@ -11,6 +11,12 @@ class ViewController
         $this->render(compact('pageTitle', 'content'));
     }
 
+    public function login(): void
+    {
+        $pageTitle = 'Login';
+        $content = ['pages/login']; // Make $content an array
+        $this->render(compact('pageTitle', 'content'));
+    }
     public function signup(): void
     {
         $pageTitle = 'Signup';
@@ -18,12 +24,14 @@ class ViewController
         $this->render(compact('pageTitle', 'content'));
     }
 
-    public function login(): void
+    public function verifyOtp(): void
     {
-        $pageTitle = 'Login';
-        $content = ['pages/login']; // Make $content an array
+        $pageTitle = 'Verify OTP';
+        $content = ['pages/otp']; // Make $content an array
         $this->render(compact('pageTitle', 'content'));
     }
+
+
 
     public function aboutUs(): void
     {
@@ -40,9 +48,17 @@ class ViewController
         $this->render(compact('pageTitle', 'content', 'artistId'));
     }
 
+    public function dashboard(): void
+    {
+        $pageTitle = 'Dashboard';
+        $content = ['pages/contactUs']; // Make $content an array
+        $this->render(compact('pageTitle', 'content'));
+    }
+
     private function render(array $data): void
     {
         extract($data);
         require_once __DIR__ . '/../views/layouts/main.php';
+//        require_once __DIR__ . '/../views/layouts/dashboard.php';
     }
 }

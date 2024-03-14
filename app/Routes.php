@@ -1,6 +1,7 @@
 <?php
 declare(strict_types=1);
 
+use App\Controllers\AuthController;
 use App\Controllers\UserController;
 use App\Controllers\ViewController;
 use App\Handler\Contact;
@@ -20,7 +21,7 @@ $router->post('/signup', UserController::class . '::signup');
 
 //route to log in
 $router->get('/login', ViewController::class . '::login');
-$router->post('/login', UserController::class . '::login');
+$router->post('/login', AuthController::class . '::login');
 
 
 //route to otp verification

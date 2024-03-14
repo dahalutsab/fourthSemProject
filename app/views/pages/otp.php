@@ -2,8 +2,13 @@
     <div class="col-lg-4 col-md-6 col-12 mb-4 mb-lg-0">
         <div class="card shadow">
             <div class="close-login position-absolute top-0 end-0 p-3">
-                <a href="../../../index.php?page="><i class="fa fa-close"></i></a>
+                <a href="/"><i class="fa fa-close"></i></a>
             </div>
+            <?php if (isset($error)): ?>
+                <div class="alert alert-danger" role="alert">
+                    <?= $error ?>
+                </div>
+            <?php endif; ?>
 
             <h4 class="card-title mt-3 text-center">Enter OTP</h4>
             <form id="otp-form" method="post">
@@ -80,4 +85,3 @@
 
 
 </div>
-

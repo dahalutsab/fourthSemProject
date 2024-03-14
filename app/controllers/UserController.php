@@ -2,16 +2,25 @@
 namespace App\Controllers;
 
 
+use App\service\implementation\OtpService;
 use App\Services\Implementation\UserService;
+use Exception;
 
 require_once __DIR__ . '/../../app/service/implementation/UserService.php';
+require_once __DIR__ . '/../../app/service/implementation/OtpService.php';
+
 class UserController {
     protected UserService $userService;
+    protected OtpService $otpService;
 
     public function __construct() {
         $this->userService = new UserService;
+        $this->otpService = new OtpService;
     }
 
+    /**
+     * @throws Exception
+     */
     public function signup(): void
     {
         // Retrieve form data sent by the router
@@ -41,5 +50,29 @@ class UserController {
         }
 
         $this->userService->createUser($username, $email, $password, $role);
+        header('Location: /verify-otp');
+    }
+
+
+    public function verifyOtp(): void
+    {
+        // Retrieve form data sent by the router
+        $otp = $_POST['otp'] ?? '';
+        $email = $_POST['email'] ?? '';
+
+        // Perform basic validation
+        if (empty($otp)) {
+            // Handle missing fields error
+            echo "OTP is required.";
+            return;
+        }
+
+        // Verify OTP
+        if ($this->otpService->verifyOtp($otp, $email)) {
+            header('Location: /home');
+        } else {
+            // Handle invalid OTP error
+            echo "Invalid OTP.";
+        }
     }
 }

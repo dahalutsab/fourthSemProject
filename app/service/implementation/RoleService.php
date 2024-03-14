@@ -20,4 +20,9 @@ class RoleService implements RoleServiceInterface
     {
         return $this->roleRepository->getRolesForUser();
     }
+
+    public function validateRole($role): bool
+    {
+        return $this->roleRepository->getExistsRoleByID($role);
+    }
 }

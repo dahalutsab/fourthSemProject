@@ -1,16 +1,24 @@
 <?php
-namespace App\Repository;
 
+namespace App\Repository\implementation;
+
+use App\Models\Otp;
+use App\Repository\OtpRepositoryInterface;
 use Config\Database;
 
-class UserRepository implements UserRepositoryInterface {
+class OtpRepository implements OtpRepositoryInterface
+{
     protected Database $database;
 
     public function __construct() {
         $this->database = new Database;
     }
 
-    public function saveUser($username, $email, $password, $accountType): bool
+    public function save( Otp $otp)
+    {
+        $stmt = $this->database->getConnection()->prepare("INSERT INTO otps (user_id, otp, created_at, expires_at) VALUES (?, ?, ?)");
+    }
+    public function saveUser($username, $email, $password, $accountType): void
     {
         $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
         $createdDate = date('Y-m-d H:i:s');
@@ -19,17 +27,10 @@ class UserRepository implements UserRepositoryInterface {
         $stmt->bind_param("sssis", $username, $email, $hashedPassword, $accountType, $createdDate);
         $stmt->execute();
         $stmt->close();
-        return true;
     }
 
-    public function getUserByEmail($email): ?object
+    public function find(string $email, string $otp): ?Otp
     {
-        $stmt = $this->database->getConnection()->prepare("SELECT * FROM users WHERE email = ?");
-        $stmt->bind_param("s", $email);
-        $stmt->execute();
-
-        $result = $stmt->get_result();
-        return $result->fetch_object();
+        // TODO: Implement find() method.
     }
-
 }

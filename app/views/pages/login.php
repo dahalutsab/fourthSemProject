@@ -5,7 +5,17 @@
                 <a href="/"><i class="fa fa-close"></i> </a>
             </div>
             <h4 class="card-title mt-3 text-center">Login</h4>
-            <form id="login-form">
+            <!-- Display error messages if any -->
+            <?php if (isset($_SESSION['errors'])): ?>
+                <div class="alert alert-danger">
+                    <?php foreach ($_SESSION['errors'] as $error): ?>
+                        <p><?php echo $error; ?></p>
+                    <?php endforeach; ?>
+                </div>
+                <?php unset($_SESSION['errors']); ?>
+            <?php endif; ?>
+
+            <form id="login-form" action="/login" method="post">
                 <div class="form-group mb-3">
                     <div class="input-group">
                         <span class="input-group-text">

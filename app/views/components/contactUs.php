@@ -36,7 +36,7 @@
                                     </div>
                                     <div class="col-12">
                                         <div class="form-group">
-                                            <button type="submit" class="login-signup">
+                                            <button type="submit" class="submit-btn">
                                                 <i class="fa-solid fa-message"></i>
                                                 Send Message
                                             </button>

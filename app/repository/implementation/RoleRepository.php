@@ -60,4 +60,15 @@ class RoleRepository implements RoleRepositoryInterface
     {
         // TODO: Implement deleteRole() method.
     }
+
+    public function getExistsRoleByID($role): bool
+    {
+        $result = $this->database->getConnection()->query("SELECT * FROM roles WHERE role_id = '{$role}'");
+
+        if ($result->num_rows > 0) {
+            return true;
+        } else {
+            return false;
+        }
+    }
 }
