@@ -9,14 +9,14 @@ class Otp
     private int $userId;
     private string $otp;
     private DateTime $createdDate;
-    private DateTime $updatedDate;
+    private DateTime $expiresAt;
 
-    public function __construct($userId, $otp, $createdDate, $updatedDate)
+    public function __construct($userId, $otp, $createdDate, $expiresAt)
     {
         $this->userId = $userId;
         $this->otp = $otp;
         $this->createdDate =$createdDate;
-        $this->updatedDate = $updatedDate;
+        $this->expiresAt = $expiresAt;
     }
 
     public function getUserId(): int
@@ -49,14 +49,14 @@ class Otp
         $this->createdDate = $createdDate;
     }
 
-    public function getUpdatedDate(): DateTime
+    public function getExpiresAt(): DateTime
     {
-        return $this->updatedDate;
+        return $this->expiresAt;
     }
 
-    public function setUpdatedDate($updatedDate): void
+    public function setExpiresAt($expiresAt): void
     {
-        $this->updatedDate = $updatedDate;
+        $this->expiresAt = $expiresAt;
     }
 
 }

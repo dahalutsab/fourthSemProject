@@ -74,10 +74,19 @@
                 </li>
 
                 <li class="nav-item">
-                    <a href="/login" id="sign-in" class="nav-link my-2 px-4">
-                        <i class="fa-solid fa-sign-in"></i>
-                        Sign In
-                    </a>
+                    <?php if (isset($_SESSION[SESSION_USER_ID])): ?>
+                        <!-- Display the "Logout" button if user is logged in -->
+                        <a href="/logout" class="nav-link sign-button">
+                            <i class="fa-solid fa-sign-out"></i>
+                            Logout
+                        </a>
+                    <?php else: ?>
+                        <!-- Display the "Sign In" button if user is not logged in -->
+                        <a href="/login" class="nav-link my-2 sign-button">
+                            <i class="fa-solid fa-sign-in"></i>
+                            Sign In
+                        </a>
+                    <?php endif; ?>
                 </li>
 
             </ul>

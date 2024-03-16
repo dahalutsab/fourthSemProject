@@ -3,6 +3,7 @@ namespace App\Services\Implementation;
 
 use App\Repository\UserRepository;
 use App\Service\AuthServiceInterface;
+use Exception;
 
 require_once __DIR__ . '/../../repository/implementation/UserRepository.php';
 
@@ -13,18 +14,17 @@ class AuthService implements AuthServiceInterface {
         $this->userRepository = new UserRepository;
     }
 
+    /**
+     * @throws Exception
+     */
     public function login($email, $password): void
     {
         $user = $this->userRepository->getUserByEmail($email);
 
         if (!$user || !password_verify($password, $user->getPassword())) {
-            echo "Invalid email or password.";
-            return;
+            throw new Exception("Invalid email or password.");
         }
+        $_SESSION[SESSION_USER_ID] = $user->getId();
 
-        // Here you can handle session creation, JWT generation, etc.
-        // For example:
-        // $_SESSION['user_id'] = $user->id;
-        // header('Location: /dashboard');
     }
 }

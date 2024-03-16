@@ -2,7 +2,7 @@
 
 namespace App\Repository;
 
-use App\Models\Role;
+use App\models\Role;
 use Config\Database;
 
 class RoleRepository implements RoleRepositoryInterface

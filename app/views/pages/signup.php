@@ -1,6 +1,6 @@
 
 <?php
-use App\Controllers\RoleController;
+use App\controllers\RoleController;
 
 $roleController = new RoleController();
 $roles = $roleController->getRolesForUsers();

@@ -19,9 +19,9 @@
     color: var(--button-color) !important;
 }
 
-#sign-in {
+.sign-button {
     background: var(--button-color);
-    border-radius: 50px;
+    border-radius: 40px;
     color: var(--text-color);
 }
 

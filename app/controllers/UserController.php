@@ -2,20 +2,27 @@
 namespace App\Controllers;
 
 
+use App\Models\Otp;
+use App\service\implementation\MailerService;
 use App\service\implementation\OtpService;
 use App\Services\Implementation\UserService;
+use DateTime;
 use Exception;
 
 require_once __DIR__ . '/../../app/service/implementation/UserService.php';
 require_once __DIR__ . '/../../app/service/implementation/OtpService.php';
+require_once __DIR__ . '/../../app/service/implementation/MailerService.php';
 
 class UserController {
     protected UserService $userService;
     protected OtpService $otpService;
 
+    protected MailerService $mailerService;
+
     public function __construct() {
         $this->userService = new UserService;
         $this->otpService = new OtpService;
+        $this->mailerService = new MailerService;
     }
 
     /**
@@ -50,6 +57,7 @@ class UserController {
         }
 
         $this->userService->createUser($username, $email, $password, $role);
+        $this->otpService->sendOtp($email, $this->otpService->generateOtp());
         header('Location: /verify-otp');
     }
 
@@ -67,12 +75,20 @@ class UserController {
             return;
         }
 
+
+        //get userId from email from user table
+        $userId = $this->userService->getUserId($email);
         // Verify OTP
-        if ($this->otpService->verifyOtp($otp, $email)) {
+        if ($this->otpService->verifyOtp($userId)) {
             header('Location: /home');
         } else {
             // Handle invalid OTP error
             echo "Invalid OTP.";
         }
+    }
+
+    public function tryMail(): void
+    {
+        $this->mailerService->tryMail();
     }
 }

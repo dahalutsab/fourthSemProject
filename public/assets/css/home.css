@@ -77,7 +77,7 @@
     transition: background 0.2s, color 0.2s;
 }
 
-.social-icon-link:hover {
+.social-icon-link svg:hover {
     color: var(--button-color);
 }
 

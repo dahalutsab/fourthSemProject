@@ -1,5 +1,9 @@
 <?php
 
+// Include session constants file
+require_once 'session_constants.php';
+
+
 // **Session Name:** Set a random and unpredictable name
 const SESSION_NAME = 'app_session_open_mic_hub';
 
@@ -22,8 +26,10 @@ session_set_cookie_params([
     'httponly' => SESSION_COOKIE_HTTPONLY,
 ]);
 
-// Set session lifetime to 30 minutes (1800 seconds)
-ini_set('session.gc_maxlifetime', 1800);
+// Regenerate session ID after login to prevent session fixation attacks
+if (isset($_SESSION[SESSION_USER_ID])) {
+    session_regenerate_id();
+}
 
 // Start the session
 session_start();

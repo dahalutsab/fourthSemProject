@@ -1,5 +1,5 @@
 <?php
-namespace App\Controllers;
+namespace App\controllers;
 
 use App\Services\Implementation\AuthService;
 use Exception;
@@ -40,17 +40,28 @@ class AuthController {
         }
 
         try {
-            if($this->authService->login($email, $password)) {
-                // Redirect to dashboard or any other page
-                header('Location: /home');
-            };
+            $this->authService->login($email, $password);
         } catch (Exception $e) {
-            // Store error message in session
-            var_dump($e->getMessage());
             $_SESSION['errors'][] = $e->getMessage();
             header('Location: /login');
             return;
         }
+
+        // Redirect to dashboard or any other page
+        header('Location: /home');
+    }
+
+
+    public function logout() {
+        // Check if the user is logged in
+        if (isset($_SESSION[SESSION_USER_ID])) {
+            // Unset the specific session variable storing the user ID
+            unset($_SESSION[SESSION_USER_ID]);
+        }
+
+        // Redirect to home page
+        header('Location: /home');
+        exit; // Always exit after redirecting
     }
 
 

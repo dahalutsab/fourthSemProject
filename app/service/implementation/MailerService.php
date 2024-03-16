@@ -17,14 +17,14 @@ class MailerService
 
         // Configure email settings
         $this->mail->isSMTP();
-        $this->mail->Host = 'smtp.google.com';
+        $this->mail->Host = 'smtp.gmail.com';
         $this->mail->SMTPAuth = true;
-        $this->mail->Username = 'dlutsab2120@gmail.com.com';
-        $this->mail->Password = 'password';
+        $this->mail->Username = 'dlutsab2120@gmail.com';
+        $this->mail->Password = 'javk mohb zyfm wjfz';
         $this->mail->SMTPSecure = 'tls';
         $this->mail->Port = 587;
 
-        $this->mail->setFrom('noreply@openmichub.com', 'Open Mic Hub');
+        $this->mail->setFrom('verify@openmichub.com','Open Mic Hub');
         $this->mail->isHTML(true);
     }
 
@@ -42,5 +42,6 @@ class MailerService
             return false;
         }
     }
+
 
 }

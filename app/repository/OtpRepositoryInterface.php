@@ -2,7 +2,7 @@
 
 namespace App\Repository;
 
-use App\Models\Otp;
+use App\models\Otp;
 
 interface OtpRepositoryInterface
 {

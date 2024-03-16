@@ -25,7 +25,11 @@ class UserService implements UserServiceInterface {
             return;
         }
         $this->userRepository->saveUser($username, $email, $password, $role);
+    }
 
+    public function getUserId(string $email)
+    {
+        return $this->userRepository->getUserId($email);
     }
 
 }

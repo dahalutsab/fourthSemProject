@@ -40,7 +40,7 @@ class ViewController
         $this->render(compact('pageTitle', 'content'));
     }
 
-    public function profile(): void
+    public function artistDetails(): void
     {
         $pageTitle = 'Artist Details';
         $content = ['pages/artist_details']; // Make $content an array

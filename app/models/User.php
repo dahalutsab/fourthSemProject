@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Models;
+namespace App\models;
 
 class User
 {
@@ -8,16 +8,17 @@ class User
     private string $username;
     private string $email;
     private string $password;
-    private int $accountType;
+    private int $role_id;
     private \DateTime $createdDate;
 //    private $updatedDate;
 
-    public function __construct($username, $email, $password, $accountType)
+    public function __construct($id, $username, $email, $password, $role_id)
     {
+        $this->id = $id;
         $this->username = $username;
         $this->email = $email;
         $this->password = $password;
-        $this->accountType = $accountType;
+        $this->role_id = $role_id;
         $this->createdDate = new \DateTime();
     }
 
@@ -40,9 +41,9 @@ class User
         return $this->password;
     }
 
-    public function getAccountType(): int
+    public function getRoleId(): int
     {
-        return $this->accountType;
+        return $this->role_id;
     }
 
     public function getCreatedDate(): \DateTime

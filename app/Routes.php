@@ -1,9 +1,9 @@
 <?php
 declare(strict_types=1);
 
-use App\Controllers\AuthController;
-use App\Controllers\UserController;
-use App\Controllers\ViewController;
+use App\controllers\AuthController;
+use App\controllers\UserController;
+use App\controllers\ViewController;
 use App\Handler\Contact;
 use App\Router;
 
@@ -23,6 +23,9 @@ $router->post('/signup', UserController::class . '::signup');
 $router->get('/login', ViewController::class . '::login');
 $router->post('/login', AuthController::class . '::login');
 
+//route to log out
+$router->get('/logout', AuthController::class . '::logout');
+
 
 //route to otp verification
 $router->get('/verify-otp', ViewController::class . '::verifyOtp');
@@ -30,8 +33,9 @@ $router->post('/verify-otp', UserController::class . '::verifyOtp');
 
 
 //route to artist details
-$router->get('/profile', ViewController::class . '::profile');
-$router->post('/profile', UserController::class . '::profile');
+$router->get('/artist-details', ViewController::class . '::artistDetails');
+$router->post('/artist-details', UserController::class . '::artistDetails');
+
 
 
 $router->get('/contact', Contact::class . '::execute');
@@ -40,6 +44,7 @@ $router->post('/contact', function () {
     var_dump($_POST);
 });
 
+$router->get('/try', UserController::class . '::tryMail');
 
 //route to 404 if any error
 $router->addNotFoundHandler(function () {
