@@ -2,6 +2,9 @@
 
 namespace App\models;
 
+use DateTime;
+use DateTimeZone;
+
 class User
 {
     private int $id;
@@ -9,8 +12,7 @@ class User
     private string $email;
     private string $password;
     private int $role_id;
-    private \DateTime $createdDate;
-//    private $updatedDate;
+    private DateTime $createdDate;
 
     public function __construct($id, $username, $email, $password, $role_id)
     {
@@ -19,7 +21,8 @@ class User
         $this->email = $email;
         $this->password = $password;
         $this->role_id = $role_id;
-        $this->createdDate = new \DateTime();
+        $this->createdDate = new DateTime();
+        $this->createdDate->setTimezone(new DateTimeZone('Asia/Kathmandu'));
     }
 
     public function getId(): int

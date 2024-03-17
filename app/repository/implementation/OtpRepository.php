@@ -1,12 +1,11 @@
 <?php
 
-namespace App\Repository\implementation;
+namespace App\repository\implementation;
 
 use App\models\Otp;
 use App\Repository\OtpRepositoryInterface;
-use Cassandra\Date;
 use Config\Database;
-use DateInterval;
+
 
 class OtpRepository implements OtpRepositoryInterface
 {
@@ -22,8 +21,8 @@ class OtpRepository implements OtpRepositoryInterface
         $userId = $otp->getUserId();
         $otp1 = $otp->getOtp();
         $created_at = $otp->getCreatedDate();
-        $expires_at = $created_at->add(new DateInterval('3 minutes'));
-        $stmt->bind_param("isd", $userId, $otp1, $created_at, $expires_at);
+        $expires_at = $otp->getExpiresAt();
+        $stmt->bind_param("isdd", $userId, $otp1, $created_at, $expires_at);
         $stmt->execute();
         $stmt->close();
     }

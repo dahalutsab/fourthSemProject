@@ -1,9 +1,8 @@
 <?php
 
-namespace App\Controllers;
-use App\Services\Implementation\RoleService;
+namespace App\controllers;
+use App\service\implementation\RoleService;
 
-require_once __DIR__ . '/../../app/service/implementation/RoleService.php';
 
 class RoleController
 {

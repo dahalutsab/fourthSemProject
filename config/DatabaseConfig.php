@@ -1,5 +1,5 @@
 <?php
-namespace Config;
+namespace config;
 
 class DatabaseConfig {
     private string $host = 'localhost';

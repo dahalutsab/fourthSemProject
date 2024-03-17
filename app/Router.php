@@ -11,10 +11,11 @@ class Router
     private const METHOD_POST = 'POST';
     private const METHOD_GET = 'GET';
 
-    public function get(string $path, $handler): void
+    public function get(string $path, $handler, $middleware = null): void
     {
-        $this->addHandler(self::METHOD_GET, $path, $handler);
+        $this->addHandler(self::METHOD_GET, $path, $handler, $middleware);
     }
+
 
     public function post(string $path, $handler): void
     {
@@ -26,12 +27,13 @@ class Router
         $this->notFoundHandler = $handler;
     }
 
-    private function addHandler(string $method, string $path, $handler): void
+    private function addHandler(string $method, string $path, $handler, $middleware = null): void
     {
         $this->handler[$method . $path] = [
             'path' => $path,
             'method' => $method,
-            'handler' => $handler
+            'handler' => $handler,
+            'middleware' => $middleware
         ];
     }
 
@@ -43,8 +45,9 @@ class Router
 
         $callback = null;
         foreach ($this->handler as $handler) {
-            if ($handler['path'] === $requestPath && $handler['method'] === $_SERVER['REQUEST_METHOD']) {
+            if ($handler['path'] === $requestPath && $handler['method'] === $method) {
                 $callback = $handler['handler'];
+                $middleware = $handler['middleware'];
             }
         }
 
@@ -66,6 +69,13 @@ class Router
             }
             return;
         }
+
+        if ($middleware && !call_user_func($middleware)) {
+            // User is not authenticated, redirect them to the login page or show an error message
+            header('Location: /login');
+            exit;
+        }
+
 
         call_user_func_array($callback, [
             array_merge($_GET, $_POST)

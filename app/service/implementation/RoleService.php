@@ -1,11 +1,10 @@
 <?php
 
-namespace App\Services\Implementation;
+namespace App\service\implementation;
 
-use App\Repository\RoleRepository;
+use App\repository\implementation\RoleRepository;
 use App\Service\RoleServiceInterface;
 
-require_once __DIR__ . '/../../repository/implementation/RoleRepository.php';
 
 class RoleService implements RoleServiceInterface
 {

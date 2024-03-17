@@ -3,10 +3,14 @@
   <component name="NewModuleRootManager">
     <content url="file://$MODULE_DIR$">
       <sourceFolder url="file://$MODULE_DIR$/app" isTestSource="false" packagePrefix="App\" />
-      <sourceFolder url="file://$MODULE_DIR$/app/repository" isTestSource="false" packagePrefix="App\Repository\" />
-      <sourceFolder url="file://$MODULE_DIR$/config" isTestSource="false" packagePrefix="Config\" />
+      <sourceFolder url="file://$MODULE_DIR$/app/repository" isTestSource="false" packagePrefix="App\repository\" />
+      <sourceFolder url="file://$MODULE_DIR$/config" isTestSource="false" packagePrefix="config\" />
       <sourceFolder url="file://$MODULE_DIR$/spec" isTestSource="true" />
       <sourceFolder url="file://$MODULE_DIR$/tests" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/app/controllers" isTestSource="false" packagePrefix="App\controllers\" />
+      <sourceFolder url="file://$MODULE_DIR$/app/models" isTestSource="false" packagePrefix="App\models\" />
+      <sourceFolder url="file://$MODULE_DIR$/app/service" isTestSource="false" packagePrefix="App\service\" />
+      <sourceFolder url="file://$MODULE_DIR$/app/views" isTestSource="false" packagePrefix="App\views\" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/composer" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/phpmailer/.github" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/phpmailer/.phan" />

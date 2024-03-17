@@ -1,8 +1,11 @@
 <?php
-namespace App\Repository;
+namespace App\repository\implementation;
 
 use App\models\User;
-use Config\Database;
+use App\Repository\UserRepositoryInterface;
+use config\Database;
+
+
 
 class UserRepository implements UserRepositoryInterface {
     protected Database $database;

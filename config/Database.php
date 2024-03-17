@@ -1,9 +1,10 @@
 <?php
-namespace Config;
+namespace config;
 
-use Config\DatabaseConfig;
 
-class Database {
+use AllowDynamicProperties;
+
+#[AllowDynamicProperties] class Database {
 
 
     public function __construct() {

@@ -3,20 +3,19 @@
 namespace App\service\implementation;
 
 use App\Models\Otp;
-use App\Repository\implementation\OtpRepository;
+use App\repository\implementation\OtpRepository;
 use App\service\OtpServiceInterface;
-use DateTime;
 
-require_once __DIR__ . '/MailerService.php';
-require_once __DIR__ . '/../../repository/implementation/OtpRepository.php';
 
 class OtpService implements OtpServiceInterface
 {
     protected MailerService $mailerService;
+    protected UserService $userService;
     protected OtpRepository $otpRepository;
     public function __construct()
     {
         $this->mailerService = new MailerService;
+        $this->userService = new UserService;
         $this->otpRepository = new OtpRepository;
     }
     public function generateOtp (): int
@@ -26,23 +25,24 @@ class OtpService implements OtpServiceInterface
 
     public function saveOtp ($otp, $email): void
     {
-        $createdAt = new DateTime();
-        $expiry = $createdAt -> modify('+ 5 minutes');
-        $otp = new Otp($email, $otp, $createdAt, $expiry);
+        $userId = $this->userService->getUserId($email);
+        $otp = new Otp($userId, $otp);
         $this->otpRepository->save($otp);
     }
 
-    public function sendOtp ($to, $otp): bool
+    public function sendOtp ($to, $username): bool
     {
+        $otp = $this->generateOtp();
         // Start the session if it's not already started
         if (session_status() == PHP_SESSION_NONE) {
             session_start();
         }
 
         // Store the email in a session variable
-        $_SESSION['email'] = $to;
+        $_SESSION[SESSION_EMAIL] = $to;
+        $this->saveOtp($otp, $to);
 
-        $this->mailerService->sendMail($to, $otp, "Your OTP is: " . $otp);
+        $this->mailerService->sendMail($to,$username, $otp );
         return true;
     }
 

@@ -1,17 +1,11 @@
 <?php
-namespace App\Controllers;
+namespace App\controllers;
 
 
-use App\Models\Otp;
 use App\service\implementation\MailerService;
 use App\service\implementation\OtpService;
-use App\Services\Implementation\UserService;
-use DateTime;
+use App\service\implementation\UserService;
 use Exception;
-
-require_once __DIR__ . '/../../app/service/implementation/UserService.php';
-require_once __DIR__ . '/../../app/service/implementation/OtpService.php';
-require_once __DIR__ . '/../../app/service/implementation/MailerService.php';
 
 class UserController {
     protected UserService $userService;
@@ -57,7 +51,7 @@ class UserController {
         }
 
         $this->userService->createUser($username, $email, $password, $role);
-        $this->otpService->sendOtp($email, $this->otpService->generateOtp());
+        $this->otpService->sendOtp($email, $username);
         header('Location: /verify-otp');
     }
 
@@ -87,8 +81,4 @@ class UserController {
         }
     }
 
-    public function tryMail(): void
-    {
-        $this->mailerService->tryMail();
-    }
 }

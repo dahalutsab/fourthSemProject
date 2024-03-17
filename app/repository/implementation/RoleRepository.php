@@ -1,9 +1,11 @@
 <?php
 
-namespace App\Repository;
+namespace App\repository\implementation;
 
 use App\models\Role;
-use Config\Database;
+use App\Repository\RoleRepositoryInterface;
+use config\Database;
+
 
 class RoleRepository implements RoleRepositoryInterface
 {

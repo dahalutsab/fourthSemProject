@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Repository;
+namespace App\repository;
 
 use App\models\Otp;
 

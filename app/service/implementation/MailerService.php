@@ -1,6 +1,7 @@
 <?php
 
 namespace App\service\implementation;
+
 use PHPMailer\PHPMailer\Exception;
 use PHPMailer\PHPMailer\PHPMailer;
 
@@ -25,15 +26,23 @@ class MailerService
         $this->mail->Port = 587;
 
         $this->mail->setFrom('verify@openmichub.com','Open Mic Hub');
-        $this->mail->isHTML(true);
+        $this->mail->isHTML();
     }
 
-    public function sendMail($to, $subject, $body): bool
+    public function sendMail($to, $username, $otp): bool
     {
         try {
+            ob_start(); // Start output buffering
+            include __DIR__ . '/../../templates/email_template.html'; // Include the HTML file
+            $html = ob_get_clean(); // Get the contents of the output buffer
+
+            // Replace the placeholders with dynamic content
+            $html = str_replace('{username}', $username, $html);
+            $html = str_replace('{otp}', $otp, $html);
+            $html = str_replace('{currentDate}', date('Y'), $html);
             $this->mail->addAddress($to);
-            $this->mail->Subject = $subject;
-            $this->mail->Body = $body;
+            $this->mail->Subject = "Verify your email address";
+            $this->mail->Body = $html;
 
             $this->mail->send();
 
@@ -42,6 +51,4 @@ class MailerService
             return false;
         }
     }
-
-
 }

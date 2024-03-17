@@ -5,6 +5,7 @@ use App\controllers\AuthController;
 use App\controllers\UserController;
 use App\controllers\ViewController;
 use App\Handler\Contact;
+use App\middleware\AuthMiddleware;
 use App\Router;
 
 $router = new Router();
@@ -28,7 +29,7 @@ $router->get('/logout', AuthController::class . '::logout');
 
 
 //route to otp verification
-$router->get('/verify-otp', ViewController::class . '::verifyOtp');
+$router->get('/verify-otp', ViewController::class . '::verifyOtp', AuthMiddleware::class . '::authenticate');
 $router->post('/verify-otp', UserController::class . '::verifyOtp');
 
 

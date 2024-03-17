@@ -3,8 +3,12 @@
     "autoload": {
         "psr-4": {
             "App\\": "app/",
-            "Config\\": "config/",
-            "App\\Repository\\": "app/repository/"
+            "App\\controllers\\": "app/controllers/",
+            "App\\models\\": "app/models/",
+            "App\\views\\": "app/views/",
+            "App\\repository\\": "app/repository/",
+            "App\\service\\": "app/service/",
+            "config\\": "config/"
 
         }
     },
