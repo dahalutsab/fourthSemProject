@@ -39,8 +39,9 @@ class MailerService
             // Replace the placeholders with dynamic content
             $html = str_replace('{username}', $username, $html);
             $html = str_replace('{otp}', $otp, $html);
-            $html = str_replace('{currentDate}', date('Y'), $html);
-            $this->mail->addAddress($to);
+            date_default_timezone_set('Asia/Kathmandu');
+            $currentDateTime = date('Y-m-d H:i:s');
+            $html = str_replace('{currentDate}', $currentDateTime, $html);            $this->mail->addAddress($to);
             $this->mail->Subject = "Verify your email address";
             $this->mail->Body = $html;
 

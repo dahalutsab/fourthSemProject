@@ -5,7 +5,6 @@ use App\controllers\AuthController;
 use App\controllers\UserController;
 use App\controllers\ViewController;
 use App\Handler\Contact;
-use App\middleware\AuthMiddleware;
 use App\Router;
 
 $router = new Router();
@@ -29,7 +28,7 @@ $router->get('/logout', AuthController::class . '::logout');
 
 
 //route to otp verification
-$router->get('/verify-otp', ViewController::class . '::verifyOtp', AuthMiddleware::class . '::authenticate');
+$router->get('/verify-otp', ViewController::class . '::verifyOtp', '/signup');
 $router->post('/verify-otp', UserController::class . '::verifyOtp');
 
 
@@ -37,13 +36,6 @@ $router->post('/verify-otp', UserController::class . '::verifyOtp');
 $router->get('/artist-details', ViewController::class . '::artistDetails');
 $router->post('/artist-details', UserController::class . '::artistDetails');
 
-
-
-$router->get('/contact', Contact::class . '::execute');
-$router->post('/contact', function () {
-    UserController::class . '::contact';
-    var_dump($_POST);
-});
 
 $router->get('/try', UserController::class . '::tryMail');
 

@@ -46,8 +46,8 @@ class OtpService implements OtpServiceInterface
         return true;
     }
 
-    public function verifyOtp ($userId): bool
+    public function verifyOtp ($userId, $otp): bool
     {
-        return $this->otpRepository->verifyUserOtp($userId);
+        return $this->otpRepository->verifyUserOtp($userId, $otp);
     }
 }

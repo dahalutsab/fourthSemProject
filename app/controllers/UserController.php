@@ -51,16 +51,25 @@ class UserController {
         }
 
         $this->userService->createUser($username, $email, $password, $role);
-        $this->otpService->sendOtp($email, $username);
+
         header('Location: /verify-otp');
+        $this->otpService->sendOtp($email, $username);
     }
 
 
     public function verifyOtp(): void
     {
         // Retrieve form data sent by the router
-        $otp = $_POST['otp'] ?? '';
-        $email = $_POST['email'] ?? '';
+        $otp1 = $_POST['otp_1'] ?? '';
+        $otp2 = $_POST['otp_2'] ?? '';
+        $otp3 = $_POST['otp_3'] ?? '';
+        $otp4 = $_POST['otp_4'] ?? '';
+        $otp5 = $_POST['otp_5'] ?? '';
+        $otp6 = $_POST['otp_6'] ?? '';
+        //get email from session
+        $email = $_SESSION[SESSION_EMAIL] ?? '';
+
+        $otp = $otp1 . $otp2 . $otp3 . $otp4 . $otp5 . $otp6;
 
         // Perform basic validation
         if (empty($otp)) {
@@ -73,7 +82,7 @@ class UserController {
         //get userId from email from user table
         $userId = $this->userService->getUserId($email);
         // Verify OTP
-        if ($this->otpService->verifyOtp($userId)) {
+        if ($this->otpService->verifyOtp($userId, $otp)) {
             header('Location: /home');
         } else {
             // Handle invalid OTP error

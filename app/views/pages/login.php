@@ -6,13 +6,13 @@
             </div>
             <h4 class="card-title mt-3 text-center">Login</h4>
             <!-- Display error messages if any -->
-            <?php if (isset($_SESSION['errors'])): ?>
+            <?php if (isset($_SESSION[SESSION_ERRORS])): ?>
                 <div class="alert alert-danger">
-                    <?php foreach ($_SESSION['errors'] as $error): ?>
+                    <?php foreach ($_SESSION[SESSION_ERRORS] as $error): ?>
                         <p><?php echo $error; ?></p>
                     <?php endforeach; ?>
                 </div>
-                <?php unset($_SESSION['errors']); ?>
+                <?php unset($_SESSION[SESSION_ERRORS]); ?>
             <?php endif; ?>
 
             <form id="login-form" action="/login" method="post">

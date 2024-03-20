@@ -1,7 +1,7 @@
 <?php
 namespace App\controllers;
 
-use App\Services\Implementation\AuthService;
+use App\service\implementation\AuthService;
 use Exception;
 
 require_once __DIR__ . '/../../app/service/implementation/AuthService.php';
@@ -35,14 +35,14 @@ class AuthController {
 
         // Store errors in session if any
         if (!empty($errors)) {
-            $_SESSION['errors'] = $errors;
+            $_SESSION[SESSION_ERRORS] = $errors;
             return;
         }
 
         try {
             $this->authService->login($email, $password);
         } catch (Exception $e) {
-            $_SESSION['errors'][] = $e->getMessage();
+            $_SESSION[SESSION_ERRORS][] = $e->getMessage();
             header('Location: /login');
             return;
         }

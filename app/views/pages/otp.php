@@ -11,7 +11,7 @@
             <?php endif; ?>
 
             <h4 class="card-title mt-3 text-center">Enter OTP</h4>
-            <form id="otp-form" method="post">
+            <form id="otp-form" action="/verify-otp" method="post">
                 <!-- OTP input fields -->
                 <div class="row">
                     <div class="col">

@@ -30,7 +30,6 @@ session_set_cookie_params([
 if (isset($_SESSION[SESSION_USER_ID])) {
     session_regenerate_id();
 }
-
 // Start the session
 session_start();
 

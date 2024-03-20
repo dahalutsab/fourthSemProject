@@ -32,12 +32,15 @@ class OtpRepository implements OtpRepositoryInterface
         // TODO: Implement find() method.
     }
 
-    public function verifyUserOtp($userId): bool
+    public function verifyUserOtp($userId, $otp): bool
     {
-        $stmt = $this->database->getConnection()->prepare("SELECT * FROM otps WHERE user_id = ? AND expires_at > NOW()");
-        $stmt->bind_param("i", $userId);
+//        get OTP as model from database
+        $stmt = $this->database->getConnection()->prepare("SELECT * FROM otps WHERE user_id = ? AND otp = ? ");
+        $stmt->bind_param("ii", $userId, $otp);
         $stmt->execute();
-        return $stmt->get_result();
+        $result = $stmt->get_result();
+        $stmt->close();
+        return $result->num_rows > 0;
     }
 
 

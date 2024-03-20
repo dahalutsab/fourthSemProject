@@ -5,21 +5,19 @@ namespace App;
 
 class Router
 {
-
     private array $handler;
     private $notFoundHandler;
     private const METHOD_POST = 'POST';
     private const METHOD_GET = 'GET';
 
-    public function get(string $path, $handler, $middleware = null): void
+    public function get($path, $handler, $redirectUrl = null): void
     {
-        $this->addHandler(self::METHOD_GET, $path, $handler, $middleware);
+        $this->addHandler(self::METHOD_GET, $path, $handler, $redirectUrl);
     }
 
-
-    public function post(string $path, $handler): void
+    public function post($path, $handler, $redirectUrl = null): void
     {
-        $this->addHandler(self::METHOD_POST, $path, $handler);
+        $this->addHandler(self::METHOD_POST, $path, $handler, $redirectUrl);
     }
 
     public function addNotFoundHandler($handler): void
@@ -27,13 +25,13 @@ class Router
         $this->notFoundHandler = $handler;
     }
 
-    private function addHandler(string $method, string $path, $handler, $middleware = null): void
+    private function addHandler($method, $path, $handler, $redirectUrl): void
     {
         $this->handler[$method . $path] = [
             'path' => $path,
             'method' => $method,
             'handler' => $handler,
-            'middleware' => $middleware
+            'redirectUrl' => $redirectUrl
         ];
     }
 
@@ -44,10 +42,11 @@ class Router
         $method = $_SERVER['REQUEST_METHOD'];
 
         $callback = null;
+        $redirectUrl = null;
         foreach ($this->handler as $handler) {
             if ($handler['path'] === $requestPath && $handler['method'] === $method) {
                 $callback = $handler['handler'];
-                $middleware = $handler['middleware'];
+                $redirectUrl = $handler['redirectUrl']; // Get the redirect URL
             }
         }
 
@@ -70,16 +69,19 @@ class Router
             return;
         }
 
-        if ($middleware && !call_user_func($middleware)) {
-            // User is not authenticated, redirect them to the login page or show an error message
-            header('Location: /login');
+        if ($redirectUrl && !$this->isUserAuthenticated()) {
+            // Redirect to the URL specified in the route
+            header('Location: ' . $redirectUrl);
             exit;
         }
-
 
         call_user_func_array($callback, [
             array_merge($_GET, $_POST)
         ]);
+    }
 
+    private function isUserAuthenticated(): bool
+    {
+        return isset($_SESSION[SESSION_USER_ID]) || isset($_SESSION[SESSION_EMAIL]);
     }
 }
