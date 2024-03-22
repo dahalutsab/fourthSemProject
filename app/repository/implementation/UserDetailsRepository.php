@@ -23,48 +23,111 @@ class UserDetailsRepository implements UserDetailsRepositoryInterface
      */
     public function saveUserProfile(UserDetailsRequest $userProfileRequest)
     {
+        var_dump($userProfileRequest);
         try {
-            $query = "INSERT INTO user_details (user_id, full_name, stage_name, phone, address, category_id, bio, description)
-                      VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+            // Check if the user ID exists
+            $existingUserDetails = $this->getUserProfileById($userProfileRequest->getUserId());
 
-            $statement = $this->database->getConnection()->prepare($query);
-            if (!$statement) {
-                $_SESSION['errors'][] = "Error preparing statement: " . $this->database->getConnection()->error;
-                return false;
+            if ($existingUserDetails) {
+                // User details already exist, so update them
+                return $this->updateUserProfile($userProfileRequest);
+            } else {
+                // User details don't exist, so insert them
+                return $this->insertUserProfile($userProfileRequest);
             }
-
-            $fullName = $userProfileRequest->getFullName();
-            $stageName = $userProfileRequest->getStageName();
-            $phone = $userProfileRequest->getPhone();
-            $address = $userProfileRequest->getAddress();
-            $categoryID = $userProfileRequest->getCategoryID();
-            $bio = $userProfileRequest->getBio();
-            $description = $userProfileRequest->getDescription();
-            $userId = $userProfileRequest->getUserId();
-
-            $statement->bind_param("issssiss", $userId, $fullName, $stageName, $phone, $address, $categoryID, $bio, $description);
-
-            if (!$statement->execute()) {
-                $_SESSION['errors'][] = "Error executing statement: " . $statement->error;
-                return false;
-            }
-
-            $statement->close();
-            return true;
         } catch (Exception $exception) {
             $_SESSION['errors'][] = 'Error saving user profile: ' . $exception->getMessage();
             return false;
         }
     }
 
-
-    public function saveProfilePicture(string $picturePath)
+    private function getUserProfileById($userId)
     {
-        try {
-            // Perform database operations to save or update the profile picture path
-        } catch (Exception $exception) {
-            $_SESSION['errors'][] = 'Error saving profile picture to the database: ' . $exception->getMessage();
+        $query = "SELECT * FROM user_details WHERE user_id = ?";
+        $statement = $this->database->getConnection()->prepare($query);
+        if (!$statement) {
+            $_SESSION['errors'][] = "Error preparing statement: " . $this->database->getConnection()->error;
+            return null;
         }
+
+        $statement->bind_param("i", $userId);
+        $statement->execute();
+        $result = $statement->get_result();
+        $userDetails = $result->fetch_assoc();
+        $statement->close();
+
+        return $userDetails;
+    }
+
+    private function insertUserProfile(UserDetailsRequest $userProfileRequest)
+    {
+        $query = "INSERT INTO user_details (user_id, full_name, stage_name, phone, address, category_id, bio, description) 
+                  VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+        return $this->executeInsertQuery($query, $userProfileRequest);
+    }
+
+    private function executeInsertQuery($query, UserDetailsRequest $userProfileRequest)
+    {
+        $statement = $this->database->getConnection()->prepare($query);
+        if (!$statement) {
+            $_SESSION['errors'][] = "Error preparing statement: " . $this->database->getConnection()->error;
+            return false;
+        }
+
+        $fullName = $userProfileRequest->getFullName();
+        $stageName = $userProfileRequest->getStageName();
+        $phone = $userProfileRequest->getPhone();
+        $address = $userProfileRequest->getAddress();
+        $categoryID = $userProfileRequest->getCategoryID();
+        $bio = $userProfileRequest->getBio();
+        $description = $userProfileRequest->getDescription();
+        $userId = $userProfileRequest->getUserId();
+
+        $statement->bind_param("isssssss", $userId, $fullName, $stageName, $phone, $address, $categoryID, $bio, $description);
+
+        if (!$statement->execute()) {
+            $_SESSION['errors'][] = "Error executing statement: " . $statement->error;
+            return false;
+        }
+
+        $statement->close();
+        return true;
+    }
+
+    private function updateUserProfile(UserDetailsRequest $userProfileRequest)
+    {
+        $query = "UPDATE user_details 
+                  SET full_name=?, stage_name=?, phone=?, address=?, category_id=?, bio=?, description=?
+                  WHERE user_id = ?";
+        return $this->executeUpdateQuery($query, $userProfileRequest);
+    }
+
+    private function executeUpdateQuery($query, UserDetailsRequest $userProfileRequest)
+    {
+        $statement = $this->database->getConnection()->prepare($query);
+        if (!$statement) {
+            $_SESSION['errors'][] = "Error preparing statement: " . $this->database->getConnection()->error;
+            return false;
+        }
+
+        $fullName = $userProfileRequest->getFullName();
+        $stageName = $userProfileRequest->getStageName();
+        $phone = $userProfileRequest->getPhone();
+        $address = $userProfileRequest->getAddress();
+        $categoryID = $userProfileRequest->getCategoryID();
+        $bio = $userProfileRequest->getBio();
+        $description = $userProfileRequest->getDescription();
+        $userId = $userProfileRequest->getUserId();
+
+        $statement->bind_param("sssssssi", $fullName, $stageName, $phone, $address, $categoryID, $bio, $description, $userId);
+
+        if (!$statement->execute()) {
+            $_SESSION['errors'][] = "Error executing statement: " . $statement->error;
+            return false;
+        }
+
+        $statement->close();
+        return true;
     }
 
     public function getUserProfile(string $userId): UserDetailsResponse
@@ -101,6 +164,5 @@ class UserDetailsRepository implements UserDetailsRepositoryInterface
         // Return UserDetailsResponse object
         return $userDetailsResponse;
     }
-
 
 }

@@ -45,8 +45,8 @@ class UserDetailsController
                 $formData['description'],
                 $formData['userId']
             );
-            var_dump($formData);
 
+            var_dump($userProfileRequest);
             // Call the service method to save the user profile
             $this->userDetailsService->saveUserProfile($userProfileRequest);
 
