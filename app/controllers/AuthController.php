@@ -3,6 +3,7 @@ namespace App\controllers;
 
 use App\service\implementation\AuthService;
 use Exception;
+use JetBrains\PhpStorm\NoReturn;
 
 require_once __DIR__ . '/../../app/service/implementation/AuthService.php';
 
@@ -48,11 +49,12 @@ class AuthController {
         }
 
         // Redirect to dashboard or any other page
-        header('Location: /home');
+        header('Location: /dashboard');
     }
 
 
-    public function logout() {
+    #[NoReturn] public function logout(): void
+    {
         // Check if the user is logged in
         if (isset($_SESSION[SESSION_USER_ID])) {
             // Unset the specific session variable storing the user ID

@@ -4,6 +4,7 @@ namespace App\models;
 
 use DateTime;
 use DateTimeZone;
+use Exception;
 
 class Otp
 {
@@ -12,13 +13,17 @@ class Otp
     private DateTime $createdDate;
     private DateTime $expiresAt;
 
+    /**
+     * @throws Exception
+     */
     public function __construct($userId, $otp)
     {
         $this->userId = $userId;
         $this->otp = $otp;
-        $this->createdDate =new DateTime();
-        $this->createdDate->setTimezone(new DateTimeZone('Asia/Kathmandu'));
-        $this->expiresAt = $this->createdDate -> modify('+ 5 minutes');
+
+        // Set createdDate and expiresAt in Nepal Time
+        $this->createdDate = new DateTime('now', new DateTimeZone('Asia/Kathmandu'));
+        $this->expiresAt = (clone $this->createdDate)->modify('+5 minutes');
     }
 
     public function getUserId(): int

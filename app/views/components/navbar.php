@@ -1,4 +1,4 @@
-<?= $baseUrl = '/' ?>
+
 <div class="container-fluid sticky-top">
     <div class="navbar nav-style navbar-expand-lg pt-4">
         <a href="#" class="brand text-decoration-none d-block d-lg-none fw-bold fs-1 ">OMH</a>
@@ -12,7 +12,7 @@
 
                 <li class="nav-item nav-logo">
                     <a href="/" class="nav-link active border-hover py-3" id="home">
-                        <img src="<?= $baseUrl ?>assets/images/openMicLogo.png" class="logo" alt="Open Mic Hub">
+                        <img src="<?= BASE_IMAGE_PATH ?>openMicLogo.png" class="logo" alt="Open Mic Hub">
                     </a>
                 </li>
 

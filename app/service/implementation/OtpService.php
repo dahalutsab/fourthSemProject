@@ -5,6 +5,7 @@ namespace App\service\implementation;
 use App\Models\Otp;
 use App\repository\implementation\OtpRepository;
 use App\service\OtpServiceInterface;
+use Exception;
 
 
 class OtpService implements OtpServiceInterface
@@ -23,12 +24,16 @@ class OtpService implements OtpServiceInterface
         return (rand(100000, 999999));
     }
 
+    /**
+     * @throws Exception
+     */
     public function saveOtp ($otp, $email): void
     {
         $userId = $this->userService->getUserId($email);
         $otp = new Otp($userId, $otp);
         $this->otpRepository->save($otp);
     }
+
 
     public function sendOtp ($to, $username): bool
     {
@@ -46,6 +51,9 @@ class OtpService implements OtpServiceInterface
         return true;
     }
 
+    /**
+     * @throws Exception
+     */
     public function verifyOtp ($userId, $otp): bool
     {
         return $this->otpRepository->verifyUserOtp($userId, $otp);

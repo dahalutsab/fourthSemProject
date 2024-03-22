@@ -2,10 +2,11 @@
 
 namespace App\service\implementation;
 
+use App\service\MailerServiceInterface;
 use PHPMailer\PHPMailer\Exception;
 use PHPMailer\PHPMailer\PHPMailer;
 
-class MailerService
+class MailerService implements MailerServiceInterface
 {
     private PHPMailer $mail;
 

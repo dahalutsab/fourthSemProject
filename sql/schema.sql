@@ -34,14 +34,39 @@ CREATE TABLE `artists` (
   `id` int(11) NOT NULL,
   `user_id` int(11) DEFAULT NULL,
   `profile_picture_id` int(11) DEFAULT NULL,
-  `first_name` varchar(255) DEFAULT NULL,
-  `last_name` varchar(255) DEFAULT NULL,
+  `full_name` varchar(255) DEFAULT NULL,
   `date_of_birth` date DEFAULT NULL,
   `stage_name` varchar(255) DEFAULT NULL,
   `bio` text DEFAULT NULL,
   `category_id` int(11) DEFAULT NULL,
   `experience_level` varchar(255) DEFAULT NULL,
   `social_media_links` text DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `categories`
+--
+# categories (singer, standup comedian, story teller, poetry slammer)
+CREATE TABLE `categories` (
+                              `category_id` int(11) NOT NULL,
+                              `category_name` varchar(255) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `clients`
+--
+CREATE TABLE `clients` (
+                           `id` int(11) NOT NULL,
+                           `user_id` int(11) DEFAULT NULL,
+                           `profile_picture_id` int(11) DEFAULT NULL,
+                           `full_name` varchar(255) DEFAULT NULL,
+                           `date_of_birth` date DEFAULT NULL,
+                           `bio` text DEFAULT NULL,
+                           `social_media_links` text DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
@@ -59,16 +84,8 @@ CREATE TABLE `bookings` (
   `end_time` time DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
--- --------------------------------------------------------
 
---
--- Table structure for table `categories`
---
 
-CREATE TABLE `categories` (
-  `category_id` int(11) NOT NULL,
-  `category_name` varchar(255) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -84,20 +101,8 @@ CREATE TABLE `chats` (
   `sent_at` datetime DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
--- --------------------------------------------------------
 
---
--- Table structure for table `clients`
---
 
-CREATE TABLE `clients` (
-  `id` int(11) NOT NULL,
-  `user_id` int(11) DEFAULT NULL,
-  `profile_picture_id` int(11) DEFAULT NULL,
-  `first_name` varchar(255) DEFAULT NULL,
-  `last_name` varchar(255) DEFAULT NULL,
-  `date_of_birth` date DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 

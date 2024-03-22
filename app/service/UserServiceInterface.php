@@ -1,6 +1,9 @@
 <?php
 namespace App\service;
 
+
+use App\dto\request\UserRequest;
+
 interface UserServiceInterface {
-    public function createUser($username, $email, $password, $role);
+    public function createUser(UserRequest $userRequest);
 }
