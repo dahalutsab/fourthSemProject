@@ -3,6 +3,7 @@
 namespace App\service\implementation;
 
 use App\dto\request\UserDetailsRequest;
+use App\dto\response\UserDetailsResponse;
 use App\repository\implementation\UserDetailsRepository;
 use App\service\UserDetailsServiceInterface;
 use Exception;
@@ -44,7 +45,7 @@ class UserDetailsService implements UserDetailsServiceInterface
     /**
      * @throws Exception
      */
-    public function getUserProfile(string $userId) {
+    public function getUserProfile(string $userId): UserDetailsResponse {
         return$this->userProfileRepository->getUserProfile($userId);
     }
 }

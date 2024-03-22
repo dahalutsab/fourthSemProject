@@ -7,6 +7,7 @@ use App\dto\response\UserDetailsResponse;
 use App\repository\UserDetailsRepositoryInterface;
 use config\Database;
 use Exception;
+use RuntimeException;
 
 class UserDetailsRepository implements UserDetailsRepositoryInterface
 {
@@ -56,6 +57,7 @@ class UserDetailsRepository implements UserDetailsRepositoryInterface
         }
     }
 
+
     public function saveProfilePicture(string $picturePath)
     {
         try {
@@ -65,52 +67,40 @@ class UserDetailsRepository implements UserDetailsRepositoryInterface
         }
     }
 
-    public function getUserProfile(string $userId)
+    public function getUserProfile(string $userId): UserDetailsResponse
     {
-        try {
-            $query = "SELECT * FROM user_details WHERE user_details.user_id = ?";
-            $statement = $this->database->getConnection()->prepare($query);
-            if (!$statement) {
-                $_SESSION['errors'][] = "Error preparing statement: " . $this->database->getConnection()->error;
-                return null;
-            }
+        $query = "SELECT * FROM user_details WHERE user_id = ?";
+        $statement = $this->database->getConnection()->prepare($query);
+        $statement->bind_param("i", $userId);
+        $statement->execute();
+        $result = $statement->get_result();
 
-            $statement->bind_param("s", $userId);
-
-            if (!$statement->execute()) {
-                $_SESSION['errors'][] = "Error executing statement: " . $statement->error;
-                return null;
-            }
-
-            $result = $statement->get_result();
-
-            if ($result->num_rows === 0) {
-                $_SESSION['errors'][] = "User profile not found";
-                return null;
-            }
-
-            // Fetch user details
-            $profile = $result->fetch_assoc();
-
-            // Construct UserDetailsResponse object
-            $userDetailsResponse = new UserDetailsResponse(
-                $profile['id'],
-                $profile['full_name'],
-                $profile['stage_name'],
-                $profile['phone'],
-                $profile['address'],
-                $profile['category_id'],
-                $profile['bio'],
-                $profile['description']
-            );
-
-            $statement->close();
-
-            // Return UserDetailsResponse object
-            return $userDetailsResponse;
-        } catch (Exception $exception) {
-            $_SESSION['errors'][] = 'Error fetching user profile: ' . $exception->getMessage();
-            return null;
+        // Check if a row was returned
+        if ($result->num_rows == 0) {
+            // No user profile found, return an empty UserDetailsResponse
+            return new UserDetailsResponse();
         }
+
+        // Fetch the profile details
+        $profile = $result->fetch_assoc();
+
+        // Construct UserDetailsResponse object with null checks
+        $userDetailsResponse = new UserDetailsResponse(
+            $profile['id'] ?? null,
+            $profile['full_name'] ?? null,
+            $profile['stage_name'] ?? null,
+            $profile['phone'] ?? null,
+            $profile['address'] ?? null,
+            $profile['category_id'] ?? null,
+            $profile['bio'] ?? null,
+            $profile['description'] ?? null
+        );
+
+        $statement->close();
+
+        // Return UserDetailsResponse object
+        return $userDetailsResponse;
     }
+
+
 }

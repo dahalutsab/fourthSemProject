@@ -66,13 +66,14 @@ class UserController
                 $_SESSION[SESSION_EMAIL] = $formData['email'];
                 $this->otpService->sendOtp($formData['email'], $formData['username']);
                 header('Location: /verify-otp');
-                exit; // Redirect and exit immediately after sending header
+                // Redirect and exit immediately after sending header
             } else {
                 // Handle user creation error
                 $_SESSION[SESSION_SIGNUP_ERRORS] = ['Error creating user.']; // Store error message in session
                 header('Location: /signup'); // Redirect back to signup page
-                exit; // Exit immediately after sending header
+                // Exit immediately after sending header
             }
+            exit;
         } catch (Exception $exception) {
             $_SESSION[SESSION_SIGNUP_ERRORS] = [$exception->getMessage()]; // Store exception message in session
             header('Location: /signup'); // Redirect back to signup page

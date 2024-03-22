@@ -3,6 +3,7 @@
 namespace App\Controllers;
 
 use App\dto\request\UserDetailsRequest;
+use App\dto\response\UserDetailsResponse;
 use App\Response\ApiResponse;
 use App\Response\ErrorResponse;
 use App\service\implementation\UserDetailsService;
@@ -33,6 +34,8 @@ class UserDetailsController
                 'userId' => $_SESSION[SESSION_USER_ID] ?? ''
             ];
 
+            var_dump($formData);
+
 
             // Create a UserDetailsRequest object
             $userProfileRequest = new UserDetailsRequest(
@@ -50,7 +53,8 @@ class UserDetailsController
             $this->userDetailsService->saveUserProfile($userProfileRequest);
 
             // Return success response
-            return ApiResponse::success(['message' => 'User profile saved successfully.']);
+            ApiResponse::success(['message' => 'User profile saved successfully.']);
+            header('Location: /dashboard');
         } catch (Exception $exception) {
             // Return error response if an exception occurs
             return ErrorResponse::badRequest($exception->getMessage());
@@ -77,8 +81,8 @@ class UserDetailsController
     /**
      * @throws Exception
      */
-    public function getUserProfile () {
-        $userId = SESSION_USER_ID;
+    public function getUserProfile (): UserDetailsResponse{
+        $userId = $_SESSION[SESSION_USER_ID];
         return $this->userDetailsService->getUserProfile($userId);
     }
 }

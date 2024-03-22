@@ -9,21 +9,9 @@ class DashboardViewController
 {
     public function dashboard(): void
     {
-        try {
-            // Instantiate UserDetailsController to access the getUserProfile method
-            $userDetailsController = new UserDetailsController();
-
-            // Call getUserProfile to fetch the user's profile data
-            $userProfile = $userDetailsController->getUserProfile();
-
-            // Pass the user profile data to the view
-            $pageTitle = 'Dashboard';
-            $content = ['pages/dashboard']; // Assuming you have a dashboard view file
-            $this->render(compact('pageTitle', 'content', 'userProfile'));
-        } catch (Exception $exception) {
-            // Handle exceptions, e.g., log or display error message
-            echo "Error: " . $exception->getMessage();
-        }
+        $pageTitle = 'Dashboard';
+        $content = ['pages/dashboard']; // Assuming you have a dashboard view file
+        $this->render(compact('pageTitle', 'content'));
     }
 
     private function render(array $data): void

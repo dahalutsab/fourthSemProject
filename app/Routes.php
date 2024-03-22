@@ -50,7 +50,7 @@ $router->post('/artist-details', $userController::class . '::artistDetails');
 $router->get('/dashboard', DashboardViewController::class . '::dashboard', '/login');
 
 $router->get('/profile', DashboardViewController::class . '::profile', '/login');
-$router->post('/edit-profile', UserDetailsController::class . '::editProfile', '/login');
+$router->post('/dashboard/updateProfile', UserDetailsController::class . '::editProfile', '/login');
 
 // Route for fetching user details
 $router->get('/user-details', function($request, $response) {

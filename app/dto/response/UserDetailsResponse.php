@@ -12,16 +12,17 @@ class UserDetailsResponse {
     private string $bio;
     private string $description;
 
-    public function __construct(int $id, string $fullName, string $stageName, string $phone, string $address, string $category, string $bio, string $description) {
-        $this->id = $id;
-        $this->fullName = $fullName;
-        $this->stageName = $stageName;
-        $this->phone = $phone;
-        $this->address = $address;
-        $this->category = $category;
-        $this->bio = $bio;
-        $this->description = $description;
+    public function __construct(?int $id = null, ?string $fullName = null, ?string $stageName = null, ?string $phone = null, ?string $address = null, ?string $category = null, ?string $bio = null, ?string $description = null) {
+        $this->id = $id ?? 0; // Default value for id
+        $this->fullName = $fullName ?? '';
+        $this->stageName = $stageName ?? '';
+        $this->phone = $phone ?? '';
+        $this->address = $address ?? '';
+        $this->category = $category ?? '';
+        $this->bio = $bio ?? '';
+        $this->description = $description ?? '';
     }
+
 
     public function getId(): int {
         return $this->id;
