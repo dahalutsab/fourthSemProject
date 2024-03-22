@@ -1,0 +1,44 @@
+/*---------------------------------------
+  CUSTOM PROPERTIES ( VARIABLES )
+-----------------------------------------*/
+:root {
+    --background-color: #001730;
+    --button-color: #BD1E51;
+    --card-color: #0a2644;
+    --text-color: #fff;
+}
+
+
+body {
+    margin: 0;
+    padding: 0;
+    background: var(--background-color);
+    color: var(--text-color);
+}
+
+svg {
+    color: var(--text-color);
+}
+
+a {
+    text-decoration: none;
+    color: var(--text-color);
+}
+small {
+    color: var(--text-color);
+}
+.button-color {
+    color: var(--button-color);
+}
+
+
+.card {
+    background-color: var(--card-color);
+    color: var(--text-color);
+    border-radius: 15px;
+    position: relative;
+    overflow: hidden;
+    padding: 30px;
+    transition: all 0.3s ease;
+}
+

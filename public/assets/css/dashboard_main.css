@@ -1,0 +1,79 @@
+:root {
+    --background-color: #001730;
+    --button-color: #BD1E51;
+    --card-color: #0a2644;
+    --text-color: #fff;
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: "Open Sans", sans-serif;
+    background: var(--background-color);
+    color: var(--text-color)
+}
+
+a {
+    color: var(--text-color);
+    text-decoration: none;
+}
+
+a:hover {
+    color: var(--button-color);
+    text-decoration: none;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-family: "Nunito", sans-serif;
+}
+
+svg {
+    color: var(--text-color);
+}
+
+.card {
+    background-color: var(--card-color);
+    color: var(--text-color);
+    border-radius: 15px;
+    position: relative;
+    overflow: hidden;
+    padding: 30px;
+    transition: all 0.3s ease;
+
+}
+
+
+#main {
+    margin-top: 60px;
+    padding: 20px 30px;
+    transition: all 0.3s;
+}
+
+@media (max-width: 1199px) {
+    #main {
+        padding: 20px;
+    }
+}
+
+@media (min-width: 1200px) {
+
+    #main {
+        margin-left: 300px;
+    }
+}
+
+@media (min-width: 1200px) {
+
+    .toggle-sidebar #main,
+    .toggle-sidebar #footer {
+        margin-left: 0;
+    }
+
+    .toggle-sidebar .sidebar {
+        left: -300px;
+    }
+}

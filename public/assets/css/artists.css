@@ -1,0 +1,22 @@
+.artist-nav-tabs {
+    border-bottom: 1px solid #ecf3f2;
+    margin-bottom: 40px;
+    justify-content: center;
+}
+
+.artist-nav-tabs .nav-item .nav-link {
+    color: var(--text-color);
+    border-radius: 0;
+    border-top: 0;
+    border-right: 0;
+    border-left: 0;
+    padding: 15px 25px;
+    transition: all 0.3s;
+}
+
+.artist-nav-tabs .nav-link.active,
+.artist-nav-tabs .nav-link:focus,
+.artist-nav-tabs .nav-link:hover {
+    border-bottom: 2px solid var(--button-color);
+    color: var(--button-color);
+}

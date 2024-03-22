@@ -1,0 +1,4 @@
+.footer-hover a:hover, .footer svg:hover {
+    color: var(--button-color);
+    text-decoration: none;
+}

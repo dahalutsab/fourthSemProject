@@ -1,0 +1,60 @@
+
+.breadcrumb-item + .breadcrumb-item::before {
+    color: var(--button-color);
+}
+.artist-landing .breadcrumb .breadcrumb-item {
+    color: var(--button-color);
+}
+.artist-landing .breadcrumb .breadcrumb-item a{
+    color: var(--text-color);
+}
+
+
+.artist-aboutUs-content {
+    height: 557px;
+    padding: 48px 32px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    border-radius: 20px;
+    text-align: center;
+}
+
+.artist-img-block {
+    border-radius: 80%;
+    height: 150px;
+    display: grid;
+    align-content: end;
+    justify-content: center;
+}
+
+.artist-img-block img {
+    width: 150px;
+    height: inherit;
+    object-fit: cover;
+    vertical-align: middle;
+    border-radius: inherit;
+}
+
+.video-block {
+    border-radius: 20px;
+    height: 557px;
+    display: grid;
+    align-content: end;
+    justify-content: center;
+}
+
+/*rating*/
+.Stars {
+    --percent: calc(var(--rating) / 5 * 100%);
+    display: inline-block;
+    font-size: 1.5em;
+    line-height: 1;
+}
+.Stars::before {
+    content: "★★★★★";
+    letter-spacing: 3px;
+    background: linear-gradient(90deg, #fc0 var(--percent), var(--text-color) var(--percent));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
