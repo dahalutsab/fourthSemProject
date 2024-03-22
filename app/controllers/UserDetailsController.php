@@ -5,20 +5,20 @@ namespace App\Controllers;
 use App\dto\request\UserDetailsRequest;
 use App\Response\ApiResponse;
 use App\Response\ErrorResponse;
-use App\Service\UserDetailsService;
-use App\validator\UserRequestValidator;
+use App\service\implementation\UserDetailsService;
+use App\service\UserDetailsServiceInterface;
 use Exception;
 
 class UserDetailsController
 {
-    protected UserDetailsService $userProfileService;
+    protected UserDetailsServiceInterface $userDetailsService;
 
     public function __construct()
     {
-        $this->userProfileService = new UserDetailsService();
+        $this->userDetailsService = new UserDetailsService();
     }
 
-    public function saveArtistProfile()
+    public function editProfile()
     {
         try {
             // Retrieve form data sent by the router
@@ -27,9 +27,10 @@ class UserDetailsController
                 'stageName' => $_POST['stageName'] ?? '',
                 'phone' => $_POST['phone'] ?? '',
                 'address' => $_POST['address'] ?? '',
-                'talentType' => $_POST['talentType'] ?? '',
+                'categoryID' => $_POST['categoryID'] ?? '',
                 'bio' => $_POST['bio'] ?? '',
                 'description' => $_POST['description'] ?? '',
+                'userId' => $_SESSION[SESSION_USER_ID] ?? ''
             ];
 
 
@@ -39,13 +40,14 @@ class UserDetailsController
                 $formData['stageName'],
                 $formData['phone'],
                 $formData['address'],
-                $formData['talentType'],
+                $formData['categoryID'],
                 $formData['bio'],
-                $formData['description']
+                $formData['description'],
+                $formData['userId']
             );
 
             // Call the service method to save the user profile
-            $this->userProfileService->saveUserProfile($userProfileRequest);
+            $this->userDetailsService->saveUserProfile($userProfileRequest);
 
             // Return success response
             return ApiResponse::success(['message' => 'User profile saved successfully.']);
@@ -62,13 +64,21 @@ class UserDetailsController
             // Save the profile picture to a folder and get its path
 
             // Call the service method to save or update the profile picture path
-            $this->userProfileService->saveProfilePicture($picturePath);
+            $this->userDetailsService->saveProfilePicture($picturePath);
 
             // Return success response
             return ApiResponse::success(['message' => 'Profile picture saved successfully.']);
         } catch (Exception $exception) {
             // Return error response if an exception occurs
-            return ErrorResponse::error($exception->getMessage());
+            return ErrorResponse::badRequest($exception->getMessage());
         }
+    }
+
+    /**
+     * @throws Exception
+     */
+    public function getUserProfile () {
+        $userId = SESSION_USER_ID;
+        return $this->userDetailsService->getUserProfile($userId);
     }
 }

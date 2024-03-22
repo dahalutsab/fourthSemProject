@@ -4,8 +4,6 @@ namespace App\Controllers;
 
 
 use App\dto\request\UserRequest;
-use App\Response\ApiResponse;
-use App\Response\ErrorResponse;
 use App\service\implementation\MailerService;
 use App\service\implementation\OtpService;
 use App\service\implementation\UserService;

@@ -1,5 +1,15 @@
+<?php
 
-<hr>
+
+use App\repository\implementation\CategoryRepository;
+
+$categoriesRepo = new CategoryRepository();
+$categories = $categoriesRepo->getAllCategories();
+
+// Check if there are any errors
+$errors = $_SESSION['signup_errors'] ?? [];
+unset($_SESSION['signup_errors']); // Clear errors from session
+?>
 <div class="container bootstrap snippet">
     <div class="row">
         <div class="col-sm-10"><h1>User Profile</h1></div>
@@ -44,79 +54,83 @@
                             Profile Details
                         </div>
                         <div class="card-body">
-                            <div class="row mb-3">
-                                <div class="col-sm-3">
-                                    <strong>Full Name:</strong>
+                            <?php if ($userProfile !== null) : ?>
+                                <div class="row mb-3">
+                                    <div class="col-sm-3">
+                                        <strong>Full Name:</strong>
+                                    </div>
+                                    <div class="col-sm-9">
+                                        <?= $userProfile->getFullName() !== null ? $userProfile->getFullName() : 'N/A' ?>
+                                    </div>
                                 </div>
-                                <div class="col-sm-9">
-                                    John Doe
+                                <div class="row mb-3">
+                                    <div class="col-sm-3">
+                                        <strong>Stage Name:</strong>
+                                    </div>
+                                    <div class="col-sm-9">
+                                        <?= $userProfile->getStageName() !== null ? $userProfile->getStageName() : 'N/A' ?>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="row mb-3">
-                                <div class="col-sm-3">
-                                    <strong>Stage Name:</strong>
+                                <div class="row mb-3">
+                                    <div class="col-sm-3">
+                                        <strong>Phone:</strong>
+                                    </div>
+                                    <div class="col-sm-9">
+                                        <?= $userProfile->getPhone() !== null ? $userProfile->getPhone() : 'N/A' ?>
+                                    </div>
                                 </div>
-                                <div class="col-sm-9">
-                                    JohnnyD
+                                <div class="row mb-3">
+                                    <div class="col-sm-3">
+                                        <strong>Address:</strong>
+                                    </div>
+                                    <div class="col-sm-9">
+                                        <?= $userProfile->getAddress() !== null ? $userProfile->getAddress() : 'N/A' ?>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="row mb-3">
-                                <div class="col-sm-3">
-                                    <strong>Phone:</strong>
+                                <div class="row mb-3">
+                                    <div class="col-sm-3">
+                                        <strong>Talent Type:</strong>
+                                    </div>
+                                    <div class="col-sm-9">
+                                        <?= $userProfile->getCategoryID() !== null ? $userProfile->getCategoryID() : 'N/A' ?>
+                                    </div>
                                 </div>
-                                <div class="col-sm-9">
-                                    +1 (555) 123-4567
+                                <div class="row mb-3">
+                                    <div class="col-sm-3">
+                                        <strong>Bio:</strong>
+                                    </div>
+                                    <div class="col-sm-9">
+                                        <?= $userProfile->getBio() !== null ? $userProfile->getBio() : 'N/A' ?>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="row mb-3">
-                                <div class="col-sm-3">
-                                    <strong>Address:</strong>
+                                <div class="row mb-3">
+                                    <div class="col-sm-3">
+                                        <strong>Description:</strong>
+                                    </div>
+                                    <div class="col-sm-9">
+                                        <?= $userProfile->getDescription() !== null ? $userProfile->getDescription() : 'N/A' ?>
+                                    </div>
                                 </div>
-                                <div class="col-sm-9">
-                                    123 Main Street, City, State, Country
-                                </div>
-                            </div>
-                            <div class="row mb-3">
-                                <div class="col-sm-3">
-                                    <strong>Talent Type:</strong>
-                                </div>
-                                <div class="col-sm-9">
-                                    Singer
-                                </div>
-                            </div>
-                            <div class="row mb-3">
-                                <div class="col-sm-3">
-                                    <strong>Bio:</strong>
-                                </div>
-                                <div class="col-sm-9">
-                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed eget lorem vel mauris facilisis finibus.
-                                </div>
-                            </div>
-                            <div class="row mb-3">
-                                <div class="col-sm-3">
-                                    <strong>Description:</strong>
-                                </div>
-                                <div class="col-sm-9">
-                                    Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.
-                                </div>
-                            </div>
+                            <?php else : ?>
+                                <p>User profile not found.</p>
+                            <?php endif; ?>
                         </div>
                     </div>
                 </div>
                 <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
                     <hr>
                     <!-- Edit Profile Content -->
-                    <form class="form" action="##" method="post" id="registrationForm">
+                    <form class="form" action="/edit-profile" method="post" id="registrationForm">
                         <div class="row mb-3">
                             <div class="col-xs-12">
                                 <label for="full_name" class="form-label">Full Name</label>
-                                <input type="text" class="form-control" name="full_name" id="full_name" placeholder="Enter your full name" title="Enter your full name">
+                                <input type="text" class="form-control" name="fullName" id="full_name" placeholder="Enter your full name" title="Enter your full name">
                             </div>
                         </div>
                         <div class="row mb-3">
                             <div class="col-xs-12">
                                 <label for="stage_name" class="form-label">Stage Name</label>
-                                <input type="text" class="form-control" name="stage_name" id="stage_name" placeholder="Enter your stage name" title="Enter your stage name">
+                                <input type="text" class="form-control" name="stageName" id="stage_name" placeholder="Enter your stage name" title="Enter your stage name">
                             </div>
                         </div>
                         <div class="row mb-3">
@@ -132,14 +146,16 @@
                             </div>
                         </div>
                         <div class="row mb-3">
-                            <div class="col-xs-12">
-                                <label for="talent_type" class="form-label">Talent Type</label>
-                                <select class="form-select" name="talent_type" id="talent_type">
-                                    <option value="">Select your talent type</option>
-                                    <option value="singer">Singer</option>
-                                    <option value="story_teller">Story Teller</option>
-                                    <option value="comedian">Comedian</option>
-                                </select>
+                            <div class="row mb-3">
+                                <div class="col-xs-12">
+                                    <label for="category" class="form-label">Category</label>
+                                    <select class="form-select" name="categoryID" id="category">
+                                        <option value="">Select your category</option>
+                                        <?php foreach ($categories as $category) : ?>
+                                            <option value="<?= $category['id'] ?>"><?= $category['name'] ?></option>
+                                        <?php endforeach; ?>
+                                    </select>
+                                </div>
                             </div>
                         </div>
                         <div class="row mb-3">
@@ -161,6 +177,7 @@
                             </div>
                         </div>
                     </form>
+
                 </div>
                 <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">
                     <hr>

@@ -38,6 +38,7 @@ INSERT INTO categories (name, description) VALUES
 
 CREATE TABLE user_details (
                               id INT AUTO_INCREMENT PRIMARY KEY,
+                              user_id INT NOT NULL,
                               full_name VARCHAR(255) NOT NULL,
                               stage_name VARCHAR(255) NOT NULL,
                               phone VARCHAR(20) NOT NULL,
@@ -49,7 +50,9 @@ CREATE TABLE user_details (
                               social_media JSON,
                               created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
                               updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+                              FOREIGN KEY (user_id) REFERENCES users(id),
                               FOREIGN KEY (category_id) REFERENCES categories(id)
 );
+
 
 

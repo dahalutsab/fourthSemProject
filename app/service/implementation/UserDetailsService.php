@@ -1,12 +1,13 @@
 <?php
 
-namespace App\Service;
+namespace App\service\implementation;
 
 use App\dto\request\UserDetailsRequest;
 use App\repository\implementation\UserDetailsRepository;
+use App\service\UserDetailsServiceInterface;
 use Exception;
 
-class UserDetailsService
+class UserDetailsService implements UserDetailsServiceInterface
 {
     protected UserDetailsRepository $userProfileRepository;
 
@@ -38,5 +39,12 @@ class UserDetailsService
             // Throw an exception if an error occurs
             throw new Exception('Error saving profile picture: ' . $exception->getMessage());
         }
+    }
+
+    /**
+     * @throws Exception
+     */
+    public function getUserProfile(string $userId) {
+        return$this->userProfileRepository->getUserProfile($userId);
     }
 }

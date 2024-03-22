@@ -8,26 +8,29 @@ class UserDetailsRequest
     private string $stageName;
     private string $phone;
     private string $address;
-    private string $talentType;
+    private string $categoryID;
     private string $bio;
     private string $description;
+    private int $userId;
 
     public function __construct(
         string $fullName,
         string $stageName,
         string $phone,
         string $address,
-        string $talentType,
+        string $categoryID,
         string $bio,
-        string $description
+        string $description,
+        int $userId
     ) {
         $this->fullName = $fullName;
         $this->stageName = $stageName;
         $this->phone = $phone;
         $this->address = $address;
-        $this->talentType = $talentType;
+        $this->categoryID = $categoryID;
         $this->bio = $bio;
         $this->description = $description;
+        $this-> userId = $userId;
     }
 
     // Getter methods for each property
@@ -52,9 +55,9 @@ class UserDetailsRequest
         return $this->address;
     }
 
-    public function getTalentType(): string
+    public function getCategoryID(): string
     {
-        return $this->talentType;
+        return $this->categoryID;
     }
 
     public function getBio(): string
@@ -65,5 +68,10 @@ class UserDetailsRequest
     public function getDescription(): string
     {
         return $this->description;
+    }
+
+    public function getUserId(): int
+    {
+        return $this->userId;
     }
 }

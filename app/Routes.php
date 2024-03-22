@@ -4,6 +4,7 @@ declare(strict_types=1);
 use App\controllers\AuthController;
 use App\controllers\DashboardViewController;
 use App\controllers\UserController;
+use App\Controllers\UserDetailsController;
 use App\controllers\ViewController;
 use App\Router;
 use App\service\implementation\MailerService;
@@ -49,7 +50,12 @@ $router->post('/artist-details', $userController::class . '::artistDetails');
 $router->get('/dashboard', DashboardViewController::class . '::dashboard', '/login');
 
 $router->get('/profile', DashboardViewController::class . '::profile', '/login');
-$router->post('/edit-profile', DashboardViewController::class . '::editProfile', '/login');
+$router->post('/edit-profile', UserDetailsController::class . '::editProfile', '/login');
+
+// Route for fetching user details
+$router->get('/user-details', function($request, $response) {
+    return UserDetailsController::class->getUserDetails(); // Replace with your actual method
+});
 
 
 //route to 404 if any error
