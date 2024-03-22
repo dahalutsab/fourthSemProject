@@ -48,6 +48,10 @@ $router->post('/artist-details', $userController::class . '::artistDetails');
 
 $router->get('/dashboard', DashboardViewController::class . '::dashboard', '/login');
 
+$router->get('/profile', DashboardViewController::class . '::profile', '/login');
+$router->post('/edit-profile', DashboardViewController::class . '::editProfile', '/login');
+
+
 //route to 404 if any error
 $router->addNotFoundHandler(function () {
     $title = '404 - Not Found';

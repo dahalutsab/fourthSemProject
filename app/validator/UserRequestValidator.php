@@ -50,4 +50,9 @@ class UserRequestValidator
         $pattern = '/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}$/';
         return preg_match($pattern, $password) === 1;
     }
+
+    public static function validateArtistDetails(array $formData)
+    {
+
+    }
 }
