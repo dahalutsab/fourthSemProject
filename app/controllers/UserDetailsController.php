@@ -24,8 +24,8 @@ class UserDetailsController
         try {
             // Retrieve form data sent by the router
             $formData = [
-                'fullName' => $_POST['fullName'] ?? '',
-                'stageName' => $_POST['stageName'] ?? '',
+                'fullName' => $_POST['full_name'] ?? '',
+                'stageName' => $_POST['stage_name'] ?? '',
                 'phone' => $_POST['phone'] ?? '',
                 'address' => $_POST['address'] ?? '',
                 'categoryID' => $_POST['categoryID'] ?? '',
@@ -33,9 +33,6 @@ class UserDetailsController
                 'description' => $_POST['description'] ?? '',
                 'userId' => $_SESSION[SESSION_USER_ID] ?? ''
             ];
-
-            var_dump($formData);
-
 
             // Create a UserDetailsRequest object
             $userProfileRequest = new UserDetailsRequest(
@@ -48,13 +45,14 @@ class UserDetailsController
                 $formData['description'],
                 $formData['userId']
             );
+            var_dump($formData);
 
             // Call the service method to save the user profile
             $this->userDetailsService->saveUserProfile($userProfileRequest);
 
             // Return success response
             ApiResponse::success(['message' => 'User profile saved successfully.']);
-            header('Location: /dashboard');
+//            header('Location: /dashboard');
         } catch (Exception $exception) {
             // Return error response if an exception occurs
             return ErrorResponse::badRequest($exception->getMessage());
