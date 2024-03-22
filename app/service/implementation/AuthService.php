@@ -19,8 +19,13 @@ class AuthService implements AuthServiceInterface {
      */
     public function login($email, $password): void
     {
-        $user = $this->userRepository->getUserByEmail($email);
-
+        $user = $this->userRepository->getUserByColumnValue('email', $email);
+        if(!$user->getIsVerified()) {
+            throw new Exception("Please verify your email to login.");
+        }
+        if(!$user->getIsActive()) {
+            throw new Exception("User account doesnt exist. Please create a new account to continue.");
+        }
         if (!$user || !password_verify($password, $user->getPassword())) {
             throw new Exception("Invalid email or password.");
         }

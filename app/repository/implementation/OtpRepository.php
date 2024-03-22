@@ -46,7 +46,7 @@ class OtpRepository implements OtpRepositoryInterface
     /**
      * @throws Exception
      */
-    public function verifyUserOtp($userId, $otp): bool
+    public function verifyUserOtp($userId, $otp)
     {
         // Get OTP record from the database
         $stmt = $this->database->getConnection()->prepare("SELECT * FROM otp WHERE user_id = ? AND otp = ? ");
@@ -64,13 +64,22 @@ class OtpRepository implements OtpRepositoryInterface
             $currentDateTime = new DateTime();
 
             if ($expiresAt > $currentDateTime) {
-                return true; // OTP is valid and not expired
+                return new Otp($userId, $otp); // OTP is valid and not expired
             }
         }
 
-        return false; // OTP is either invalid or expired
     }
 
+    public function deleteOtp(Otp $otp): void
+    {
+        $userId = $otp->getUserId();
+        $otpCode = $otp->getOtp();
+
+        $stmt = $this->database->getConnection()->prepare("DELETE FROM otp WHERE user_id = ? AND otp = ?");
+        $stmt->bind_param("is", $userId, $otpCode);
+        $stmt->execute();
+        $stmt->close();
+    }
 
 
 }

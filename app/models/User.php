@@ -14,7 +14,11 @@ class User
     private int $role_id;
     private DateTime $createdDate;
 
-    public function __construct($id, $username, $email, $password, $role_id)
+    private bool $isVerified;
+
+    private bool $isActive;
+
+    public function __construct($id, $username, $email, $password, $role_id, $isVerified, $isActive)
     {
         $this->id = $id;
         $this->username = $username;
@@ -23,6 +27,8 @@ class User
         $this->role_id = $role_id;
         $this->createdDate = new DateTime();
         $this->createdDate->setTimezone(new DateTimeZone('Asia/Kathmandu'));
+        $this->isVerified = $isVerified;
+        $this->isActive = $isActive;
     }
 
     public function getId(): int
@@ -52,6 +58,16 @@ class User
     public function getCreatedDate(): \DateTime
     {
         return $this->createdDate;
+    }
+
+    public function getIsVerified(): bool
+    {
+        return $this->isVerified;
+    }
+
+    public function getIsActive(): bool
+    {
+        return $this -> isActive;
     }
 
 

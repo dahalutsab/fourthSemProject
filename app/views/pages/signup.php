@@ -4,12 +4,25 @@ use App\controllers\RoleController;
 
 $roleController = new RoleController();
 $roles = $roleController->getRolesForUsers();
+
+// Check if there are any errors
+$errors = $_SESSION['signup_errors'] ?? [];
+unset($_SESSION['signup_errors']); // Clear errors from session
 ?>
 
 <div class="container d-flex justify-content-center">
     <div class="col-lg-4 col-md-6 col-12 mb-4 mb-lg-0">
         <div class="card shadow">
             <h4 class="card-title mt-3 text-center">Create Account</h4>
+            <?php if (!empty($errors)): ?>
+                <div class="alert alert-danger" role="alert">
+                    <ul>
+                        <?php foreach ($errors as $error): ?>
+                            <li><?php echo $error; ?></li>
+                        <?php endforeach; ?>
+                    </ul>
+                </div>
+            <?php endif; ?>
             <form id="signup-form" method="post">
                 <div class="form-group mb-3">
                     <div class="input-group">
