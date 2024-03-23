@@ -39,4 +39,9 @@ class UserService implements UserServiceInterface {
         return $this->userRepository->getUserId($email);
     }
 
+    public function setUserVerificationTrue($userId): bool
+    {
+        return $this->userRepository->setUserVerificationTrue($userId);
+    }
+
 }

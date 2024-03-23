@@ -46,13 +46,12 @@ class UserDetailsController
                 $formData['userId']
             );
 
-            var_dump($userProfileRequest);
             // Call the service method to save the user profile
             $this->userDetailsService->saveUserProfile($userProfileRequest);
 
             // Return success response
             ApiResponse::success(['message' => 'User profile saved successfully.']);
-//            header('Location: /dashboard');
+            header('Location: /dashboard');
         } catch (Exception $exception) {
             // Return error response if an exception occurs
             return ErrorResponse::badRequest($exception->getMessage());

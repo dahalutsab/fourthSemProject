@@ -62,7 +62,7 @@
         <div class="col-lg-4 col-md-12">
             <div class="artist-aboutUs-content shadow">
                 <div class="artist-img-block">
-                    <img src="../../../public/assets/images/utsab.jpg" alt="image">
+                    <img src="<?= BASE_IMAGE_PATH ?>utsab.jpg" alt="image">
                 </div>
                 <div class="text-block">
                     <h2>Apson Jirel</h2>

@@ -59,11 +59,12 @@ class OtpService implements OtpServiceInterface
         $otpRecord = $this->otpRepository->verifyUserOtp($userId, $otp);
 
         if ($otpRecord) {
-            // Delete the OTP record
-            $this->deleteOtp($otpRecord);
-            return true; // OTP verification successful
+            if($this->userService->setUserVerificationTrue($userId)) {
+                // Delete the OTP record
+                $this->deleteOtp($otpRecord);
+                return true;
+            };
         }
-
         return false;
     }
 

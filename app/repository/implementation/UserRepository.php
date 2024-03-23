@@ -15,7 +15,7 @@ class UserRepository implements UserRepositoryInterface {
         $this->database = new Database;
     }
 
-    public function saveUser(UserRequest $userRequest): UserResponse
+    public function saveUser(UserRequest $userRequest)
     {
         $hashedPassword = password_hash($userRequest->getPassword(), PASSWORD_DEFAULT);
         $createdDate = date('Y-m-d H:i:s');
@@ -33,8 +33,6 @@ class UserRepository implements UserRepositoryInterface {
 
         $stmt->close();
 
-        // Return a new UserResponse object with the inserted user data
-        return new UserResponse($id, $username, $email, $role);
     }
 
 
@@ -71,6 +69,15 @@ class UserRepository implements UserRepositoryInterface {
         } else {
             return null;
         }
+    }
+
+    public function setUserVerificationTrue($userId): bool
+    {
+        $stmt = $this->database->getConnection()->prepare("UPDATE users SET is_verified = true WHERE id = ?");
+        $stmt->bind_param("i", $userId);
+        $stmt->execute();
+        $stmt->close();
+        return true;
     }
 
 

@@ -6,6 +6,8 @@ use App\repository\implementation\CategoryRepository;
 $categoriesRepo = new CategoryRepository();
 $categories = $categoriesRepo->getAllCategories();
 
+//var_dump($_SESSION[SESSION_USER_ID]);
+
 $loadProfileController = new UserDetailsController();
 
 try {
@@ -13,7 +15,7 @@ try {
 } catch (Exception $e) {
     $profileDetails = null;
 }
-var_dump($profileDetails);
+//var_dump($profileDetails);
 ?>
 <hr>
 <div class="container bootstrap snippet">

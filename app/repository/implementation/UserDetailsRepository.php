@@ -23,7 +23,6 @@ class UserDetailsRepository implements UserDetailsRepositoryInterface
      */
     public function saveUserProfile(UserDetailsRequest $userProfileRequest)
     {
-        var_dump($userProfileRequest);
         try {
             // Check if the user ID exists
             $existingUserDetails = $this->getUserProfileById($userProfileRequest->getUserId());

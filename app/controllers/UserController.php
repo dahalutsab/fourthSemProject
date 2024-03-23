@@ -112,7 +112,7 @@ class UserController
             // Verify OTP
             if ($this->otpService->verifyOtp($userId, $otp)) {
                 // OTP verification successful
-                header('Location: /dashboard');
+                header('Location: /login');
                 exit;
             } else {
                 // OTP verification failed

@@ -44,8 +44,8 @@
                         <a href="#">
                             <img src="/public/assets/images/openMicLogo.png" alt="" class="rounded-circle">
                             <div>
-                                <h4>Maria Hudson</h4>
-                                <p>Velit asperiores et ducimus soluta repudiandae labore officia est ut...</p>
+                                <h4>Dhiraj Jirel</h4>
+                                <p>Hey! What's up? W...</p>
                                 <p>4 hrs. ago</p>
                             </div>
                         </a>
@@ -58,8 +58,8 @@
                         <a href="#">
                             <img src="/public/assets/images/openMicLogo.png" alt="" class="rounded-circle">
                             <div>
-                                <h4>Anna Nelson</h4>
-                                <p>Velit asperiores et ducimus soluta repudiandae labore officia est ut...</p>
+                                <h4>Pasang Gelbu</h4>
+                                <p>Wanna collab? Lets...</p>
                                 <p>6 hrs. ago</p>
                             </div>
                         </a>
@@ -72,8 +72,8 @@
                         <a href="#">
                             <img src="/public/assets/images/openMicLogo.png" alt="" class="rounded-circle">
                             <div>
-                                <h4>David Muldon</h4>
-                                <p>Velit asperiores et ducimus soluta repudiandae labore officia est ut...</p>
+                                <h4>Bishal Acharys</h4>
+                                <p>Lets have a cup of coffee ...</p>
                                 <p>8 hrs. ago</p>
                             </div>
                         </a>
@@ -93,13 +93,13 @@
             <li class="nav-item dropdown pe-3">
 
                 <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown">
-                    <img src="/public/assets/images/openMicLogo.png" alt="Profile" class="rounded-circle">
-                    <span class="d-none d-md-block dropdown-toggle ps-2">K. Anderson</span>
+                    <img src="<?=BASE_IMAGE_PATH?>utsab.jpg" alt="Profile" class="rounded-circle">
+                    <span class="d-none d-md-block dropdown-toggle ps-2">Apson</span>
                 </a><!-- End Profile Iamge Icon -->
 
                 <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
                     <li class="dropdown-header">
-                        <h6>Kevin Anderson</h6>
+                        <h6>Apson Jirel</h6>
                         <span>Web Designer</span>
                     </li>
                     <li>
@@ -107,7 +107,7 @@
                     </li>
 
                     <li>
-                        <a class="dropdown-item d-flex align-items-center" href="users-profile.html">
+                        <a class="dropdown-item d-flex align-items-center" href="/">
                             <i class="bi bi-person"></i>
                             <span>My Profile</span>
                         </a>
@@ -117,7 +117,7 @@
                     </li>
 
                     <li>
-                        <a class="dropdown-item d-flex align-items-center" href="users-profile.html">
+                        <a class="dropdown-item d-flex align-items-center" href="/">
                             <i class="bi bi-gear"></i>
                             <span>Account Settings</span>
                         </a>
@@ -127,7 +127,7 @@
                     </li>
 
                     <li>
-                        <a class="dropdown-item d-flex align-items-center" href="pages-faq.html">
+                        <a class="dropdown-item d-flex align-items-center" href="/">
                             <i class="bi bi-question-circle"></i>
                             <span>Need Help?</span>
                         </a>

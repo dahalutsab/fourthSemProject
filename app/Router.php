@@ -82,6 +82,6 @@ class Router
 
     private function isUserAuthenticated(): bool
     {
-        return isset($_SESSION[SESSION_USER_ID]) || isset($_SESSION[SESSION_EMAIL]);
+        return isset($_SESSION[SESSION_USER_ID]);
     }
 }

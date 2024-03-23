@@ -25,28 +25,28 @@
                             <ul class="d-flex justify-content-between">
                                 <li>
                                     <a href="#singersTab">
-                                        <img src="/public/assets/images/4.png" alt="singers">
+                                        <img src="<?= BASE_IMAGE_PATH ?>4.png" alt="singers">
                                         Singers
                                     </a>
                                 </li>
 
                                 <li>
                                     <a href="#poetrySlammersTab">
-                                        <img src="/public/assets/images/2.png" alt="Poetry Slammers">
+                                        <img src="<?= BASE_IMAGE_PATH ?>2.png" alt="Poetry Slammers">
                                         Poetry Slammers
                                     </a>
                                 </li>
 
                                 <li>
                                     <a href="#standUpComediansTab">
-                                        <img src="/public/assets/images/1.png" alt="Stand Up Comedians">
+                                        <img src="<?= BASE_IMAGE_PATH ?>1.png" alt="Stand Up Comedians">
                                         Stand Up Comedians
                                     </a>
                                 </li>
 
                                 <li>
                                     <a href="#storyTellersTab">
-                                        <img src="/public/assets/images/3.png" alt="Story Tellers">
+                                        <img src="<?= BASE_IMAGE_PATH ?>3.png" alt="Story Tellers">
                                         Story Tellers
                                     </a>
                                 </li>
@@ -76,7 +76,7 @@
                 <li class="nav-item nav-button">
                     <?php if (isset($_SESSION[SESSION_USER_ID])): ?>
                         <!-- Display the "Logout" button if user is logged in -->
-                        <a href="/logout" class="nav-link">
+                        <a href="/dashboard" class="nav-link">
                             <i class="fa-solid fa-sign-out"></i>
                             Go to dashboard
                         </a>
