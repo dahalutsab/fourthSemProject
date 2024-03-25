@@ -33,6 +33,6 @@ class ApiResponse
 
         header('Content-Type: application/json');
         // Encode the response data to JSON
-        return json_encode($response);
+        echo json_encode($response);
     }
 }

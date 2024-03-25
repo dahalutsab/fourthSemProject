@@ -2,7 +2,6 @@
 namespace App\repository\implementation;
 
 use App\dto\request\UserRequest;
-use App\dto\response\UserResponse;
 use App\models\User;
 use App\Repository\UserRepositoryInterface;
 use config\Database;
@@ -15,7 +14,7 @@ class UserRepository implements UserRepositoryInterface {
         $this->database = new Database;
     }
 
-    public function saveUser(UserRequest $userRequest)
+    public function saveUser(UserRequest $userRequest): User
     {
         $hashedPassword = password_hash($userRequest->getPassword(), PASSWORD_DEFAULT);
         $createdDate = date('Y-m-d H:i:s');
@@ -32,7 +31,7 @@ class UserRepository implements UserRepositoryInterface {
         $id = $stmt->insert_id;
 
         $stmt->close();
-
+        return new User($id, $username, $email, $hashedPassword, $role, false, true);
     }
 
 

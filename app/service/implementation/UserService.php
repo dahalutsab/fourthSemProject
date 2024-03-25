@@ -3,6 +3,7 @@ namespace App\service\implementation;
 
 
 use App\dto\request\UserRequest;
+use App\dto\response\UserResponse;
 use App\repository\implementation\UserRepository;
 use App\Service\UserServiceInterface;
 use InvalidArgumentException;
@@ -18,7 +19,7 @@ class UserService implements UserServiceInterface {
     }
 
 
-    public function createUser(UserRequest $userRequest): bool
+    public function createUser(UserRequest $userRequest): UserResponse
     {
         if (!$this->roleService->validateRole($userRequest->getRole())) {
             throw new InvalidArgumentException("Invalid role");
@@ -30,8 +31,9 @@ class UserService implements UserServiceInterface {
         if($this->userRepository->getUserByColumnValue('email', $userRequest->getEmail())){
             throw new InvalidArgumentException("User with the same email already exists");
         }
-        $this->userRepository->saveUser($userRequest);
-        return true;
+        $userResponse = $this->userRepository->saveUser($userRequest);
+
+        return new UserResponse($userResponse);
     }
 
     public function getUserId(string $email)

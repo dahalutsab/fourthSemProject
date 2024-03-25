@@ -2,6 +2,7 @@
 
 namespace App\models;
 
+use App\dto\response\RoleResponse;
 use DateTime;
 use DateTimeZone;
 
@@ -11,9 +12,9 @@ class User
     private string $username;
     private string $email;
     private string $password;
-    private int $role_id;
-    private DateTime $createdDate;
+    private int $role;
 
+    private DateTime $createdDate;
     private bool $isVerified;
 
     private bool $isActive;
@@ -24,7 +25,7 @@ class User
         $this->username = $username;
         $this->email = $email;
         $this->password = $password;
-        $this->role_id = $role_id;
+        $this->role = $role_id;
         $this->createdDate = new DateTime();
         $this->createdDate->setTimezone(new DateTimeZone('Asia/Kathmandu'));
         $this->isVerified = $isVerified;
@@ -52,7 +53,7 @@ class User
 
     public function getRoleId(): int
     {
-        return $this->role_id;
+        return $this->role;
     }
 
     public function getCreatedDate(): \DateTime

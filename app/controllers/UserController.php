@@ -4,6 +4,7 @@ namespace App\Controllers;
 
 
 use App\dto\request\UserRequest;
+use App\Response\ApiResponse;
 use App\service\implementation\MailerService;
 use App\service\implementation\OtpService;
 use App\service\implementation\UserService;
@@ -45,9 +46,7 @@ class UserController
 
             if (!empty($errors)) {
                 $_SESSION[SESSION_SIGNUP_ERRORS] = $errors;
-                // Redirect back to signup page to display errors
-                header('Location: /signup');
-                exit;
+                return ApiResponse::error($errors); // Return error response
             }
 
             // Create a UserRequest object
@@ -58,26 +57,21 @@ class UserController
                 $formData['role']
             );
 
-            // Create the user using the UserService
-            $user = $this->userService->createUser($userRequest);
 
-            if ($user) {
+            // Create the user using the UserService
+            $user =  $this->userService->createUser($userRequest);
+
+
                 // User creation successful
                 $_SESSION[SESSION_EMAIL] = $formData['email'];
                 $this->otpService->sendOtp($formData['email'], $formData['username']);
-                header('Location: /verify-otp');
+            return ApiResponse::success($user->toArray(), ['message' => 'User created successfully.']);//                header('Location: /verify-otp');
                 // Redirect and exit immediately after sending header
-            } else {
-                // Handle user creation error
-                $_SESSION[SESSION_SIGNUP_ERRORS] = ['Error creating user.']; // Store error message in session
-                header('Location: /signup'); // Redirect back to signup page
-                // Exit immediately after sending header
-            }
-            exit;
         } catch (Exception $exception) {
             $_SESSION[SESSION_SIGNUP_ERRORS] = [$exception->getMessage()]; // Store exception message in session
-            header('Location: /signup'); // Redirect back to signup page
-            exit; // Exit immediately after sending header
+            echo ApiResponse::error($exception->getMessage()); // Return error response
+//            header('Location: /signup'); // Redirect back to signup page
+//            exit; // Exit immediately after sending header
         }
     }
 

@@ -3,6 +3,7 @@ declare(strict_types=1);
 
 use App\controllers\AuthController;
 use App\controllers\DashboardViewController;
+use App\controllers\RoleController;
 use App\controllers\UserController;
 use App\Controllers\UserDetailsController;
 use App\controllers\ViewController;
@@ -19,12 +20,12 @@ $mailerService = new MailerService();
 
 //route to home
 $router->get('/', ViewController::class . '::index');
-$router->get('/home', ViewController::class . '::index');
+$router->get('api/v1/home', ViewController::class . '::index');
 
 
 //route to signup
 $router->get('/signup', ViewController::class . '::signup');
-$router->post('/signup', UserController::class . '::signup');
+$router->post('/api/user/create-user', UserController::class . '::signup');
 
 
 //route to log in
@@ -49,6 +50,8 @@ $router->get('/dashboard', DashboardViewController::class . '::dashboard', '/log
 
 $router->get('/profile', DashboardViewController::class . '::profile', '/login');
 $router->post('/dashboard/updateProfile', UserDetailsController::class . '::editProfile', '/login');
+
+$router->get('/api/roles/get-roles', RoleController::class . '::getRolesForUsers');
 
 // Route for fetching user details
 $router->get('/user-details', function($request, $response) {
