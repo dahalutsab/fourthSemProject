@@ -42,36 +42,20 @@ class UserController
             ];
 
             // Validate the form data
-            $errors = UserRequestValidator::validateSignupData($formData);
-
-            if (!empty($errors)) {
-                $_SESSION[SESSION_SIGNUP_ERRORS] = $errors;
-                return ApiResponse::error($errors); // Return error response
-            }
+            UserRequestValidator::validateSignupData($formData);
 
             // Create a UserRequest object
-            $userRequest = new UserRequest(
-                $formData['username'],
-                $formData['email'],
-                $formData['password'],
-                $formData['role']
-            );
-
+            $userRequest = new UserRequest($formData);
 
             // Create the user using the UserService
             $user =  $this->userService->createUser($userRequest);
 
-
-                // User creation successful
-                $_SESSION[SESSION_EMAIL] = $formData['email'];
-                $this->otpService->sendOtp($formData['email'], $formData['username']);
-            return ApiResponse::success($user->toArray(), ['message' => 'User created successfully.']);//                header('Location: /verify-otp');
-                // Redirect and exit immediately after sending header
+            // User creation successful
+            $_SESSION[SESSION_EMAIL] = $formData['email'];
+            $this->otpService->sendOtp($formData['email'], $formData['username']);
+            return ApiResponse::success($user->toArray(), ['message' => 'User created successfully.']);
         } catch (Exception $exception) {
-            $_SESSION[SESSION_SIGNUP_ERRORS] = [$exception->getMessage()]; // Store exception message in session
-            echo ApiResponse::error($exception->getMessage()); // Return error response
-//            header('Location: /signup'); // Redirect back to signup page
-//            exit; // Exit immediately after sending header
+            echo ApiResponse::error($exception->getMessage());
         }
     }
 
@@ -83,21 +67,12 @@ class UserController
     {
         try {
             // Retrieve form data sent by the router
-            $otp1 = $_POST['otp_1'] ?? '';
-            $otp2 = $_POST['otp_2'] ?? '';
-            $otp3 = $_POST['otp_3'] ?? '';
-            $otp4 = $_POST['otp_4'] ?? '';
-            $otp5 = $_POST['otp_5'] ?? '';
-            $otp6 = $_POST['otp_6'] ?? '';
+            $otp = $_POST['otp'] ?? '';
             $email = $_SESSION[SESSION_EMAIL] ?? '';
-
-            $otp = $otp1 . $otp2 . $otp3 . $otp4 . $otp5 . $otp6;
 
             // Perform basic validation
             if (empty($otp)) {
-                $_SESSION[SESSION_VERIFY_OTP_ERRORS] = ['OTP is required.'];
-                header('Location: /verify-otp');
-                exit;
+                return ApiResponse::error('OTP is required.');
             }
 
             // Get userId from email from user table
@@ -105,20 +80,11 @@ class UserController
 
             // Verify OTP
             if ($this->otpService->verifyOtp($userId, $otp)) {
-                // OTP verification successful
-                header('Location: /login');
-                exit;
+                return ApiResponse::success([], ['message' => 'OTP verification successful.']);
             } else {
-                // OTP verification failed
-                $_SESSION[SESSION_VERIFY_OTP_ERRORS] = ['Invalid OTP.'];
-                header('Location: /verify-otp');
-                exit;
+                return ApiResponse::error('OTP verification failed.');
             }
         } catch (Exception $exception) {
-            // Handle exceptions
-            $_SESSION[SESSION_VERIFY_OTP_ERRORS] = [$exception->getMessage()];
-            header('Location: /verify-otp');
-            exit;
+            echo ApiResponse::error($exception->getMessage());
         }
-    }
-}
+    }}

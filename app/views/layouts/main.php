@@ -15,6 +15,7 @@
     <link rel="stylesheet" href="<?= BASE_CSS_PATH ?>artist-details.css">
     <link rel="stylesheet" href="<?= BASE_CSS_PATH ?>footer.css">
     <link rel="stylesheet" href="<?= BASE_CSS_PATH ?>contactUs.css">
+    <link rel="stylesheet" href="<?= BASE_CSS_PATH ?>error_message.css">
     <link rel="stylesheet" href="<?= BASE_CSS_PATH ?>style.css">
     <script src="https://kit.fontawesome.com/3ab31dc8a0.js" crossorigin="anonymous"></script>
 </head>

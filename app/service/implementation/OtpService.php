@@ -35,6 +35,9 @@ class OtpService implements OtpServiceInterface
     }
 
 
+    /**
+     * @throws Exception
+     */
     public function sendOtp ($to, $username): bool
     {
         $otp = $this->generateOtp();

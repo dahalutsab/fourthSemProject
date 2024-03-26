@@ -4,14 +4,12 @@
             <div class="close-login position-absolute top-0 end-0 p-3">
                 <a href="/"><i class="fa fa-close"></i></a>
             </div>
-            <?php if (isset($error)): ?>
-                <div class="alert alert-danger" role="alert">
-                    <?= $error ?>
-                </div>
-            <?php endif; ?>
 
             <h4 class="card-title mt-3 text-center">Enter OTP</h4>
-            <form id="otp-form" action="/verify-otp" method="post">
+            <div class="alert alert-danger error-message" id="error-messages" role="alert" style="display:none;">
+                <ul id="error-list"></ul>
+            </div>
+            <form id="otp-form" method="post">
                 <!-- OTP input fields -->
                 <div class="row">
                     <div class="col">
@@ -54,34 +52,7 @@
             </form>
         </div>
     </div>
-    <script>
-        // OTP input fields
-        const inputs = document.querySelectorAll('.otp-input');
-        for (let i = 0; i < inputs.length; i++) {
-            inputs[i].addEventListener('input', function (event) {
-                const currentInput = event.target;
-                const currentValue = currentInput.value;
-
-                // Clear the value if it's not a digit
-                if (!/^\d$/.test(currentValue)) {
-                    currentInput.value = '';
-                    return;
-                }
-
-                // Move focus to the next input field if it exists
-                if (i < inputs.length - 1 && currentValue !== '') {
-                    inputs[i + 1].focus();
-                }
-            });
-
-            // Move focus to the previous input field when backspace is pressed
-            inputs[i].addEventListener('keydown', function (event) {
-                if (event.key === 'Backspace' && i > 0 && !inputs[i].value) {
-                    inputs[i - 1].focus();
-                }
-            });
-        }
-    </script>
+    <script src="<?=BASE_JS_PATH?>otp.js"
 
 
 </div>

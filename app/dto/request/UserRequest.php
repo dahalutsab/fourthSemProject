@@ -7,11 +7,15 @@ class UserRequest {
     private string $password;
     private string $role;
 
-    public function __construct(string $username, string $email, string $password, string $role) {
-        $this->username = $username;
-        $this->email = $email;
-        $this->password = $password;
-        $this->role = $role;
+    public function __construct($formData) {
+        $this->username = $formData['username'];
+        $this->email = $formData['email'];
+        $this->password = $formData['password'];
+        $this->role = $formData['role'];
+//        $this->username = $username;
+//        $this->email = $email;
+//        $this->password = $password;
+//        $this->role = $role;
     }
 
     public function getUsername(): string {

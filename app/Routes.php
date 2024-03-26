@@ -28,6 +28,7 @@ $router->get('/signup', ViewController::class . '::signup');
 $router->post('/api/user/create-user', UserController::class . '::signup');
 
 
+
 //route to log in
 $router->get('/login', ViewController::class . '::login');
 $router->post('/login', AuthController::class . '::login');
@@ -38,7 +39,7 @@ $router->get('/logout', AuthController::class . '::logout');
 
 //route to otp verification
 $router->get('/verify-otp', ViewController::class . '::verifyOtp');
-$router->post('/verify-otp', UserController::class . '::verifyOtp');
+$router->post('/api/user/verify-otp', UserController::class . '::verifyOtp');
 
 
 //route to artist details

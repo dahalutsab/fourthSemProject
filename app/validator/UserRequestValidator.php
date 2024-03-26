@@ -1,6 +1,8 @@
 <?php
 
 namespace App\validator;
+use InvalidArgumentException;
+
 class UserRequestValidator
 {
     public static function validateSignupData(array $data): array
@@ -9,28 +11,35 @@ class UserRequestValidator
 
         // Validate username
         if (empty($data['username'])) {
-            $errors[] = 'Username is required.';
+            throw new InvalidArgumentException("Username is required.");
+//            $errors[] = 'Username is required.';
         } elseif (!self::isValidUsername($data['username'])) {
-            $errors[] = 'Invalid username format.';
+            throw new InvalidArgumentException("Invalid username format.");
+//            $errors[] = 'Invalid username format.';
         }
 
         // Validate email
         if (empty($data['email'])) {
-            $errors[] = 'Email is required.';
+            throw new InvalidArgumentException("Email is required.");
+//            $errors[] = 'Email is required.';
         } elseif (!filter_var($data['email'], FILTER_VALIDATE_EMAIL)) {
-            $errors[] = 'Invalid email format.';
+            throw new InvalidArgumentException("Invalid email format.");
+//            $errors[] = 'Invalid email format.';
         }
 
         // Validate password
         if (empty($data['password'])) {
-            $errors[] = 'Password is required.';
+            throw new InvalidArgumentException("Password is required.");
+//            $errors[] = 'Password is required.';
         } elseif (!self::isValidPassword($data['password'])) {
-            $errors[] = 'Password must be at least 8 characters long and contain at least one uppercase letter, one lowercase letter, and one number.';
+            throw new InvalidArgumentException("Password must be at least 8 characters long and contain at least one uppercase letter, one lowercase letter, and one number.");
+//            $errors[] = 'Password must be at least 8 characters long and contain at least one uppercase letter, one lowercase letter, and one number.';
         }
 
         // Validate role
         if (empty($data['role'])) {
-            $errors[] = 'Role is required.';
+            throw new InvalidArgumentException("Role is required.");
+//            $errors[] = 'Role is required.';
         }
         return $errors;
     }
