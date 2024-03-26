@@ -2,8 +2,6 @@
 
 namespace App\controllers;
 
-use App\controllers\UserDetailsController;
-use Exception;
 
 class DashboardViewController
 {

@@ -66,5 +66,4 @@ class AuthController {
         exit; // Always exit after redirecting
     }
 
-
 }

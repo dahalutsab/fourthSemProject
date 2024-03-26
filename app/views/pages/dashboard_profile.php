@@ -1,22 +1,4 @@
-<?php
 
-use App\Controllers\UserDetailsController;
-use App\repository\implementation\CategoryRepository;
-
-$categoriesRepo = new CategoryRepository();
-$categories = $categoriesRepo->getAllCategories();
-
-//var_dump($_SESSION[SESSION_USER_ID]);
-
-$loadProfileController = new UserDetailsController();
-
-try {
-    $profileDetails = $loadProfileController->getUserProfile();
-} catch (Exception $e) {
-    $profileDetails = null;
-}
-//var_dump($profileDetails);
-?>
 <hr>
 <div class="container bootstrap snippet">
     <div class="row">
@@ -72,81 +54,49 @@ try {
                                 <div class="col-sm-3">
                                     <strong>Full Name:</strong>
                                 </div>
-                                <div class="col-sm-9">
-                                    <?php echo $profileDetails ? $profileDetails->getFullName() : "N/A"; ?>
-                                </div>
+                                <div class="col-sm-9" id="full-name"></div> <!-- Placeholder for full name -->
                             </div>
                             <!-- Stage Name -->
                             <div class="row mb-3">
                                 <div class="col-sm-3">
                                     <strong>Stage Name:</strong>
                                 </div>
-                                <div class="col-sm-9">
-                                    <?php echo $profileDetails ? $profileDetails->getStageName() : "N/A"; ?>
-                                </div>
+                                <div class="col-sm-9" id="stage-name"></div> <!-- Placeholder for stage name -->
                             </div>
                             <!-- Phone -->
                             <div class="row mb-3">
                                 <div class="col-sm-3">
                                     <strong>Phone:</strong>
                                 </div>
-                                <div class="col-sm-9">
-                                    <?php echo $profileDetails ? $profileDetails->getPhone() : "N/A"; ?>
-                                </div>
+                                <div class="col-sm-9" id="phone"></div> <!-- Placeholder for phone -->
                             </div>
                             <!-- Address -->
                             <div class="row mb-3">
                                 <div class="col-sm-3">
                                     <strong>Address:</strong>
                                 </div>
-                                <div class="col-sm-9">
-                                    <?php echo $profileDetails ? $profileDetails->getAddress() : "N/A"; ?>
-                                </div>
+                                <div class="col-sm-9" id="address"></div> <!-- Placeholder for address -->
                             </div>
                             <!-- Category -->
                             <div class="row mb-3">
                                 <div class="col-sm-3">
                                     <strong>Category:</strong>
                                 </div>
-                                <div class="col-sm-9">
-                                    <?php
-                                    if ($profileDetails) {
-                                        $categoryId = $profileDetails->getCategory();
-                                        $categoryName = '';
-
-                                        // Find the category name from $categories array using category ID
-                                        foreach ($categories as $category) {
-                                            if ($category['id'] == $categoryId) {
-                                                $categoryName = $category['name'];
-                                                break;
-                                            }
-                                        }
-
-                                        echo $categoryName ? $categoryName : "N/A";
-                                    } else {
-                                        echo "N/A";
-                                    }
-                                    ?>
-                                </div>
-
+                                <div class="col-sm-9" id="categoryName"></div> <!-- Placeholder for category -->
                             </div>
                             <!-- Bio -->
                             <div class="row mb-3">
                                 <div class="col-sm-3">
                                     <strong>Bio:</strong>
                                 </div>
-                                <div class="col-sm-9">
-                                    <?php echo $profileDetails ? $profileDetails->getBio() : "N/A"; ?>
-                                </div>
+                                <div class="col-sm-9" id="bio"></div> <!-- Placeholder for bio -->
                             </div>
                             <!-- Description -->
                             <div class="row mb-3">
                                 <div class="col-sm-3">
                                     <strong>Description:</strong>
                                 </div>
-                                <div class="col-sm-9">
-                                    <?php echo $profileDetails ? $profileDetails->getDescription() : "N/A"; ?>
-                                </div>
+                                <div class="col-sm-9" id="description"></div> <!-- Placeholder for description -->
                             </div>
                         </div>
                     </div>
@@ -154,39 +104,36 @@ try {
                 <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
                     <hr>
                     <!-- Edit Profile Content -->
-                    <form class="form" action="/dashboard/updateProfile" method="post" id="registrationForm">
+                    <form class="form" action="/api/userDetails/updateProfile" method="post" id="registrationForm">
                         <div class="row mb-3">
                             <div class="col-xs-12">
                                 <label for="full_name" class="form-label">Full Name</label>
-                                <input type="text" class="form-control" name="full_name" id="full_name" placeholder="Enter your full name" title="Enter your full name" value="<?php echo $profileDetails ? $profileDetails->getFullName() : ''; ?>">
+                                <input type="text" class="form-control" name="full_name" id="full_name" placeholder="Enter your full name" title="Enter your full name">
                             </div>
                         </div>
                         <div class="row mb-3">
                             <div class="col-xs-12">
                                 <label for="stage_name" class="form-label">Stage Name</label>
-                                <input type="text" class="form-control" name="stage_name" id="stage_name" placeholder="Enter your stage name" title="Enter your stage name" value="<?php echo $profileDetails ? $profileDetails->getStageName() : ''; ?>">
+                                <input type="text" class="form-control" name="stage_name" id="stage_name" placeholder="Enter your stage name" title="Enter your stage name">
                             </div>
                         </div>
                         <div class="row mb-3">
                             <div class="col-xs-12">
                                 <label for="phone" class="form-label">Phone</label>
-                                <input type="text" class="form-control" name="phone" id="phone" placeholder="Enter your phone number" title="Enter your phone number" value="<?php echo $profileDetails ? $profileDetails->getPhone() : ''; ?>">
+                                <input type="text" class="form-control" name="phone" id="phone" placeholder="Enter your phone number" title="Enter your phone number">
                             </div>
                         </div>
                         <div class="row mb-3">
                             <div class="col-xs-12">
                                 <label for="address" class="form-label">Address</label>
-                                <input type="text" class="form-control" name="address" id="address" placeholder="Enter your address" title="Enter your address" value="<?php echo $profileDetails ? $profileDetails->getAddress() : ''; ?>">
+                                <input type="text" class="form-control" name="address" id="address" placeholder="Enter your address" title="Enter your address">
                             </div>
                         </div>
                         <div class="row mb-3">
                             <div class="col-xs-12">
                                 <label for="category" class="form-label">Category</label>
-                                <select class="form-select" name="categoryID" id="category">
+                                <select class="form-select" name="category" id="category">
                                     <option value="">Select your category</option>
-                                    <?php foreach ($categories as $category): ?>
-                                        <option value="<?php echo $category['id']; ?>" <?php echo ($profileDetails && $profileDetails->getCategory() == $category['id']) ? 'selected' : ''; ?>><?php echo $category['name']; ?></option>
-                                    <?php endforeach; ?>
                                 </select>
                             </div>
                         </div> <!-- Close the row div -->
@@ -194,7 +141,7 @@ try {
                         <div class="row mb-3">
                             <div class="col-xs-12">
                                 <label for="description" class="form-label">Description</label>
-                                <textarea class="form-control" name="description" id="description" rows="5" placeholder="Enter your description"><?php echo $profileDetails ? $profileDetails->getDescription() : ''; ?></textarea>
+                                <textarea class="form-control" name="description" id="description" rows="5" placeholder="Enter your description"></textarea>
                             </div>
                         </div>
                         <div class="row mb-3">
@@ -239,20 +186,4 @@ try {
         </div>
     </div>
 </div>
-<script>
-    document.addEventListener('DOMContentLoaded', function() {
-        const fileInput = document.querySelector('.file-upload');
-        const avatarImg = document.querySelector('.avatar');
-
-        fileInput.addEventListener('change', function() {
-            const file = this.files[0];
-            if (file) {
-                const reader = new FileReader();
-                reader.onload = function() {
-                    avatarImg.src = reader.result;
-                }
-                reader.readAsDataURL(file);
-            }
-        });
-    });
-</script>
+<script src="<?=BASE_JS_PATH?>dashboard_profile.js"></script>

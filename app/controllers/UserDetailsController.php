@@ -3,7 +3,6 @@
 namespace App\Controllers;
 
 use App\dto\request\UserDetailsRequest;
-use App\dto\response\UserDetailsResponse;
 use App\Response\ApiResponse;
 use App\Response\ErrorResponse;
 use App\service\implementation\UserDetailsService;
@@ -18,6 +17,7 @@ class UserDetailsController
     {
         $this->userDetailsService = new UserDetailsService();
     }
+
 
     public function editProfile()
     {
@@ -47,16 +47,16 @@ class UserDetailsController
             );
 
             // Call the service method to save the user profile
-            $this->userDetailsService->saveUserProfile($userProfileRequest);
+            $updatedDetails = $this->userDetailsService->saveUserProfile($userProfileRequest);
 
             // Return success response
-            ApiResponse::success(['message' => 'User profile saved successfully.']);
-            header('Location: /dashboard');
+            return ApiResponse::success($updatedDetails,['message' => 'User profile saved successfully.']);
         } catch (Exception $exception) {
             // Return error response if an exception occurs
             return ErrorResponse::badRequest($exception->getMessage());
         }
     }
+
 
     public function saveProfilePicture()
     {
@@ -78,8 +78,14 @@ class UserDetailsController
     /**
      * @throws Exception
      */
-    public function getUserProfile (): UserDetailsResponse{
-        $userId = $_SESSION[SESSION_USER_ID];
-        return $this->userDetailsService->getUserProfile($userId);
+    public function getUserProfile (): null
+    {
+        try {
+            $userId = $_SESSION[SESSION_USER_ID];
+            $userDetails = $this->userDetailsService->getUserProfile($userId);
+            return ApiResponse::success($userDetails->getData());
+        } catch (Exception $exception) {
+            return ApiResponse::error($exception->getMessage());
+        }
     }
 }

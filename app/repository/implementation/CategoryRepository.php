@@ -13,6 +13,9 @@ class CategoryRepository
         $this->database = new Database;
     }
 
+    /**
+     * @throws Exception
+     */
     public function getAllCategories(): array
     {
         try {
@@ -35,8 +38,39 @@ class CategoryRepository
 
             return $categories;
         } catch (Exception $exception) {
-            // Log or handle the exception
-            return [];
+            throw new Exception("Error fetching categories: " . $exception->getMessage());
+        }
+    }
+
+    /**
+     * @throws Exception
+     */
+    public function getCategoryById(int $categoryId): ?array
+    {
+        try {
+            $query = "SELECT * FROM categories WHERE id = ?";
+            $statement = $this->database->getConnection()->prepare($query);
+            if (!$statement) {
+                throw new Exception("Error preparing statement: " . $this->database->getConnection()->error);
+            }
+
+            $statement->bind_param("i", $categoryId);
+
+            if (!$statement->execute()) {
+                throw new Exception("Error executing statement: " . $statement->error);
+            }
+
+            $result = $statement->get_result();
+
+            $category = $result->fetch_assoc();
+
+            if (!$category) {
+                return null; // Category not found
+            }
+
+            return $category;
+        } catch (Exception $exception) {
+            throw new Exception("Error fetching category by ID: " . $exception->getMessage());
         }
     }
 }

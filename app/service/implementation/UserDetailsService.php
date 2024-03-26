@@ -20,11 +20,13 @@ class UserDetailsService implements UserDetailsServiceInterface
     /**
      * @throws Exception
      */
-    public function saveUserProfile(UserDetailsRequest $userProfileRequest)
+    public function saveUserProfile(UserDetailsRequest $userProfileRequest): UserDetailsResponse
     {
         try {
             // Call the repository method to save the user profile details
-            $this->userProfileRepository->saveUserProfile($userProfileRequest);
+            $userDetails = $this->userProfileRepository->saveUserProfile($userProfileRequest);
+            return new UserDetailsResponse($userDetails);
+
         } catch (Exception $exception) {
             // Throw an exception if an error occurs
             throw new Exception('Error saving user profile: ' . $exception->getMessage());
@@ -46,6 +48,14 @@ class UserDetailsService implements UserDetailsServiceInterface
      * @throws Exception
      */
     public function getUserProfile(string $userId): UserDetailsResponse {
-        return$this->userProfileRepository->getUserProfile($userId);
+
+        try {
+            $userDetails = $this->userProfileRepository->getUserProfile($userId);
+            if ($userDetails!=null) {
+                return new UserDetailsResponse($userDetails);
+            } else throw new Exception("User doesnt exist");
+        }catch (Exception $exception) {
+            throw new Exception($exception->getMessage());
+        }
     }
 }

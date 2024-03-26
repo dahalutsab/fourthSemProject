@@ -3,7 +3,7 @@ namespace App\Response;
 
 class ApiResponse
 {
-    public static function success($data, $message = null, $code = 200)
+    public static function success($data, $message = null, $code = 200): null
     {
         $response = [
             'success' => true,
@@ -17,7 +17,7 @@ class ApiResponse
         return self::sendResponse($response, $code);
     }
 
-    public static function error($error, $code = 400)
+    public static function error($error, $code = 400): null
     {
         $response = [
             'success' => false,
@@ -27,7 +27,7 @@ class ApiResponse
         return self::sendResponse($response, $code);
     }
 
-    private static function sendResponse($response, $code)
+    private static function sendResponse($response, $code): void
     {
         http_response_code($code);
 

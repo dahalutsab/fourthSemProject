@@ -2,6 +2,7 @@
 declare(strict_types=1);
 
 use App\controllers\AuthController;
+use App\controllers\CategoryController;
 use App\controllers\DashboardViewController;
 use App\controllers\RoleController;
 use App\controllers\UserController;
@@ -50,14 +51,14 @@ $router->post('/artist-details', UserController::class . '::artistDetails');
 $router->get('/dashboard', DashboardViewController::class . '::dashboard', '/login');
 
 $router->get('/profile', DashboardViewController::class . '::profile', '/login');
-$router->post('/dashboard/updateProfile', UserDetailsController::class . '::editProfile', '/login');
+$router->get('/api/userDetails/getUserDetails', UserDetailsController::class . '::getUserProfile');
+$router->post('/api/userDetails/updateProfile', UserDetailsController::class . '::editProfile', '/login');
+
+$router->get('/api/categories/getAllCategories', CategoryController::class . '::getAllCategories');
+$router->get('/api/categories/getCategoryById', CategoryController::class . '::getCategoryById');
+
 
 $router->get('/api/roles/get-roles', RoleController::class . '::getRolesForUsers');
-
-// Route for fetching user details
-$router->get('/user-details', function($request, $response) {
-    return UserDetailsController::class->getUserDetails(); // Replace with your actual method
-});
 
 
 //route to 404 if any error

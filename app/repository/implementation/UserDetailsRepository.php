@@ -3,11 +3,11 @@
 namespace App\repository\implementation;
 
 use App\dto\request\UserDetailsRequest;
-use App\dto\response\UserDetailsResponse;
+use App\models\UserDetails;
 use App\repository\UserDetailsRepositoryInterface;
 use config\Database;
 use Exception;
-use RuntimeException;
+
 
 class UserDetailsRepository implements UserDetailsRepositoryInterface
 {
@@ -21,51 +21,35 @@ class UserDetailsRepository implements UserDetailsRepositoryInterface
     /**
      * @throws Exception
      */
-    public function saveUserProfile(UserDetailsRequest $userProfileRequest)
+    public function saveUserProfile(UserDetailsRequest $userProfileRequest): UserDetails
     {
         try {
             // Check if the user ID exists
-            $existingUserDetails = $this->getUserProfileById($userProfileRequest->getUserId());
+            $existingUserDetails = $this->getUserProfile($userProfileRequest->getUserId());
 
-            if ($existingUserDetails) {
-                // User details already exist, so update them
-                return $this->updateUserProfile($userProfileRequest);
-            } else {
+            if ($existingUserDetails == null) {
                 // User details don't exist, so insert them
-                return $this->insertUserProfile($userProfileRequest);
+                $this->insertUserProfile($userProfileRequest);
+
+            } else {
+                // User details already exist, so update them
+                $this->updateUserProfile($userProfileRequest);
             }
+            return $this->getUserProfile($userProfileRequest->getUserId());
         } catch (Exception $exception) {
-            $_SESSION['errors'][] = 'Error saving user profile: ' . $exception->getMessage();
-            return false;
+            throw new Exception($exception->getMessage());
         }
     }
 
-    private function getUserProfileById($userId)
-    {
-        $query = "SELECT * FROM user_details WHERE user_id = ?";
-        $statement = $this->database->getConnection()->prepare($query);
-        if (!$statement) {
-            $_SESSION['errors'][] = "Error preparing statement: " . $this->database->getConnection()->error;
-            return null;
-        }
 
-        $statement->bind_param("i", $userId);
-        $statement->execute();
-        $result = $statement->get_result();
-        $userDetails = $result->fetch_assoc();
-        $statement->close();
-
-        return $userDetails;
-    }
-
-    private function insertUserProfile(UserDetailsRequest $userProfileRequest)
+    private function insertUserProfile(UserDetailsRequest $userProfileRequest): bool
     {
         $query = "INSERT INTO user_details (user_id, full_name, stage_name, phone, address, category_id, bio, description) 
                   VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
         return $this->executeInsertQuery($query, $userProfileRequest);
     }
 
-    private function executeInsertQuery($query, UserDetailsRequest $userProfileRequest)
+    private function executeInsertQuery($query, UserDetailsRequest $userProfileRequest): bool
     {
         $statement = $this->database->getConnection()->prepare($query);
         if (!$statement) {
@@ -93,7 +77,7 @@ class UserDetailsRepository implements UserDetailsRepositoryInterface
         return true;
     }
 
-    private function updateUserProfile(UserDetailsRequest $userProfileRequest)
+    private function updateUserProfile(UserDetailsRequest $userProfileRequest): bool
     {
         $query = "UPDATE user_details 
                   SET full_name=?, stage_name=?, phone=?, address=?, category_id=?, bio=?, description=?
@@ -101,7 +85,7 @@ class UserDetailsRepository implements UserDetailsRepositoryInterface
         return $this->executeUpdateQuery($query, $userProfileRequest);
     }
 
-    private function executeUpdateQuery($query, UserDetailsRequest $userProfileRequest)
+    private function executeUpdateQuery($query, UserDetailsRequest $userProfileRequest): bool
     {
         $statement = $this->database->getConnection()->prepare($query);
         if (!$statement) {
@@ -129,39 +113,38 @@ class UserDetailsRepository implements UserDetailsRepositoryInterface
         return true;
     }
 
-    public function getUserProfile(string $userId): UserDetailsResponse
+    /**
+     * @throws Exception
+     */
+    public function getUserProfile(string $userId): ?UserDetails
     {
         $query = "SELECT * FROM user_details WHERE user_id = ?";
         $statement = $this->database->getConnection()->prepare($query);
         $statement->bind_param("i", $userId);
         $statement->execute();
         $result = $statement->get_result();
-
-        // Check if a row was returned
-        if ($result->num_rows == 0) {
-            // No user profile found, return an empty UserDetailsResponse
-            return new UserDetailsResponse();
+        if ($result->num_rows === 0) {
+            return null;
         }
-
         // Fetch the profile details
         $profile = $result->fetch_assoc();
 
-        // Construct UserDetailsResponse object with null checks
-        $userDetailsResponse = new UserDetailsResponse(
-            $profile['id'] ?? null,
+        $userDetails = new UserDetails(
+            $profile['id'],
             $profile['full_name'] ?? null,
             $profile['stage_name'] ?? null,
             $profile['phone'] ?? null,
             $profile['address'] ?? null,
             $profile['category_id'] ?? null,
             $profile['bio'] ?? null,
-            $profile['description'] ?? null
+            $profile['description'] ?? null,
+            $profile['social_media'] ?? null
         );
 
         $statement->close();
 
         // Return UserDetailsResponse object
-        return $userDetailsResponse;
+        return $userDetails;
     }
 
 }

@@ -2,57 +2,26 @@
 
 namespace App\dto\response;
 
+
+use App\models\UserDetails;
+
 class UserDetailsResponse {
-    private int $id;
-    private string $fullName;
-    private string $stageName;
-    private string $phone;
-    private string $address;
-    private string $category;
-    private string $bio;
-    private string $description;
+    private array $data;
 
-    public function __construct(?int $id = null, ?string $fullName = null, ?string $stageName = null, ?string $phone = null, ?string $address = null, ?string $category = null, ?string $bio = null, ?string $description = null) {
-        $this->id = $id ?? 0; // Default value for id
-        $this->fullName = $fullName ?? '';
-        $this->stageName = $stageName ?? '';
-        $this->phone = $phone ?? '';
-        $this->address = $address ?? '';
-        $this->category = $category ?? '';
-        $this->bio = $bio ?? '';
-        $this->description = $description ?? '';
+    public function __construct(UserDetails $userDetails) {
+        $this->data = [
+            'id' => $userDetails->getId() ?? 0,
+            'fullName' => $userDetails->getFullName() ?? '',
+            'stageName' => $userDetails->getStageName() ?? '',
+            'phone' => $userDetails->getPhone() ?? '',
+            'address' => $userDetails->getAddress() ?? '',
+            'category' => $userDetails->getCategory() ?? '',
+            'bio' => $userDetails->getBio() ?? '',
+            'description' => $userDetails->getDescription() ?? ''
+        ];
     }
 
-
-    public function getId(): int {
-        return $this->id;
-    }
-
-    public function getFullName(): string {
-        return $this->fullName;
-    }
-
-    public function getStageName(): string {
-        return $this->stageName;
-    }
-
-    public function getPhone(): string {
-        return $this->phone;
-    }
-
-    public function getAddress(): string {
-        return $this->address;
-    }
-
-    public function getCategory(): string {
-        return $this->category;
-    }
-
-    public function getBio(): string {
-        return $this->bio;
-    }
-
-    public function getDescription(): string {
-        return $this->description;
+    public function getData(): array {
+        return $this->data;
     }
 }

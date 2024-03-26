@@ -1,35 +1,49 @@
 <?php
+namespace App\models;
+use DateTimeImmutable;
+
 class UserDetails {
-    private string $fullName;
-    private string $stageName;
-    private string $phone;
-    private string $address;
-    private string $talentType;
-    private string $bio;
-    private string $description;
+    private int $id;
+    private ?string $fullName;
+    private ?string $stageName;
+    private ?string $phone;
+    private ?string $address;
+    private ?string $category;
+    private ?string $bio;
+    private ?string $description;
     private string $profilePicture;
-    private array $socialMedia;
+    private ?array $socialMedia;
     private DateTimeImmutable $updated_at;
 
     public function __construct(
-        string $fullName,
-        string $stageName,
-        string $phone,
-        string $address,
-        string $talentType,
-        string $bio,
-        string $description,
-        array $socialMedia = []
+        int $id,
+        ?string $fullName,
+        ?string $stageName,
+        ?string $phone,
+        ?string $address,
+        ?string $category,
+        ?string $bio,
+        ?string $description,
+        ?array $socialMedia = []
     ) {
+        $this->id = $id;
         $this->fullName = $fullName;
         $this->stageName = $stageName;
         $this->phone = $phone;
         $this->address = $address;
-        $this->talentType = $talentType;
+        $this->category = $category;
         $this->bio = $bio;
         $this->description = $description;
         $this->socialMedia = $socialMedia;
+    }
 
+
+    public function getId(): int {
+        return $this->id;
+    }
+
+    public function setId(int $id): void {
+        $this->id = $id;
     }
 
     public function getFullName(): string {
@@ -64,12 +78,12 @@ class UserDetails {
         $this->address = $address;
     }
 
-    public function getTalentType(): string {
-        return $this->talentType;
+    public function getCategory(): string {
+        return $this->category;
     }
 
-    public function setTalentType(string $talentType): void {
-        $this->talentType = $talentType;
+    public function setCategory(string $category): void {
+        $this->category = $category;
     }
 
     public function getBio(): string {
@@ -110,4 +124,5 @@ class UserDetails {
     {
         return $this->updated_at;
     }
+
 }
