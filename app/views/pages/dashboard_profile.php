@@ -54,14 +54,14 @@
                                 <div class="col-sm-3">
                                     <strong>Full Name:</strong>
                                 </div>
-                                <div class="col-sm-9" id="full-name"></div> <!-- Placeholder for full name -->
+                                <div class="col-sm-9" id="full_name"></div> <!-- Placeholder for full name -->
                             </div>
                             <!-- Stage Name -->
                             <div class="row mb-3">
                                 <div class="col-sm-3">
                                     <strong>Stage Name:</strong>
                                 </div>
-                                <div class="col-sm-9" id="stage-name"></div> <!-- Placeholder for stage name -->
+                                <div class="col-sm-9" id="stage_name"></div> <!-- Placeholder for stage name -->
                             </div>
                             <!-- Phone -->
                             <div class="row mb-3">

@@ -19,7 +19,7 @@ class UserDetailsController
     }
 
 
-    public function editProfile()
+    public function editProfile(): null
     {
         try {
             // Retrieve form data sent by the router
@@ -28,7 +28,7 @@ class UserDetailsController
                 'stageName' => $_POST['stage_name'] ?? '',
                 'phone' => $_POST['phone'] ?? '',
                 'address' => $_POST['address'] ?? '',
-                'categoryID' => $_POST['categoryID'] ?? '',
+                'categoryID' => $_POST['category'] ?? '',
                 'bio' => $_POST['bio'] ?? '',
                 'description' => $_POST['description'] ?? '',
                 'userId' => $_SESSION[SESSION_USER_ID] ?? ''
@@ -46,11 +46,12 @@ class UserDetailsController
                 $formData['userId']
             );
 
+
             // Call the service method to save the user profile
             $updatedDetails = $this->userDetailsService->saveUserProfile($userProfileRequest);
 
             // Return success response
-            return ApiResponse::success($updatedDetails,['message' => 'User profile saved successfully.']);
+            return ApiResponse::success($updatedDetails->getData(),['message' => 'User profile saved successfully.']);
         } catch (Exception $exception) {
             // Return error response if an exception occurs
             return ErrorResponse::badRequest($exception->getMessage());

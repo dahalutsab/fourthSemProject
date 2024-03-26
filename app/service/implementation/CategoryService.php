@@ -21,7 +21,10 @@ class CategoryService implements CategoryServiceInterface
         return$this->categoryRepository->getAllCategories();
     }
 
-    public function getCategoryById(int $categoryId)
+    /**
+     * @throws \Exception
+     */
+    public function getCategoryById(int $categoryId): ?array
     {
         return $this->categoryRepository->getCategoryById($categoryId);
     }

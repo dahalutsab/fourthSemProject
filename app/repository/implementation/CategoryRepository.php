@@ -65,7 +65,7 @@ class CategoryRepository
             $category = $result->fetch_assoc();
 
             if (!$category) {
-                return null; // Category not found
+                throw new Exception('"Category not found with id " + $categoryId');
             }
 
             return $category;

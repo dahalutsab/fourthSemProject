@@ -29,10 +29,12 @@ class CategoryController
         }
     }
 
+    /**
+     * @throws Exception
+     */
     public static function getCategoryById(): void
     {
-        // Check if the ID parameter exists in the request
-        if (!isset($_GET['id'])) {
+        if (!isset($_GET['id']) || $_GET['id'] === 'N/A') {
             ApiResponse::error('Category ID is required', 400);
             return;
         }

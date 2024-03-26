@@ -26,7 +26,6 @@ class UserDetailsService implements UserDetailsServiceInterface
             // Call the repository method to save the user profile details
             $userDetails = $this->userProfileRepository->saveUserProfile($userProfileRequest);
             return new UserDetailsResponse($userDetails);
-
         } catch (Exception $exception) {
             // Throw an exception if an error occurs
             throw new Exception('Error saving user profile: ' . $exception->getMessage());

@@ -42,19 +42,19 @@ class UserDetailsRepository implements UserDetailsRepositoryInterface
     }
 
 
-    private function insertUserProfile(UserDetailsRequest $userProfileRequest): bool
+    private function insertUserProfile(UserDetailsRequest $userProfileRequest): void
     {
         $query = "INSERT INTO user_details (user_id, full_name, stage_name, phone, address, category_id, bio, description) 
                   VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
-        return $this->executeInsertQuery($query, $userProfileRequest);
+        $this->executeInsertQuery($query, $userProfileRequest);
     }
 
-    private function executeInsertQuery($query, UserDetailsRequest $userProfileRequest): bool
+    private function executeInsertQuery($query, UserDetailsRequest $userProfileRequest): void
     {
         $statement = $this->database->getConnection()->prepare($query);
         if (!$statement) {
             $_SESSION['errors'][] = "Error preparing statement: " . $this->database->getConnection()->error;
-            return false;
+            return;
         }
 
         $fullName = $userProfileRequest->getFullName();
@@ -70,27 +70,26 @@ class UserDetailsRepository implements UserDetailsRepositoryInterface
 
         if (!$statement->execute()) {
             $_SESSION['errors'][] = "Error executing statement: " . $statement->error;
-            return false;
+            return;
         }
 
         $statement->close();
-        return true;
     }
 
-    private function updateUserProfile(UserDetailsRequest $userProfileRequest): bool
+    private function updateUserProfile(UserDetailsRequest $userProfileRequest): void
     {
         $query = "UPDATE user_details 
                   SET full_name=?, stage_name=?, phone=?, address=?, category_id=?, bio=?, description=?
                   WHERE user_id = ?";
-        return $this->executeUpdateQuery($query, $userProfileRequest);
+        $this->executeUpdateQuery($query, $userProfileRequest);
     }
 
-    private function executeUpdateQuery($query, UserDetailsRequest $userProfileRequest): bool
+    private function executeUpdateQuery($query, UserDetailsRequest $userProfileRequest): void
     {
         $statement = $this->database->getConnection()->prepare($query);
         if (!$statement) {
             $_SESSION['errors'][] = "Error preparing statement: " . $this->database->getConnection()->error;
-            return false;
+            return;
         }
 
         $fullName = $userProfileRequest->getFullName();
@@ -106,11 +105,10 @@ class UserDetailsRepository implements UserDetailsRepositoryInterface
 
         if (!$statement->execute()) {
             $_SESSION['errors'][] = "Error executing statement: " . $statement->error;
-            return false;
+            return;
         }
 
         $statement->close();
-        return true;
     }
 
     /**

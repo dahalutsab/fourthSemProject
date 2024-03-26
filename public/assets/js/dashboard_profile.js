@@ -62,11 +62,11 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Function to populate user profile details into HTML for the Overview tab
     function populateOverview(profileDetails) {
-        document.getElementById('full-name').textContent = profileDetails.fullName || 'N/A'; // Use 'fullName' instead of 'full_name'
-        document.getElementById('stage-name').textContent = profileDetails.stageName || 'N/A'; // Use 'stageName' instead of 'stage_name'
+        document.getElementById('full_name').textContent = profileDetails.fullName || '';
+        document.getElementById('stage_name').textContent = profileDetails.stageName || '';
         document.getElementById('phone').textContent = profileDetails.phone || '';
         document.getElementById('address').textContent = profileDetails.address || '';
-        document.getElementById('categoryName').textContent = profileDetails.category || 'N/A';
+        document.getElementById('categoryName').textContent = profileDetails.category || '';
         document.getElementById('bio').textContent = profileDetails.bio || '';
         document.getElementById('description').textContent = profileDetails.description || '';
 
@@ -92,14 +92,15 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Function to populate user profile details into HTML for the Edit Profile tab
     function populateEditProfile(profileDetails) {
-        document.getElementById('full_name').value = profileDetails.fullName || ''; // Use 'fullName' instead of 'full_name'
-        document.getElementById('stage_name').value = profileDetails.stageName || ''; // Use 'stageName' instead of 'stage_name'
-        document.getElementById('phone').value = profileDetails.phone || '';
-        document.getElementById('address').value = profileDetails.address || '';
-        document.getElementById('category').value = profileDetails.category || '';
-        document.getElementById('bio').value = profileDetails.bio || '';
-        document.getElementById('description').value = profileDetails.description || '';
+        document.getElementById('full_name').value = profileDetails.fullName ? profileDetails.fullName : ''; // Use an empty string as a placeholder
+        document.getElementById('stage_name').value = profileDetails.stageName ? profileDetails.stageName : ''; // Use an empty string as a placeholder
+        document.getElementById('phone').value = profileDetails.phone ? profileDetails.phone : '';
+        document.getElementById('address').value = profileDetails.address ? profileDetails.address : '';
+        document.getElementById('category').value = profileDetails.category ? profileDetails.category : '';
+        document.getElementById('bio').value = profileDetails.bio ? profileDetails.bio : '';
+        document.getElementById('description').value = profileDetails.description ? profileDetails.description : '';
     }
+
 
     // Add event listener to the registration form
     const registrationForm = document.getElementById('registrationForm');
