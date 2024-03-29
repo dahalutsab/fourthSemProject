@@ -4,7 +4,6 @@ namespace App\dto\request;
 
 class UserDetailsRequest
 {
-    private string $fullName;
     private string $stageName;
     private string $phone;
     private string $address;
@@ -14,7 +13,6 @@ class UserDetailsRequest
     private int $userId;
 
     public function __construct(
-        string $fullName,
         string $stageName,
         string $phone,
         string $address,
@@ -23,7 +21,6 @@ class UserDetailsRequest
         string $description,
         int $userId
     ) {
-        $this->fullName = $fullName;
         $this->stageName = $stageName;
         $this->phone = $phone;
         $this->address = $address;
@@ -35,10 +32,6 @@ class UserDetailsRequest
 
     // Getter methods for each property
 
-    public function getFullName(): string
-    {
-        return $this->fullName;
-    }
 
     public function getStageName(): string
     {

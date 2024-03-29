@@ -2,13 +2,13 @@
 
 namespace App\models;
 
-use App\dto\response\RoleResponse;
 use DateTime;
 use DateTimeZone;
 
 class User
 {
     private int $id;
+    private string $full_name;
     private string $username;
     private string $email;
     private string $password;
@@ -19,9 +19,10 @@ class User
 
     private bool $isActive;
 
-    public function __construct($id, $username, $email, $password, $role_id, $isVerified, $isActive)
+    public function __construct($id, $full_name, $username, $email, $password, $role_id, $isVerified, $isActive)
     {
         $this->id = $id;
+        $this->full_name = $full_name;
         $this->username = $username;
         $this->email = $email;
         $this->password = $password;
@@ -36,6 +37,12 @@ class User
     {
         return $this->id;
     }
+
+    public function getFullName(): string
+    {
+        return $this->full_name;
+    }
+
     public function getUsername(): string
     {
         return $this->username;

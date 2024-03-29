@@ -19,12 +19,13 @@ class UserRepository implements UserRepositoryInterface {
         $hashedPassword = password_hash($userRequest->getPassword(), PASSWORD_DEFAULT);
         $createdDate = date('Y-m-d H:i:s');
 
+        $full_name = $userRequest->getFullName();
         $username = $userRequest->getUsername();
         $email = $userRequest->getEmail();
         $role = $userRequest->getRole();
 
-        $stmt = $this->database->getConnection()->prepare("INSERT INTO users (username, email, password, role_id, created_at) VALUES (?, ?, ?, ?, ?)");
-        $stmt->bind_param("sssds", $username, $email, $hashedPassword, $role, $createdDate);
+        $stmt = $this->database->getConnection()->prepare("INSERT INTO users (full_name, username, email, password, role_id, created_at) VALUES (?, ?, ?, ?, ?, ?)");
+        $stmt->bind_param("ssssds", $full_name,$username, $email, $hashedPassword, $role, $createdDate);
         $stmt->execute();
 
         // Fetch the ID of the inserted user
@@ -46,7 +47,7 @@ class UserRepository implements UserRepositoryInterface {
         $row = $result->fetch_assoc();
 
         if ($row) {
-            return new User($row['id'], $row['username'], $row['email'], $row['password'], $row['role_id'], $row['is_verified'], $row['is_active']);
+            return new User($row['id'], $row['full_name'], $row['username'], $row['email'], $row['password'], $row['role_id'], $row['is_verified'], $row['is_active']);
         } else {
             return null;
         }

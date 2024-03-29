@@ -4,7 +4,6 @@ use DateTimeImmutable;
 
 class UserDetails {
     private int $id;
-    private ?string $fullName;
     private ?string $stageName;
     private ?string $phone;
     private ?string $address;
@@ -17,7 +16,6 @@ class UserDetails {
 
     public function __construct(
         int $id,
-        ?string $fullName,
         ?string $stageName,
         ?string $phone,
         ?string $address,
@@ -27,7 +25,6 @@ class UserDetails {
         ?array $socialMedia = []
     ) {
         $this->id = $id;
-        $this->fullName = $fullName;
         $this->stageName = $stageName;
         $this->phone = $phone;
         $this->address = $address;
@@ -46,13 +43,6 @@ class UserDetails {
         $this->id = $id;
     }
 
-    public function getFullName(): string {
-        return $this->fullName;
-    }
-
-    public function setFullName(string $fullName): void {
-        $this->fullName = $fullName;
-    }
 
     public function getStageName(): string {
         return $this->stageName;

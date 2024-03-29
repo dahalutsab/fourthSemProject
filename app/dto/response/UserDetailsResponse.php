@@ -11,7 +11,6 @@ class UserDetailsResponse {
     public function __construct(UserDetails $userDetails) {
         $this->data = [
             'id' => $userDetails->getId() ?? 0,
-            'fullName' => $userDetails->getFullName() ?? '',
             'stageName' => $userDetails->getStageName() ?? '',
             'phone' => $userDetails->getPhone() ?? '',
             'address' => $userDetails->getAddress() ?? '',

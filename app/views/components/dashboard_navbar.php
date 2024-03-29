@@ -2,7 +2,7 @@
 
     <div class="d-flex align-items-center justify-content-between">
         <a href="/" class="logo d-flex align-items-center">
-            <img src="/public/assets/images/openMicLogo.png" alt="">
+            <img src="<?=BASE_IMAGE_PATH?>openMicLogo.png" alt="">
             <span class="d-none d-lg-block">Open Mic Hub</span>
         </a>
         <i class="fas fa-bars toggle-sidebar-btn"></i>
@@ -42,7 +42,7 @@
 
                     <li class="message-item">
                         <a href="#">
-                            <img src="/public/assets/images/openMicLogo.png" alt="" class="rounded-circle">
+                            <img src="<?=BASE_IMAGE_PATH?>openMicLogo.png" alt="" class="rounded-circle">
                             <div>
                                 <h4>Dhiraj Jirel</h4>
                                 <p>Hey! What's up? W...</p>
@@ -56,7 +56,7 @@
 
                     <li class="message-item">
                         <a href="#">
-                            <img src="/public/assets/images/openMicLogo.png" alt="" class="rounded-circle">
+                            <img src="<?=BASE_IMAGE_PATH?>openMicLogo.png" alt="" class="rounded-circle">
                             <div>
                                 <h4>Pasang Gelbu</h4>
                                 <p>Wanna collab? Lets...</p>
@@ -70,7 +70,7 @@
 
                     <li class="message-item">
                         <a href="#">
-                            <img src="/public/assets/images/openMicLogo.png" alt="" class="rounded-circle">
+                            <img src="<?=BASE_IMAGE_PATH?>openMicLogo.png" alt="" class="rounded-circle">
                             <div>
                                 <h4>Bishal Acharys</h4>
                                 <p>Lets have a cup of coffee ...</p>

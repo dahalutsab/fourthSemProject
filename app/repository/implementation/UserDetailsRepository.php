@@ -44,8 +44,8 @@ class UserDetailsRepository implements UserDetailsRepositoryInterface
 
     private function insertUserProfile(UserDetailsRequest $userProfileRequest): void
     {
-        $query = "INSERT INTO user_details (user_id, full_name, stage_name, phone, address, category_id, bio, description) 
-                  VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+        $query = "INSERT INTO user_details (user_id, stage_name, phone, address, category_id, bio, description) 
+                  VALUES (?, ?, ?, ?, ?, ?, ?)";
         $this->executeInsertQuery($query, $userProfileRequest);
     }
 
@@ -57,7 +57,6 @@ class UserDetailsRepository implements UserDetailsRepositoryInterface
             return;
         }
 
-        $fullName = $userProfileRequest->getFullName();
         $stageName = $userProfileRequest->getStageName();
         $phone = $userProfileRequest->getPhone();
         $address = $userProfileRequest->getAddress();
@@ -66,7 +65,7 @@ class UserDetailsRepository implements UserDetailsRepositoryInterface
         $description = $userProfileRequest->getDescription();
         $userId = $userProfileRequest->getUserId();
 
-        $statement->bind_param("isssssss", $userId, $fullName, $stageName, $phone, $address, $categoryID, $bio, $description);
+        $statement->bind_param("issssss", $userId, $stageName, $phone, $address, $categoryID, $bio, $description);
 
         if (!$statement->execute()) {
             $_SESSION['errors'][] = "Error executing statement: " . $statement->error;
@@ -79,7 +78,7 @@ class UserDetailsRepository implements UserDetailsRepositoryInterface
     private function updateUserProfile(UserDetailsRequest $userProfileRequest): void
     {
         $query = "UPDATE user_details 
-                  SET full_name=?, stage_name=?, phone=?, address=?, category_id=?, bio=?, description=?
+                  SET stage_name=?, phone=?, address=?, category_id=?, bio=?, description=?
                   WHERE user_id = ?";
         $this->executeUpdateQuery($query, $userProfileRequest);
     }
@@ -92,7 +91,6 @@ class UserDetailsRepository implements UserDetailsRepositoryInterface
             return;
         }
 
-        $fullName = $userProfileRequest->getFullName();
         $stageName = $userProfileRequest->getStageName();
         $phone = $userProfileRequest->getPhone();
         $address = $userProfileRequest->getAddress();
@@ -101,7 +99,7 @@ class UserDetailsRepository implements UserDetailsRepositoryInterface
         $description = $userProfileRequest->getDescription();
         $userId = $userProfileRequest->getUserId();
 
-        $statement->bind_param("sssssssi", $fullName, $stageName, $phone, $address, $categoryID, $bio, $description, $userId);
+        $statement->bind_param("ssssssi", $stageName, $phone, $address, $categoryID, $bio, $description, $userId);
 
         if (!$statement->execute()) {
             $_SESSION['errors'][] = "Error executing statement: " . $statement->error;
@@ -129,7 +127,6 @@ class UserDetailsRepository implements UserDetailsRepositoryInterface
 
         $userDetails = new UserDetails(
             $profile['id'],
-            $profile['full_name'] ?? null,
             $profile['stage_name'] ?? null,
             $profile['phone'] ?? null,
             $profile['address'] ?? null,

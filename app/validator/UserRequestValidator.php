@@ -10,6 +10,11 @@ class UserRequestValidator
         $errors = [];
 
         // Validate username
+        if (empty($data['full_name'])) {
+            throw new InvalidArgumentException('Full Name is required.');
+        } elseif (!self::isValidFullName($data['username'])) {
+            throw new InvalidArgumentException('Invalid Full Name format. Minimum 4 characters required.');
+        }
         if (empty($data['username'])) {
             throw new InvalidArgumentException("Username is required.");
 //            $errors[] = 'Username is required.';
@@ -63,5 +68,11 @@ class UserRequestValidator
     public static function validateArtistDetails(array $formData)
     {
 
+    }
+
+    private static function isValidFullName(mixed $username)
+    {
+        $pattern = '/^\w{4,}$/';
+        return preg_match($pattern, $username) === 1;
     }
 }

@@ -24,7 +24,6 @@ class UserDetailsController
         try {
             // Retrieve form data sent by the router
             $formData = [
-                'fullName' => $_POST['full_name'] ?? '',
                 'stageName' => $_POST['stage_name'] ?? '',
                 'phone' => $_POST['phone'] ?? '',
                 'address' => $_POST['address'] ?? '',
@@ -36,7 +35,6 @@ class UserDetailsController
 
             // Create a UserDetailsRequest object
             $userProfileRequest = new UserDetailsRequest(
-                $formData['fullName'],
                 $formData['stageName'],
                 $formData['phone'],
                 $formData['address'],

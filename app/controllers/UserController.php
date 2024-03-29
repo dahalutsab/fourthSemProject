@@ -35,6 +35,7 @@ class UserController
         try {
             // Retrieve form data sent by the router
             $formData = [
+                'fullName' => $_POST['full_name'] ?? '',
                 'username' => $_POST['username'] ?? '',
                 'email' => $_POST['email'] ?? '',
                 'password' => $_POST['password'] ?? '',
@@ -52,7 +53,7 @@ class UserController
 
             // User creation successful
             $_SESSION[SESSION_EMAIL] = $formData['email'];
-            $this->otpService->sendOtp($formData['email'], $formData['username']);
+            $this->otpService->sendOtp($formData['email'], $formData['fullName']);
             return ApiResponse::success($user->toArray(), ['message' => 'User created successfully.']);
         } catch (Exception $exception) {
             echo ApiResponse::error($exception->getMessage());

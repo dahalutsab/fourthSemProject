@@ -2,6 +2,7 @@
 
 namespace App\dto\request;
 class UserRequest {
+    private string $fullName;
     private string $username;
     private string $email;
     private string $password;
@@ -12,6 +13,7 @@ class UserRequest {
         $this->email = $formData['email'];
         $this->password = $formData['password'];
         $this->role = $formData['role'];
+        $this->fullName = $formData['fullName'];
 //        $this->username = $username;
 //        $this->email = $email;
 //        $this->password = $password;
@@ -32,5 +34,10 @@ class UserRequest {
 
     public function getRole(): string {
         return $this->role;
+    }
+
+    public function getFullName()
+    {
+        return $this->fullName;
     }
 }

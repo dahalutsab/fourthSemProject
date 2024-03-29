@@ -7,6 +7,15 @@
             </div>
             <form id="signup-form">
                 <div class="form-group mb-3">
+
+                    <div class="input-group">
+                        <span class="input-group-text">
+                        <i class="fas fa-user"></i>
+                        </span>
+                        <input type="text" class="form-control" placeholder="Full name" name="full_name" required>
+                    </div>
+                </div>
+                <div class="form-group mb-3">
                     <div class="input-group">
                         <span class="input-group-text">
                         <i class="fas fa-user"></i>

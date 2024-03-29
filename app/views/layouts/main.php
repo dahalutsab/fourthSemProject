@@ -17,6 +17,7 @@
     <link rel="stylesheet" href="<?= BASE_CSS_PATH ?>contactUs.css">
     <link rel="stylesheet" href="<?= BASE_CSS_PATH ?>error_message.css">
     <link rel="stylesheet" href="<?= BASE_CSS_PATH ?>style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
     <script src="https://kit.fontawesome.com/3ab31dc8a0.js" crossorigin="anonymous"></script>
 </head>
 <body>
@@ -35,5 +36,6 @@
 <?php include __DIR__ . '/../components/footer.php'; ?>
 <script src="<?= BASE_JS_PATH ?>script.js"></script>
 <script src="<?= BASE_JS_PATH ?>bootstrap.bundle.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
 </body>
 </html>
