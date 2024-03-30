@@ -10,16 +10,16 @@
                 <img src="http://ssl.gstatic.com/accounts/ui/avatar_2x.png" class="avatar rounded-circle img-thumbnail" alt="avatar">
                 <h6>Upload a different photo...</h6>
                 <input type="file" class="text-center form-control file-upload">
+                <input type="button" class="btn btn-primary" value="update">
             </div>
             <hr>
             <div class="card">
                 <div class="card-header">Social Media</div>
                 <div class="card-body">
                     <i class="fab fa-facebook me-2"></i>
-                    <i class="fab fa-github me-2"></i>
+                    <i class="fab fa-instagram me-2"></i>
                     <i class="fab fa-twitter me-2"></i>
-                    <i class="fab fa-pinterest me-2"></i>
-                    <i class="fab fa-google"></i>
+                    <i class="fab fa-youtube me-2"></i>
                 </div>
             </div>
         </div>
@@ -104,35 +104,35 @@
                 <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
                     <hr>
                     <!-- Edit Profile Content -->
-                    <form class="form" action="/api/userDetails/updateProfile" method="post" id="registrationForm">
+                    <form class="form" id="registrationForm">
                         <div class="row mb-3">
                             <div class="col-xs-12">
                                 <label for="full_name" class="form-label">Full Name</label>
-                                <input type="text" class="form-control" name="full_name" id="full_name" placeholder="Enter your full name" title="Enter your full name">
+                                <input type="text" class="form-control" name="full_name" id="full_name_edit" placeholder="Enter your full name" title="Enter your full name">
                             </div>
                         </div>
                         <div class="row mb-3">
                             <div class="col-xs-12">
                                 <label for="stage_name" class="form-label">Stage Name</label>
-                                <input type="text" class="form-control" name="stage_name" id="stage_name" placeholder="Enter your stage name" title="Enter your stage name">
+                                <input type="text" class="form-control" name="stage_name" id="stage_name_edit" placeholder="Enter your stage name" title="Enter your stage name">
                             </div>
                         </div>
                         <div class="row mb-3">
                             <div class="col-xs-12">
                                 <label for="phone" class="form-label">Phone</label>
-                                <input type="text" class="form-control" name="phone" id="phone" placeholder="Enter your phone number" title="Enter your phone number">
+                                <input type="text" class="form-control" name="phone" id="phone_edit" placeholder="Enter your phone number" title="Enter your phone number">
                             </div>
                         </div>
                         <div class="row mb-3">
                             <div class="col-xs-12">
                                 <label for="address" class="form-label">Address</label>
-                                <input type="text" class="form-control" name="address" id="address" placeholder="Enter your address" title="Enter your address">
+                                <input type="text" class="form-control" name="address" id="address_edit" placeholder="Enter your address" title="Enter your address">
                             </div>
                         </div>
                         <div class="row mb-3">
                             <div class="col-xs-12">
                                 <label for="category" class="form-label">Category</label>
-                                <select class="form-select" name="category" id="category">
+                                <select class="form-select" name="category" id="category" required>
                                     <option value="">Select your category</option>
                                 </select>
                             </div>
@@ -140,22 +140,27 @@
 
                         <div class="row mb-3">
                             <div class="col-xs-12">
-                                <label for="description" class="form-label">Description</label>
-                                <textarea class="form-control" name="description" id="description" rows="5" placeholder="Enter your description"></textarea>
+                                <label for="bio" class="form-label">Bio</label>
+                                <textarea class="form-control" name="bio" id="bio_edit" rows="3" placeholder="Enter your bio"></textarea>
                             </div>
-                        </div>
-                        <div class="row mb-3">
-                            <div class="col-xs-12">
-                                <button class="btn btn-success" type="submit"><i class="fas fa-check-circle me-2"></i>Save</button>
-                                <button class="btn btn-secondary" type="reset"><i class="fas fa-undo me-2"></i>Reset</button>
+                            <div class="row mb-3">
+                                <div class="col-xs-12">
+                                    <label for="description" class="form-label">Description</label>
+                                    <textarea class="form-control" name="description" id="description_edit" rows="5" placeholder="Enter your description"></textarea>
+                                </div>
                             </div>
-                        </div>
+                            <div class="row mb-3">
+                                <div class="col-xs-12">
+                                    <button class="btn btn-success" type="submit"><i class="fas fa-check-circle me-2"></i>Save</button>
+                                    <button class="btn btn-secondary" type="reset"><i class="fas fa-undo me-2"></i>Reset</button>
+                                </div>
+                            </div>
                     </form>
                 </div>
                 <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">
                     <hr>
                     <!-- Change Password Content -->
-                    <form class="form" action="##" method="post" id="changePasswordForm">
+                    <form class="form" id="changePasswordForm">
                         <div class="row mb-3">
                             <div class="col-xs-12">
                                 <label for="current_password" class="form-label">Current Password</label>

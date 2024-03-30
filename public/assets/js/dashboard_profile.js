@@ -1,4 +1,23 @@
 document.addEventListener('DOMContentLoaded', function() {
+    // Fetch categories and populate dropdown
+    fetch('/api/categories/getAllCategories')
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+            return response.json();
+        })
+        .then(data => {
+            if (data && data.success) {
+                populateCategoriesDropdown(data.data);
+            } else {
+                console.error('Unexpected response format:', data);
+            }
+        })
+        .catch(error => {
+            console.error('Error fetching categories:', error);
+        });
+
     // Fetch user profile details
     fetch('/api/userDetails/getUserDetails')
         .then(response => {
@@ -29,24 +48,7 @@ document.addEventListener('DOMContentLoaded', function() {
             });
         });
 
-    // Fetch categories and populate dropdown
-    fetch('/api/categories/getAllCategories')
-        .then(response => {
-            if (!response.ok) {
-                throw new Error('Network response was not ok');
-            }
-            return response.json();
-        })
-        .then(data => {
-            if (data && data.success) {
-                populateCategoriesDropdown(data.data);
-            } else {
-                console.error('Unexpected response format:', data);
-            }
-        })
-        .catch(error => {
-            console.error('Error fetching categories:', error);
-        });
+
 
     function populateCategoriesDropdown(categories) {
         const categorySelect = document.getElementById('category');
@@ -92,13 +94,13 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Function to populate user profile details into HTML for the Edit Profile tab
     function populateEditProfile(profileDetails) {
-        document.getElementById('full_name').value = profileDetails.fullName ? profileDetails.fullName : ''; // Use an empty string as a placeholder
-        document.getElementById('stage_name').value = profileDetails.stageName ? profileDetails.stageName : ''; // Use an empty string as a placeholder
-        document.getElementById('phone').value = profileDetails.phone ? profileDetails.phone : '';
-        document.getElementById('address').value = profileDetails.address ? profileDetails.address : '';
+        document.getElementById('full_name_edit').value = profileDetails.fullName ? profileDetails.fullName : ''; // Use an empty string as a placeholder
+        document.getElementById('stage_name_edit').value = profileDetails.stageName ? profileDetails.stageName : ''; // Use an empty string as a placeholder
+        document.getElementById('phone_edit').value = profileDetails.phone ? profileDetails.phone : '';
+        document.getElementById('address_edit').value = profileDetails.address ? profileDetails.address : '';
         document.getElementById('category').value = profileDetails.category ? profileDetails.category : '';
-        document.getElementById('bio').value = profileDetails.bio ? profileDetails.bio : '';
-        document.getElementById('description').value = profileDetails.description ? profileDetails.description : '';
+        document.getElementById('bio_edit').value = profileDetails.bio ? profileDetails.bio : '';
+        document.getElementById('description_edit').value = profileDetails.description ? profileDetails.description : '';
     }
 
 
