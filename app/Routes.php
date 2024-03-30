@@ -6,7 +6,7 @@ use App\controllers\CategoryController;
 use App\controllers\DashboardViewController;
 use App\controllers\RoleController;
 use App\controllers\UserController;
-use App\Controllers\UserDetailsController;
+use App\Controllers\ArtistDetailsController;
 use App\controllers\ViewController;
 use App\Router;
 use App\service\implementation\MailerService;
@@ -51,8 +51,8 @@ $router->post('/artist-details', UserController::class . '::artistDetails');
 $router->get('/dashboard', DashboardViewController::class . '::dashboard', '/login');
 
 $router->get('/profile', DashboardViewController::class . '::profile', '/login');
-$router->get('/api/userDetails/getUserDetails', UserDetailsController::class . '::getUserProfile');
-$router->post('/api/userDetails/updateProfile', UserDetailsController::class . '::editProfile', '/login');
+$router->get('/api/userDetails/getUserDetails', ArtistDetailsController::class . '::getUserProfile');
+$router->post('/api/userDetails/updateProfile', ArtistDetailsController::class . '::editProfile', '/login');
 
 $router->get('/api/categories/getAllCategories', CategoryController::class . '::getAllCategories');
 $router->get('/api/categories/getCategoryById', CategoryController::class . '::getCategoryById');

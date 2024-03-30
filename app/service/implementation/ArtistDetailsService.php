@@ -2,30 +2,30 @@
 
 namespace App\service\implementation;
 
-use App\dto\request\UserDetailsRequest;
-use App\dto\response\UserDetailsResponse;
-use App\repository\implementation\UserDetailsRepository;
-use App\service\UserDetailsServiceInterface;
+use App\dto\request\ArtistDetailsRequest;
+use App\dto\response\ArtistDetailsResponse;
+use App\repository\implementation\ArtistDetailsRepository;
+use App\service\ArtistDetailsServiceInterface;
 use Exception;
 
-class UserDetailsService implements UserDetailsServiceInterface
+class ArtistDetailsService implements ArtistDetailsServiceInterface
 {
-    protected UserDetailsRepository $userProfileRepository;
+    protected ArtistDetailsRepository $artistDetailsRepository;
 
     public function __construct()
     {
-        $this->userProfileRepository = new UserDetailsRepository();
+        $this->artistDetailsRepository = new ArtistDetailsRepository();
     }
 
     /**
      * @throws Exception
      */
-    public function saveUserProfile(UserDetailsRequest $userProfileRequest): UserDetailsResponse
+    public function saveUserProfile(ArtistDetailsRequest $artistDetailsRequest): ArtistDetailsResponse
     {
         try {
             // Call the repository method to save the user profile details
-            $userDetails = $this->userProfileRepository->saveUserProfile($userProfileRequest);
-            return new UserDetailsResponse($userDetails);
+            $artistDetails = $this->artistDetailsRepository->saveUserProfile($artistDetailsRequest);
+            return new ArtistDetailsResponse($artistDetails);
         } catch (Exception $exception) {
             // Throw an exception if an error occurs
             throw new Exception('Error saving user profile: ' . $exception->getMessage());
@@ -36,7 +36,7 @@ class UserDetailsService implements UserDetailsServiceInterface
     {
         try {
             // Call the repository method to save or update the profile picture path
-            $this->userProfileRepository->saveProfilePicture($picturePath);
+            $this->artistDetailsRepository->saveProfilePicture($picturePath);
         } catch (Exception $exception) {
             // Throw an exception if an error occurs
             throw new Exception('Error saving profile picture: ' . $exception->getMessage());
@@ -46,12 +46,12 @@ class UserDetailsService implements UserDetailsServiceInterface
     /**
      * @throws Exception
      */
-    public function getUserProfile(string $userId): UserDetailsResponse {
+    public function getUserProfile(string $userId): ArtistDetailsResponse {
 
         try {
-            $userDetails = $this->userProfileRepository->getUserProfile($userId);
-            if ($userDetails!=null) {
-                return new UserDetailsResponse($userDetails);
+            $artistDetails = $this->artistDetailsRepository->getUserProfile($userId);
+            if ($artistDetails!=null) {
+                return new ArtistDetailsResponse($artistDetails);
             } else throw new Exception("User doesnt exist");
         }catch (Exception $exception) {
             throw new Exception($exception->getMessage());

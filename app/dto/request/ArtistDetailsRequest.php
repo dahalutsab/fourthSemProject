@@ -2,7 +2,7 @@
 
 namespace App\dto\request;
 
-class UserDetailsRequest
+class ArtistDetailsRequest
 {
     private string $fullName;
     private string $stageName;

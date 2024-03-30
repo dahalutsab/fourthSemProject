@@ -3,12 +3,12 @@
 namespace App\dto\response;
 
 
-use App\models\UserDetails;
+use App\models\ArtistDetails;
 
-class UserDetailsResponse {
+class ArtistDetailsResponse {
     private array $data;
 
-    public function __construct(UserDetails $userDetails) {
+    public function __construct(ArtistDetails $userDetails) {
         $this->data = [
             'id' => $userDetails->getId() ?? 0,
             'fullName' => $userDetails->getFullName() ?? '',

@@ -2,7 +2,7 @@
 namespace App\models;
 use DateTimeImmutable;
 
-class UserDetails {
+class ArtistDetails {
     private int $id;
     private ?string $fullName;
     private ?string $stageName;

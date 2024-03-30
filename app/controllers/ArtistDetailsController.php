@@ -2,20 +2,20 @@
 
 namespace App\Controllers;
 
-use App\dto\request\UserDetailsRequest;
+use App\dto\request\ArtistDetailsRequest;
 use App\Response\ApiResponse;
 use App\Response\ErrorResponse;
-use App\service\implementation\UserDetailsService;
-use App\service\UserDetailsServiceInterface;
+use App\service\implementation\ArtistDetailsService;
+use App\service\ArtistDetailsServiceInterface;
 use Exception;
 
-class UserDetailsController
+class ArtistDetailsController
 {
-    protected UserDetailsServiceInterface $userDetailsService;
+    protected ArtistDetailsServiceInterface $artistDetailsService;
 
     public function __construct()
     {
-        $this->userDetailsService = new UserDetailsService();
+        $this->artistDetailsService = new ArtistDetailsService();
     }
 
 
@@ -34,8 +34,8 @@ class UserDetailsController
                 'userId' => $_SESSION[SESSION_USER_ID] ?? ''
             ];
 
-            // Create a UserDetailsRequest object
-            $userProfileRequest = new UserDetailsRequest(
+            // Create a ArtistDetailsRequest object
+            $artistDetailsRequest = new ArtistDetailsRequest(
                 $formData['fullName'],
                 $formData['stageName'],
                 $formData['phone'],
@@ -48,7 +48,7 @@ class UserDetailsController
 
 
             // Call the service method to save the user profile
-            $updatedDetails = $this->userDetailsService->saveUserProfile($userProfileRequest);
+            $updatedDetails = $this->artistDetailsService->saveUserProfile($artistDetailsRequest);
 
             // Return success response
             return ApiResponse::success($updatedDetails->getData(),['message' => 'User profile saved successfully.']);
@@ -66,7 +66,7 @@ class UserDetailsController
             // Save the profile picture to a folder and get its path
 
             // Call the service method to save or update the profile picture path
-            $this->userDetailsService->saveProfilePicture($picturePath);
+            $this->artistDetailsService->saveProfilePicture($picturePath);
 
             // Return success response
             return ApiResponse::success(['message' => 'Profile picture saved successfully.']);
@@ -83,7 +83,7 @@ class UserDetailsController
     {
         try {
             $userId = $_SESSION[SESSION_USER_ID];
-            $userDetails = $this->userDetailsService->getUserProfile($userId);
+            $userDetails = $this->artistDetailsService->getUserProfile($userId);
             return ApiResponse::success($userDetails->getData());
         } catch (Exception $exception) {
             return ApiResponse::error($exception->getMessage());

@@ -2,14 +2,14 @@
 
 namespace App\repository\implementation;
 
-use App\dto\request\UserDetailsRequest;
-use App\models\UserDetails;
-use App\repository\UserDetailsRepositoryInterface;
+use App\dto\request\ArtistDetailsRequest;
+use App\models\ArtistDetails;
+use App\repository\ArtistDetailsRepositoryInterface;
 use config\Database;
 use Exception;
 
 
-class UserDetailsRepository implements UserDetailsRepositoryInterface
+class ArtistDetailsRepository implements ArtistDetailsRepositoryInterface
 {
     protected Database $database;
 
@@ -21,7 +21,7 @@ class UserDetailsRepository implements UserDetailsRepositoryInterface
     /**
      * @throws Exception
      */
-    public function saveUserProfile(UserDetailsRequest $userProfileRequest): UserDetails
+    public function saveUserProfile(ArtistDetailsRequest $userProfileRequest): ArtistDetails
     {
         try {
             // Check if the user ID exists
@@ -42,14 +42,14 @@ class UserDetailsRepository implements UserDetailsRepositoryInterface
     }
 
 
-    private function insertUserProfile(UserDetailsRequest $userProfileRequest): void
+    private function insertUserProfile(ArtistDetailsRequest $userProfileRequest): void
     {
-        $query = "INSERT INTO user_details (user_id, full_name, stage_name, phone, address, category_id, bio, description) 
+        $query = "INSERT INTO artist_details (user_id, full_name, stage_name, phone, address, category_id, bio, description) 
                   VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
         $this->executeInsertQuery($query, $userProfileRequest);
     }
 
-    private function executeInsertQuery($query, UserDetailsRequest $userProfileRequest): void
+    private function executeInsertQuery($query, ArtistDetailsRequest $userProfileRequest): void
     {
         $statement = $this->database->getConnection()->prepare($query);
         if (!$statement) {
@@ -76,15 +76,15 @@ class UserDetailsRepository implements UserDetailsRepositoryInterface
         $statement->close();
     }
 
-    private function updateUserProfile(UserDetailsRequest $userProfileRequest): void
+    private function updateUserProfile(ArtistDetailsRequest $userProfileRequest): void
     {
-        $query = "UPDATE user_details 
+        $query = "UPDATE artist_details 
                   SET full_name=?, stage_name=?, phone=?, address=?, category_id=?, bio=?, description=?
                   WHERE user_id = ?";
         $this->executeUpdateQuery($query, $userProfileRequest);
     }
 
-    private function executeUpdateQuery($query, UserDetailsRequest $userProfileRequest): void
+    private function executeUpdateQuery($query, ArtistDetailsRequest $userProfileRequest): void
     {
         $statement = $this->database->getConnection()->prepare($query);
         if (!$statement) {
@@ -114,9 +114,9 @@ class UserDetailsRepository implements UserDetailsRepositoryInterface
     /**
      * @throws Exception
      */
-    public function getUserProfile(string $userId): ?UserDetails
+    public function getUserProfile(string $userId): ?ArtistDetails
     {
-        $query = "SELECT * FROM user_details WHERE user_id = ?";
+        $query = "SELECT * FROM artist_details WHERE user_id = ?";
         $statement = $this->database->getConnection()->prepare($query);
         $statement->bind_param("i", $userId);
         $statement->execute();
@@ -127,7 +127,7 @@ class UserDetailsRepository implements UserDetailsRepositoryInterface
         // Fetch the profile details
         $profile = $result->fetch_assoc();
 
-        $userDetails = new UserDetails(
+        $userDetails = new ArtistDetails(
             $profile['id'],
             $profile['full_name'] ?? null,
             $profile['stage_name'] ?? null,
@@ -141,7 +141,7 @@ class UserDetailsRepository implements UserDetailsRepositoryInterface
 
         $statement->close();
 
-        // Return UserDetailsResponse object
+        // Return ArtistDetailsResponse object
         return $userDetails;
     }
 
