@@ -19,7 +19,7 @@ document.addEventListener('DOMContentLoaded', function() {
         });
 
     // Fetch user profile details
-    fetch('/api/userDetails/getUserDetails')
+    fetch('/api/artistDetails/getUserDetails')
         .then(response => {
             if (!response.ok) {
                 throw new Error('Network response was not ok');
@@ -112,7 +112,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
         const formData = new FormData(this);
 
-        fetch('/api/userDetails/updateProfile', {
+        fetch('/api/artistDetails/updateProfile', {
             method: 'POST',
             body: formData
         })

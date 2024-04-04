@@ -7,6 +7,7 @@ use App\controllers\DashboardViewController;
 use App\controllers\RoleController;
 use App\controllers\UserController;
 use App\Controllers\ArtistDetailsController;
+use App\controllers\UserDetailsController;
 use App\controllers\ViewController;
 use App\Router;
 use App\service\implementation\MailerService;
@@ -21,14 +22,13 @@ $mailerService = new MailerService();
 
 //route to home
 $router->get('/', ViewController::class . '::index');
+$router->get('/home', ViewController::class . '::index');
 $router->get('api/v1/home', ViewController::class . '::index');
 
 
 //route to signup
 $router->get('/signup', ViewController::class . '::signup');
 $router->post('/api/user/create-user', UserController::class . '::signup');
-
-
 
 //route to log in
 $router->get('/login', ViewController::class . '::login');
@@ -47,12 +47,14 @@ $router->post('/api/user/verify-otp', UserController::class . '::verifyOtp');
 $router->get('/artist-details', ViewController::class . '::artistDetails');
 $router->post('/artist-details', UserController::class . '::artistDetails');
 
+$router->get('/api/userDetails/getUserDetails', UserDetailsController::class . '::getUserDetails');
+$router->post('/api/userDetails/createUserDetails', UserDetailsController::class . '::createUserDetails');
 
 $router->get('/dashboard', DashboardViewController::class . '::dashboard', '/login');
 
 $router->get('/profile', DashboardViewController::class . '::profile', '/login');
-$router->get('/api/userDetails/getUserDetails', ArtistDetailsController::class . '::getUserProfile');
-$router->post('/api/userDetails/updateProfile', ArtistDetailsController::class . '::editProfile', '/login');
+$router->get('/api/artistDetails/getUserDetails', ArtistDetailsController::class . '::getUserProfile');
+$router->post('/api/artistDetails/updateProfile', ArtistDetailsController::class . '::editProfile', '/login');
 
 $router->get('/api/categories/getAllCategories', CategoryController::class . '::getAllCategories');
 $router->get('/api/categories/getCategoryById', CategoryController::class . '::getCategoryById');
