@@ -4,26 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><?php echo $pageTitle ?? 'Open Mic Hub'; ?></title>
-    <style>
 
-        @media (max-width: 1199px) {
-            .toggle-sidebar .sidebar {
-                left: 0;
-            }
-        }
-
-        @media (min-width: 1200px) {
-
-            .toggle-sidebar #main,
-            .toggle-sidebar #footer {
-                margin-left: 0;
-            }
-
-            .toggle-sidebar .sidebar {
-                left: -300px;
-            }
-        }
-    </style>
+    <link rel="stylesheet" href="<?= BASE_CSS_PATH ?>dashboard_toggle.css">
     <link rel="stylesheet" href="<?= BASE_CSS_PATH ?>bootstrap.min.css">
     <link rel="stylesheet" href="<?= BASE_CSS_PATH ?>dashboard_main.css">
 
