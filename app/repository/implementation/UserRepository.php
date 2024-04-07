@@ -5,6 +5,7 @@ use App\dto\request\UserRequest;
 use App\models\User;
 use App\Repository\UserRepositoryInterface;
 use config\Database;
+use Exception;
 
 
 class UserRepository implements UserRepositoryInterface {
@@ -79,5 +80,22 @@ class UserRepository implements UserRepositoryInterface {
         return true;
     }
 
+    /**
+     * @throws Exception
+     */
+    public function getUserById($userId): ?User
+    {
+        $stmt = $this->database->getConnection()->prepare("SELECT * FROM users WHERE id = ?");
+        $stmt->bind_param("i", $userId);
+        $stmt->execute();
 
+        $result = $stmt->get_result();
+        $row = $result->fetch_assoc();
+
+        if ($row) {
+            return new User($row['id'], $row['username'], $row['email'], $row['password'], $row['role_id'], $row['is_verified'], $row['is_active']);
+        } else {
+            throw new Exception("User not found");
+        }
+    }
 }

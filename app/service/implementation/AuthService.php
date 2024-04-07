@@ -34,6 +34,6 @@ class AuthService implements AuthServiceInterface {
             throw new Exception("Invalid email or password.");
         }
         $_SESSION[SESSION_USER_ID] = $user->getId();
-
+        $_SESSION[SESSION_ROLE] = $user->getRole();
     }
 }

@@ -55,7 +55,7 @@ class UserController
             $this->otpService->sendOtp($formData['email'], $formData['username']);
             return ApiResponse::success($user->toArray(), ['message' => 'User created successfully.']);
         } catch (Exception $exception) {
-            echo ApiResponse::error($exception->getMessage());
+            return ApiResponse::error($exception->getMessage());
         }
     }
 
@@ -85,6 +85,17 @@ class UserController
                 return ApiResponse::error('OTP verification failed.');
             }
         } catch (Exception $exception) {
-            echo ApiResponse::error($exception->getMessage());
+            return ApiResponse::error($exception->getMessage());
         }
-    }}
+    }
+
+    public function getUser(): null
+    {
+        try {
+            $userId = $_SESSION[SESSION_USER_ID] ?? 1;
+            return ApiResponse::success($this->userService->getUserById($userId)->toArray());
+        } catch (Exception $exception) {
+            return ApiResponse::error($exception->getMessage());
+        }
+    }
+}

@@ -1,6 +1,6 @@
+let role;
 document.addEventListener('DOMContentLoaded', function() {
-    // Fetch categories and populate dropdown
-    fetch('/api/categories/getAllCategories')
+    fetch('/api/user/get-user')
         .then(response => {
             if (!response.ok) {
                 throw new Error('Network response was not ok');
@@ -9,61 +9,100 @@ document.addEventListener('DOMContentLoaded', function() {
         })
         .then(data => {
             if (data && data.success) {
-                populateCategoriesDropdown(data.data);
-            } else {
-                console.error('Unexpected response format:', data);
+                const userDetails = data.data;
+                role = userDetails.role;
+                console.log('User details:', userDetails);
+
+                if (role === 2) {
+                    fetch('/api/categories/getAllCategories')
+                        .then(response => {
+                            if (!response.ok) {
+                                throw new Error('Network response was not ok');
+                            }
+                            return response.json();
+                        })
+                        .then(data => {
+                            if (data && data.success) {
+                                populateCategoriesDropdown(data.data);
+                            } else {
+                                console.error('Unexpected response format:', data);
+                            }
+                        })
+                        .catch(error => {
+                            console.error('Error fetching categories:', error);
+                        });
+
+                    fetch('/api/artistDetails/getUserDetails')
+                        .then(response => {
+                            if (!response.ok) {
+                                throw new Error('Network response was not ok');
+                            }
+                            return response.json();
+                        })
+                        .then(data => {
+                            if (data && data.success) {
+                                populateArtistDetails(data.data);
+                            } else {
+                                console.error('Unexpected response format:', data);
+                            }
+                        })
+                        .catch(error => {
+                            console.error('Error fetching artist details:', error);
+                        });
+                } else {
+                    document.querySelectorAll('.artist-specific').forEach(element => {
+                        element.style.display = 'none';
+                    });
+                    fetch('/api/userDetails/getUserDetails')
+                        .then(response => {
+                            if (!response.ok) {
+                                throw new Error('Network response was not ok');
+                            }
+                            return response.json();
+                        })
+                        .then(data => {
+                            if (data && data.success) {
+                                populateUserDetails(data.data);
+                            } else {
+                                console.error('Unexpected response format:', data);
+                            }
+                        })
+                        .catch(error => {
+                            console.error('Error fetching user details:', error);
+                        });
+                }
             }
         })
         .catch(error => {
-            console.error('Error fetching categories:', error);
+            console.error('There was a problem fetching user details:', error);
         });
-
-    // Fetch user profile details
-    fetch('/api/artistDetails/getUserDetails')
-        .then(response => {
-            if (!response.ok) {
-                throw new Error('Network response was not ok');
-            }
-            return response.json();
-        })
-        .then(data => { // Here, 'data' should contain the response object
-            if (data && data.success) { // Check for both 'data' and 'success' property
-                populateUserProfile(data.data); // Access 'data' property of the response
-            } else {
-                console.error('Unexpected response format:', data);
-                // Handle unexpected response format (optional)
-            }
-        })
-        .catch(error => {
-            console.error('There was a problem fetching user profile details:', error);
-            // If there is an error, populate all fields with "N/A"
-            populateUserProfile({
-                fullName: 'N/A',
-                stageName: 'N/A',
-                phone: 'N/A',
-                address: 'N/A',
-                category: 'N/A',
-                bio: 'N/A',
-                description: 'N/A'
-            });
-        });
-
-
 
     function populateCategoriesDropdown(categories) {
         const categorySelect = document.getElementById('category');
 
-        // Iterate over the categories and create an option for each one
-        categories.forEach(category => {
+        categories.forEach((category, index) => {
             const option = document.createElement('option');
             option.value = category.id;
             option.textContent = category.name;
+            // Set the first category as the default selected option
+            if (index === 0) {
+                option.selected = true;
+            }
             categorySelect.appendChild(option);
         });
     }
 
-    // Function to populate user profile details into HTML for the Overview tab
-    function populateOverview(profileDetails) {
+    function populateArtistDetails(details) {
+        populateArtistOverview(details);
+        populateArtistEditProfile(details);
+    }
+
+    function populateUserDetails(details) {
+        populateOverview(details);
+        populateEditProfile(details);
+    }
+
+    function populateArtistOverview(profileDetails) {
         document.getElementById('full_name').textContent = profileDetails.fullName || '';
         document.getElementById('stage_name').textContent = profileDetails.stageName || '';
         document.getElementById('phone').textContent = profileDetails.phone || '';
@@ -72,7 +111,6 @@ document.addEventListener('DOMContentLoaded', function() {
         document.getElementById('bio').textContent = profileDetails.bio || '';
         document.getElementById('description').textContent = profileDetails.description || '';
 
-        // Fetch category name based on category ID
         fetch(`/api/categories/getCategoryById?id=${profileDetails.category}`)
             .then(response => {
                 if (!response.ok) {
@@ -82,7 +120,7 @@ document.addEventListener('DOMContentLoaded', function() {
             })
             .then(data => {
                 if (data && data.success) {
-                    document.getElementById('categoryName').textContent = data.data.name || 'N/A'; // Update the category name
+                    document.getElementById('categoryName').textContent = data.data.name || 'N/A';
                 } else {
                     console.error('Unexpected response format:', data);
                 }
@@ -92,27 +130,42 @@ document.addEventListener('DOMContentLoaded', function() {
             });
     }
 
-    // Function to populate user profile details into HTML for the Edit Profile tab
-    function populateEditProfile(profileDetails) {
-        document.getElementById('full_name_edit').value = profileDetails.fullName ? profileDetails.fullName : ''; // Use an empty string as a placeholder
-        document.getElementById('stage_name_edit').value = profileDetails.stageName ? profileDetails.stageName : ''; // Use an empty string as a placeholder
-        document.getElementById('phone_edit').value = profileDetails.phone ? profileDetails.phone : '';
-        document.getElementById('address_edit').value = profileDetails.address ? profileDetails.address : '';
-        document.getElementById('category').value = profileDetails.category ? profileDetails.category : '';
-        document.getElementById('bio_edit').value = profileDetails.bio ? profileDetails.bio : '';
-        document.getElementById('description_edit').value = profileDetails.description ? profileDetails.description : '';
+    function populateArtistEditProfile(profileDetails) {
+        document.getElementById('full_name_edit').value = profileDetails.fullName || '';
+        document.getElementById('stage_name_edit').value = profileDetails.stageName || '';
+        document.getElementById('phone_edit').value = profileDetails.phone || '';
+        document.getElementById('address_edit').value = profileDetails.address || '';
+        document.getElementById('category').value = profileDetails.category || '';
+        document.getElementById('bio_edit').value = profileDetails.bio || '';
+        document.getElementById('description_edit').value = profileDetails.description || '';
     }
 
+    function populateOverview(profileDetails) {
+        // Populate overview details here
+    }
 
-    // Add event listener to the registration form
+    function populateEditProfile(profileDetails) {
+        // Populate edit profile details here
+    }
+
+    // Event listener for form submission (registrationForm)
     const registrationForm = document.getElementById('registrationForm');
-
     registrationForm.addEventListener('submit', function(event) {
-        event.preventDefault(); // Prevent default form submission
+        event.preventDefault();
 
         const formData = new FormData(this);
 
-        fetch('/api/artistDetails/updateProfile', {
+        let apiUrl;
+        if (role === 2) {
+            apiUrl = '/api/artistDetails/updateProfile';
+        } else {
+            apiUrl = '/api/userDetails/updateProfile';
+        }
+        console.log('Form data:', formData);
+        console.log('API URL:', apiUrl);
+        console.log('Role:', role);
+
+        fetch(apiUrl, {
             method: 'POST',
             body: formData
         })
@@ -130,16 +183,9 @@ document.addEventListener('DOMContentLoaded', function() {
             });
     });
 
-    // Function to reload the overview tab
+
     function reloadOverviewTab() {
-        // Simulate click on the overview tab to reload it with updated data
         const overviewTab = document.getElementById('home-tab');
         overviewTab.click();
-    }
-
-    // Populate the details on both tabs
-    function populateUserProfile(profileDetails) {
-        populateOverview(profileDetails);
-        populateEditProfile(profileDetails);
     }
 });

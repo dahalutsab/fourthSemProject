@@ -57,7 +57,7 @@
                                 <div class="col-sm-9" id="full_name"></div> <!-- Placeholder for full name -->
                             </div>
                             <!-- Stage Name -->
-                            <div class="row mb-3">
+                            <div class="row mb-3 artist-specific">
                                 <div class="col-sm-3">
                                     <strong>Stage Name:</strong>
                                 </div>
@@ -77,8 +77,16 @@
                                 </div>
                                 <div class="col-sm-9" id="address"></div> <!-- Placeholder for address -->
                             </div>
-                            <!-- Category -->
+
+                            <!-- Address -->
                             <div class="row mb-3">
+                                <div class="col-sm-3">
+                                    <strong>Gender:</strong>
+                                </div>
+                                <div class="col-sm-9" id="gender"></div> <!-- Placeholder for address -->
+                            </div>
+                            <!-- Category -->
+                            <div class="row mb-3 artist-specific">
                                 <div class="col-sm-3">
                                     <strong>Category:</strong>
                                 </div>
@@ -91,8 +99,8 @@
                                 </div>
                                 <div class="col-sm-9" id="bio"></div> <!-- Placeholder for bio -->
                             </div>
-                            <!-- Description -->
-                            <div class="row mb-3">
+<!--                            <-- Description -->
+                            <div class="row mb-3 artist-specific">
                                 <div class="col-sm-3">
                                     <strong>Description:</strong>
                                 </div>
@@ -129,10 +137,28 @@
                                 <input type="text" class="form-control" name="address" id="address_edit" placeholder="Enter your address" title="Enter your address">
                             </div>
                         </div>
+
                         <div class="row mb-3">
                             <div class="col-xs-12">
+                                <label class="form-label">Gender</label>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="gender" id="male" value="male">
+                                    <label class="form-check-label" for="male">Male</label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="gender" id="female" value="female">
+                                    <label class="form-check-label" for="female">Female</label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="gender" id="other" value="other">
+                                    <label class="form-check-label" for="other">Other</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row mb-3 artist-specific">
+                            <div class="col-xs-12">
                                 <label for="category" class="form-label">Category</label>
-                                <select class="form-select" name="category" id="category" required>
+                                <select class="form-select" name="category" id="category">
                                     <option value="">Select your category</option>
                                 </select>
                             </div>
@@ -143,7 +169,7 @@
                                 <label for="bio" class="form-label">Bio</label>
                                 <textarea class="form-control" name="bio" id="bio_edit" rows="3" placeholder="Enter your bio"></textarea>
                             </div>
-                            <div class="row mb-3">
+                            <div class="row mb-3 artist-specific">
                                 <div class="col-xs-12">
                                     <label for="description" class="form-label">Description</label>
                                     <textarea class="form-control" name="description" id="description_edit" rows="5" placeholder="Enter your description"></textarea>

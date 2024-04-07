@@ -29,6 +29,7 @@ $router->get('api/v1/home', ViewController::class . '::index');
 //route to signup
 $router->get('/signup', ViewController::class . '::signup');
 $router->post('/api/user/create-user', UserController::class . '::signup');
+$router->get('/api/user/get-user', UserController::class . '::getUser');
 
 //route to log in
 $router->get('/login', ViewController::class . '::login');

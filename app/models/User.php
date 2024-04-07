@@ -71,5 +71,8 @@ class User
         return $this -> isActive;
     }
 
-
+    public function getRole(): int
+    {
+        return $this->role;
+    }
 }
