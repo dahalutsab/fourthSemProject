@@ -83,7 +83,7 @@
                                 <div class="col-sm-3">
                                     <strong>Gender:</strong>
                                 </div>
-                                <div class="col-sm-9" id="gender"></div> <!-- Placeholder for address -->
+                                <div class="col-sm-9" id="gender"></div> <!-- Placeholder for gender -->
                             </div>
                             <!-- Category -->
                             <div class="row mb-3 artist-specific">
@@ -120,7 +120,7 @@
                             </div>
                         </div>
                         <div class="row mb-3">
-                            <div class="col-xs-12">
+                            <div class="col-xs-12 artist-specific">
                                 <label for="stage_name" class="form-label">Stage Name</label>
                                 <input type="text" class="form-control" name="stage_name" id="stage_name_edit" placeholder="Enter your stage name" title="Enter your stage name">
                             </div>

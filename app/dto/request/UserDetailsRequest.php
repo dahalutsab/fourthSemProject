@@ -4,26 +4,23 @@ namespace App\dto\request;
 
 class UserDetailsRequest
 {
+    private ?int $userId;
     private ?string $fullName;
     private ?string $phone;
     private ?string $address;
-    private ?string $profilePicture;
-    private ?array $socialMedia;
     private ?string $bio;
 
     public function __construct(
+        ?int $userId,
         ?string $fullName,
         ?string $phone,
         ?string $address,
-        ?string $profilePicture,
-        ?array $socialMedia,
         ?string $bio
     ) {
+        $this->userId = $userId;
         $this->fullName = $fullName;
         $this->phone = $phone;
         $this->address = $address;
-        $this->profilePicture = $profilePicture;
-        $this->socialMedia = $socialMedia;
         $this->bio = $bio;
     }
 
@@ -57,26 +54,7 @@ class UserDetailsRequest
         $this->address = $address;
     }
 
-    public function getProfilePicture(): ?string
-    {
-        return $this->profilePicture;
-    }
 
-
-    public function setProfilePicture(?string $profilePicture): void
-    {
-        $this->profilePicture = $profilePicture;
-    }
-
-    public function getSocialMedia(): ?array
-    {
-        return $this->socialMedia;
-    }
-
-    public function setSocialMedia(?array $socialMedia): void
-    {
-        $this->socialMedia = $socialMedia;
-    }
 
     public function getBio(): ?string
     {
@@ -86,6 +64,11 @@ class UserDetailsRequest
     public function setBio(?string $bio): void
     {
         $this->bio = $bio;
+    }
+
+    public function getUserId(): ?int
+    {
+        return $this->userId;
     }
 
 

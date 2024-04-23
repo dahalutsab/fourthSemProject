@@ -141,11 +141,17 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     function populateOverview(profileDetails) {
-        // Populate overview details here
+        document.getElementById('full_name').textContent = profileDetails.fullName || '';
+        document.getElementById('phone').textContent = profileDetails.phone || '';
+        document.getElementById('address').textContent = profileDetails.address || '';
+        document.getElementById('bio').textContent = profileDetails.bio || '';
     }
 
     function populateEditProfile(profileDetails) {
-        // Populate edit profile details here
+        document.getElementById('full_name_edit').value = profileDetails.fullName || '';
+        document.getElementById('phone_edit').value = profileDetails.phone || '';
+        document.getElementById('address_edit').value = profileDetails.address || '';
+        document.getElementById('bio_edit').value = profileDetails.bio || '';
     }
 
     // Event listener for form submission (registrationForm)

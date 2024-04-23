@@ -8,8 +8,6 @@ class UserDetails
     private ?string $fullName;
     private ?string $phone;
     private ?string $address;
-    private ?string $profilePicture;
-    private ?array $socialMedia;
     private ?string $bio;
     private ?string $created_at;
     private ?string $updated_at;
@@ -19,7 +17,6 @@ class UserDetails
         ?string $fullName,
         ?string $phone,
         ?string $address,
-        ?string $profilePicture,
         ?array $socialMedia,
         ?string $bio,
         ?string $created_at,
@@ -29,8 +26,6 @@ class UserDetails
         $this->fullName = $fullName;
         $this->phone = $phone;
         $this->address = $address;
-        $this->profilePicture = $profilePicture;
-        $this->socialMedia = $socialMedia;
         $this->bio = $bio;
         $this->created_at = $created_at;
         $this->updated_at = $updated_at;
@@ -76,25 +71,6 @@ class UserDetails
         $this->address = $address;
     }
 
-    public function getProfilePicture(): ?string
-    {
-        return $this->profilePicture;
-    }
-
-    public function setProfilePicture(string $profilePicture): void
-    {
-        $this->profilePicture = $profilePicture;
-    }
-
-    public function getSocialMedia(): ?array
-    {
-        return $this->socialMedia;
-    }
-
-    public function setSocialMedia(array $socialMedia): void
-    {
-        $this->socialMedia = $socialMedia;
-    }
 
     public function getBio(): ?string
     {

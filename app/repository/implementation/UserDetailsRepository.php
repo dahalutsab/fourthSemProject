@@ -1,122 +1,155 @@
 <?php
 
-namespace App\repository\implementation;
+namespace App\Repository\Implementation;
 
-use App\models\SocialMediaLink;
-use App\models\UserDetails;
-use App\repository\UserDetailsRepositoryInterface;
-use config\Database;
+use App\DTO\Request\UserDetailsRequest;
+use App\Models\UserDetails;
+use App\Repository\UserDetailsRepositoryInterface;
+use Config\Database;
 use Exception;
 
 class UserDetailsRepository implements UserDetailsRepositoryInterface
 {
     protected Database $database;
 
-    public function __construct() {
-        $this->database = new Database;
+    public function __construct()
+    {
+        $this->database = new Database();
     }
 
     /**
      * @throws Exception
      */
-    public function getUserDetails(int $id): UserDetails
+    public function saveUserProfile(UserDetailsRequest $userProfileRequest): UserDetails
     {
         try {
-            $sql = "SELECT * FROM userDetails WHERE id = ?";
-            $stmt = $this->database->getConnection()->prepare($sql);
-            $stmt->bind_param('i', $id);
-            $stmt->execute();
-            $result = $stmt->get_result()->fetch_assoc();
-            if ($result === null) {
-                throw new Exception('No user details found for the provided ID.');
-            }
+            // Check if the user ID exists
+            $existingUserDetails = $this->getUserProfile($userProfileRequest->getUserId());
 
-            // Fetch social media links
-            $sql = "SELECT * FROM SocialMediaLinks WHERE user_id = ?";
-            $stmt = $this->database->getConnection()->prepare($sql);
-            $stmt->bind_param('i', $id);
-            $stmt->execute();
-            $socialMediaLinks = [];
-            $resultSocialMedia = $stmt->get_result();
-            while ($row = $resultSocialMedia->fetch_assoc()) {
-                $socialMediaLinks[] = new SocialMediaLink(
-                    $row['id'],
-                    $row['user_id'],
-                    $row['name'],
-                    $row['link']
-                );
+            if ($existingUserDetails === null) {
+                // User details don't exist, so insert them
+                $this->insertUserProfile($userProfileRequest);
+            } else {
+                // User details already exist, so update them
+                $this->updateUserProfile($userProfileRequest);
             }
-
-            return new UserDetails(
-                $result['id'],
-                $result['fullName'],
-                $result['phone'],
-                $result['address'],
-                $result['profilePicture'],
-                $socialMediaLinks,
-                $result['bio'],
-                $result['created_at'],
-                $result['updated_at']
-            );
-        } catch (Exception $e) {
-            throw new Exception($e->getMessage());
+            return $this->getUserProfile($userProfileRequest->getUserId());
+        } catch (Exception $exception) {
+            throw new Exception($exception->getMessage());
         }
     }
 
     /**
      * @throws Exception
      */
-    public function createUserDetails(UserDetails $userDetails): UserDetails
+    private function insertUserProfile(UserDetailsRequest $userProfileRequest): void
     {
-        try {
-            // Start a new transaction
-            $this->database->getConnection()->autocommit(false);
+        $query = "INSERT INTO userdetails (user_id, fullName, phone, address, profilePicture, bio, created_at) 
+                  VALUES (?, ?, ?, ?, ?, ?, ?)";
+        $this->executeInsertQuery($query, $userProfileRequest);
+    }
 
-            // Insert user details into the userDetails table
-            $sql = "INSERT INTO userDetails (fullName, phone, address, profilePicture, bio) VALUES (?, ?, ?, ?, ?)";
-            $stmt = $this->database->getConnection()->prepare($sql);
-            $fullName = $userDetails->getFullName();
-            $phone = $userDetails->getPhone();
-            $address = $userDetails->getAddress();
-            $profilePicture = $userDetails->getProfilePicture();
-            $bio = $userDetails->getBio();
-            $stmt->bind_param("sssss", $fullName, $phone, $address, $profilePicture, $bio);
-            $stmt->execute();
-
-            // Fetch the ID of the inserted user details
-            $userDetailsId = $stmt->insert_id;
-
-            // Insert social media links into the SocialMediaLinks table
-            $socialMediaLinks = $userDetails->getSocialMedia();
-            if ($socialMediaLinks !== null) {
-                foreach ($socialMediaLinks as $socialMediaLink) {
-                    $sql = "INSERT INTO SocialMediaLinks (user_id, name, link) VALUES (?, ?, ?)";
-                    $stmt = $this->database->getConnection()->prepare($sql);
-                    $name = $socialMediaLink->getName();
-                    $link = $socialMediaLink->getLink();
-                    $stmt->bind_param("iss", $userDetailsId, $name, $link);
-                    $stmt->execute();
-                }
-            }
-
-            // Commit the transaction
-            $this->database->getConnection()->commit();
-
-            // Return the created UserDetails object
-            return new UserDetails(
-                $userDetailsId,
-                $fullName,
-                $phone,
-                $address,
-                $profilePicture,
-                $userDetails->getSocialMedia(),
-                $bio,
-                date('Y-m-d H:i:s'),  // Current date and time as created_at
-                date('Y-m-d H:i:s')   // Current date and time as updated_at
-            );
-        } catch (Exception $e) {
-            // An error occurred, rollback the transaction
-            $this->database->getConnection()->rollback();
-            throw new Exception($e->getMessage());
+    /**
+     * @throws Exception
+     */
+    private function executeInsertQuery($query, UserDetailsRequest $userProfileRequest): void
+    {
+        $statement = $this->database->getConnection()->prepare($query);
+        if (!$statement) {
+            throw new Exception("Error preparing statement: " . $this->database->getConnection()->error);
         }
-    }}
+
+        $userId = $userProfileRequest->getUserId();
+        $fullName = $userProfileRequest->getFullName();
+        var_dump($fullName);
+        $phone = $userProfileRequest->getPhone();
+        $address = $userProfileRequest->getAddress();
+        $bio = $userProfileRequest->getBio();
+        $profilePicture = null;
+        $createdAt = date('Y-m-d H:i:s');
+
+        $statement->bind_param("issssss", $userId, $fullName, $phone, $address, $profilePicture,  $bio, $createdAt);
+
+        if (!$statement->execute()) {
+            throw new Exception("Error executing statement: " . $statement->error);
+        }
+
+        $statement->close();
+    }
+
+    /**
+     * @throws Exception
+     */
+    public function updateUserProfile(UserDetailsRequest $userProfileRequest): UserDetails
+    {
+        $query = "UPDATE userdetails 
+                  SET fullName=?, phone=?, address=?, profilePicture=?, bio=?, updated_at=?
+                  WHERE user_id = ?";
+        $this->executeUpdateQuery($query, $userProfileRequest);
+        return $this->getUserProfile($userProfileRequest->getUserId());
+    }
+
+    /**
+     * @throws Exception
+     */
+    private function executeUpdateQuery($query, UserDetailsRequest $userProfileRequest): void
+    {
+        $statement = $this->database->getConnection()->prepare($query);
+        if (!$statement) {
+            throw new Exception("Error preparing statement: " . $this->database->getConnection()->error);
+        }
+
+        $fullName = $userProfileRequest->getFullName();
+        var_dump($fullName);
+        $phone = $userProfileRequest->getPhone();
+        $address = $userProfileRequest->getAddress();
+        $bio = $userProfileRequest->getBio();
+        $updatedAt = date('Y-m-d H:i:s');
+        $userId = $userProfileRequest->getUserId();
+        $profilePicture = null;
+
+        $statement->bind_param("sssssis", $fullName, $phone, $address, $profilePicture, $bio, $updatedAt, $userId);        if (!$statement->execute()) {
+            throw new Exception("Error executing statement: " . $statement->error);
+        }
+
+        $statement->close();
+    }
+
+    /**
+     * @throws Exception
+     */
+    public function getUserProfile(int $userId): ?UserDetails
+    {
+        $query = "SELECT * FROM userdetails WHERE user_id = ?";
+        $statement = $this->database->getConnection()->prepare($query);
+        if (!$statement) {
+            throw new Exception("Error preparing statement: " . $this->database->getConnection()->error);
+        }
+        $statement->bind_param("i", $userId);
+        if (!$statement->execute()) {
+            throw new Exception("Error executing statement: " . $statement->error);
+        }
+        $result = $statement->get_result();
+        if ($result->num_rows === 0) {
+            return null;
+        }
+        // Fetch the profile details
+        $profile = $result->fetch_assoc();
+
+        $userDetails = new UserDetails(
+            $profile['id'],
+            $profile['fullName'] ?? null,
+            $profile['phone'] ?? null,
+            $profile['address'] ?? null,
+            $profile['profile_picture'] ?? null,
+            $profile['bio'] ?? null,
+            $profile['created_at'] ?? null,
+            $profile['updated_at'] ?? null
+        );
+
+        $statement->close();
+
+        // Return UserDetails object
+        return $userDetails;
+    }
+}

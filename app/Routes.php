@@ -48,8 +48,8 @@ $router->post('/api/user/verify-otp', UserController::class . '::verifyOtp');
 $router->get('/artist-details', ViewController::class . '::artistDetails');
 $router->post('/artist-details', UserController::class . '::artistDetails');
 
-$router->get('/api/userDetails/getUserDetails', UserDetailsController::class . '::getUserDetails');
-$router->post('/api/userDetails/createUserDetails', UserDetailsController::class . '::createUserDetails');
+$router->get('/api/userDetails/getUserDetails', UserDetailsController::class . '::getUserProfile');
+$router->post('/api/userDetails/updateProfile', UserDetailsController::class . '::editProfile');
 
 $router->get('/dashboard', DashboardViewController::class . '::dashboard', '/login');
 

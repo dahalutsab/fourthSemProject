@@ -2,7 +2,9 @@
 
 namespace App\service\implementation;
 
+use App\dto\request\ArtistDetailsRequest;
 use App\dto\request\UserDetailsRequest;
+use App\dto\response\ArtistDetailsResponse;
 use App\dto\response\UserDetailsResponse;
 use App\models\UserDetails;
 use App\repository\implementation\UserDetailsRepository;
@@ -23,32 +25,39 @@ class UserDetailsService implements UserDetailsServiceInterface
     /**
      * @throws Exception
      */
-    public function getUserDetails(int $id): UserDetailsResponse
+    public function saveUserProfile(UserDetailsRequest $userDetailsRequest): UserDetailsResponse
     {
-        $user_details = $this->userDetailsRepository->getUserDetails($id);
-        return new UserDetailsResponse(
-            $user_details
-        );
+        try {
+            // Call the repository method to save the user profile details
+            $userDetails = $this->userDetailsRepository->saveUserProfile($userDetailsRequest);
+            return new UserDetailsResponse($userDetails);
+        } catch (Exception $exception) {
+            // Throw an exception if an error occurs
+            throw new Exception('Error saving user profile: ' . $exception->getMessage());
+        }
+    }
+
+    public function saveProfilePicture(string $picturePath)
+    {
+        try {
+            // Call the repository method to save or update the profile picture path
+            $this->userDetailsRepository->saveProfilePicture($picturePath);
+        } catch (Exception $exception) {
+            // Throw an exception if an error occurs
+            throw new Exception('Error saving profile picture: ' . $exception->getMessage());
+        }
     }
 
     /**
      * @throws Exception
      */
-    public function createUserDetails(UserDetailsRequest $userDetails): UserDetailsResponse
+    public function getUserProfile(int $userId): UserDetailsResponse
     {
-        $userDetail = new UserDetails(
-            null,
-            $userDetails->getFullName(),
-            $userDetails->getPhone(),
-            $userDetails->getAddress(),
-            $userDetails->getProfilePicture(),
-            $userDetails->getSocialMedia(),
-            $userDetails->getBio(),
-            null,
-            null
-        );
-        return new UserDetailsResponse(
-            $this->userDetailsRepository->createUserDetails($userDetail)
-        );
+        try {
+            $userDetails = $this->userDetailsRepository->getUserProfile($userId);
+            return new UserDetailsResponse($userDetails);
+        } catch (Exception $exception) {
+            throw new Exception($exception->getMessage());
+        }
     }
 }
