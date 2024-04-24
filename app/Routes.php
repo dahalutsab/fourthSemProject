@@ -50,6 +50,7 @@ $router->post('/artist-details', UserController::class . '::artistDetails');
 
 $router->get('/api/userDetails/getUserDetails', UserDetailsController::class . '::getUserProfile');
 $router->post('/api/userDetails/updateProfile', UserDetailsController::class . '::editProfile');
+$router->post('/api/userDetails/updateProfilePicture', UserDetailsController::class . '::saveProfilePicture');
 
 $router->get('/dashboard', DashboardViewController::class . '::dashboard', '/login');
 

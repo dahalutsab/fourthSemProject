@@ -62,7 +62,7 @@ class ArtistDetailsController
     public function saveProfilePicture()
     {
         try {
-            // Handle profile picture upload here
+            // Handle profile picture uploads here
             // Save the profile picture to a folder and get its path
 
             // Call the service method to save or update the profile picture path

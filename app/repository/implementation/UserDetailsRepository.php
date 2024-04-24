@@ -7,6 +7,7 @@ use App\Models\UserDetails;
 use App\Repository\UserDetailsRepositoryInterface;
 use Config\Database;
 use Exception;
+use Random\RandomError;
 
 class UserDetailsRepository implements UserDetailsRepositoryInterface
 {
@@ -20,20 +21,20 @@ class UserDetailsRepository implements UserDetailsRepositoryInterface
     /**
      * @throws Exception
      */
-    public function saveUserProfile(UserDetailsRequest $userProfileRequest): UserDetails
+    public function saveUserProfile(UserDetailsRequest $userDetails): UserDetails
     {
         try {
             // Check if the user ID exists
-            $existingUserDetails = $this->getUserProfile($userProfileRequest->getUserId());
+            $existingUserDetails = $this->getUserProfile($userDetails->getUserId());
 
             if ($existingUserDetails === null) {
                 // User details don't exist, so insert them
-                $this->insertUserProfile($userProfileRequest);
+                $this->insertUserProfile($userDetails);
             } else {
                 // User details already exist, so update them
-                $this->updateUserProfile($userProfileRequest);
+                $this->updateUserProfile($userDetails);
             }
-            return $this->getUserProfile($userProfileRequest->getUserId());
+            return $this->getUserProfile($userDetails->getUserId());
         } catch (Exception $exception) {
             throw new Exception($exception->getMessage());
         }
@@ -151,5 +152,35 @@ class UserDetailsRepository implements UserDetailsRepositoryInterface
 
         // Return UserDetails object
         return $userDetails;
+    }
+
+
+    /**
+     * @throws Exception
+     */
+    public function saveProfilePicture(string $profilePicture, int $userId): ?UserDetails
+    {
+        $query = "UPDATE userdetails 
+                  SET profilePicture=?
+                  WHERE user_id = ?";
+        return$this->executeSaveProfilePictureQuery($query, $profilePicture, $userId);
+    }
+
+    /**
+     * @throws Exception
+     */
+    private function executeSaveProfilePictureQuery(string $query, string $profilePicture, int $userId): ?UserDetails
+    {
+        $statement = $this->database->getConnection()->prepare($query);
+        if (!$statement) {
+            throw new Exception("Error preparing statement: " . $this->database->getConnection()->error);
+        }
+
+        $statement->bind_param("si", $profilePicture, $userId);
+
+        if (!$statement->execute()) {
+            throw new Exception("Error executing statement: " . $statement->error);
+        }
+        return $this->getUserProfile($userId);
     }
 }

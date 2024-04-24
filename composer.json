@@ -19,6 +19,7 @@
     ],
     "require": {
         "ext-mysqli": "*",
-        "phpmailer/phpmailer": "*"
+        "phpmailer/phpmailer": "*",
+      "ext-fileinfo": "*"
     }
 }

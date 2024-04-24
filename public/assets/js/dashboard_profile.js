@@ -189,6 +189,41 @@ document.addEventListener('DOMContentLoaded', function() {
             });
     });
 
+    // event listener for image uploads
+    const imageUploadForm = document.getElementById('imageUploadForm');
+    imageUploadForm.addEventListener('submit', function(event) {
+        event.preventDefault();
+
+        const formData = new FormData(this);
+
+        let apiUrl;
+        if (role === 2) {
+            apiUrl = '/api/artistDetails/uploadImage';
+        } else {
+            apiUrl = '/api/userDetails/updateProfilePicture';
+        }
+        console.log('Form data:', formData);
+        console.log('API URL:', apiUrl);
+        console.log('Role:', role);
+
+        fetch(apiUrl, {
+            method: 'POST',
+            body: formData
+        })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Failed to uploads image');
+                }
+                return response.json();
+            })
+            .then(data => {
+                reloadOverviewTab();
+            })
+            .catch(error => {
+                console.error('Error uploading image:', error);
+            });
+    });
+
 
     function reloadOverviewTab() {
         const overviewTab = document.getElementById('home-tab');

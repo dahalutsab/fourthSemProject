@@ -7,10 +7,12 @@
     <div class="row">
         <div class="col-sm-3">
             <div class="text-center">
-                <img src="http://ssl.gstatic.com/accounts/ui/avatar_2x.png" class="avatar rounded-circle img-thumbnail" alt="avatar">
-                <h6>Upload a different photo...</h6>
-                <input type="file" class="text-center form-control file-upload">
-                <input type="button" class="btn btn-primary" value="update">
+                <form id="imageUploadForm" enctype="multipart/form-data">
+                    <img src="<?=BASE_IMAGE_PATH?>profile.png" class="avatar img-circle img-thumbnail" alt="avatar">
+                    <h6>Upload a different photo...</h6>
+                    <input type="file" class="text-center center-block file-upload" name="profile_picture" id="profile_picture" alt="">
+                    <button class="btn btn-success" type="submit"><i class="fas fa-upload me-2"></i>Upload</button>
+                </form>
             </div>
             <hr>
             <div class="card">
