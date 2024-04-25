@@ -199,6 +199,8 @@ registrationForm.addEventListener('submit', function(event) {
             console.log(data);
             if (data && data.success) {
                 toastr.success(data.message.message);
+                fetchUserDetail(); // Re-fetch user details to update overview tab
+                document.getElementById('home-tab').click(); // Trigger click event on overview tab button
             } else {
                 toastr.error(data.message.error);
                 console.error('Unexpected response format:', data);
@@ -229,7 +231,7 @@ imageUploadForm.addEventListener('submit', function(event) {
         .then(data => {
             if (data && data.success) {
                 toastr.success(data.data.message)
-                overviewDataCache = data.data; // Update the cache with the new data
+                fetchUserDetail();
             } else {
                 toastr.error(data.message.error)
                 console.error('Unexpected response format:', data);
