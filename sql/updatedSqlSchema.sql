@@ -56,3 +56,13 @@ CREATE TABLE user_details (
 
 
 
+CREATE TABLE Media (
+                       media_id INT PRIMARY KEY AUTO_INCREMENT,
+                       user_id INT,
+                       media_type VARCHAR(255),
+                       media_url VARCHAR(255),
+                       title VARCHAR(255),
+                       description TEXT,
+                       created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+                       FOREIGN KEY (user_id) REFERENCES Users(id)
+);
