@@ -3,6 +3,7 @@ CREATE TABLE roles (
                        name VARCHAR(100) NOT NULL,
                        description TEXT
 );
+
 INSERT INTO roles (name, description) VALUES
                                           ('Admin', 'Administrator role with full access to the system'),
                                           ('Artist', 'Role for artists'),
@@ -19,9 +20,9 @@ CREATE TABLE users (
                        updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
                        FOREIGN KEY (role_id) REFERENCES roles(id)
 );
+
 INSERT INTO users (username, email, password, role_id) VALUES
     ('admin_user', 'admin@example.com', 'hashed_password_here', 1);
-
 
 
 CREATE TABLE categories (
@@ -53,7 +54,6 @@ CREATE TABLE user_details (
                               FOREIGN KEY (user_id) REFERENCES users(id),
                               FOREIGN KEY (category_id) REFERENCES categories(id)
 );
-
 
 
 CREATE TABLE Media (
