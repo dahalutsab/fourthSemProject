@@ -8,7 +8,6 @@ use App\repository\ArtistDetailsRepositoryInterface;
 use config\Database;
 use Exception;
 
-
 class ArtistDetailsRepository implements ArtistDetailsRepositoryInterface
 {
     protected Database $database;
@@ -24,15 +23,11 @@ class ArtistDetailsRepository implements ArtistDetailsRepositoryInterface
     public function saveUserProfile(ArtistDetailsRequest $userProfileRequest): ArtistDetails
     {
         try {
-            // Check if the user ID exists
             $existingUserDetails = $this->getUserProfile($userProfileRequest->getUserId());
 
             if ($existingUserDetails == null) {
-                // User details don't exist, so insert them
                 $this->insertUserProfile($userProfileRequest);
-
             } else {
-                // User details already exist, so update them
                 $this->updateUserProfile($userProfileRequest);
             }
             return $this->getUserProfile($userProfileRequest->getUserId());
@@ -41,39 +36,11 @@ class ArtistDetailsRepository implements ArtistDetailsRepositoryInterface
         }
     }
 
-
     private function insertUserProfile(ArtistDetailsRequest $userProfileRequest): void
     {
         $query = "INSERT INTO artist_details (user_id, full_name, stage_name, phone, address, category_id, bio, description) 
                   VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
-        $this->executeInsertQuery($query, $userProfileRequest);
-    }
-
-    private function executeInsertQuery($query, ArtistDetailsRequest $userProfileRequest): void
-    {
-        $statement = $this->database->getConnection()->prepare($query);
-        if (!$statement) {
-            $_SESSION['errors'][] = "Error preparing statement: " . $this->database->getConnection()->error;
-            return;
-        }
-
-        $fullName = $userProfileRequest->getFullName();
-        $stageName = $userProfileRequest->getStageName();
-        $phone = $userProfileRequest->getPhone();
-        $address = $userProfileRequest->getAddress();
-        $categoryID = $userProfileRequest->getCategoryID();
-        $bio = $userProfileRequest->getBio();
-        $description = $userProfileRequest->getDescription();
-        $userId = $userProfileRequest->getUserId();
-
-        $statement->bind_param("isssssss", $userId, $fullName, $stageName, $phone, $address, $categoryID, $bio, $description);
-
-        if (!$statement->execute()) {
-            $_SESSION['errors'][] = "Error executing statement: " . $statement->error;
-            return;
-        }
-
-        $statement->close();
+        $this->executeQuery($query, $userProfileRequest);
     }
 
     private function updateUserProfile(ArtistDetailsRequest $userProfileRequest): void
@@ -81,10 +48,10 @@ class ArtistDetailsRepository implements ArtistDetailsRepositoryInterface
         $query = "UPDATE artist_details 
                   SET full_name=?, stage_name=?, phone=?, address=?, category_id=?, bio=?, description=?
                   WHERE user_id = ?";
-        $this->executeUpdateQuery($query, $userProfileRequest);
+        $this->executeQuery($query, $userProfileRequest);
     }
 
-    private function executeUpdateQuery($query, ArtistDetailsRequest $userProfileRequest): void
+    private function executeQuery($query, ArtistDetailsRequest $userProfileRequest): void
     {
         $statement = $this->database->getConnection()->prepare($query);
         if (!$statement) {
@@ -101,7 +68,12 @@ class ArtistDetailsRepository implements ArtistDetailsRepositoryInterface
         $description = $userProfileRequest->getDescription();
         $userId = $userProfileRequest->getUserId();
 
-        $statement->bind_param("sssssssi", $fullName, $stageName, $phone, $address, $categoryID, $bio, $description, $userId);
+        $isInsert = str_contains($query, 'INSERT');
+        $params = $isInsert
+            ? ["isssssss", $userId, $fullName, $stageName, $phone, $address, $categoryID, $bio, $description]
+            : ["sssssssi", $fullName, $stageName, $phone, $address, $categoryID, $bio, $description, $userId];
+
+        $statement->bind_param(...$params);
 
         if (!$statement->execute()) {
             $_SESSION['errors'][] = "Error executing statement: " . $statement->error;
@@ -124,7 +96,6 @@ class ArtistDetailsRepository implements ArtistDetailsRepositoryInterface
         if ($result->num_rows === 0) {
             return null;
         }
-        // Fetch the profile details
         $profile = $result->fetch_assoc();
 
         $userDetails = new ArtistDetails(
@@ -141,7 +112,6 @@ class ArtistDetailsRepository implements ArtistDetailsRepositoryInterface
 
         $statement->close();
 
-        // Return ArtistDetailsResponse object
         return $userDetails;
     }
 
@@ -150,28 +120,28 @@ class ArtistDetailsRepository implements ArtistDetailsRepositoryInterface
      */
     public function saveProfilePicture(string $profilePicture, int $userId): ?ArtistDetails
     {
-        $query = "UPDATE artist_details 
+        $query = "UPDATE artist_details
                   SET profile_picture=?
                   WHERE user_id = ?";
-        return$this->executeSaveProfilePictureQuery($query, $profilePicture, $userId);
+        $this->prepareAndExecuteStatement($query, $profilePicture, $userId);
+        return $this->getUserProfile($userId);
     }
 
     /**
      * @throws Exception
      */
-    private function executeSaveProfilePictureQuery(string $query, string $profilePicture, int $userId): ?ArtistDetails
+    private function prepareAndExecuteStatement(string $query, ...$params): void
     {
         $statement = $this->database->getConnection()->prepare($query);
         if (!$statement) {
             throw new Exception("Error preparing statement: " . $this->database->getConnection()->error);
         }
 
-        $statement->bind_param("si", $profilePicture, $userId);
+        $statement->bind_param("si", ...$params);
 
         if (!$statement->execute()) {
             throw new Exception("Error executing statement: " . $statement->error);
         }
-        return $this->getUserProfile($userId);
-    }
 
+    }
 }

@@ -7,7 +7,7 @@ use App\Models\UserDetails;
 use App\Repository\UserDetailsRepositoryInterface;
 use Config\Database;
 use Exception;
-use Random\RandomError;
+use mysqli_result;
 
 class UserDetailsRepository implements UserDetailsRepositoryInterface
 {
@@ -81,13 +81,13 @@ class UserDetailsRepository implements UserDetailsRepositoryInterface
     /**
      * @throws Exception
      */
-    public function updateUserProfile(UserDetailsRequest $userProfileRequest): UserDetails
+    public function updateUserProfile(UserDetailsRequest $userDetails): UserDetails
     {
         $query = "UPDATE userdetails 
                   SET fullName=?, phone=?, address=?, bio=?, updated_at=?
                   WHERE user_id = ?";
-        $this->executeUpdateQuery($query, $userProfileRequest);
-        return $this->getUserProfile($userProfileRequest->getUserId());
+        $this->executeUpdateQuery($query, $userDetails);
+        return $this->getUserProfile($userDetails->getUserId());
     }
 
     /**
@@ -121,22 +121,16 @@ class UserDetailsRepository implements UserDetailsRepositoryInterface
     public function getUserProfile(int $userId): ?UserDetails
     {
         $query = "SELECT * FROM userdetails WHERE user_id = ?";
-        $statement = $this->database->getConnection()->prepare($query);
-        if (!$statement) {
-            throw new Exception("Error preparing statement: " . $this->database->getConnection()->error);
-        }
-        $statement->bind_param("i", $userId);
-        if (!$statement->execute()) {
-            throw new Exception("Error executing statement: " . $statement->error);
-        }
-        $result = $statement->get_result();
+
+        $result = $this->executeQuery($query, "i", $userId);
         if ($result->num_rows === 0) {
             return null;
         }
         // Fetch the profile details
         $profile = $result->fetch_assoc();
 
-        $userDetails = new UserDetails(
+        // Return UserDetails object
+        return new UserDetails(
             $profile['id'],
             $profile['fullName'] ?? null,
             $profile['phone'] ?? null,
@@ -147,11 +141,6 @@ class UserDetailsRepository implements UserDetailsRepositoryInterface
             $profile['created_at'] ?? null,
             $profile['updated_at'] ?? null
         );
-
-        $statement->close();
-
-        // Return UserDetails object
-        return $userDetails;
     }
 
 
@@ -182,5 +171,28 @@ class UserDetailsRepository implements UserDetailsRepositoryInterface
             throw new Exception("Error executing statement: " . $statement->error);
         }
         return $this->getUserProfile($userId);
+    }
+
+
+    /**
+     * @throws Exception
+     */
+    private function executeQuery(string $query, string $types, ...$params): ?mysqli_result
+    {
+        $statement = $this->database->getConnection()->prepare($query);
+        if (!$statement) {
+            throw new Exception("Error preparing statement: " . $this->database->getConnection()->error);
+        }
+
+        $statement->bind_param($types, ...$params);
+
+        if (!$statement->execute()) {
+            throw new Exception("Error executing statement: " . $statement->error);
+        }
+
+        $result = $statement->get_result();
+        $statement->close();
+
+        return $result;
     }
 }

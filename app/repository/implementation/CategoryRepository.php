@@ -3,6 +3,7 @@ namespace App\repository\implementation;
 
 use config\Database;
 use Exception;
+use mysqli_result;
 
 class CategoryRepository
 {
@@ -72,5 +73,27 @@ class CategoryRepository
         } catch (Exception $exception) {
             throw new Exception("Error fetching category by ID: " . $exception->getMessage());
         }
+    }
+
+    /**
+     * @throws Exception
+     */
+    private function executeQuery(string $query, string $types, ...$params): ?mysqli_result
+    {
+        $statement = $this->database->getConnection()->prepare($query);
+        if (!$statement) {
+            throw new Exception("Error preparing statement: " . $this->database->getConnection()->error);
+        }
+
+        $statement->bind_param($types, ...$params);
+
+        if (!$statement->execute()) {
+            throw new Exception("Error executing statement: " . $statement->error);
+        }
+
+        $result = $statement->get_result();
+        $statement->close();
+
+        return $result;
     }
 }
