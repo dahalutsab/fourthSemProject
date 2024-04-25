@@ -191,7 +191,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // event listener for image uploads
     const imageUploadForm = document.getElementById('imageUploadForm');
-    imageUploadForm.addEventListener('submit', function(event) {
+        imageUploadForm.addEventListener('submit', function(event) {
         event.preventDefault();
 
         const formData = new FormData(this);
@@ -228,5 +228,33 @@ document.addEventListener('DOMContentLoaded', function() {
     function reloadOverviewTab() {
         const overviewTab = document.getElementById('home-tab');
         overviewTab.click();
+        let apiUrl;
+        if (role === 2) {
+            apiUrl = '/api/artistDetails/getUserDetails';
+        } else {
+            apiUrl = '/api/userDetails/getUserDetails';
+        }
+
+        fetch(apiUrl)
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                return response.json();
+            })
+            .then(data => {
+                if (data && data.success) {
+                    if (role === 2) {
+                        populateArtistDetails(data.data);
+                    } else {
+                        populateUserDetails(data.data);
+                    }
+                } else {
+                    console.error('Unexpected response format:', data);
+                }
+            })
+            .catch(error => {
+                console.error('Error fetching user details:', error);
+            });
     }
 });

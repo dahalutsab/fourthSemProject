@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="<?= BASE_CSS_PATH ?>dashboard_toggle.css">
     <link rel="stylesheet" href="<?= BASE_CSS_PATH ?>bootstrap.min.css">
     <link rel="stylesheet" href="<?= BASE_CSS_PATH ?>dashboard_main.css">
+    <link rel="stylesheet" href="<?= BASE_CSS_PATH ?>dashboard_profile.css">
 
     <link rel="stylesheet" href="<?= BASE_CSS_PATH ?>dashboard_navbar.css">
     <link rel="stylesheet" href="<?= BASE_CSS_PATH ?>dashboard_sidebar.css">
