@@ -46,7 +46,6 @@ class ArtistDetailsController
                 $formData['userId']
             );
 
-
             // Call the service method to save the user profile
             $updatedDetails = $this->artistDetailsService->saveUserProfile($artistDetailsRequest);
 

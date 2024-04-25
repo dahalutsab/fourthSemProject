@@ -169,9 +169,7 @@ document.addEventListener('DOMContentLoaded', function() {
         } else {
             apiUrl = '/api/userDetails/updateProfile';
         }
-        console.log('Form data:', formData);
-        console.log('API URL:', apiUrl);
-        console.log('Role:', role);
+        // console.log('Form data:', formData.forEach((value, key) => console.log(key, value)));
 
         fetch(apiUrl, {
             method: 'POST',

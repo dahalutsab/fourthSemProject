@@ -135,8 +135,8 @@ class ArtistDetailsRepository implements ArtistDetailsRepositoryInterface
             $profile['address'] ?? null,
             $profile['category_id'] ?? null,
             $profile['bio'] ?? null,
-            $profile['description'] ?? null,
-            $profile['social_media'] ?? null
+            $profile['profile_picture'] ?? null,
+            $profile['description'] ?? null
         );
 
         $statement->close();
