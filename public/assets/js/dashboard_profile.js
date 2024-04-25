@@ -2,6 +2,8 @@ let role;
 let overviewDataCache = null;
 
 document.addEventListener('DOMContentLoaded', function() {
+
+    toastr.success('Welcome to your dashboard!');
     fetchUserDetail();
 });
 
@@ -17,7 +19,6 @@ function fetchUserDetail() {
             if (data && data.success) {
                 const userDetails = data.data;
                 role = userDetails.role;
-                console.log('User details:', userDetails);
 
                 if (role === 2) {
                     fetchCategories();
@@ -195,10 +196,11 @@ registrationForm.addEventListener('submit', function(event) {
             return response.json();
         })
         .then(data => {
+            console.log(data);
             if (data && data.success) {
-                overviewDataCache = data.data; // Update the cache with the new data
-                refreshOverviewTab();
+                toastr.success(data.message.message);
             } else {
+                toastr.error(data.message.error);
                 console.error('Unexpected response format:', data);
             }
         })
@@ -226,9 +228,10 @@ imageUploadForm.addEventListener('submit', function(event) {
         })
         .then(data => {
             if (data && data.success) {
+                toastr.success(data.data.message)
                 overviewDataCache = data.data; // Update the cache with the new data
-                refreshOverviewTab();
             } else {
+                toastr.error(data.message.error)
                 console.error('Unexpected response format:', data);
             }
         })
@@ -236,58 +239,3 @@ imageUploadForm.addEventListener('submit', function(event) {
             console.error('Error uploading image:', error);
         });
 });
-
-// function refreshOverviewTab() {
-//     const overviewTab = document.getElementById('home-tab');
-//     overviewTab.click();
-//
-//     if (overviewDataCache) {
-//         if (role === 2) {
-//             populateArtistDetails(overviewDataCache);
-//         }
-//         else {
-//             populateUserDetails(overviewDataCache);
-//         }
-//     }
-// }
-
-function refreshOverviewTab() {
-    const overviewTab = document.getElementById('home-tab');
-    overviewTab.click();
-
-    // Clear existing data in the overview tab
-    document.getElementById('dashboard-user-image').src = '';
-    document.getElementById('full_name').textContent = '';
-    document.getElementById('stage_name').textContent = '';
-    document.getElementById('phone').textContent = '';
-    document.getElementById('address').textContent = '';
-    document.getElementById('categoryName').textContent = '';
-    document.getElementById('bio').textContent = '';
-    document.getElementById('description').textContent = '';
-
-    if (overviewDataCache) {
-        if (role === 2) {
-            populateArtistDetails(overviewDataCache);
-        } else {
-            populateUserDetails(overviewDataCache);
-        }
-    }
-
-    // Display toaster message
-    showToast("Profile updated successfully!");
-}
-function showToast(message) {
-    // Create a new toast element
-    const toast = document.createElement('div');
-    toast.classList.add('toast');
-    toast.textContent = message;
-
-    // Append the toast to the body
-    document.body.appendChild(toast);
-
-    // Automatically remove the toast after a delay
-    setTimeout(function() {
-        toast.remove();
-    }, 3000); // Adjust the delay as needed
-}
-

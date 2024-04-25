@@ -62,7 +62,6 @@ class UserDetailsRepository implements UserDetailsRepositoryInterface
 
         $userId = $userProfileRequest->getUserId();
         $fullName = $userProfileRequest->getFullName();
-        var_dump($fullName);
         $phone = $userProfileRequest->getPhone();
         $address = $userProfileRequest->getAddress();
         $bio = $userProfileRequest->getBio();
@@ -101,7 +100,6 @@ class UserDetailsRepository implements UserDetailsRepositoryInterface
         }
 
         $fullName = $userProfileRequest->getFullName();
-        var_dump($fullName);
         $phone = $userProfileRequest->getPhone();
         $address = $userProfileRequest->getAddress();
         $bio = $userProfileRequest->getBio();
