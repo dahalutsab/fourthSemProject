@@ -10,6 +10,4 @@ interface UserDetailsRepositoryInterface
     public function saveUserProfile(UserDetailsRequest $userDetails): UserDetails;
 
     public function getUserProfile(int $userId): ?UserDetails;
-
-    public function updateUserProfile(UserDetailsRequest $userDetails): UserDetails;
 }
