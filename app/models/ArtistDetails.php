@@ -23,6 +23,7 @@ class ArtistDetails {
         ?string $address,
         ?string $category,
         ?string $bio,
+        ?string $profilePicture,
         ?string $description,
         ?array $socialMedia = []
     ) {
@@ -33,12 +34,13 @@ class ArtistDetails {
         $this->address = $address;
         $this->category = $category;
         $this->bio = $bio;
+        $this->profilePicture = $profilePicture;
         $this->description = $description;
         $this->socialMedia = $socialMedia;
     }
 
 
-    public function getId(): int {
+    public function getId(): ?int {
         return $this->id;
     }
 
@@ -46,7 +48,7 @@ class ArtistDetails {
         $this->id = $id;
     }
 
-    public function getFullName(): string {
+    public function getFullName(): ?string {
         return $this->fullName;
     }
 
@@ -54,7 +56,7 @@ class ArtistDetails {
         $this->fullName = $fullName;
     }
 
-    public function getStageName(): string {
+    public function getStageName(): ?string {
         return $this->stageName;
     }
 
@@ -62,7 +64,7 @@ class ArtistDetails {
         $this->stageName = $stageName;
     }
 
-    public function getPhone(): string {
+    public function getPhone(): ?string {
         return $this->phone;
     }
 
@@ -70,7 +72,7 @@ class ArtistDetails {
         $this->phone = $phone;
     }
 
-    public function getAddress(): string {
+    public function getAddress(): ?string {
         return $this->address;
     }
 
@@ -78,7 +80,7 @@ class ArtistDetails {
         $this->address = $address;
     }
 
-    public function getCategory(): string {
+    public function getCategory(): ?string {
         return $this->category;
     }
 
@@ -86,7 +88,7 @@ class ArtistDetails {
         $this->category = $category;
     }
 
-    public function getBio(): string {
+    public function getBio(): ?string {
         return $this->bio;
     }
 
@@ -94,7 +96,7 @@ class ArtistDetails {
         $this->bio = $bio;
     }
 
-    public function getDescription(): string {
+    public function getDescription(): ?string {
         return $this->description;
     }
 
@@ -102,14 +104,14 @@ class ArtistDetails {
         $this->description = $description;
     }
 
-    public function getProfilePicture(): string {
+    public function getProfilePicture(): ?string {
         return $this->profilePicture;
     }
     public function setProfilePicture(string $profilePicture): void {
         $this->profilePicture = $profilePicture;
     }
 
-    public function getSocialMedia(): array {
+    public function getSocialMedia(): ?array {
         return $this->socialMedia;
     }
 
@@ -120,7 +122,8 @@ class ArtistDetails {
     public function setUpdatedAt(): void {
         $this->updated_at = new DateTimeImmutable();
     }
-    public function getUpdatedAt(): DateTimeImmutable
+
+    public function getUpdatedAt(): ?DateTimeImmutable
     {
         return $this->updated_at;
     }

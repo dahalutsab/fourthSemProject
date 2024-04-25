@@ -53,29 +53,29 @@ class UserDetailsController
 
 
     public function saveProfilePicture(): null
-{
-    try {
-        // Check if the image file has been uploaded
-        if(isset($_FILES['profile_picture']) && $_FILES['profile_picture']['error'] === UPLOAD_ERR_OK) {
-            // Get the temporary file path
-            $tmpFilePath = $_FILES['profile_picture']['tmp_name'];
+    {
+        try {
+            // Check if the image file has been uploaded
+            if(isset($_FILES['profile_picture']) && $_FILES['profile_picture']['error'] === UPLOAD_ERR_OK) {
+                // Get the temporary file path
+                $tmpFilePath = $_FILES['profile_picture']['tmp_name'];
 
-            // Get the user ID from session
-            $userId = $_SESSION[SESSION_USER_ID];
+                // Get the user ID from session
+                $userId = $_SESSION[SESSION_USER_ID];
 
-            // Call the service method to save the profile picture
-            $profilePicturePath = $this->userDetailsService->saveProfilePicture($userId, $tmpFilePath);
-            // Return success response
-            return ApiResponse::success(['message' => 'Profile picture saved successfully.'], $profilePicturePath);
-        } else {
-            // Return error response if no file is uploaded
-            return ErrorResponse::badRequest('No profile picture uploaded.');
+                // Call the service method to save the profile picture
+                $profilePicturePath = $this->userDetailsService->saveProfilePicture($userId, $tmpFilePath);
+                // Return success response
+                return ApiResponse::success(['message' => 'Profile picture saved successfully.'], $profilePicturePath);
+            } else {
+                // Return error response if no file is uploaded
+                return ErrorResponse::badRequest('No profile picture uploaded.');
+            }
+        } catch (Exception $exception) {
+            // Return error response if an exception occurs
+            return ErrorResponse::badRequest($exception->getMessage());
         }
-    } catch (Exception $exception) {
-        // Return error response if an exception occurs
-        return ErrorResponse::badRequest($exception->getMessage());
     }
-}
 
 
     /**

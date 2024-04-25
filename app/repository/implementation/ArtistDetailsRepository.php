@@ -145,4 +145,33 @@ class ArtistDetailsRepository implements ArtistDetailsRepositoryInterface
         return $userDetails;
     }
 
+    /**
+     * @throws Exception
+     */
+    public function saveProfilePicture(string $profilePicture, int $userId): ?ArtistDetails
+    {
+        $query = "UPDATE artist_details 
+                  SET profile_picture=?
+                  WHERE user_id = ?";
+        return$this->executeSaveProfilePictureQuery($query, $profilePicture, $userId);
+    }
+
+    /**
+     * @throws Exception
+     */
+    private function executeSaveProfilePictureQuery(string $query, string $profilePicture, int $userId): ?ArtistDetails
+    {
+        $statement = $this->database->getConnection()->prepare($query);
+        if (!$statement) {
+            throw new Exception("Error preparing statement: " . $this->database->getConnection()->error);
+        }
+
+        $statement->bind_param("si", $profilePicture, $userId);
+
+        if (!$statement->execute()) {
+            throw new Exception("Error executing statement: " . $statement->error);
+        }
+        return $this->getUserProfile($userId);
+    }
+
 }

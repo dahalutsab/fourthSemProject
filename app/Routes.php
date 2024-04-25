@@ -47,6 +47,7 @@ $router->post('/api/user/verify-otp', UserController::class . '::verifyOtp');
 //route to artist details
 $router->get('/artist-details', ViewController::class . '::artistDetails');
 $router->post('/artist-details', UserController::class . '::artistDetails');
+$router->post('/api/artistDetails/updateProfilePicture', ArtistDetailsController::class . '::saveProfilePicture');
 
 $router->get('/api/userDetails/getUserDetails', UserDetailsController::class . '::getUserProfile');
 $router->post('/api/userDetails/updateProfile', UserDetailsController::class . '::editProfile');

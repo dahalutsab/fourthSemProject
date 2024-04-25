@@ -103,6 +103,7 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     function populateArtistOverview(profileDetails) {
+        document.getElementById('dashboard-user-image').src = profileDetails.profilePicture || '/assets/images/default-profile.png';
         document.getElementById('full_name').textContent = profileDetails.fullName || '';
         document.getElementById('stage_name').textContent = profileDetails.stageName || '';
         document.getElementById('phone').textContent = profileDetails.phone || '';
@@ -141,6 +142,7 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     function populateOverview(profileDetails) {
+        document.getElementById('dashboard-user-image').src = profileDetails.profilePicture || '/assets/images/default-profile.png';
         document.getElementById('full_name').textContent = profileDetails.fullName || '';
         document.getElementById('phone').textContent = profileDetails.phone || '';
         document.getElementById('address').textContent = profileDetails.address || '';
@@ -198,7 +200,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
         let apiUrl;
         if (role === 2) {
-            apiUrl = '/api/artistDetails/uploadImage';
+            apiUrl = '/api/artistDetails/updateProfilePicture';
         } else {
             apiUrl = '/api/userDetails/updateProfilePicture';
         }

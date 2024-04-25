@@ -84,7 +84,7 @@ class UserDetailsRepository implements UserDetailsRepositoryInterface
     public function updateUserProfile(UserDetailsRequest $userProfileRequest): UserDetails
     {
         $query = "UPDATE userdetails 
-                  SET fullName=?, phone=?, address=?, profilePicture=?, bio=?, updated_at=?
+                  SET fullName=?, phone=?, address=?, bio=?, updated_at=?
                   WHERE user_id = ?";
         $this->executeUpdateQuery($query, $userProfileRequest);
         return $this->getUserProfile($userProfileRequest->getUserId());
@@ -107,9 +107,8 @@ class UserDetailsRepository implements UserDetailsRepositoryInterface
         $bio = $userProfileRequest->getBio();
         $updatedAt = date('Y-m-d H:i:s');
         $userId = $userProfileRequest->getUserId();
-        $profilePicture = null;
 
-        $statement->bind_param("sssssis", $fullName, $phone, $address, $profilePicture, $bio, $updatedAt, $userId);        if (!$statement->execute()) {
+        $statement->bind_param("ssssis", $fullName, $phone, $address, $bio, $updatedAt, $userId);        if (!$statement->execute()) {
             throw new Exception("Error executing statement: " . $statement->error);
         }
 
@@ -142,7 +141,8 @@ class UserDetailsRepository implements UserDetailsRepositoryInterface
             $profile['fullName'] ?? null,
             $profile['phone'] ?? null,
             $profile['address'] ?? null,
-            $profile['profile_picture'] ?? null,
+            $profile['profilePicture'] ?? null,
+            $profile['social_media'] ?? [],
             $profile['bio'] ?? null,
             $profile['created_at'] ?? null,
             $profile['updated_at'] ?? null

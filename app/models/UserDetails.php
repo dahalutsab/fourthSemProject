@@ -9,6 +9,7 @@ class UserDetails
     private ?string $phone;
     private ?string $address;
     private ?string $bio;
+    private ?string $profilePicture;
     private ?string $created_at;
     private ?string $updated_at;
 
@@ -17,6 +18,7 @@ class UserDetails
         ?string $fullName,
         ?string $phone,
         ?string $address,
+        ?string $profilePicture,
         ?array $socialMedia,
         ?string $bio,
         ?string $created_at,
@@ -26,6 +28,7 @@ class UserDetails
         $this->fullName = $fullName;
         $this->phone = $phone;
         $this->address = $address;
+        $this->profilePicture = $profilePicture;
         $this->bio = $bio;
         $this->created_at = $created_at;
         $this->updated_at = $updated_at;
@@ -100,6 +103,11 @@ class UserDetails
     public function setUpdatedAt(string $updated_at): void
     {
         $this->updated_at = $updated_at;
+    }
+
+    public function getProfilePicture(): ?string
+    {
+        return $this->profilePicture;
     }
 
 }

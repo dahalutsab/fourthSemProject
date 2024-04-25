@@ -17,6 +17,7 @@ class ArtistDetailsResponse {
             'address' => $userDetails->getAddress() ?? '',
             'category' => $userDetails->getCategory() ?? '',
             'bio' => $userDetails->getBio() ?? '',
+            'profilePicture' => $userDetails->getProfilePicture() ?? '',
             'description' => $userDetails->getDescription() ?? ''
         ];
     }
