@@ -193,4 +193,5 @@ class UserDetailsRepository implements UserDetailsRepositoryInterface
 
         return $result;
     }
+
 }

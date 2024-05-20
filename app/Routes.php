@@ -71,7 +71,6 @@ $router->get('/api/categories/getCategoryById', CategoryController::class . '::g
 $router->post('/api/media/save-media', MediaController::class . '::saveMedia');
 $router->get('/api/media/get-media', MediaController::class . '::getMedia');
 $router->get('/api/media/get-all-media', MediaController::class . '::getAllMedia');
-$router->get('/api/media/get-media-by-user', MediaController::class . '::getMediaByUser');
 $router->post('/api/media/delete-media', MediaController::class . '::deleteMedia');
 
 $router->get('/api/roles/get-roles', RoleController::class . '::getRolesForUsers');

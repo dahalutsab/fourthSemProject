@@ -97,4 +97,5 @@ class UserDetailsService implements UserDetailsServiceInterface
             throw new Exception($exception->getMessage());
         }
     }
+
 }

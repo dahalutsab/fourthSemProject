@@ -82,14 +82,27 @@ class ArtistDetailsService implements ArtistDetailsServiceInterface
     /**
      * @throws Exception
      */
-    public function getUserProfile(string $userId): ArtistDetailsResponse {
+    public function getUserProfile(string $userId): ArtistDetailsResponse
+    {
 
         try {
             $artistDetails = $this->artistDetailsRepository->getUserProfile($userId);
-            if ($artistDetails!=null) {
+            if ($artistDetails != null) {
                 return new ArtistDetailsResponse($artistDetails);
             } else throw new Exception("User doesnt exist");
-        }catch (Exception $exception) {
+        } catch (Exception $exception) {
+            throw new Exception($exception->getMessage());
+        }
+    }
+
+    /**
+     * @throws Exception
+     */
+    public function getAllArtistsByCategory($userId): array
+    {
+        try {
+            return $this->artistDetailsRepository->getAllArtistsByCategory($userId);
+        } catch (Exception $exception) {
             throw new Exception($exception->getMessage());
         }
     }

@@ -96,4 +96,16 @@ class ArtistDetailsController
             return ApiResponse::error($exception->getMessage());
         }
     }
+
+
+    public function getAllArtistsByCategory(): null
+    {
+        try {
+            $category = $_GET['category'] ?? 0;
+            $artists = $this->artistDetailsService->getAllArtistsByCategory($category);
+            return ApiResponse::success($artists);
+        } catch (Exception $exception) {
+            return ErrorResponse::badRequest($exception->getMessage());
+        }
+    }
 }

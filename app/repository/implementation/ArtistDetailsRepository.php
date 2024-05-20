@@ -144,4 +144,25 @@ class ArtistDetailsRepository implements ArtistDetailsRepositoryInterface
         }
 
     }
+
+    public function getAllArtistsByCategory($id): array
+    {
+        $query = "SELECT * FROM artist_details WHERE category_id = $id";
+        $result = $this->database->getConnection()->query($query);
+        $singers = [];
+        while ($row = $result->fetch_assoc()) {
+            $singers[] = new ArtistDetails(
+                $row['id'],
+                $row['full_name'],
+                $row['stage_name'],
+                $row['phone'],
+                $row['address'],
+                $row['category_id'],
+                $row['bio'],
+                $row['profile_picture'],
+                $row['description']
+            );
+        }
+        return $singers;
+    }
 }

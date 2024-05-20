@@ -10,4 +10,8 @@ interface UserDetailsRepositoryInterface
     public function saveUserProfile(UserDetailsRequest $userDetails): UserDetails;
 
     public function getUserProfile(int $userId): ?UserDetails;
+
+    public function saveProfilePicture(int $userId, string $originalFileName, string $tmpFilePath): ?UserDetails;
+
+
 }
