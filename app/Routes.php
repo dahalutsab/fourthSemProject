@@ -54,8 +54,8 @@ $router->post('/api/userDetails/updateProfile', UserDetailsController::class . '
 $router->post('/api/userDetails/updateProfilePicture', UserDetailsController::class . '::saveProfilePicture');
 
 $router->get('/dashboard', DashboardViewController::class . '::dashboard', '/login');
-$router->get('/dashboard/media/add', DashboardViewController::class . '::media', '/login');
-$router->get('/dashboard/media/manage', DashboardViewController::class . '::media', '/login');
+$router->get('/dashboard/media/add', DashboardViewController::class . '::addMedia', '/login');
+$router->get('/dashboard/media/manage', DashboardViewController::class . '::manageMedia', '/login');
 $router->get('/dashboard/profile', DashboardViewController::class . '::profile', '/login');
 
 $router->get('/profile', DashboardViewController::class . '::profile', '/login');

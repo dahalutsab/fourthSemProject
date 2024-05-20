@@ -19,10 +19,17 @@ class DashboardViewController
         $this->render(compact('pageTitle', 'content'));
     }
 
-    public function media(): void
+    public function addMedia(): void
     {
         $pageTitle = 'Artist Media';
-        $content = 'artist-media-management'; // Assuming you have a dashboard view file
+        $content = 'add-media';
+        $this->render(compact('pageTitle', 'content'));
+    }
+
+    public function manageMedia(): void
+    {
+        $pageTitle = 'Manage Media';
+        $content = 'artist-media-management';
         $this->render(compact('pageTitle', 'content'));
     }
 
