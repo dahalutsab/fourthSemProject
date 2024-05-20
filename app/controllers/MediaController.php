@@ -42,4 +42,16 @@ class MediaController
         return $this->mediaService->getMedia($mediaId);
     }
 
+    public function getMediaByUser(): ?MediaResponse
+    {
+        try {
+            $userId = $_SESSION[SESSION_USER_ID] ?? 0;
+            $mediaResponse = $this->mediaService->getMediaByUser($userId);
+            return ApiResponse::success($mediaResponse, ['message' => 'Media fetched successfully.']);
+        } catch (Exception $e) {
+            return ApiResponse::error($e->getMessage(), 500);
+        }
+
+    }
+
 }

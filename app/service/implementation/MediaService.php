@@ -102,4 +102,22 @@ class MediaService
     {
         return in_array($mediaType, ['photo', 'video', 'audio']);
     }
+
+    public function getMediaByUser(mixed $userId): array
+    {
+        $mediaItems = $this->mediaRepository->getMediaByUser($userId);
+        $mediaResponse = [];
+        foreach ($mediaItems as $mediaItem) {
+            $mediaResponse[] = (new MediaResponse(
+                $mediaItem->getMediaId(),
+                $mediaItem->getUserId(),
+                $mediaItem->getMediaType(),
+                $mediaItem->getMediaUrl(),
+                $mediaItem->getTitle(),
+                $mediaItem->getDescription(),
+                $mediaItem->getCreatedAt()
+            ))->toArray();
+        }
+        return $mediaResponse;
+    }
 }

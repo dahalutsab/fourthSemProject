@@ -70,8 +70,7 @@ $router->get('/api/categories/getCategoryById', CategoryController::class . '::g
 //media management routes
 $router->post('/api/media/save-media', MediaController::class . '::saveMedia');
 $router->get('/api/media/get-media', MediaController::class . '::getMedia');
-$router->get('/api/media/get-all-media', MediaController::class . '::getAllMedia');
-$router->post('/api/media/delete-media', MediaController::class . '::deleteMedia');
+$router->get('/api/media/get-media-by-user', MediaController::class . '::getMediaByUser');
 
 $router->get('/api/roles/get-roles', RoleController::class . '::getRolesForUsers');
 
