@@ -14,6 +14,7 @@
     <link rel="stylesheet" href="<?= BASE_CSS_PATH ?>dashboard_sidebar.css">
     <link rel="stylesheet" href="<?= BASE_CSS_PATH ?>dashboard_breadcrumb.css">
     <link rel="stylesheet" href="<?= BASE_CSS_PATH ?>dashboard_component.css">
+    <link rel="stylesheet" href="<?= BASE_CSS_PATH ?>artist-media-management.css">
     <link rel="stylesheet" href="<?= BASE_CSS_PATH ?>dashboard_footer.css">
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
@@ -30,15 +31,15 @@
 
 <main class="main" id="main">
     <?php include __DIR__ . '/../components/dashboard_breadcrumb.php'; ?>
+<!---->
 
-    <?php include __DIR__ . '/../pages/dashboard_profile.php'; ?>
-
+    <?php
+    $content = $content ?? "";
+    require_once __DIR__ . "/../pages/$content.php";    ?>
 </main>
 
 <?php include __DIR__ . '/../components/dashboard_footer.php'; ?>
 <script src="<?= BASE_URL ?>assets/js/dashboard.js"></script>
-
-
 <script src="<?= BASE_URL ?>assets/js/bootstrap.bundle.min.js"></script>
 
 </body>

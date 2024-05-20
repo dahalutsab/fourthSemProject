@@ -1,7 +1,7 @@
 <header id="header" class="header fixed-top d-flex align-items-center">
 
     <div class="d-flex align-items-center justify-content-between">
-        <a href="/" class="logo d-flex align-items-center">
+        <a href="/dashboard" class="logo d-flex align-items-center">
             <img src="<?=BASE_IMAGE_PATH?>openMicLogo.png" alt="">
             <span class="d-none d-lg-block">Open Mic Hub</span>
         </a>
@@ -150,3 +150,4 @@
     </nav><!-- End Icons Navigation -->
 
 </header>
+<script src="<?=BASE_JS_PATH?>dashboard.js"></script>

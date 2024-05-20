@@ -54,6 +54,9 @@ $router->post('/api/userDetails/updateProfile', UserDetailsController::class . '
 $router->post('/api/userDetails/updateProfilePicture', UserDetailsController::class . '::saveProfilePicture');
 
 $router->get('/dashboard', DashboardViewController::class . '::dashboard', '/login');
+$router->get('/dashboard/media/add', DashboardViewController::class . '::media', '/login');
+$router->get('/dashboard/media/manage', DashboardViewController::class . '::media', '/login');
+$router->get('/dashboard/profile', DashboardViewController::class . '::profile', '/login');
 
 $router->get('/profile', DashboardViewController::class . '::profile', '/login');
 $router->get('/api/artistDetails/getUserDetails', ArtistDetailsController::class . '::getUserProfile');
@@ -69,7 +72,7 @@ $router->get('/api/roles/get-roles', RoleController::class . '::getRolesForUsers
 //route to 404 if any error
 $router->addNotFoundHandler(function () {
     $title = '404 - Not Found';
-    require_once __DIR__ . '/../app/views/error/404.phtml';
+    require_once __DIR__ . '/../app/views/error/404.php';
 });
 
 $router->run();

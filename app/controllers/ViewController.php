@@ -59,6 +59,6 @@ class ViewController
     {
         extract($data);
         require_once __DIR__ . '/../views/layouts/main.php';
-//        require_once __DIR__ . '/../views/layouts/dashboard.php';
+//        require_once __DIR__ . '/../views/layouts/dashboard_main.php';
     }
 }

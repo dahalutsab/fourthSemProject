@@ -2,8 +2,6 @@ let role;
 let overviewDataCache = null;
 
 document.addEventListener('DOMContentLoaded', function() {
-
-    toastr.success('Welcome to your dashboard!');
     fetchUserDetail();
 });
 
@@ -130,7 +128,7 @@ function populateUserDetails(details) {
 }
 
 function populateOverview(profileDetails) {
-    document.getElementById('dashboard-user-image').src = profileDetails.profilePicture || '/assets/images/default-profile.png';
+    document.getElementById('dashboard-user-image').src = '/'+profileDetails.profilePicture || '/assets/images/default-profile.png';
     document.getElementById('full_name').textContent = profileDetails.fullName || '';
     document.getElementById('stage_name').textContent = profileDetails.stageName || '';
     document.getElementById('phone').textContent = profileDetails.phone || '';
