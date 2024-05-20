@@ -4,6 +4,7 @@ declare(strict_types=1);
 use App\controllers\AuthController;
 use App\controllers\CategoryController;
 use App\controllers\DashboardViewController;
+use App\controllers\MediaController;
 use App\controllers\RoleController;
 use App\controllers\UserController;
 use App\Controllers\ArtistDetailsController;
@@ -65,6 +66,13 @@ $router->post('/api/artistDetails/updateProfile', ArtistDetailsController::class
 $router->get('/api/categories/getAllCategories', CategoryController::class . '::getAllCategories');
 $router->get('/api/categories/getCategoryById', CategoryController::class . '::getCategoryById');
 
+
+//media management routes
+$router->post('/api/media/save-media', MediaController::class . '::saveMedia');
+$router->get('/api/media/get-media', MediaController::class . '::getMedia');
+$router->get('/api/media/get-all-media', MediaController::class . '::getAllMedia');
+$router->get('/api/media/get-media-by-user', MediaController::class . '::getMediaByUser');
+$router->post('/api/media/delete-media', MediaController::class . '::deleteMedia');
 
 $router->get('/api/roles/get-roles', RoleController::class . '::getRolesForUsers');
 

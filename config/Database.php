@@ -29,4 +29,8 @@ use AllowDynamicProperties;
     {
         return $this->connection;
     }
+
+    public function getInsertId(): int {
+        return $this->getConnection()->insert_id;
+    }
 }

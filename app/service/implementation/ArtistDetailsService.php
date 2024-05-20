@@ -32,6 +32,9 @@ class ArtistDetailsService implements ArtistDetailsServiceInterface
         }
     }
 
+    /**
+     * @throws Exception
+     */
     public function saveProfilePicture($userId, $tmpFilePath): ?ArtistDetailsResponse
     {
         try {
