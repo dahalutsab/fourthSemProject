@@ -133,4 +133,25 @@ class ArtistDetailsController
             return ErrorResponse::badRequest($exception->getMessage());
         }
     }
+
+
+    /**
+     * @throws Exception
+     */
+    public function getArtistById(): null
+    {
+        $requestUri = $_SERVER['REQUEST_URI'];
+        $uriPath = parse_url($requestUri, PHP_URL_PATH);
+        $pathSegments = explode('/', $uriPath);
+
+        $id = end($pathSegments);
+        if (!is_numeric($id)) {
+            throw new Exception("Invalid artist ID: $id");
+        }
+        try {
+            return ApiResponse::success( $this->artistDetailsService->getArtistById($id)->getData());
+        } catch (Exception $exception) {
+           return ErrorResponse::badRequest($exception->getMessage());
+        }
+    }
 }

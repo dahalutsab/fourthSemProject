@@ -11,8 +11,6 @@ document.addEventListener('DOMContentLoaded', function() {
                     const card = document.createElement('div');
                     card.classList.add('col-lg-4', 'col-md-6', 'col-12', 'mb-4', 'mb-lg-0');
 
-                    const artistData = encodeURIComponent(JSON.stringify(artist));
-
                     card.innerHTML = `
                         <div class="artist-aboutUs-content artist-block shadow">
                             <div class="artist-img-block">
@@ -48,7 +46,7 @@ document.addEventListener('DOMContentLoaded', function() {
                                 </ul>
                             </div>
                             <div class="hero-button">
-                                <a href="/artist-details?data=${artistData}" class="cus-btn primary m-lg-2 m-md-1">
+                                <a href="/artist-details?id=${artist.id}" class="cus-btn primary m-lg-2 m-md-1">
                                     <i class="fa-solid fa-circle-info"></i> View Details
                                 </a>
                             </div>

@@ -17,5 +17,7 @@ interface ArtistDetailsServiceInterface
 
     public function getAllArtists(): array;
 
+    public function getArtistById($id): ArtistDetailsResponse;
+
 
 }

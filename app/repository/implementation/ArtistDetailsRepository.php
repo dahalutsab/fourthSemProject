@@ -186,4 +186,32 @@ class ArtistDetailsRepository implements ArtistDetailsRepositoryInterface
         }
         return $singers;
     }
+
+    public function getArtistById($id): ?ArtistDetails
+    {
+        $query = "SELECT * FROM artist_details WHERE id = ?";
+        $stmt = $this->database->getConnection()->prepare($query);
+        $stmt->bind_param("i", $id);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        $artist = $result->fetch_assoc();
+
+        if (!$artist) {
+            error_log("No artist found with ID $id");
+            return null;
+        }
+
+        return new ArtistDetails(
+            $artist['id'],
+            $artist['full_name'],
+            $artist['stage_name'],
+            $artist['phone'],
+            $artist['address'],
+            $artist['category_id'],
+            $artist['bio'],
+            $artist['profile_picture'],
+            $artist['description']
+        );
+    }
+
 }

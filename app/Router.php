@@ -32,12 +32,14 @@ class Router
         $this->notFoundHandler = $handler;
     }
 
-    private function addHandler(string $method, string $path, array $handler): void
+    private function addHandler(string $method, string $path, array $handler, array $roles = [], string $redirectUrl = null): void
     {
         $this->handlers[$method . $path] = [
             'path' => $path,
             'method' => $method,
-            'handler' => $handler
+            'handler' => $handler,
+            'roles' => $roles,
+            'redirectUrl' => $redirectUrl
         ];
     }
 
@@ -48,10 +50,13 @@ class Router
         $method = $_SERVER['REQUEST_METHOD'];
 
         $callback = null;
+        $params = [];
 
         foreach ($this->handlers as $handler) {
-            if ($handler['path'] === $requestPath && $handler['method'] === $method) {
+            $pattern = preg_replace('/\{([a-zA-Z0-9_]+)\}/', '(?P<$1>[a-zA-Z0-9_]+)', $handler['path']);
+            if (preg_match('#^' . $pattern . '$#', $requestPath, $matches) && $handler['method'] === $method) {
                 $callback = $handler['handler'];
+                $params = $matches;
                 break;
             }
         }
@@ -64,7 +69,6 @@ class Router
             return;
         }
 
-
         // Check interceptor
         $userRole = $_SESSION[SESSION_ROLE] ?? null;
         if (!$this->interceptor->intercept($requestPath, $userRole)) {
@@ -74,8 +78,6 @@ class Router
         list($class, $method) = $callback;
         $instance = new $class();
 
-        call_user_func_array([$instance, $method], [
-            array_merge($_GET, $_POST)
-        ]);
+        call_user_func_array([$instance, $method], [$params]);
     }
 }

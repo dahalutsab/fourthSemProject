@@ -23,7 +23,7 @@ class ArtistDetails {
         ?string $address,
         ?string $category,
         ?string $bio,
-        ?string $profilePicture, // And this line
+        ?string $profilePicture,
         ?string $description,
         ?array $socialMedia = []
     ) {
@@ -126,6 +126,23 @@ class ArtistDetails {
     public function getUpdatedAt(): ?DateTimeImmutable
     {
         return $this->updated_at;
+    }
+
+    public function getData(): array
+    {
+        return [
+            'id' => $this->id,
+            'fullName' => $this->fullName,
+            'stageName' => $this->stageName,
+            'phone' => $this->phone,
+            'address' => $this->address,
+            'category' => $this->category,
+            'bio' => $this->bio,
+            'profilePicture' => $this->profilePicture,
+            'description' => $this->description,
+            'socialMedia' => $this->socialMedia,
+            'updated_at' => $this->updated_at
+        ];
     }
 
 }

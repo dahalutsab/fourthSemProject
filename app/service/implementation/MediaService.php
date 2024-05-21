@@ -120,4 +120,22 @@ class MediaService
         }
         return $mediaResponse;
     }
+
+    public function getMediaByArtistId(float|int|string $id): array
+    {
+        $mediaItems = $this->mediaRepository->getMediaByArtistId($id);
+        $mediaResponse = [];
+        foreach ($mediaItems as $mediaItem) {
+            $mediaResponse[] = (new MediaResponse(
+                $mediaItem->getMediaId(),
+                $mediaItem->getUserId(),
+                $mediaItem->getMediaType(),
+                $mediaItem->getMediaUrl(),
+                $mediaItem->getTitle(),
+                $mediaItem->getDescription(),
+                $mediaItem->getCreatedAt()
+            ))->toArray();
+        }
+        return $mediaResponse;
+    }
 }

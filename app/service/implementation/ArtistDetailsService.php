@@ -5,6 +5,7 @@ namespace App\service\implementation;
 use App\dto\request\ArtistDetailsRequest;
 use App\dto\response\ArtistDetailsResponse;
 use App\repository\implementation\ArtistDetailsRepository;
+use App\Response\ApiResponse;
 use App\service\ArtistDetailsServiceInterface;
 use Exception;
 
@@ -114,6 +115,19 @@ class ArtistDetailsService implements ArtistDetailsServiceInterface
     {
         try {
             return $this->artistDetailsRepository->getAllArtists();
+        } catch (Exception $exception) {
+            throw new Exception($exception->getMessage());
+        }
+    }
+
+    /**
+     * @throws Exception
+     */
+    public function getArtistById($id): ArtistDetailsResponse
+    {
+
+        try {
+             return new ArtistDetailsResponse($this->artistDetailsRepository->getArtistById($id));
         } catch (Exception $exception) {
             throw new Exception($exception->getMessage());
         }

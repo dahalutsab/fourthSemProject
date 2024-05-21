@@ -75,7 +75,7 @@ $router->post('/api/user/verify-otp', [UserController::class, 'verifyOtp']);
 // route to artist details
 $router->get('/artist-details', [ViewController::class, 'artistDetails']);
 $router->post('/artist-details', [UserController::class, 'artistDetails']);
-$router->post('/api/artistDetails/updateProfilePicture', [ArtistDetailsController::class, 'saveProfilePicture']);
+
 
 // route to user details
 $router->get('/api/userDetails/getUserDetails', [UserDetailsController::class, 'getUserProfile']);
@@ -93,6 +93,8 @@ $router->get('/profile', [DashboardViewController::class, 'profile'], [], '/logi
 $router->get('/api/artistDetails/getUserDetails', [ArtistDetailsController::class, 'getUserProfile']);
 $router->post('/api/artistDetails/updateProfile', [ArtistDetailsController::class, 'editProfile']);
 $router->get('/api/artistDetails/getAllArtists', [ArtistDetailsController::class, 'getAllArtists']);
+$router->post('/api/artistDetails/updateProfilePicture', [ArtistDetailsController::class, 'saveProfilePicture']);
+$router->get('/api/artistDetails/{id}', [ArtistDetailsController::class, 'getArtistById']);
 
 // route to categories
 $router->get('/api/categories/getAllCategories', [CategoryController::class, 'getAllCategories']);
@@ -104,6 +106,7 @@ $router->get('/api/media/get-media', [MediaController::class, 'getMedia'], [$art
 $router->get('/api/media/get-all-media', [MediaController::class, 'getAllMedia']);
 $router->post('/api/media/delete-media', [MediaController::class, 'deleteMedia'], ['admin']);
 $router->get('/api/media/get-media-by-user', [MediaController::class, 'getMediaByUser'], [$artist], '/access-denied');
+$router->get('/api/media/get-media-by-artist-id/{artistId}', [MediaController::class, 'getMediaByArtistId']);
 
 // roles management routes
 $router->get('/api/roles/get-roles', [RoleController::class, 'getRolesForUsers']);

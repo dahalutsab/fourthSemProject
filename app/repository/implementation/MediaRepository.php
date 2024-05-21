@@ -97,4 +97,34 @@ class MediaRepository
 
         return $media;
     }
+
+    public function getMediaByArtistId(float|int|string $id)
+    {
+        $stmt = $this->db->getConnection()->prepare(
+            "SELECT media_id, user_id, media_type, media_url, title, description, created_at FROM media WHERE user_id = ?"
+        );
+
+        if ($stmt === false) {
+            die('Prepare failed: ' . $this->db->getConnection()->error);
+        }
+
+        $stmt->bind_param("i", $id);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        $media = [];
+
+        while ($row = $result->fetch_assoc()) {
+            $media[] = new Media(
+                $row['media_id'],
+                $row['user_id'],
+                $row['media_type'],
+                $row['media_url'],
+                $row['title'],
+                $row['description'],
+                $row['created_at']
+            );
+        }
+
+        return $media;
+    }
 }

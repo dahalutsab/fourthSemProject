@@ -53,5 +53,22 @@ class MediaController
         }
 
     }
+    public function getMediaByArtistId(): null
+    {
+        try {
+            $requestUri = $_SERVER['REQUEST_URI'];
+            $uriPath = parse_url($requestUri, PHP_URL_PATH);
+            $pathSegments = explode('/', $uriPath);
+
+            $id = end($pathSegments);
+            if (!is_numeric($id)) {
+                throw new Exception("Invalid artist ID: $id");
+            }
+            $mediaResponse = $this->mediaService->getMediaByArtistId($id);
+            return ApiResponse::success($mediaResponse, ['message' => 'Media fetched successfully.']);
+        } catch (Exception $e) {
+            return ApiResponse::error($e->getMessage(), 500);
+        }
+    }
 
 }
