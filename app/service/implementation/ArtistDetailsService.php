@@ -106,4 +106,16 @@ class ArtistDetailsService implements ArtistDetailsServiceInterface
             throw new Exception($exception->getMessage());
         }
     }
+
+    /**
+     * @throws Exception
+     */
+    public function getAllArtists(): array
+    {
+        try {
+            return $this->artistDetailsRepository->getAllArtists();
+        } catch (Exception $exception) {
+            throw new Exception($exception->getMessage());
+        }
+    }
 }

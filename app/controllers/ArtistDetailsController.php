@@ -97,6 +97,19 @@ class ArtistDetailsController
         }
     }
 
+    /**
+     * @throws Exception
+     */
+    public function getAllArtists(): null
+    {
+        try {
+            $artists = $this->artistDetailsService->getAllArtists();
+            return ApiResponse::success($artists);
+        } catch (Exception $exception) {
+            return ErrorResponse::badRequest($exception->getMessage());
+        }
+    }
+
 
     public function getAllArtistsByCategory(): null
     {
