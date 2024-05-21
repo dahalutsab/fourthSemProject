@@ -11,7 +11,7 @@ class ArtistDetails {
     private ?string $category;
     private ?string $bio;
     private ?string $description;
-    private string $profilePicture;
+    private ?string $profilePicture;
     private ?array $socialMedia;
     private DateTimeImmutable $updated_at;
 
@@ -23,7 +23,7 @@ class ArtistDetails {
         ?string $address,
         ?string $category,
         ?string $bio,
-        ?string $profilePicture,
+        ?string $profilePicture, // And this line
         ?string $description,
         ?array $socialMedia = []
     ) {

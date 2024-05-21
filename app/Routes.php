@@ -92,6 +92,7 @@ $router->get('/dashboard/profile', [DashboardViewController::class, 'profile']);
 $router->get('/profile', [DashboardViewController::class, 'profile'], [], '/login');
 $router->get('/api/artistDetails/getUserDetails', [ArtistDetailsController::class, 'getUserProfile']);
 $router->post('/api/artistDetails/updateProfile', [ArtistDetailsController::class, 'editProfile']);
+$router->get('/api/artistDetails/getAllArtists', [ArtistDetailsController::class, 'getAllArtists']);
 
 // route to categories
 $router->get('/api/categories/getAllCategories', [CategoryController::class, 'getAllCategories']);

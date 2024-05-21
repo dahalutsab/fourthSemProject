@@ -3,6 +3,7 @@
 namespace App\Controllers;
 
 use App\dto\request\ArtistDetailsRequest;
+use App\dto\response\ArtistDetailsResponse;
 use App\Response\ApiResponse;
 use App\Response\ErrorResponse;
 use App\service\implementation\ArtistDetailsService;
@@ -104,7 +105,18 @@ class ArtistDetailsController
     {
         try {
             $artists = $this->artistDetailsService->getAllArtists();
-            return ApiResponse::success($artists);
+
+            // Create an ArtistDetailsResponse object for each ArtistDetails object
+            $artistResponses = array_map(function ($artist) {
+                return new ArtistDetailsResponse($artist);
+            }, $artists);
+
+            // Get the data from each ArtistDetailsResponse object
+            $artistData = array_map(function ($artistResponse) {
+                return $artistResponse->getData();
+            }, $artistResponses);
+
+            return ApiResponse::success($artistData);
         } catch (Exception $exception) {
             return ErrorResponse::badRequest($exception->getMessage());
         }

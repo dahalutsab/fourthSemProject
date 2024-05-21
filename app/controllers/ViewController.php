@@ -48,12 +48,6 @@ class ViewController
         $this->render(compact('pageTitle', 'content', 'artistId'));
     }
 
-    public function dashboard(): void
-    {
-        $pageTitle = 'Dashboard';
-        $content = ['pages/contactUs']; // Make $content an array
-        $this->render(compact('pageTitle', 'content'));
-    }
 
     public function accessDenied(): void
     {
