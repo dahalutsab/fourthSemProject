@@ -5,7 +5,7 @@ namespace App\Repository\Implementation;
 use App\DTO\Request\UserDetailsRequest;
 use App\Models\UserDetails;
 use App\Repository\UserDetailsRepositoryInterface;
-use Config\Database;
+use config\Database;
 use Exception;
 use mysqli_result;
 
