@@ -58,3 +58,33 @@
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
 }
+
+.carousel-inner {
+    height: 300px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.carouselVideoExample .carousel-inner {
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+
+custom-video-controls {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 16px;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: rgba(0, 0, 0, 0.5);
+    padding: 8px;
+    border-radius: 0 0 20px 20px;
+}
