@@ -98,4 +98,29 @@ class UserRepository implements UserRepositoryInterface {
             throw new Exception("User not found");
         }
     }
+
+    /**
+     * @throws Exception
+     */
+    public function getUserRole($email)
+    {
+//        get role name of the user
+        try {
+            $stmt = $this->database->getConnection()->prepare("SELECT role_name FROM roles WHERE role_id = (SELECT role_id FROM users WHERE email = ?)");
+            $stmt->bind_param("s", $email);
+            $stmt->execute();
+
+            $result = $stmt->get_result();
+            $row = $result->fetch_assoc();
+
+            if ($row) {
+                return $row['role_name'];
+            } else {
+                return null;
+            }
+        } catch (Exception $e) {
+            throw new Exception("Error getting user role");
+        }
+
+    }
 }

@@ -42,6 +42,7 @@ class AuthController {
 
         try {
             $this->authService->login($email, $password);
+            $_SESSION[SESSION_ROLE] = $this->authService->getUserRole($email);
         } catch (Exception $e) {
             $_SESSION[SESSION_ERRORS][] = $e->getMessage();
             header('Location: /login');
@@ -65,5 +66,6 @@ class AuthController {
         header('Location: /home');
         exit; // Always exit after redirecting
     }
+
 
 }

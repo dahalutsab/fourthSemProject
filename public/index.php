@@ -10,3 +10,5 @@ require_once __DIR__ . '/../config/config.php';
 
 // Include the routes file
 require_once __DIR__ . '/../app/routes.php';
+
+

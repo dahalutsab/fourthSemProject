@@ -1,5 +1,4 @@
 document.addEventListener("DOMContentLoaded", () => {
-    const baseURL = '/';
     const mediaContainer = document.querySelector('.media-container');
     const mainVideoContainer = document.querySelector('.main-video-container');
     const videoListContainer = document.querySelector('.video-list-container');
@@ -7,7 +6,7 @@ document.addEventListener("DOMContentLoaded", () => {
     // Function to create media element based on type
     const createMediaElement = (mediaItem, isMain = false) => {
         let mediaElement;
-        const mediaUrl = `${baseURL}${mediaItem.media_url}`;
+        const mediaUrl = `/${mediaItem.media_url}`;
         const title = mediaItem.title;
 
         if (mediaItem.media_type === 'video') {
@@ -104,14 +103,63 @@ document.addEventListener("DOMContentLoaded", () => {
                 document.querySelectorAll('.video-list').forEach(item => item.classList.remove('active'));
                 videoListItem.classList.add('active');
                 populateMainVideo(mediaItem);
-                mediaElement.play();
+                if (mediaElement.tagName === 'VIDEO' || mediaElement.tagName === 'AUDIO') {
+                    mediaElement.play();
+                }
             });
         });
     };
 
-    // Fetch media data from the backend
+    // // Fetch media data from the backend
+    // fetch('/api/media/get-media-by-user')
+    //     .then(response => response.json())
+    //     .then(data => {
+    //         if (data.success) {
+    //             const mediaItems = data.data;
+    //             if (mediaItems.length > 0) {
+    //                 populateMainVideo(mediaItems[0]);
+    //                 populateVideoList(mediaItems);
+    //             }
+    //         } else {
+    //             console.error('Failed to fetch media:', data.message);
+    //         }
+    //     })
+    //     .catch(error => console.error('Error fetching media:', error));
+
+//         // Fetch media data from the backend
+//         fetch('/api/media/get-media-by-user')
+//             .then(response => {
+//                 if (!response.ok) {
+//                     if (response.status === 401) {
+//                         // If the status code is 401 (Unauthorized), redirect to the login page
+//                         window.location.href = '/login';
+//                     } else if (response.status === 403) {
+//                         // If the status code is 403 (Forbidden), redirect to the access denied page
+//                         // window.location.href = '/access-denied';
+//                     } else {
+//                         // Handle other errors
+//                         throw new Error('Error fetching media');
+//                     }
+//                 }
+//                 return response.json();
+//             })
+//             .then(data => {
+//                 if (data.success) {
+//                     const mediaItems = data.data;
+//                     if (mediaItems.length > 0) {
+//                         populateMainVideo(mediaItems[0]);
+//                         populateVideoList(mediaItems);
+//                     }
+//                 } else {
+//                     console.error('Failed to fetch media:', data.message);
+//                 }
+//             })
+//             .catch(error => console.error('Error fetching media:', error));
+//
+
+
     fetch('/api/media/get-media-by-user')
-        .then(response => response.json())
+        .then(response => handleAjaxError(response))
         .then(data => {
             if (data.success) {
                 const mediaItems = data.data;

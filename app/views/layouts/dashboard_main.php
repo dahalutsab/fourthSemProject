@@ -41,6 +41,7 @@
 <?php include __DIR__ . '/../components/dashboard_footer.php'; ?>
 <script src="<?= BASE_URL ?>assets/js/dashboard.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script src="<?= BASE_URL ?>assets/js/ajaxHandler.js"></script>
 <script src="<?= BASE_URL ?>assets/js/bootstrap.bundle.min.js"></script>
 
 </body>

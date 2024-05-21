@@ -55,6 +55,13 @@ class ViewController
         $this->render(compact('pageTitle', 'content'));
     }
 
+    public function accessDenied(): void
+    {
+        $pageTitle = 'Access Denied';
+        $content = ['error/accessDenied']; // Make $content an array
+        $this->render(compact('pageTitle', 'content'));
+    }
+
     private function render(array $data): void
     {
         extract($data);

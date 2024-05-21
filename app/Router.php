@@ -3,35 +3,41 @@ declare(strict_types=1);
 
 namespace App;
 
+use App\Interceptor\Interceptor;
+
 class Router
 {
-    private array $handler;
+    private array $handlers;
     private $notFoundHandler;
-    private const METHOD_POST = 'POST';
-    private const METHOD_GET = 'GET';
+    private Interceptor $interceptor;
 
-    public function get($path, $handler, $redirectUrl = null): void
+    public function __construct(Interceptor $interceptor)
     {
-        $this->addHandler(self::METHOD_GET, $path, $handler, $redirectUrl);
+        $this->handlers = [];
+        $this->interceptor = $interceptor;
     }
 
-    public function post($path, $handler, $redirectUrl = null): void
+    public function get(string $path, array $handler, array $roles = [], string $redirectUrl = null): void
     {
-        $this->addHandler(self::METHOD_POST, $path, $handler, $redirectUrl);
+        $this->addHandler('GET', $path, $handler, $roles, $redirectUrl);
     }
 
-    public function addNotFoundHandler($handler): void
+    public function post(string $path, array $handler): void
+    {
+        $this->addHandler('POST', $path, $handler);
+    }
+
+    public function addNotFoundHandler(callable $handler): void
     {
         $this->notFoundHandler = $handler;
     }
 
-    private function addHandler($method, $path, $handler, $redirectUrl): void
+    private function addHandler(string $method, string $path, array $handler): void
     {
-        $this->handler[$method . $path] = [
+        $this->handlers[$method . $path] = [
             'path' => $path,
             'method' => $method,
-            'handler' => $handler,
-            'redirectUrl' => $redirectUrl
+            'handler' => $handler
         ];
     }
 
@@ -42,22 +48,11 @@ class Router
         $method = $_SERVER['REQUEST_METHOD'];
 
         $callback = null;
-        $redirectUrl = null;
-        foreach ($this->handler as $handler) {
+
+        foreach ($this->handlers as $handler) {
             if ($handler['path'] === $requestPath && $handler['method'] === $method) {
                 $callback = $handler['handler'];
-                $redirectUrl = $handler['redirectUrl']; // Get the redirect URL
-            }
-        }
-
-        if(is_string($callback)) {
-            $parts = explode('::', $callback);
-            if (is_array($parts)) {
-                $className = array_shift($parts);
-                $handler = new $className();
-
-                $method = array_shift($parts);
-                $callback = [$handler, $method];
+                break;
             }
         }
 
@@ -69,19 +64,18 @@ class Router
             return;
         }
 
-        if ($redirectUrl && !$this->isUserAuthenticated()) {
-            // Redirect to the URL specified in the route
-            header('Location: ' . $redirectUrl);
+
+        // Check interceptor
+        $userRole = $_SESSION[SESSION_ROLE] ?? null;
+        if (!$this->interceptor->intercept($requestPath, $userRole)) {
             exit;
         }
 
-        call_user_func_array($callback, [
+        list($class, $method) = $callback;
+        $instance = new $class();
+
+        call_user_func_array([$instance, $method], [
             array_merge($_GET, $_POST)
         ]);
-    }
-
-    private function isUserAuthenticated(): bool
-    {
-        return isset($_SESSION[SESSION_USER_ID]);
     }
 }

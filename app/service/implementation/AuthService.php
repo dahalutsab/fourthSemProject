@@ -36,4 +36,14 @@ class AuthService implements AuthServiceInterface {
         $_SESSION[SESSION_USER_ID] = $user->getId();
         $_SESSION[SESSION_ROLE] = $user->getRole();
     }
+
+    /**
+     * @throws Exception
+     */
+    public function getUserRole(mixed $email)
+    {
+        return$this->userRepository->getUserRole($email);
+    }
+
+
 }

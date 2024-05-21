@@ -28,7 +28,11 @@
                 </li>
             </ul>
         </li><!-- End Media Nav -->
-
+        <li class="nav-item">
+            <a class="nav-link" href="/dashboard/profile">
+                <i class="fa-solid fa-user"></i>
+                <span><?php echo ($_SESSION[SESSION_ROLE]);?></span>
+            </a>
     </ul>
 </aside>
 

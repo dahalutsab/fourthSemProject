@@ -118,7 +118,7 @@ class ArtistDetailsRepository implements ArtistDetailsRepositoryInterface
     /**
      * @throws Exception
      */
-    public function saveProfilePicture(string $profilePicture, int $userId): ?ArtistDetails
+    public function saveProfilePicture(string $profilePicture, string $userId): ?ArtistDetails
     {
         $query = "UPDATE artist_details
                   SET profile_picture=?
