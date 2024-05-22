@@ -95,9 +95,16 @@ class PerformanceTypesController
         }
     }
 
-    public function getCostPerHour(): null
+    public function getCostPerHour()
     {
         try {
+            // Get the JSON payload from the POST request
+            $postData = json_decode(file_get_contents('php://input'), true);
+
+            if (!$postData) {
+                throw new Exception("Invalid input");
+            }
+
             $requestUri = $_SERVER['REQUEST_URI'];
             $uriPath = parse_url($requestUri, PHP_URL_PATH);
             $pathSegments = explode('/', $uriPath);
@@ -106,12 +113,19 @@ class PerformanceTypesController
             if (!is_numeric($id)) {
                 throw new Exception("Invalid performance type ID: $id");
             }
-            $eventStartTime = $_POST['eventStartTime'];
-            $eventEndTime = $_POST['eventEndTime'];
+
+            // Extract event times from the POST data
+            $eventStartTime = $postData['eventStartTime'];
+            $eventEndTime = $postData['eventEndTime'];
+
+            // Call the service method to get the cost per hour
             $response = $this->performanceTypesService->getCostPerHour($id, $eventStartTime, $eventEndTime);
+
             return ApiResponse::success($response, "Cost for the performance fetched successfully");
         } catch (\Exception $e) {
             return ApiResponse::error($e->getMessage());
         }
     }
+
+
 }

@@ -55,7 +55,7 @@ class PerformanceTypesService
         $this->performanceTypeRepository->deleteArtistPerformance($id);
     }
 
-    public function getCostPerHour(float|int|string $id, $eventStartTime, $eventEndTime): float|int|string
+    public function getCostPerHour(float|int|string $id, $eventStartTime, $eventEndTime): array
     {
         if (!is_numeric($id)) {
             throw new \InvalidArgumentException("Invalid performance type ID: $id");
@@ -64,6 +64,13 @@ class PerformanceTypesService
         $eventStartTime = strtotime($eventStartTime);
         $eventEndTime = strtotime($eventEndTime);
         $hours = ($eventEndTime - $eventStartTime) / 3600;
-        return $cost * $hours;
+        $totalCost = $cost * $hours;
+        $advanceAmount = $totalCost * 0.25;
+        $totalCost = number_format($totalCost, 2);
+        $advanceAmount = number_format($advanceAmount, 2);
+
+//        calculate remaining amount by converting total and advance amount to number
+        $remainingAmount = number_format(floatval($totalCost) - floatval($advanceAmount), 2);
+        return ['totalCost' => $totalCost, 'advanceAmount' => $advanceAmount, 'remainingAmount' => $remainingAmount];
     }
 }

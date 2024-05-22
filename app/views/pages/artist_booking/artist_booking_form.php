@@ -1,3 +1,12 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Event Form</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
 <div class="container mt-5">
     <form method="post" id="eventForm">
         <div class="mb-3">
@@ -42,12 +51,35 @@
         <div class="mb-3">
             <label for="eventEndTime" class="form-label">Event End Time</label>
             <input type="time" class="form-control" id="eventEndTime" name="eventEndTime" required>
+        </div>
 
         <button type="submit" class="btn calculate-cost btn-primary">Calculate Cost</button>
     </form>
 </div>
 
+<!-- Bootstrap Modal -->
+<div class="modal fade" id="costModal" tabindex="-1" aria-labelledby="costModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="costModalLabel">Cost Details</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <p>Total Cost: NPR <span id="totalCost"></span></p>
+                <p>Advance Amount: NPR <span id="advanceAmount"></span></p>
+                <p>Remaining Amount: NPR <span id="remainingAmount"></span></p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                <button type="button" class="btn btn-primary" id="proceedToPayment">Proceed to Payment</button>
+            </div>
+        </div>
+    </div>
+</div>
+
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 <script>
     document.addEventListener('DOMContentLoaded', function() {
         // Fetch provinces from backend and populate the province dropdown
@@ -122,20 +154,80 @@
             const pathComponents = path.split('/');
             const performanceTypeId = pathComponents[pathComponents.length - 1];
 
-            console.log('Performance Type ID:', performanceTypeId);
-
-            fetch(`/api/artistPerformance/calculate-cost/${performanceTypeId}, {
-                body: new FormData(this)`)
+            fetch(`/api/artistPerformance/calculate-cost/${performanceTypeId}`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    province: document.getElementById('province').value,
+                    district: document.getElementById('district').value,
+                    municipality: document.getElementById('municipality').value,
+                    localArea: document.getElementById('localArea').value,
+                    eventDate: document.getElementById('eventDate').value,
+                    eventStartTime: document.getElementById('eventStartTime').value,
+                    eventEndTime: document.getElementById('eventEndTime').value
+                })
+            })
                 .then(response => response.json())
                 .then(data => {
                     if (data.success) {
-                        alert(`Cost: NPR ${data.data.cost}`);
+                        document.getElementById('totalCost').textContent = data.data.totalCost;
+                        document.getElementById('advanceAmount').textContent = data.data.advanceAmount;
+                        document.getElementById('remainingAmount').textContent = data.data.remainingAmount;
+
+                        // Show the modal
+                        var costModal = new bootstrap.Modal(document.getElementById('costModal'));
+                        costModal.show();
                     } else {
                         console.error('Failed to calculate cost:', data.message);
                     }
                 })
                 .catch(error => console.error('Error calculating cost:', error));
         });
-    });
 
+        // Handle Proceed to Payment button click
+        document.getElementById('proceedToPayment').addEventListener('click', function() {
+            const amount = document.getElementById('advanceAmount').textContent;
+
+            // Sample data for eSewa integration (use actual data in production)
+            const paymentData = {
+                amount: amount,
+                failure_url: 'https://google.com',
+                product_delivery_charge: '0',
+                product_service_charge: '0',
+                product_code: 'EPAYTEST',
+                signature: 'YVweM7CgAtZW5tRKica/BIeYFvpSj09AaInsulqNKHk=',
+                signed_field_names: 'total_amount,transaction_uuid,product_code',
+                success_url: 'openmichub.com',
+                tax_amount: '10',
+                total_amount: parseFloat(amount) + 10,
+                transaction_uuid: 'ab14a8f2b02c3' // Replace with actual unique transaction ID
+            };
+
+            // Create a form element
+            const form = document.createElement('form');
+            form.action = 'https://uat.esewa.com.np/epay/main'; // Use appropriate URL for production
+            form.method = 'POST';
+            form.style.display = 'none';
+
+
+            for (const key in paymentData) {
+                if (paymentData.hasOwnProperty(key)) {
+                    const input = document.createElement('input');
+                    input.type = 'hidden';
+                    input.name = key;
+                    input.value = paymentData[key];
+                    form.appendChild(input);
+                }
+            }
+
+            // Append the form to the body and submit
+            document.body.appendChild(form);
+            form.submit();
+        });
+
+    });
 </script>
+</body>
+</html>
