@@ -96,6 +96,7 @@ $router->post('/api/artistDetails/updateProfile', [ArtistDetailsController::clas
 $router->get('/api/artistDetails/getAllArtists', [ArtistDetailsController::class, 'getAllArtists']);
 $router->post('/api/artistDetails/updateProfilePicture', [ArtistDetailsController::class, 'saveProfilePicture']);
 $router->get('/api/artistDetails/{id}', [ArtistDetailsController::class, 'getArtistById']);
+$router->get('/api/artistDetails/getAllArtistsByCategory/{categoryId}', [ArtistDetailsController::class, 'getAllArtistsByCategory']);
 
 // route to categories
 $router->get('/api/categories/getAllCategories', [CategoryController::class, 'getAllCategories']);

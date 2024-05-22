@@ -8,7 +8,7 @@
     <div class="container-fluid">
         <div class="row">
             <ul class="nav artist-nav-tabs" id="artistTab">
-                <!-- Tabs omitted for brevity -->
+                <!-- Tabs will be populated dynamically -->
             </ul>
         </div>
     </div>

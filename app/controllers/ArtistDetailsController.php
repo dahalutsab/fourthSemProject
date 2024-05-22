@@ -126,9 +126,26 @@ class ArtistDetailsController
     public function getAllArtistsByCategory(): null
     {
         try {
-            $category = $_GET['category'] ?? 0;
+            $requestUri = $_SERVER['REQUEST_URI'];
+            $uriPath = parse_url($requestUri, PHP_URL_PATH);
+            $pathSegments = explode('/', $uriPath);
+
+            $category = end($pathSegments);
+            if (!is_numeric($category)) {
+                throw new Exception("Invalid category ID: $category");
+            }
             $artists = $this->artistDetailsService->getAllArtistsByCategory($category);
-            return ApiResponse::success($artists);
+            $artistResponses = array_map(function ($artist) {
+                return new ArtistDetailsResponse($artist);
+            }, $artists);
+
+            // Get the data from each ArtistDetailsResponse object
+            $artistData = array_map(function ($artistResponse) {
+                return $artistResponse->getData();
+            }, $artistResponses);
+
+            return ApiResponse::success($artistData);
+//            return ApiResponse::success($artists);
         } catch (Exception $exception) {
             return ErrorResponse::badRequest($exception->getMessage());
         }

@@ -41,6 +41,7 @@ class CategoryController
 
         $categoryId = $_GET['id'];
 
+        echo "category id: " .$categoryId;
         // Create an instance of CategoryService
         $categoryService = new CategoryService();
 

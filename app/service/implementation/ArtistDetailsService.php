@@ -99,10 +99,10 @@ class ArtistDetailsService implements ArtistDetailsServiceInterface
     /**
      * @throws Exception
      */
-    public function getAllArtistsByCategory($userId): array
+    public function getAllArtistsByCategory($category): array
     {
         try {
-            return $this->artistDetailsRepository->getAllArtistsByCategory($userId);
+            return $this->artistDetailsRepository->getAllArtistsByCategory($category);
         } catch (Exception $exception) {
             throw new Exception($exception->getMessage());
         }
