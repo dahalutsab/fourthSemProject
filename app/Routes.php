@@ -2,6 +2,7 @@
 declare(strict_types=1);
 
 use App\controllers\ErrorViewController;
+use App\controllers\PerformanceTypesController;
 use App\Interceptor\Interceptor;
 use App\Router;
 use App\controllers\AuthController;
@@ -111,7 +112,12 @@ $router->get('/api/media/get-media-by-artist-id/{artistId}', [MediaController::c
 // roles management routes
 $router->get('/api/roles/get-roles', [RoleController::class, 'getRolesForUsers']);
 
-
+$router->get('/dashboard/performance/add', [DashboardViewController::class, 'addPerformance']);
+$router->get('/dashboard/performance/manage', [DashboardViewController::class, 'managePerformance']);
+$router->post('/api/artistPerformance/save-artist-performance', [PerformanceTypesController::class, 'saveArtistPerformance']);
+$router->get('/api/artistPerformance/get-artist-performance/{artistId}', [PerformanceTypesController::class, 'getArtistPerformance']);
+$router->post('/api/artistPerformance/update-artist-performance/{id}', [PerformanceTypesController::class, 'updateArtistPerformance']);
+$router->post('/api/artistPerformance/delete-artist-performance/{id}', [PerformanceTypesController::class, 'deleteArtistPerformance']);
 // route to access denied
 $router->get('/access-denied', [ErrorViewController::class, 'accessDenied']);
 // route to 404 if any error

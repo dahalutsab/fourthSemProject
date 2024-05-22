@@ -66,3 +66,29 @@ CREATE TABLE Media (
                        created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
                        FOREIGN KEY (user_id) REFERENCES Users(id)
 );
+
+
+CREATE TABLE Performance_Types (
+                                   performance_type_id INT PRIMARY KEY AUTO_INCREMENT,
+                                   performance_type VARCHAR(255) NOT NULL,
+                                   artist_id INT,
+                                   cost_per_hour DECIMAL(10, 2) NOT NULL,
+                                   FOREIGN KEY (artist_id) REFERENCES users(id)
+);
+
+
+-- Artist_Performance Table
+CREATE TABLE Artist_Performance (
+                                    artist_performance_id INT PRIMARY KEY AUTO_INCREMENT,
+                                    artist_id INT,
+                                    performance_type_id INT,
+                                    duration_hours DECIMAL(5, 2),
+                                    date DATE,
+                                    event_name VARCHAR(255),
+#                                     location_id INT,
+                                    user_id INT,
+                                    FOREIGN KEY (artist_id) REFERENCES users(id),
+                                    FOREIGN KEY (performance_type_id) REFERENCES Performance_Types(performance_type_id),
+#                                     FOREIGN KEY (location_id) REFERENCES Locations(location_id),
+                                    FOREIGN KEY (user_id) REFERENCES Users(id)
+);

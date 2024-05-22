@@ -33,6 +33,26 @@
                 <i class="fa-solid fa-user"></i>
                 <span><?php echo ($_SESSION[SESSION_ROLE]);?></span>
             </a>
+        </li><!-- End Profile Nav -->
+
+        <li class="nav-item">
+            <a class="nav-link collapsed" data-bs-target="#location-nav" data-bs-toggle="collapse">
+                <i class="fa-solid fa-music"></i>
+                <span>Performance</span>
+                <i class="fas fa-chevron-down ms-auto"></i>
+            </a>
+            <ul id="location-nav" class="nav-content collapse" data-bs-parent="#sidebar-nav">
+                <li>
+                    <a href="/dashboard/performance/add">
+                        <i class="fas fa-plus"></i><span>Add</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="/dashboard/performance/manage">
+                        <i class="fas fa-circle"></i><span>Manage</span>
+                    </a>
+            </ul>
+        </li>
     </ul>
 </aside>
 

@@ -33,6 +33,20 @@ class DashboardViewController
         $this->render(compact('pageTitle', 'content'));
     }
 
+    public function addPerformance(): void
+    {
+        $pageTitle = 'Add Performance';
+        $content = 'add_artist_performance_types';
+        $this->render(compact('pageTitle', 'content'));
+    }
+
+    public function managePerformance(): void
+    {
+        $pageTitle = 'Manage Performance';
+        $content = 'view_all_artist_performance_types';
+        $this->render(compact('pageTitle', 'content'));
+    }
+
     private function render(array $data): void
     {
         extract($data);
