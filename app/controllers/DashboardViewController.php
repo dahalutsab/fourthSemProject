@@ -21,7 +21,7 @@ class DashboardViewController
 
     public function addMedia(): void
     {
-        $pageTitle = 'Artist Media';
+        $pageTitle = 'admin_media/Artist Media';
         $content = 'add-media';
         $this->render(compact('pageTitle', 'content'));
     }
@@ -29,21 +29,28 @@ class DashboardViewController
     public function manageMedia(): void
     {
         $pageTitle = 'Manage Media';
-        $content = 'artist-media-management';
+        $content = 'admin_media/artist-media-management';
         $this->render(compact('pageTitle', 'content'));
     }
 
     public function addPerformance(): void
     {
         $pageTitle = 'Add Performance';
-        $content = 'add_artist_performance_types';
+        $content = 'artist_performance/add_artist_performance_types';
         $this->render(compact('pageTitle', 'content'));
     }
 
     public function managePerformance(): void
     {
         $pageTitle = 'Manage Performance';
-        $content = 'view_all_artist_performance_types';
+        $content = 'artist_performance/view_all_artist_performance_types';
+        $this->render(compact('pageTitle', 'content'));
+    }
+
+    public function bookArtist(): void
+    {
+        $pageTitle = 'Book Artist';
+        $content = 'artist_booking/artist_booking_form';
         $this->render(compact('pageTitle', 'content'));
     }
 

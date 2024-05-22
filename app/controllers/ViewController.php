@@ -14,20 +14,20 @@ class ViewController
     public function login(): void
     {
         $pageTitle = 'Login';
-        $content = ['pages/login']; // Make $content an array
+        $content = ['pages/auth/login']; // Make $content an array
         $this->render(compact('pageTitle', 'content'));
     }
     public function signup(): void
     {
         $pageTitle = 'Signup';
-        $content = ['pages/signup']; // Make $content an array
+        $content = ['pages/auth/signup']; // Make $content an array
         $this->render(compact('pageTitle', 'content'));
     }
 
     public function verifyOtp(): void
     {
         $pageTitle = 'Verify OTP';
-        $content = ['pages/otp']; // Make $content an array
+        $content = ['pages/auth/otp']; // Make $content an array
         $this->render(compact('pageTitle', 'content'));
     }
 
