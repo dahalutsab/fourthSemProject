@@ -189,44 +189,71 @@
         // Handle Proceed to Payment button click
         document.getElementById('proceedToPayment').addEventListener('click', function() {
             const amount = document.getElementById('advanceAmount').textContent;
+            const tax_amount = 0;
+            const total_amount = amount;
+            const transaction_uuid = generateUniqueTransactionUuid();
+            const product_code = 'artist_booking';
+            const product_service_charge = 0;
+            const product_delivery_charge = 0;
+            const success_url = 'openmichub.com';
+            const failure_url = 'https://google.com';
+            const signed_field_names = 'total_amount,transaction_uuid,product_code';
 
-            // Sample data for eSewa integration (use actual data in production)
-            const paymentData = {
-                amount: amount,
-                failure_url: 'https://google.com',
-                product_delivery_charge: '0',
-                product_service_charge: '0',
-                product_code: 'EPAYTEST',
-                signature: 'YVweM7CgAtZW5tRKica/BIeYFvpSj09AaInsulqNKHk=',
-                signed_field_names: 'total_amount,transaction_uuid,product_code',
-                success_url: 'openmichub.com',
-                tax_amount: '10',
-                total_amount: parseFloat(amount) + 10,
-                transaction_uuid: 'ab14a8f2b02c3' // Replace with actual unique transaction ID
-            };
+            fetch('/api/generate-signature', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    totalAmount: amount,
+                    transactionUuid: transaction_uuid,
+                    productCode: product_code
+                })
+            })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        const signature = data.data;
+                        console.log('Signature:', signature);
 
-            // Create a form element
-            const form = document.createElement('form');
-            form.action = 'https://uat.esewa.com.np/epay/main'; // Use appropriate URL for production
-            form.method = 'POST';
-            form.style.display = 'none';
+                        // Create a form dynamically
+                        const form = document.createElement('form');
+                        form.method = 'POST';
+                        form.action = 'https://rc-epay.esewa.com.np/api/epay/main/v2/form';
 
+                        const fields = {
+                            tax_amount,
+                            total_amount,
+                            transaction_uuid,
+                            product_code,
+                            product_service_charge,
+                            product_delivery_charge,
+                            success_url,
+                            failure_url,
+                            signed_field_names,
+                            signature
+                        };
+                        for (const [key, value] of Object.entries(fields)) {
+                            const input = document.createElement('input');
+                            input.type = 'hidden';
+                            input.name = key;
+                            input.value = value;
+                            form.appendChild(input);
+                        }
 
-            for (const key in paymentData) {
-                if (paymentData.hasOwnProperty(key)) {
-                    const input = document.createElement('input');
-                    input.type = 'hidden';
-                    input.name = key;
-                    input.value = paymentData[key];
-                    form.appendChild(input);
-                }
-            }
+                        // Append the form to the body and submit it
+                        document.body.appendChild(form);
+                        form.submit();
 
-            // Append the form to the body and submit
-            document.body.appendChild(form);
-            form.submit();
+                    } else {
+                        console.error('Failed to generate signature:', data.message);
+                    }
+                })
+                .catch(error => console.error('Error generating signature:', error));
         });
-
+        function generateUniqueTransactionUuid() {
+            return 'EPAYTEST' + Math.random().toString(36).substr(2, 9).toUpperCase();
+        }
     });
 </script>
 </body>

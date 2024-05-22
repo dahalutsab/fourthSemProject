@@ -128,6 +128,9 @@ $router->post('/api/artistPerformance/calculate-cost/{performance_type_id}', [Pe
 $router->get('/api/getProvinces', [LocationController::class, 'getAllProvinces']);
 $router->get('/api/getDistricts/{provinceId}', [LocationController::class, 'getDistrictsByProvinceId']);
 $router->get('/api/getMunicipalities/{districtId}', [LocationController::class, 'getMunicipalitiesByDistrictId']);
+
+//esewa
+$router->post('/api/generate-signature', [\App\controllers\EsewaIntegration::class, 'generateSignature']);
 // route to access denied
 $router->get('/access-denied', [ErrorViewController::class, 'accessDenied']);
 // route to 404 if any error
