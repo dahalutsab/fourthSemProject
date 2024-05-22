@@ -94,4 +94,24 @@ class PerformanceTypesController
             return ApiResponse::error($e->getMessage());
         }
     }
+
+    public function getCostPerHour(): null
+    {
+        try {
+            $requestUri = $_SERVER['REQUEST_URI'];
+            $uriPath = parse_url($requestUri, PHP_URL_PATH);
+            $pathSegments = explode('/', $uriPath);
+
+            $id = end($pathSegments);
+            if (!is_numeric($id)) {
+                throw new Exception("Invalid performance type ID: $id");
+            }
+            $eventStartTime = $_POST['eventStartTime'];
+            $eventEndTime = $_POST['eventEndTime'];
+            $response = $this->performanceTypesService->getCostPerHour($id, $eventStartTime, $eventEndTime);
+            return ApiResponse::success($response, "Cost for the performance fetched successfully");
+        } catch (\Exception $e) {
+            return ApiResponse::error($e->getMessage());
+        }
+    }
 }

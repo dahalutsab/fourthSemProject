@@ -1,5 +1,5 @@
 <div class="container mt-5">
-    <form id="eventForm">
+    <form method="post" id="eventForm">
         <div class="mb-3">
             <label for="province" class="form-label">Province</label>
             <select class="form-select" id="province" name="province" required>
@@ -35,11 +35,15 @@
         </div>
 
         <div class="mb-3">
-            <label for="eventTime" class="form-label">Event Time</label>
-            <input type="time" class="form-control" id="eventTime" name="eventTime" required>
+            <label for="eventStartTime" class="form-label">Event Start Time</label>
+            <input type="time" class="form-control" id="eventStartTime" name="eventStartTime" required>
         </div>
 
-        <button type="submit" class="btn btn-primary">Submit</button>
+        <div class="mb-3">
+            <label for="eventEndTime" class="form-label">Event End Time</label>
+            <input type="time" class="form-control" id="eventEndTime" name="eventEndTime" required>
+
+        <button type="submit" class="btn calculate-cost btn-primary">Calculate Cost</button>
     </form>
 </div>
 
@@ -55,8 +59,8 @@
                     const provinceSelect = document.getElementById('province');
                     provinces.forEach(province => {
                         const option = document.createElement('option');
-                        option.value = province.id;
-                        option.textContent = province.name;
+                        option.value = province.province_id;
+                        option.textContent = province.province_name;
                         provinceSelect.appendChild(option);
                     });
                 } else {
@@ -68,7 +72,7 @@
         // Fetch districts based on selected province
         document.getElementById('province').addEventListener('change', function() {
             const provinceId = this.value;
-            fetch(`/api/getDistricts?provinceId=${provinceId}`)
+            fetch(`/api/getDistricts/${provinceId}`)
                 .then(response => response.json())
                 .then(data => {
                     if (data.success) {
@@ -77,8 +81,8 @@
                         districtSelect.innerHTML = '<option value="" disabled selected>Select your district</option>'; // Clear existing options
                         districts.forEach(district => {
                             const option = document.createElement('option');
-                            option.value = district.id;
-                            option.textContent = district.name;
+                            option.value = district.district_id;
+                            option.textContent = district.district_name;
                             districtSelect.appendChild(option);
                         });
                     } else {
@@ -91,7 +95,7 @@
         // Fetch municipalities based on selected district
         document.getElementById('district').addEventListener('change', function() {
             const districtId = this.value;
-            fetch(`/api/getMunicipalities?districtId=${districtId}`)
+            fetch(`/api/getMunicipalities/${districtId}`)
                 .then(response => response.json())
                 .then(data => {
                     if (data.success) {
@@ -100,8 +104,8 @@
                         municipalitySelect.innerHTML = '<option value="" disabled selected>Select your municipality</option>'; // Clear existing options
                         municipalities.forEach(municipality => {
                             const option = document.createElement('option');
-                            option.value = municipality.id;
-                            option.textContent = municipality.name;
+                            option.value = municipality.municipality_id;
+                            option.textContent = municipality.municipality_name;
                             municipalitySelect.appendChild(option);
                         });
                     } else {
@@ -110,5 +114,28 @@
                 })
                 .catch(error => console.error('Error fetching municipalities:', error));
         });
+
+        // Handle form submission
+        document.getElementById('eventForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+            const path = window.location.pathname;
+            const pathComponents = path.split('/');
+            const performanceTypeId = pathComponents[pathComponents.length - 1];
+
+            console.log('Performance Type ID:', performanceTypeId);
+
+            fetch(`/api/artistPerformance/calculate-cost/${performanceTypeId}, {
+                body: new FormData(this)`)
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        alert(`Cost: NPR ${data.data.cost}`);
+                    } else {
+                        console.error('Failed to calculate cost:', data.message);
+                    }
+                })
+                .catch(error => console.error('Error calculating cost:', error));
+        });
     });
+
 </script>

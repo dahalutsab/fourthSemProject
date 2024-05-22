@@ -54,4 +54,16 @@ class PerformanceTypesService
     {
         $this->performanceTypeRepository->deleteArtistPerformance($id);
     }
+
+    public function getCostPerHour(float|int|string $id, $eventStartTime, $eventEndTime): float|int|string
+    {
+        if (!is_numeric($id)) {
+            throw new \InvalidArgumentException("Invalid performance type ID: $id");
+        }
+        $cost = $this->performanceTypeRepository->getCostPerHour($id);
+        $eventStartTime = strtotime($eventStartTime);
+        $eventEndTime = strtotime($eventEndTime);
+        $hours = ($eventEndTime - $eventStartTime) / 3600;
+        return $cost * $hours;
+    }
 }

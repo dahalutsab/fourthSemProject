@@ -102,8 +102,8 @@ document.addEventListener('DOMContentLoaded', function() {
                             selectButton.textContent = 'Select';
                             selectButton.classList.add('btn', 'btn-primary');
                             selectButton.addEventListener('click', function() {
-                                // Handle selection of performance type
                                 console.log('Selected performance type:', performanceType);
+                                window.location.href = `/dashboard/book-artist/${performanceType.performance_type_id}`;
                             });
                             actionCell.appendChild(selectButton);
                             row.appendChild(actionCell);

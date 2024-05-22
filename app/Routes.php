@@ -2,6 +2,7 @@
 declare(strict_types=1);
 
 use App\controllers\ErrorViewController;
+use App\controllers\LocationController;
 use App\controllers\PerformanceTypesController;
 use App\Interceptor\Interceptor;
 use App\Router;
@@ -120,7 +121,13 @@ $router->get('/api/artistPerformance/get-artist-performance/{artistId}', [Perfor
 $router->post('/api/artistPerformance/update-artist-performance/{id}', [PerformanceTypesController::class, 'updateArtistPerformance']);
 $router->post('/api/artistPerformance/delete-artist-performance/{id}', [PerformanceTypesController::class, 'deleteArtistPerformance']);
 
-$router->get('/dashboard/book-artist', [DashboardViewController::class, 'bookArtist']);
+$router->get('/dashboard/book-artist/{booking_type_id}', [DashboardViewController::class, 'bookArtist']);
+$router->post('/api/artistPerformance/calculate-cost/{performance_type_id}', [PerformanceTypesController::class, 'getCostPerHour']);
+
+//locations
+$router->get('/api/getProvinces', [LocationController::class, 'getAllProvinces']);
+$router->get('/api/getDistricts/{provinceId}', [LocationController::class, 'getDistrictsByProvinceId']);
+$router->get('/api/getMunicipalities/{districtId}', [LocationController::class, 'getMunicipalitiesByDistrictId']);
 // route to access denied
 $router->get('/access-denied', [ErrorViewController::class, 'accessDenied']);
 // route to 404 if any error

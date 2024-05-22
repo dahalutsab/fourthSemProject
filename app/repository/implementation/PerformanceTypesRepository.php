@@ -128,4 +128,22 @@ class PerformanceTypesRepository
         $stmt->bind_param("i", $id);
         $stmt->execute();
     }
+
+    public function getCostPerHour(float|int|string $id)
+    {
+        $stmt = $this->db->getConnection()->prepare(
+            "SELECT cost_per_hour FROM performance_types WHERE performance_type_id = ?"
+        );
+
+        if ($stmt === false) {
+            die('Prepare failed: ' . $this->db->getConnection()->error);
+        }
+
+        $stmt->bind_param("i", $id);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        $row = $result->fetch_assoc();
+
+        return $row['cost_per_hour'];
+    }
 }
