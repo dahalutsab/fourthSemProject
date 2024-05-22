@@ -49,7 +49,7 @@
         </div>
         <div class="col-lg-4">
             <div class="img-block bg-gradient shadow br-30 text-center">
-                <img src="<?= BASE_IMAGE_PATH ?>hero-image.png" alt="image">
+                <img src="<?=BASE_URL?>assets/images/hero-image.png" alt="image">
             </div>
         </div>
     </div>
