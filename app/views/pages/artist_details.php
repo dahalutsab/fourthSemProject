@@ -58,7 +58,7 @@
                 </div>
                 <div class="hero-button">
                     <a href="#" class="cus-btn primary m-lg-2 m-md-1"><i class="fa fa-message"></i> Message</a>
-                    <a href="#" class="cus-btn primary"><i class="fa fa-calendar-check"></i> Book</a>
+                    <a href="#" class="cus-btn primary book-artist" id="open_book_modal"  data-bs-toggle="modal" data-bs-target="#bookArtistModal"><i class="fa fa-calendar-check"></i> Book</a>
                 </div>
             </div>
         </div>
@@ -94,6 +94,33 @@
                         </div>
                     </div>
                 </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal for booking artist -->
+<div class="modal fade" id="bookArtistModal" tabindex="-1" aria-labelledby="bookArtistModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="bookArtistModalLabel">Book Artist</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <table class="table" id="artist_booking_performance_list">
+                    <thead>
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Performance Type</th>
+                        <th scope="col">Cost Per Hour</th>
+                        <th scope="col">Action</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <!-- Performance types will be dynamically populated -->
+                    </tbody>
+                </table>
             </div>
         </div>
     </div>

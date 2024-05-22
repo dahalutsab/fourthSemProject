@@ -59,12 +59,12 @@
     -webkit-text-fill-color: transparent;
 }
 
-.carousel-inner {
-    height: 300px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
+/*.carousel-inner {*/
+/*    height: 300px;*/
+/*    display: flex;*/
+/*    justify-content: center;*/
+/*    align-items: center;*/
+/*}*/
 
 .carouselVideoExample .carousel-inner {
     height: 100%;
