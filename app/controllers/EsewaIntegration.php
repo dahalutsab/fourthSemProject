@@ -4,6 +4,7 @@ namespace App\controllers;
 
 use App\Response\ApiResponse;
 use App\service\implementation\EsewaIntegrationService;
+use Exception;
 
 class EsewaIntegration
 {
@@ -18,11 +19,15 @@ class EsewaIntegration
         try {
             if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 $requestData = json_decode(file_get_contents('php://input'), true);
-                $totalAmount = $requestData['totalAmount'];
-                $transactionUuid = $requestData['transactionUuid'];
-                $productCode = $requestData['productCode'];
-                $signature = $this->esewaIntegrationService->generateSignature($totalAmount, $transactionUuid, $productCode);
-                return ApiResponse::success($signature, "Signature generated successfully");
+                if (!isset($requestData['message'])) {
+                    throw new Exception("Missing 'message' field in request body");
+                }
+                $message = $requestData['message'];
+                $secretKey = "8gBm/:&EnhH.1/q";
+                $hash = hash_hmac('sha256', $message, $secretKey, true);
+                $hashed = base64_encode($hash);
+//                $signature = $this->esewaIntegrationService->generateSignature($totalAmount, $transactionUuid, $productCode);
+                return ApiResponse::success($hashed, "Signature generated successfully");
             } else {
                 return ApiResponse::error("Invalid request method");
             }

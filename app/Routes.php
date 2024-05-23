@@ -131,6 +131,9 @@ $router->get('/api/getMunicipalities/{districtId}', [LocationController::class, 
 
 //esewa
 $router->post('/api/generate-signature', [\App\controllers\EsewaIntegration::class, 'generateSignature']);
+//payment success/failure
+$router->get('/dashboard/payment/success', [DashboardViewController::class, 'paymentSuccess']);
+$router->get('/dashboard/payment/failure', [DashboardViewController::class, 'paymentFailure']);
 // route to access denied
 $router->get('/access-denied', [ErrorViewController::class, 'accessDenied']);
 // route to 404 if any error

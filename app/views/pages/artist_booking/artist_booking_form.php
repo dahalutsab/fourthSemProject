@@ -11,7 +11,7 @@
     <form method="post" id="eventForm">
         <div class="mb-3">
             <label for="province" class="form-label">Province</label>
-            <select class="form-select" id="province" name="province" required>
+            <select class="form-select" id="province" name="province" >
                 <option value="" disabled selected>Select your province</option>
                 <!-- Options will be populated dynamically -->
             </select>
@@ -19,7 +19,7 @@
 
         <div class="mb-3">
             <label for="district" class="form-label">District</label>
-            <select class="form-select" id="district" name="district" required>
+            <select class="form-select" id="district" name="district" >
                 <option value="" disabled selected>Select your district</option>
                 <!-- Options will be populated dynamically -->
             </select>
@@ -27,7 +27,7 @@
 
         <div class="mb-3">
             <label for="municipality" class="form-label">Municipality</label>
-            <select class="form-select" id="municipality" name="municipality" required>
+            <select class="form-select" id="municipality" name="municipality" >
                 <option value="" disabled selected>Select your municipality</option>
                 <!-- Options will be populated dynamically -->
             </select>
@@ -35,12 +35,12 @@
 
         <div class="mb-3">
             <label for="localArea" class="form-label">Tole/Local Area</label>
-            <input type="text" class="form-control" id="localArea" name="localArea" required>
+            <input type="text" class="form-control" id="localArea" name="localArea" >
         </div>
 
         <div class="mb-3">
             <label for="eventDate" class="form-label">Event Date</label>
-            <input type="date" class="form-control" id="eventDate" name="eventDate" required>
+            <input type="date" class="form-control" id="eventDate" name="eventDate" >
         </div>
 
         <div class="mb-3">
@@ -190,24 +190,29 @@
         document.getElementById('proceedToPayment').addEventListener('click', function() {
             const amount = document.getElementById('advanceAmount').textContent;
             const tax_amount = 0;
-            const total_amount = parseFloat(amount) + tax_amount;
+            let total_amount = parseFloat(amount) + tax_amount;
+            total_amount = total_amount.toFixed(0);
             const transaction_uuid = generateUniqueTransactionUuid();
             const product_code = 'EPAYTEST';
             const product_service_charge = 0;
             const product_delivery_charge = 0;
-            const success_url = 'https://google.com';
-            const failure_url = 'https://google.com';
+            const success_url = 'http://openmichub.com/dashboard/payment/success';
+            const failure_url = 'http://openmichub.com/dashboard/payment/failure';
             const signed_field_names = "total_amount,transaction_uuid,product_code";
 
+            // print the length of "YVweM7CgAtZW5tRKica/BIeYFvpSj09AaInsulqNKHk="
+            console.log('Length of signature:', 'YVweM7CgAtZW5tRKica/BIeYFvpSj09AaInsulqNKHk='.length);
+            console.log('Total Amount:', total_amount);
+            console.log('Transaction UUID:', transaction_uuid);
+            console.log('Product Code:', product_code);
             fetch('/api/generate-signature', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
                 },
                 body: JSON.stringify({
-                    totalAmount: total_amount,
-                    transactionUuid: transaction_uuid,
-                    productCode: product_code
+                    // total_amount=100,transaction_uuid=11-201-13,product_code=EPAYTEST
+                    message: `total_amount=${total_amount},transaction_uuid=${transaction_uuid},product_code=${product_code}`
                 })
             })
                 .then(response => response.json())
@@ -219,12 +224,13 @@
                         // Create a form dynamically
                         const form = document.createElement('form');
                         form.method = 'POST';
-                        form.action = 'https://uat.esewa.com.np/epay/main'; // Use appropriate URL for production
+                        form.action = 'https://rc-epay.esewa.com.np/api/epay/main/v2/form';
 
                         // Enclose fields object within curly braces
                         const fields = {
                             tax_amount: tax_amount,
                             total_amount: total_amount,
+                            amount: total_amount,
                             transaction_uuid: transaction_uuid,
                             product_code: product_code,
                             product_service_charge: product_service_charge,
@@ -257,7 +263,7 @@
         });
 
         function generateUniqueTransactionUuid() {
-            return 'EPAYTEST' + Math.random().toString(36).substr(2, 9).toUpperCase();
+            return 'openmichub' + Math.random().toString(36).substr(2, 9).toUpperCase();
         }
     });
 </script>

@@ -54,6 +54,20 @@ class DashboardViewController
         $this->render(compact('pageTitle', 'content'));
     }
 
+    public function paymentSuccess(): void
+    {
+        $pageTitle = 'Payment Success';
+        $content = 'payment/payment_success';
+        $this->render(compact('pageTitle', 'content'));
+    }
+
+    public function paymentFailure(): void
+    {
+        $pageTitle = 'Payment Failed';
+        $content = 'payment/payment_failure';
+        $this->render(compact('pageTitle', 'content'));
+    }
+
     private function render(array $data): void
     {
         extract($data);

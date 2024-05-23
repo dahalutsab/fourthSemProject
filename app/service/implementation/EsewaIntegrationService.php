@@ -5,7 +5,7 @@ namespace App\service\implementation;
 class EsewaIntegrationService
 {
 
-    public function generateSignature(string $totalAmount, string $transactionUuid, string $productCode): string
+    public function generateSignature(string $totalAmount, string $transactionUuid, $productCode): string
     {
         $secretKey = "8gBm/:&EnhH.1/q";
         $signedString = $totalAmount . "," . $transactionUuid . "," . $productCode;
