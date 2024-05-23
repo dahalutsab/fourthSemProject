@@ -190,14 +190,14 @@
         document.getElementById('proceedToPayment').addEventListener('click', function() {
             const amount = document.getElementById('advanceAmount').textContent;
             const tax_amount = 0;
-            const total_amount = amount;
+            const total_amount = parseFloat(amount) + tax_amount;
             const transaction_uuid = generateUniqueTransactionUuid();
-            const product_code = 'artist_booking';
+            const product_code = 'EPAYTEST';
             const product_service_charge = 0;
             const product_delivery_charge = 0;
-            const success_url = 'openmichub.com';
+            const success_url = 'https://google.com';
             const failure_url = 'https://google.com';
-            const signed_field_names = 'total_amount,transaction_uuid,product_code';
+            const signed_field_names = "total_amount,transaction_uuid,product_code";
 
             fetch('/api/generate-signature', {
                 method: 'POST',
@@ -205,7 +205,7 @@
                     'Content-Type': 'application/json'
                 },
                 body: JSON.stringify({
-                    totalAmount: amount,
+                    totalAmount: total_amount,
                     transactionUuid: transaction_uuid,
                     productCode: product_code
                 })
@@ -219,20 +219,23 @@
                         // Create a form dynamically
                         const form = document.createElement('form');
                         form.method = 'POST';
-                        form.action = 'https://rc-epay.esewa.com.np/api/epay/main/v2/form';
+                        form.action = 'https://uat.esewa.com.np/epay/main'; // Use appropriate URL for production
 
+                        // Enclose fields object within curly braces
                         const fields = {
-                            tax_amount,
-                            total_amount,
-                            transaction_uuid,
-                            product_code,
-                            product_service_charge,
-                            product_delivery_charge,
-                            success_url,
-                            failure_url,
-                            signed_field_names,
-                            signature
+                            tax_amount: tax_amount,
+                            total_amount: total_amount,
+                            transaction_uuid: transaction_uuid,
+                            product_code: product_code,
+                            product_service_charge: product_service_charge,
+                            product_delivery_charge: product_delivery_charge,
+                            success_url: success_url,
+                            failure_url: failure_url,
+                            signed_field_names: signed_field_names,
+                            signature: signature
                         };
+
+                        // Loop through fields object and create hidden input fields
                         for (const [key, value] of Object.entries(fields)) {
                             const input = document.createElement('input');
                             input.type = 'hidden';
@@ -244,13 +247,15 @@
                         // Append the form to the body and submit it
                         document.body.appendChild(form);
                         form.submit();
+                    }
 
-                    } else {
+                    else {
                         console.error('Failed to generate signature:', data.message);
                     }
                 })
                 .catch(error => console.error('Error generating signature:', error));
         });
+
         function generateUniqueTransactionUuid() {
             return 'EPAYTEST' + Math.random().toString(36).substr(2, 9).toUpperCase();
         }

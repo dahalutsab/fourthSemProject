@@ -13,7 +13,7 @@ class EsewaIntegration
     {
         $this->esewaIntegrationService = new EsewaIntegrationService();
     }
-    public function generateSignature(): null
+    public function generateSignature(): ?string
     {
         try {
             if ($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -21,7 +21,7 @@ class EsewaIntegration
                 $totalAmount = $requestData['totalAmount'];
                 $transactionUuid = $requestData['transactionUuid'];
                 $productCode = $requestData['productCode'];
-                $signature = $this->esewaIntegrationService-> generateSignature($totalAmount, $transactionUuid, $productCode);
+                $signature = $this->esewaIntegrationService->generateSignature($totalAmount, $transactionUuid, $productCode);
                 return ApiResponse::success($signature, "Signature generated successfully");
             } else {
                 return ApiResponse::error("Invalid request method");
