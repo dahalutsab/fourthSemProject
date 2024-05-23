@@ -45,6 +45,10 @@ $loginRequiredPaths = [
     '/api/artistDetails/updateProfile',
     '/api/artistDetails/updateProfilePicture'
 ];
+//$loginRequiredPaths = [
+//    '/dashboard',
+//    '/dashboard/.*' // This pattern matches all paths starting with '/dashboard/'
+//];
 // Instantiate the Interceptor
 $interceptor = new Interceptor($roleRestrictedPaths, $loginRequiredPaths);
 

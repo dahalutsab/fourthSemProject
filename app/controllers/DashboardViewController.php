@@ -22,7 +22,7 @@ class DashboardViewController
     public function addMedia(): void
     {
         $pageTitle = 'admin_media/Artist Media';
-        $content = 'add-media';
+        $content = 'admin_media/add_artist_media';
         $this->render(compact('pageTitle', 'content'));
     }
 
