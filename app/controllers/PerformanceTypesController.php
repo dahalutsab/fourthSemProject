@@ -95,7 +95,7 @@ class PerformanceTypesController
         }
     }
 
-    public function getCostPerHour()
+    public function getCostPerHour(): null
     {
         try {
             // Get the JSON payload from the POST request

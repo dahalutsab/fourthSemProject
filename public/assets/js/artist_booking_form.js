@@ -1,4 +1,10 @@
 document.addEventListener('DOMContentLoaded', function() {
+    // don't allow past dates for event date
+    const today = new Date().toISOString().split('T')[0];
+    document.getElementById('eventDate').setAttribute('min', today);
+
+
+
     // Fetch provinces from backend and populate the province dropdown
     fetch('/api/getProvinces')
         .then(response => response.json())
@@ -19,7 +25,7 @@ document.addEventListener('DOMContentLoaded', function() {
         .catch(error => console.error('Error fetching provinces:', error));
 
     // Fetch districts based on selected province
-    document.getElementById('province').addEventListener('change', function() {
+    document.getElementById('province').addEventListener('change', function () {
         const provinceId = this.value;
         fetch(`/api/getDistricts/${provinceId}`)
             .then(response => response.json())
@@ -42,7 +48,7 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 
     // Fetch municipalities based on selected district
-    document.getElementById('district').addEventListener('change', function() {
+    document.getElementById('district').addEventListener('change', function () {
         const districtId = this.value;
         fetch(`/api/getMunicipalities/${districtId}`)
             .then(response => response.json())
@@ -65,7 +71,7 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 
     // Handle form submission
-    document.getElementById('eventForm').addEventListener('submit', function(event) {
+    document.getElementById('eventForm').addEventListener('submit', function (event) {
         event.preventDefault();
         const path = window.location.pathname;
         const pathComponents = path.split('/');
@@ -103,79 +109,43 @@ document.addEventListener('DOMContentLoaded', function() {
             .catch(error => console.error('Error calculating cost:', error));
     });
 
-    // Handle Proceed to Payment button click
+    // Handle save booking button click
     document.getElementById('proceedToPayment').addEventListener('click', function() {
-        const amount = document.getElementById('advanceAmount').textContent;
-        const tax_amount = 0;
-        let total_amount = parseFloat(amount) + tax_amount;
-        total_amount = total_amount.toFixed(0);
-        const transaction_uuid = generateUniqueTransactionUuid();
-        const product_code = 'EPAYTEST';
-        const product_service_charge = 0;
-        const product_delivery_charge = 0;
-        const success_url = 'http://openmichub.com/dashboard/payment/success';
-        const failure_url = 'http://openmichub.com/dashboard/payment/failure';
-        const signed_field_names = "total_amount,transaction_uuid,product_code";
+        const path = window.location.pathname;
+        const pathComponents = path.split('/');
+        const performanceTypeId = pathComponents[pathComponents.length - 1];
 
-
-        fetch('/api/generate-signature', {
+        fetch(`/api/artistPerformance/book/${performanceTypeId}`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify({
-                // total_amount=100,transaction_uuid=11-201-13,product_code=EPAYTEST
-                message: `total_amount=${total_amount},transaction_uuid=${transaction_uuid},product_code=${product_code}`
+                province_id: document.getElementById('province').value,
+                district_id: document.getElementById('district').value,
+                municipality_id: document.getElementById('municipality').value,
+                local_area: document.getElementById('localArea').value,
+                event_date: document.getElementById('eventDate').value,
+                event_start_time: document.getElementById('eventStartTime').value,
+                event_end_time: document.getElementById('eventEndTime').value,
+                total_cost: document.getElementById('totalCost').textContent,
+                advance_amount: document.getElementById('advanceAmount').textContent,
+                remaining_amount: document.getElementById('remainingAmount').textContent
             })
         })
             .then(response => response.json())
             .then(data => {
                 if (data.success) {
-                    const signature = data.data;
-                    console.log('Signature:', signature);
+                    const bookingId = data.data.bookingId;
 
-                    // Create a form dynamically
-                    const form = document.createElement('form');
-                    form.method = 'POST';
-                    form.action = 'https://rc-epay.esewa.com.np/api/epay/main/v2/form';
-
-                    // Enclose fields object within curly braces
-                    const fields = {
-                        tax_amount: tax_amount,
-                        total_amount: total_amount,
-                        amount: total_amount,
-                        transaction_uuid: transaction_uuid,
-                        product_code: product_code,
-                        product_service_charge: product_service_charge,
-                        product_delivery_charge: product_delivery_charge,
-                        success_url: success_url,
-                        failure_url: failure_url,
-                        signed_field_names: signed_field_names,
-                        signature: signature
-                    };
-
-                    // Loop through fields object and create hidden input fields
-                    for (const [key, value] of Object.entries(fields)) {
-                        const input = document.createElement('input');
-                        input.type = 'hidden';
-                        input.name = key;
-                        input.value = value;
-                        form.appendChild(input);
-                    }
-
-                    // Append the form to the body and submit it
-                    document.body.appendChild(form);
-                    form.submit();
-                }
-
-                else {
-                    console.error('Failed to generate signature:', data.message);
+                    alert('Booking saved successfully! with booking id: ' + bookingId);
+                    window.location = '/dashboard/payment/' + bookingId;
+                } else {
+                    toastr.error( data.error);
+                    console.error('Failed to save booking:', data.message);
                 }
             })
-            .catch(error => console.error('Error generating signature:', error));
+            .catch(error => console.error('Error saving booking:', error));
     });
 
-    function generateUniqueTransactionUuid() {
-        return 'openmichub' + Math.random().toString(36).substr(2, 9).toUpperCase();
-    }
 });

@@ -85,10 +85,43 @@ CREATE TABLE Artist_Performance (
                                     duration_hours DECIMAL(5, 2),
                                     date DATE,
                                     event_name VARCHAR(255),
-#                                     location_id INT,
                                     user_id INT,
                                     FOREIGN KEY (artist_id) REFERENCES users(id),
                                     FOREIGN KEY (performance_type_id) REFERENCES Performance_Types(performance_type_id),
-#                                     FOREIGN KEY (location_id) REFERENCES Locations(location_id),
                                     FOREIGN KEY (user_id) REFERENCES Users(id)
+);
+
+
+CREATE TABLE bookings (
+                          booking_id INT PRIMARY KEY AUTO_INCREMENT,
+                          user_id INT NOT NULL,
+                          artist_id INT NOT NULL,
+                          province_id INT NOT NULL,
+                          district_id INT NOT NULL,
+                          municipality_id INT NOT NULL,
+                          local_area VARCHAR(255),
+                          event_date DATE NOT NULL,
+                          event_start_time TIME NOT NULL,
+                          event_end_time TIME NOT NULL,
+                          total_cost DECIMAL(10, 2) NOT NULL,
+                          advance_amount DECIMAL(10, 2) NOT NULL,
+                          remaining_amount DECIMAL(10, 2) NOT NULL,
+                          performance_type_id INT NOT NULL,
+                          status ENUM('approved', 'pending', 'declined') NOT NULL DEFAULT 'pending',
+                          created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+                          FOREIGN KEY (user_id) REFERENCES users(id),
+                          FOREIGN KEY (artist_id) REFERENCES users(id),
+                          FOREIGN KEY (province_id) REFERENCES provinces(province_id),
+                          FOREIGN KEY (district_id) REFERENCES districts(district_id),
+                          FOREIGN KEY (municipality_id) REFERENCES municipalities(municipality_id)
+);
+
+CREATE TABLE transactions (
+                              transaction_id INT PRIMARY KEY AUTO_INCREMENT,
+                              booking_id INT NOT NULL,
+                              transaction_uuid VARCHAR(255) NOT NULL,
+                              payment_service VARCHAR(50) NOT NULL, -- 'esewa' or 'khalti'
+                              status ENUM('success', 'failure', 'pending', 'cancelled') NOT NULL,
+                              created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+                              FOREIGN KEY (booking_id) REFERENCES bookings(booking_id)
 );

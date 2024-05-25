@@ -31,7 +31,6 @@ small {
     color: var(--button-color);
 }
 
-
 .card {
     background-color: var(--card-color);
     color: var(--text-color);
@@ -41,4 +40,3 @@ small {
     padding: 30px;
     transition: all 0.3s ease;
 }
-

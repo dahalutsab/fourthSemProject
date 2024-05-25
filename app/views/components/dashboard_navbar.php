@@ -56,7 +56,7 @@
 
                     <li class="message-item">
                         <a href="#">
-                            <img src="/public/assets/images/openMicLogo.png" alt="" class="rounded-circle">
+                            <img src="<?=BASE_IMAGE_PATH?>openMicLogo.png" class="rounded-circle" alt="">
                             <div>
                                 <h4>Pasang Gelbu</h4>
                                 <p>Wanna collab? Lets...</p>
@@ -70,10 +70,10 @@
 
                     <li class="message-item">
                         <a href="#">
-                            <img src="/public/assets/images/openMicLogo.png" alt="" class="rounded-circle">
+                            <img src="<?=BASE_IMAGE_PATH?>openMicLogo.png" alt="" class="rounded-circle">
                             <div>
                                 <h4>Bishal Acharys</h4>
-                                <p>Lets have a cup of coffee ...</p>
+                                <p>Let's have a cup of coffee ...</p>
                                 <p>8 hrs. ago</p>
                             </div>
                         </a>
@@ -150,4 +150,5 @@
     </nav><!-- End Icons Navigation -->
 
 </header>
+
 <script src="<?=BASE_JS_PATH?>dashboard.js"></script>

@@ -54,6 +54,13 @@ class DashboardViewController
         $this->render(compact('pageTitle', 'content'));
     }
 
+    public function paymentPage(): void
+    {
+        $pageTitle = 'Payment';
+        $content = 'payment/payment_page';
+        $this->render(compact('pageTitle', 'content'));
+    }
+
     public function paymentSuccess(): void
     {
         $pageTitle = 'Payment Success';

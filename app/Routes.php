@@ -1,7 +1,9 @@
 <?php
 declare(strict_types=1);
 
+use App\controllers\BookingController;
 use App\controllers\ErrorViewController;
+use App\controllers\EsewaIntegration;
 use App\controllers\LocationController;
 use App\controllers\PerformanceTypesController;
 use App\Interceptor\Interceptor;
@@ -35,20 +37,20 @@ $roleRestrictedPaths = [
 ];
 
 
-$loginRequiredPaths = [
-    '/dashboard',
-    '/dashboard/media/add',
-    '/dashboard/media/manage',
-    '/api/media/get-media-by-user',
-    '/dashboard/profile',
-    '/profile',
-    '/api/artistDetails/updateProfile',
-    '/api/artistDetails/updateProfilePicture'
-];
 //$loginRequiredPaths = [
 //    '/dashboard',
-//    '/dashboard/.*' // This pattern matches all paths starting with '/dashboard/'
+//    '/dashboard/media/add',
+//    '/dashboard/media/manage',
+//    '/api/media/get-media-by-user',
+//    '/dashboard/profile',
+//    '/profile',
+//    '/api/artistDetails/updateProfile',
+//    '/api/artistDetails/updateProfilePicture'
 //];
+$loginRequiredPaths = [
+    '/dashboard',
+    '/dashboard/.*' // This pattern matches all paths starting with '/dashboard/'
+];
 // Instantiate the Interceptor
 $interceptor = new Interceptor($roleRestrictedPaths, $loginRequiredPaths);
 
@@ -133,8 +135,13 @@ $router->get('/api/getProvinces', [LocationController::class, 'getAllProvinces']
 $router->get('/api/getDistricts/{provinceId}', [LocationController::class, 'getDistrictsByProvinceId']);
 $router->get('/api/getMunicipalities/{districtId}', [LocationController::class, 'getMunicipalitiesByDistrictId']);
 
+//bookings
+$router->post('/api/artistPerformance/book/{performanceTypeId}', [BookingController::class, 'saveBooking']);
+$router->get('/dashboard/payment/{bookingId}', [DashboardViewController::class, 'paymentPage']);
+$router->get('/api/booking/get-booking/{bookingId}', [BookingController::class, 'getBookingById']);
+
 //esewa
-$router->post('/api/generate-signature', [\App\controllers\EsewaIntegration::class, 'generateSignature']);
+$router->post('/api/generate-signature', [EsewaIntegration::class, 'generateSignature']);
 //payment success/failure
 $router->get('/dashboard/payment/success', [DashboardViewController::class, 'paymentSuccess']);
 $router->get('/dashboard/payment/failure', [DashboardViewController::class, 'paymentFailure']);

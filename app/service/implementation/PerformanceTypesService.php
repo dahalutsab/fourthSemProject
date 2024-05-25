@@ -60,17 +60,41 @@ class PerformanceTypesService
         if (!is_numeric($id)) {
             throw new \InvalidArgumentException("Invalid performance type ID: $id");
         }
+
+        // Retrieve the cost per hour for the given performance type
         $cost = $this->performanceTypeRepository->getCostPerHour($id);
+
+        // Convert start and end times to timestamps
         $eventStartTime = strtotime($eventStartTime);
         $eventEndTime = strtotime($eventEndTime);
-        $hours = ($eventEndTime - $eventStartTime) / 3600;
-        $totalCost = $cost * $hours;
-        $advanceAmount = $totalCost * 0.25;
-        $totalCost = number_format($totalCost, 2);
-        $advanceAmount = number_format($advanceAmount, 2);
 
-//        calculate remaining amount by converting total and advance amount to number
-        $remainingAmount = number_format(floatval($totalCost) - floatval($advanceAmount), 2);
-        return ['totalCost' => $totalCost, 'advanceAmount' => $advanceAmount, 'remainingAmount' => $remainingAmount];
+        // Ensure start time is before end time
+        if ($eventStartTime > $eventEndTime) {
+            $eventEndTime += 86400; // Add 24 hours (in seconds)
+        }
+
+        // Calculate duration in hours
+        $hours = ($eventEndTime - $eventStartTime) / 3600;
+
+        // Compute total cost
+        $totalCost = $cost * $hours;
+
+        // Determine advance amount (25% of total cost)
+        $advanceAmount = $totalCost * 0.25;
+
+        // Format amounts with two decimal places
+        $totalCostFormatted = number_format($totalCost, 2);
+        $advanceAmountFormatted = number_format($advanceAmount, 2);
+
+        // Calculate remaining amount
+        $remainingAmount = $totalCost - $advanceAmount;
+        $remainingAmountFormatted = number_format($remainingAmount, 2);
+
+        return [
+            'totalCost' => $totalCostFormatted,
+            'advanceAmount' => $advanceAmountFormatted,
+            'remainingAmount' => $remainingAmountFormatted,
+        ];
     }
+
 }

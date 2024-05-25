@@ -53,19 +53,19 @@ class Interceptor
 
 
 
-    private function requiresLogin(string $path): bool
-    {
-        return in_array($path, $this->loginRequiredPaths);
-    }
 //    private function requiresLogin(string $path): bool
 //    {
-//        foreach ($this->loginRequiredPaths as $pattern) {
-//            if (preg_match('#^' . $pattern . '$#', $path)) {
-//                return true;
-//            }
-//        }
-//        return false;
+//        return in_array($path, $this->loginRequiredPaths);
 //    }
+    private function requiresLogin(string $path): bool
+    {
+        foreach ($this->loginRequiredPaths as $pattern) {
+            if (preg_match('#^' . $pattern . '$#', $path)) {
+                return true;
+            }
+        }
+        return false;
+    }
 
     private function isRestricted(string $path, ?string $userRole): bool
     {

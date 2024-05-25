@@ -3,7 +3,7 @@
         'name' => 'legion/open-mic-hub',
         'pretty_version' => 'dev-main',
         'version' => 'dev-main',
-        'reference' => '47cd25b126aa5d34273b9a1790817e114a5ea44f',
+        'reference' => '83cbcbddbe1c1970ddad5704f9b36dd15e4ec37d',
         'type' => 'library',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
@@ -13,7 +13,7 @@
         'legion/open-mic-hub' => array(
             'pretty_version' => 'dev-main',
             'version' => 'dev-main',
-            'reference' => '47cd25b126aa5d34273b9a1790817e114a5ea44f',
+            'reference' => '83cbcbddbe1c1970ddad5704f9b36dd15e4ec37d',
             'type' => 'library',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),
