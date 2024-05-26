@@ -1,4 +1,3 @@
-// Handle Proceed to Payment button click
 document.getElementById('esewa_select').addEventListener('click', function() {
     // Get booking ID from URL
     const url = window.location.href;
@@ -78,6 +77,74 @@ document.getElementById('esewa_select').addEventListener('click', function() {
                         }
                     })
                     .catch(error => console.error('Error generating signature:', error));
+            } else {
+                console.error('Failed to fetch booking:', data.message);
+            }
+        })
+        .catch(error => console.error('Error fetching booking:', error));
+});
+
+document.getElementById('khalti_select').addEventListener('click', function() {
+    // Get booking ID from URL
+    const url = window.location.href;
+    const bookingId = url.substring(url.lastIndexOf('/') + 1);
+
+    fetch(`/api/booking/get-booking/${bookingId}`, {
+        method: 'GET',
+        headers: {
+            'Content-Type': 'application/json'
+        }
+    })
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                const booking = data.data;
+                const amount = parseFloat(booking.advance_amount) * 100;
+
+                const config = {
+                    "publicKey": "test_public_key_2bfcf7b3b7b94b5b8b3f3b3b7b7b7b7b",
+                    "productIdentity": bookingId,
+                    "productName": "Booking Payment",
+                    "productUrl": window.location.href,
+                    "eventHandler": {
+                        onSuccess(payload) {
+                            console.log(payload);
+
+                            fetch('/api/booking/khalti-payment', {
+                                method: 'POST',
+                                headers: {
+                                    'Content-Type': 'application/json'
+                                },
+                                body: JSON.stringify({
+                                    transaction_id: payload.idx,
+                                    amount: payload.amount,
+                                    product_identity: payload.product_identity,
+                                    product_name: payload.product_name,
+                                    token: payload.token
+                                })
+                            })
+                                .then(response => response.json())
+                                .then(data => {
+                                    if (data.success) {
+                                        alert('Payment successful!');
+                                        window.location.href = '/dashboard/payment/success';
+                                    } else {
+                                        alert('Payment verification failed. Please try again.');
+                                    }
+                                })
+                                .catch(error => console.error('Error verifying payment:', error));
+                        },
+                        onError(error) {
+                            console.error(error);
+                        },
+                        onClose() {
+                            console.log('Widget is closing');
+                        }
+                    }
+                };
+
+                const checkout = new KhaltiCheckout(config);
+                checkout.show({ amount: amount });
             } else {
                 console.error('Failed to fetch booking:', data.message);
             }

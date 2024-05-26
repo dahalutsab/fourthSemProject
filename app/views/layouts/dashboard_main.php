@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><?php echo $pageTitle ?? 'Open Mic Hub'; ?></title>
 
-    <link rel="stylesheet" href="<?= BASE_CSS_PATH ?>dashboard_toggle.css">
     <link rel="stylesheet" href="<?= BASE_CSS_PATH ?>bootstrap.min.css">
     <link rel="stylesheet" href="<?= BASE_CSS_PATH ?>dashboard_main.css">
     <link rel="stylesheet" href="<?= BASE_CSS_PATH ?>dashboard_profile.css">
@@ -43,6 +42,5 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <script src="<?= BASE_URL ?>assets/js/ajaxHandler.js"></script>
 <script src="<?= BASE_URL ?>assets/js/bootstrap.bundle.min.js"></script>
-
 </body>
 </html>

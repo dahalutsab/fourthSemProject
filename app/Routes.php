@@ -7,6 +7,7 @@ use App\controllers\EsewaIntegration;
 use App\controllers\LocationController;
 use App\controllers\PerformanceTypesController;
 use App\Interceptor\Interceptor;
+use App\payment\KhaltiIntegration;
 use App\Router;
 use App\controllers\AuthController;
 use App\controllers\CategoryController;
@@ -145,6 +146,9 @@ $router->post('/api/generate-signature', [EsewaIntegration::class, 'generateSign
 //payment success/failure
 $router->get('/dashboard/payment/success', [DashboardViewController::class, 'paymentSuccess']);
 $router->get('/dashboard/payment/failure', [DashboardViewController::class, 'paymentFailure']);
+
+$router->post('/payment/khalti', [KhaltiIntegration::class, 'initiate']);
+$router->get('/payment/khalti-response', [KhaltiIntegration::class, 'response']);
 // route to access denied
 $router->get('/access-denied', [ErrorViewController::class, 'accessDenied']);
 // route to 404 if any error
