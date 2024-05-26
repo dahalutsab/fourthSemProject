@@ -1,23 +1,23 @@
 <?php
 declare(strict_types=1);
 
-use App\controllers\BookingController;
-use App\controllers\ErrorViewController;
-use App\controllers\EsewaIntegration;
-use App\controllers\LocationController;
-use App\controllers\PerformanceTypesController;
-use App\Interceptor\Interceptor;
-use App\payment\KhaltiIntegration;
-use App\Router;
+use App\Controllers\ArtistDetailsController;
 use App\controllers\AuthController;
+use App\controllers\BookingController;
 use App\controllers\CategoryController;
 use App\controllers\DashboardViewController;
+use App\controllers\ErrorViewController;
+use App\controllers\LocationController;
 use App\controllers\MediaController;
+use App\controllers\PerformanceTypesController;
 use App\controllers\RoleController;
 use App\controllers\UserController;
-use App\Controllers\ArtistDetailsController;
 use App\controllers\UserDetailsController;
 use App\controllers\ViewController;
+use App\Interceptor\Interceptor;
+use App\payment\EsewaIntegration;
+use App\payment\KhaltiIntegration;
+use App\Router;
 
 require_once __DIR__ . '/../vendor/autoload.php';
 $admin = 'ADMIN';

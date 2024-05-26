@@ -11,7 +11,6 @@ class KhaltiIntegration
     {
 
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            var_dump($_POST);
             $amount = $_POST['amount'] * 100; // Convert to paisa
             $purchase_order_id = $_POST['purchase_order_id'];
             $purchase_order_name = $_POST['purchase_order_name'];
@@ -104,7 +103,7 @@ class KhaltiIntegration
             $responseData = json_decode($response, true);
             if ($responseData['status'] === 'Completed') {
                 echo "Payment successful!";
-                // Update your database and redirect to the success page
+                // Redirect to the success page
             } else {
                 echo "Payment failed: " . $responseData['detail'];
                 // Redirect to the failure page
