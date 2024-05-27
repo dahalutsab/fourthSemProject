@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><?php echo $pageTitle ?? 'Open Mic Hub'; ?></title>
 
+    <link rel="icon" href="<?= BASE_IMAGE_PATH ?>openMicLogo.png" type="image/x-icon">
+
     <link rel="stylesheet" href="<?= BASE_CSS_PATH ?>bootstrap.min.css">
     <link rel="stylesheet" href="<?= BASE_CSS_PATH ?>dashboard_main.css">
     <link rel="stylesheet" href="<?= BASE_CSS_PATH ?>dashboard_profile.css">
@@ -25,6 +27,7 @@
 
 </head>
 <body>
+<?php include __DIR__ . '/../components/loader.html' ?>
 <?php include __DIR__ . '/../components/dashboard_navbar.php'; ?>
 <?php include __DIR__ . '/../components/dashboard_sidebar.php'; ?>
 
@@ -42,5 +45,7 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <script src="<?= BASE_URL ?>assets/js/ajaxHandler.js"></script>
 <script src="<?= BASE_URL ?>assets/js/bootstrap.bundle.min.js"></script>
+<script src="<?= BASE_JS_PATH ?>loader.js"></script>
+
 </body>
 </html>

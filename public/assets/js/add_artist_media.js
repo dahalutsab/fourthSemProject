@@ -3,6 +3,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const fileDisplay = document.getElementById('fileDisplay');
     const submitButton = document.getElementById('submitButton');
     const form1 = document.getElementById('form1');
+    const uploadProgressBar = document.getElementById('uploadProgressBar');
 
     fileInput.addEventListener('change', function() {
         const files = fileInput.files;
@@ -49,21 +50,40 @@ document.addEventListener('DOMContentLoaded', function() {
 
     form1.addEventListener('submit', function(event) {
         event.preventDefault(); // Prevent the form from submitting the traditional way
-
+        document.getElementById('progressBar').style.display = 'block';
         const formData = new FormData(form1);
+        const xhr = new XMLHttpRequest();
 
-        fetch('/api/media/save-media', {
-            method: 'POST',
-            body: formData
-        })
-            .then(response => response.json())
-            .then(data => {
-                console.log('Success:', data);
-                toastr.success(data.message.message);
-            })
-            .catch((error) => {
-                console.error('Error:', error);
-                toastr.error(error.message);
-            });
+        xhr.open('POST', '/api/media/save-media', true);
+
+        xhr.upload.addEventListener('progress', function(e) {
+            if (e.lengthComputable) {
+                const percentComplete = Math.round((e.loaded / e.total) * 100);
+                uploadProgressBar.style.width = percentComplete + '%';
+                uploadProgressBar.textContent = percentComplete + '%';
+                uploadProgressBar.setAttribute('aria-valuenow', percentComplete);
+            }
+        });
+
+        xhr.addEventListener('load', function() {
+            if (xhr.status === 200) {
+                const response = JSON.parse(xhr.responseText);
+                console.log('Success:', response);
+                toastr.success(response.message.message);
+                uploadProgressBar.style.width = '0%';
+                uploadProgressBar.textContent = '0%';
+                uploadProgressBar.setAttribute('aria-valuenow', 0);
+            } else {
+                console.error('Error:', xhr.statusText);
+                toastr.error(xhr.statusText);
+            }
+        });
+
+        xhr.addEventListener('error', function() {
+            console.error('Error:', xhr.statusText);
+            toastr.error(xhr.statusText);
+        });
+
+        xhr.send(formData);
     });
 });
