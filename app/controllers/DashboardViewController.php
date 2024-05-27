@@ -75,6 +75,13 @@ class DashboardViewController
         $this->render(compact('pageTitle', 'content'));
     }
 
+    public function userBookings(): void
+    {
+        $pageTitle = 'User Bookings';
+        $content = 'user_bookings/user_bookings';
+        $this->render(compact('pageTitle', 'content'));
+    }
+
     private function render(array $data): void
     {
         extract($data);

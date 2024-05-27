@@ -49,7 +49,11 @@ class AuthController {
             return;
         }
 
-        // Redirect to dashboard or any other page
+        if ($_SESSION['redirect_to']) {
+            header('Location: ' . $_SESSION['redirect_to']);
+            unset($_SESSION['redirect_to']);
+            return;
+        }
         header('Location: /dashboard');
     }
 

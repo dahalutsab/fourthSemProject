@@ -140,6 +140,7 @@ $router->get('/api/getMunicipalities/{districtId}', [LocationController::class, 
 $router->post('/api/artistPerformance/book/{performanceTypeId}', [BookingController::class, 'saveBooking']);
 $router->get('/dashboard/payment/{bookingId}', [DashboardViewController::class, 'paymentPage']);
 $router->get('/api/booking/get-booking/{bookingId}', [BookingController::class, 'getBookingById']);
+$router->get('dashboard/user/bookings', [DashboardViewController::class, 'userBookings']);
 
 //esewa
 $router->post('/api/generate-signature', [EsewaIntegration::class, 'generateSignature']);
@@ -150,6 +151,8 @@ $router->get('/dashboard/payment/failure', [DashboardViewController::class, 'pay
 
 $router->post('/payment/khalti', [KhaltiIntegration::class, 'initiate']);
 $router->get('/payment/khalti-response', [KhaltiIntegration::class, 'response']);
+
+
 // route to access denied
 $router->get('/access-denied', [ErrorViewController::class, 'accessDenied']);
 // route to 404 if any error

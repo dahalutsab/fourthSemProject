@@ -127,7 +127,7 @@ class KhaltiIntegration
             // Save the transaction details to the database
             $this->transactionService->savePayment($bookingId, $status, $transaction_id, 'KHALTI');
             if ($status === 'success') {
-                header('Location: dashboard/bookings' . $bookingId);
+                header('Location: dashboard/user/bookings' . $bookingId);
             } else {
                 header('Location: /payment/failure');
             }

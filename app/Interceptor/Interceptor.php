@@ -35,10 +35,9 @@ class Interceptor
     {
         if ($this->requiresLogin($path) && !$this->isUserAuthenticated()) {
             http_response_code(401); // Unauthorized
-//            return false;
+            $_SESSION['redirect_to'] = $path;
             header("Location: /login");
             exit;
-
         }
 
         if ($this->isRestricted($path, $userRole)) {
