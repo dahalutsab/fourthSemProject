@@ -13,7 +13,7 @@
     padding: 20px;
     overflow-y: auto;
     scrollbar-width: thin;
-    scrollbar-color: #aab7cf transparent;
+    scrollbar-color: var(--button-color) transparent;
     box-shadow: 0 0 20px rgba(1, 41, 112, 0.1);
     background-color: var(--background-color);
 }
@@ -126,3 +126,12 @@
     color: var(--button-color);
 }
 
+
+.sidebar-nav .nav-link.active {
+    color: var(--button-color);
+    background: linear-gradient(rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.1)), var(--text-color);
+}
+
+.active svg {
+    color: var(--button-color);
+}

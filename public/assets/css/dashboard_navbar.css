@@ -84,8 +84,10 @@
 # Header
 --------------------------------------------------------------*/
 .logo {
+    text-decoration: none;
     line-height: 1;
 }
+
 
 @media (min-width: 1200px) {
     .logo {
