@@ -88,6 +88,23 @@
     line-height: 1;
 }
 
+@media (max-width: 1199px) {
+    .toggle-sidebar .sidebar {
+        left: 0;
+    }
+}
+
+@media (min-width: 1200px) {
+
+    .toggle-sidebar #main,
+    .toggle-sidebar #footer {
+        margin-left: 0;
+    }
+
+    .toggle-sidebar .sidebar {
+        left: -300px;
+    }
+}
 
 @media (min-width: 1200px) {
     .logo {
@@ -119,6 +136,14 @@
 }
 
 .header .toggle-sidebar-btn {
+    font-size: 24px;
+    color: var(--text-color);
+    cursor: pointer;
+    margin-right: 15px;
+
+}
+
+.header .toggle-sidebar-btn .fa-bars {
     font-size: 32px;
     padding-left: 10px;
     cursor: pointer;

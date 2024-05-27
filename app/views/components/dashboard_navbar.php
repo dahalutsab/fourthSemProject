@@ -1,3 +1,5 @@
+<link rel="stylesheet" href="<?= BASE_CSS_PATH ?>dashboard_navbar.css">
+
 <header id="header" class="header fixed-top d-flex align-items-center">
 
     <div class="d-flex align-items-center justify-content-between">
@@ -5,7 +7,10 @@
             <img src="<?=BASE_IMAGE_PATH?>openMicLogo.png" alt="">
             <span class="d-none d-lg-block">Open Mic Hub</span>
         </a>
-        <i class="fas fa-bars toggle-sidebar-btn"></i>
+<!--        <i class="fas fa-bars toggle-sidebar-btn" id="toggle-sidebar-btn"></i>-->
+        <span class="toggle-sidebar-btn" id="toggle-sidebar-btn">
+            <i class="fas fa-bars"></i>
+        </span>
     </div><!-- End Logo -->
 
     <div class="search-bar">
@@ -150,5 +155,20 @@
     </nav><!-- End Icons Navigation -->
 
 </header>
+<script>
+<!--    on click toggle button-->
+    // document.getElementById('toggle-sidebar-btn').addEventListener('click', function () {
+    //     console.log('clicked');
+    //     document.getElementById('sidebar').classList.toggle('active');
+    // });
+document.addEventListener('DOMContentLoaded', function() {
+    const toggleSidebarBtn = document.querySelector('.toggle-sidebar-btn');
+    if (toggleSidebarBtn) {
+        toggleSidebarBtn.addEventListener('click', function(e) {
+            console.log('clicked');
+            document.body.classList.toggle('toggle-sidebar');
+        });
+    }
+});
 
-<script src="<?=BASE_JS_PATH?>dashboard.js"></script>
+</script>
