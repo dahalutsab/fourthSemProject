@@ -39,7 +39,6 @@
 <!-- Payment Handling Script -->
 <script>
     document.getElementById('esewa_select').addEventListener('click', function() {
-        // Get booking ID from URL
         const url = window.location.href;
         const bookingId = url.substring(url.lastIndexOf('/') + 1);
 
@@ -62,7 +61,7 @@
                     const product_code = 'EPAYTEST';
                     const product_service_charge = 0;
                     const product_delivery_charge = 0;
-                    const success_url = 'http://openmichub.com/dashboard/payment/success';
+                    const success_url = `http://openmichub.com/payment/success/${bookingId}`;
                     const failure_url = 'http://openmichub.com/dashboard/payment/failure';
                     const signed_field_names = "total_amount,transaction_uuid,product_code";
 
@@ -97,7 +96,7 @@
                                     success_url: success_url,
                                     failure_url: failure_url,
                                     signed_field_names: signed_field_names,
-                                    signature: signature
+                                    signature: signature,
                                 };
 
                                 // Loop through fields object and create hidden input fields
@@ -123,35 +122,54 @@
             })
             .catch(error => console.error('Error fetching booking:', error));
     });
+
     function generateUniqueTransactionUuid() {
         return 'openmichub' + Math.random().toString(36).substr(2, 9).toUpperCase();
     }
 
+
     document.getElementById('khalti_select').addEventListener('click', function() {
         const url = window.location.href;
         const bookingId = url.substring(url.lastIndexOf('/') + 1);
-        const amount = 1000;
 
-        const form = document.createElement('form');
-        form.method = 'POST';
-        form.action = '/payment/khalti';
+        fetch(`/api/booking/get-booking/${bookingId}`, {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    console.log('Booking:', data.data);
+                    const booking = data.data;
+                    const amount = 1000;
 
-        const fields = {
-            amount: amount,
-            purchase_order_id: bookingId,
-            purchase_order_name: 'Booking Payment',
-        };
+                    const form = document.createElement('form');
+                    form.method = 'POST';
+                    form.action = '/payment/khalti';
 
-        for (const [key, value] of Object.entries(fields)) {
-            const input = document.createElement('input');
-            input.type = 'hidden';
-            input.name = key;
-            input.value = value;
-            form.appendChild(input);
-        }
+                    const fields = {
+                        amount: amount,
+                        purchase_order_id: bookingId,
+                        purchase_order_name: 'Booking Payment',
+                    };
 
-        document.body.appendChild(form);
-        form.submit();
+                    for (const [key, value] of Object.entries(fields)) {
+                        const input = document.createElement('input');
+                        input.type = 'hidden';
+                        input.name = key;
+                        input.value = value;
+                        form.appendChild(input);
+                    }
+
+                    document.body.appendChild(form);
+                    form.submit();
+                } else {
+                    console.error('Failed to fetch booking:', data.message);
+                }
+            })
+
     });
 </script>
 </body>

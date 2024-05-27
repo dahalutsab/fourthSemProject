@@ -2,8 +2,18 @@
 
 namespace App\payment;
 
+use App\service\implementation\TransactionService;
+
 class KhaltiIntegration
 {
+
+    private TransactionService $transactionService;
+
+    public function __construct()
+    {
+        $this->transactionService = new TransactionService();
+    }
+
     private string $publicKey = 'test_public_key_bdc75e5c1f1540388177d5309653d339';
     private string $secretKey = 'test_secret_key_69a6232c11164ebd89ee438cb68e6a4f';
 
@@ -25,8 +35,7 @@ class KhaltiIntegration
             ];
 
             $this->initiatePayment($postFields);
-        }
-        else {
+        } else {
             echo 'Invalid request method';
         }
     }
@@ -73,6 +82,9 @@ class KhaltiIntegration
         curl_close($curl);
     }
 
+    /**
+     * @throws \Exception
+     */
     public function response(): void
     {
         if (isset($_GET['pidx'])) {
@@ -101,13 +113,25 @@ class KhaltiIntegration
             curl_close($ch);
 
             $responseData = json_decode($response, true);
-            if ($responseData['status'] === 'Completed') {
-                echo "Payment successful!";
-                // Redirect to the success page
+            var_dump($responseData);
+            $transaction_id = $responseData['transaction_id'];
+            $bookingId = $_GET['purchase_order_id'];
+            $status = $responseData['status'];
+            $status = match ($status) {
+                'Completed' => 'success',
+                'Pending' => 'pending',
+                'User canceled' => 'cancelled',
+                default => 'failure',
+            };
+
+            // Save the transaction details to the database
+            $this->transactionService->savePayment($bookingId, $status, $transaction_id, 'KHALTI');
+            if ($status === 'success') {
+                header('Location: dashboard/bookings' . $bookingId);
             } else {
-                echo "Payment failed: " . $responseData['detail'];
-                // Redirect to the failure page
+                header('Location: /payment/failure');
             }
         }
     }
 }
+

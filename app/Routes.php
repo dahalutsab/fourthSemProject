@@ -143,6 +143,7 @@ $router->get('/api/booking/get-booking/{bookingId}', [BookingController::class, 
 
 //esewa
 $router->post('/api/generate-signature', [EsewaIntegration::class, 'generateSignature']);
+$router->get('/payment/success/{bookingId}', [EsewaIntegration::class, 'decodeSuccessResponse']);
 //payment success/failure
 $router->get('/dashboard/payment/success', [DashboardViewController::class, 'paymentSuccess']);
 $router->get('/dashboard/payment/failure', [DashboardViewController::class, 'paymentFailure']);

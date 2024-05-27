@@ -4,16 +4,18 @@ namespace App\payment;
 
 use App\Response\ApiResponse;
 use App\service\implementation\EsewaIntegrationService;
+use App\service\implementation\TransactionService;
 use Exception;
 
 class EsewaIntegration
 {
-    private EsewaIntegrationService $esewaIntegrationService;
+    private TransactionService $transactionService;
 
     public function __construct()
     {
-        $this->esewaIntegrationService = new EsewaIntegrationService();
+        $this->transactionService = new TransactionService();
     }
+
     public function generateSignature(): void
     {
         try {
@@ -26,39 +28,7 @@ class EsewaIntegration
                 $secretKey = "8gBm/:&EnhH.1/q";
                 $hash = hash_hmac('sha256', $message, $secretKey, true);
                 $hashed = base64_encode($hash);
-                 ApiResponse::success($hashed, "Signature generated successfully");
-            } else {
-                 ApiResponse::error("Invalid request method");
-            }
-        } catch (\Exception $e) {
-             ApiResponse::error($e->getMessage());
-        }
-    }
-
-    public function response() {
-        try {
-            if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-                $requestData = json_decode(file_get_contents('php://input'), true);
-                if (!isset($requestData['oid']) || !isset($requestData['amt']) || !isset($requestData['refId']) || !isset($requestData['scd'])) {
-                    throw new Exception("Missing required fields in request body");
-                }
-                $oid = $requestData['oid'];
-                $amt = $requestData['amt'];
-                $refId = $requestData['refId'];
-                $scd = $requestData['scd'];
-                $message = $oid . $amt . $refId . $scd;
-                $secretKey = "8gBm/:&EnhH.1/q";
-                $hash = hash_hmac('sha256', $message, $secretKey, true);
-                $hashed = base64_encode($hash);
-                if ($requestData['scd'] === 'epay_payment') {
-                    if ($requestData['mac'] === $hashed) {
-                        ApiResponse::success("Payment successful", "Payment successful");
-                    } else {
-                        ApiResponse::error("Payment failed");
-                    }
-                } else {
-                    ApiResponse::error("Invalid service code");
-                }
+                ApiResponse::success($hashed, "Signature generated successfully");
             } else {
                 ApiResponse::error("Invalid request method");
             }
@@ -67,6 +37,46 @@ class EsewaIntegration
         }
     }
 
+    /**
+     * @throws Exception
+     */
+    public function decodeSuccessResponse(): void
+    {
+        if ($_SERVER['REQUEST_METHOD'] === 'GET') {
+            $url = $_SERVER['REQUEST_URI'];
+            $path = parse_url($url, PHP_URL_PATH);
+            $pathFragments = explode('/', $path);
+            $bookingId = end($pathFragments);
+            if (isset($_GET['data'])) {
+                $data = $_GET['data'];
+                $decodedData = base64_decode($data);
+                $jsonDecodedData = json_decode($decodedData, true);
 
-
+                if (json_last_error() === JSON_ERROR_NONE) {
+                    $status = $jsonDecodedData['status'];
+                    if ($status === 'COMPLETE') {
+                        $status = 'success';
+                    } else if ($status === 'PENDING') {
+                        $status = 'pending';
+                    } else if ($status === 'CANCELED') {
+                        $status = 'cancelled';
+                    } else {
+                        $status = 'failure';
+                    }
+                    $this->transactionService->savePayment($bookingId, $status, $jsonDecodedData['transaction_uuid'], 'ESEWA');
+                    if ($status === 'success') {
+                        header("Location: /dashboard/bookings");
+                    } else {
+                        header("Location: /payment/failure");
+                    }
+                } else {
+                    echo "Error decoding JSON data: " . json_last_error_msg();
+                }
+            } else {
+                echo "No data received in the request.";
+            }
+        } else {
+            echo "Invalid request method";
+        }
+    }
 }
