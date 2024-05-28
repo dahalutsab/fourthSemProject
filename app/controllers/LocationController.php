@@ -1,9 +1,9 @@
 <?php
 
-namespace App\controllers;
+namespace app\controllers;
 
-use App\Response\ApiResponse;
-use App\service\implementation\LocationService;
+use app\response\APIResponse;
+use app\service\implementation\LocationService;
 use Exception;
 
 class LocationController
@@ -19,9 +19,9 @@ class LocationController
     {
         try {
             $provinces = $this->locationService->getAllProvinces();
-            ApiResponse::success($provinces);
+            APIResponse::success($provinces);
         } catch (\Exception $e) {
-            ApiResponse::error($e->getMessage());
+            APIResponse::error($e->getMessage());
         }
     }
 
@@ -37,9 +37,9 @@ class LocationController
                 throw new Exception("Invalid Province ID: $provinceId");
             }
             $districts = $this->locationService->getAllDistrictsByProvinceId($provinceId);
-            ApiResponse::success($districts);
+            APIResponse::success($districts);
         } catch (\Exception $e) {
-            ApiResponse::error($e->getMessage());
+            APIResponse::error($e->getMessage());
         }
     }
 
@@ -51,9 +51,9 @@ public function getMunicipalitiesByDistrictId(): void
             $pathSegments = explode('/', $uriPath);
             $districtId = end($pathSegments);
             $municipalities = $this->locationService->getAllMunicipalitiesByDistrictId($districtId);
-            ApiResponse::success($municipalities);
+            APIResponse::success($municipalities);
         } catch (\Exception $e) {
-            ApiResponse::error($e->getMessage());
+            APIResponse::error($e->getMessage());
         }
     }
 
@@ -62,9 +62,9 @@ public function getMunicipalitiesByDistrictId(): void
         try {
             $locationRequest = json_decode(file_get_contents('php://input'));
             $locationId = $this->locationService->saveLocation($locationRequest);
-            ApiResponse::success($locationId);
+            APIResponse::success($locationId);
         } catch (\Exception $e) {
-            ApiResponse::error($e->getMessage());
+            APIResponse::error($e->getMessage());
         }
     }
 }

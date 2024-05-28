@@ -1,10 +1,10 @@
 <?php
 
-namespace App\dto\response;
+namespace app\dto\response;
 
-namespace App\dto\response;
+namespace app\dto\response;
 
-use App\models\Role;
+use app\models\Role;
 
 class RoleResponse
 {

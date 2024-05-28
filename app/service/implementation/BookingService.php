@@ -1,11 +1,10 @@
 <?php
 
-namespace App\service\implementation;
+namespace app\service\implementation;
 
 // BookingService.php
-use App\dto\response\BookingResponse;
-use App\models\Booking;
-use App\repository\BookingRepositoryInterface;
+use app\dto\response\BookingResponse;
+use app\repository\BookingRepositoryInterface;
 use InvalidArgumentException;
 
 class BookingService

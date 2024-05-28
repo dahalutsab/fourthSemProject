@@ -1,8 +1,8 @@
 <?php
 
-namespace App\repository;
+namespace app\repository;
 
-use App\models\Otp;
+use app\models\Otp;
 
 interface OtpRepositoryInterface
 {

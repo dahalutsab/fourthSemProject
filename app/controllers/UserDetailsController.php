@@ -1,12 +1,12 @@
 <?php
 
-namespace App\controllers;
+namespace app\controllers;
 
-use App\dto\request\UserDetailsRequest;
-use App\Response\ApiResponse;
-use App\Response\ErrorResponse;
-use App\service\implementation\UserDetailsService;
-use App\service\UserDetailsServiceInterface;
+use app\dto\request\UserDetailsRequest;
+use app\response\APIResponse;
+use app\response\ErrorResponse;
+use app\service\implementation\UserDetailsService;
+use app\service\UserDetailsServiceInterface;
 use Exception;
 
 class UserDetailsController
@@ -44,7 +44,7 @@ class UserDetailsController
             $updatedDetails = $this->userDetailsService->saveUserProfile($userDetailsRequest);
 
             // Return success response
-            return ApiResponse::success($updatedDetails->getData(),['message' => 'User profile saved successfully.']);
+            return APIResponse::success($updatedDetails->getData(),['message' => 'User profile saved successfully.']);
         } catch (Exception $exception) {
             // Return error response if an exception occurs
             return ErrorResponse::badRequest($exception->getMessage());
@@ -66,7 +66,7 @@ class UserDetailsController
                 // Call the service method to save the profile picture
                 $profilePicturePath = $this->userDetailsService->saveProfilePicture($userId, $tmpFilePath);
                 // Return success response
-                return ApiResponse::success(['message' => 'Profile picture saved successfully.'], $profilePicturePath);
+                return APIResponse::success(['message' => 'Profile picture saved successfully.'], $profilePicturePath);
             } else {
                 // Return error response if no file is uploaded
                 return ErrorResponse::badRequest('No profile picture uploaded.');
@@ -86,9 +86,9 @@ class UserDetailsController
         try {
             $userId = $_SESSION[SESSION_USER_ID];
             $userDetails = $this->userDetailsService->getUserProfile($userId);
-            return ApiResponse::success($userDetails->getData());
+            return APIResponse::success($userDetails->getData());
         } catch (Exception $exception) {
-            return ApiResponse::error($exception->getMessage());
+            return APIResponse::error($exception->getMessage());
         }
     }
 

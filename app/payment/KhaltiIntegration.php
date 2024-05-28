@@ -1,8 +1,8 @@
 <?php
 
-namespace App\payment;
+namespace app\payment;
 
-use App\service\implementation\TransactionService;
+use app\service\implementation\TransactionService;
 
 class KhaltiIntegration
 {

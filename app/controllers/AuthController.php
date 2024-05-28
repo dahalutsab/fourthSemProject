@@ -1,7 +1,7 @@
 <?php
-namespace App\controllers;
+namespace app\controllers;
 
-use App\service\implementation\AuthService;
+use app\service\implementation\AuthService;
 use Exception;
 use JetBrains\PhpStorm\NoReturn;
 
@@ -49,7 +49,7 @@ class AuthController {
             return;
         }
 
-        if ($_SESSION['redirect_to']) {
+        if ($_SESSION[SESSION_REDIRECT_TO]) {
             header('Location: ' . $_SESSION['redirect_to']);
             unset($_SESSION['redirect_to']);
             return;

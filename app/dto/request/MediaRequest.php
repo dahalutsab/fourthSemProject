@@ -1,5 +1,5 @@
 <?php
-namespace App\Dto\Request;
+namespace app\dto\request;
 class MediaRequest
 {
     private int $userId;

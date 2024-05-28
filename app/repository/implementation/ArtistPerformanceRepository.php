@@ -1,8 +1,8 @@
 <?php
 
-namespace App\repository\implementation;
+namespace app\repository\implementation;
 
-use App\dto\request\ArtistPerformanceRequest;
+use app\dto\request\ArtistPerformanceRequest;
 use config\Database;
 
 class ArtistPerformanceRepository

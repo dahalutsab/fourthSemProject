@@ -1,9 +1,9 @@
 <?php
 
-namespace App\service;
+namespace app\service;
 
-use App\dto\request\ArtistDetailsRequest;
-use App\dto\response\ArtistDetailsResponse;
+use app\dto\request\ArtistDetailsRequest;
+use app\dto\response\ArtistDetailsResponse;
 
 interface ArtistDetailsServiceInterface
 {

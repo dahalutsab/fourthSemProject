@@ -1,5 +1,5 @@
 <?php
-namespace App\models;
+namespace app\models;
 use DateTimeImmutable;
 
 class ArtistDetails {

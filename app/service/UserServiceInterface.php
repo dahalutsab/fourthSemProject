@@ -1,8 +1,8 @@
 <?php
-namespace App\service;
+namespace app\service;
 
 
-use App\dto\request\UserRequest;
+use app\dto\request\UserRequest;
 
 interface UserServiceInterface {
     public function createUser(UserRequest $userRequest);

@@ -1,13 +1,13 @@
 <?php
 
-namespace App\Controllers;
+namespace app\controllers;
 
-use App\dto\request\ArtistDetailsRequest;
-use App\dto\response\ArtistDetailsResponse;
-use App\Response\ApiResponse;
-use App\Response\ErrorResponse;
-use App\service\implementation\ArtistDetailsService;
-use App\service\ArtistDetailsServiceInterface;
+use app\dto\request\ArtistDetailsRequest;
+use app\dto\response\ArtistDetailsResponse;
+use app\response\APIResponse;
+use app\response\errorResponse;
+use app\service\implementation\ArtistDetailsService;
+use app\service\ArtistDetailsServiceInterface;
 use Exception;
 
 class ArtistDetailsController
@@ -51,7 +51,7 @@ class ArtistDetailsController
             $updatedDetails = $this->artistDetailsService->saveUserProfile($artistDetailsRequest);
 
             // Return success response
-            return ApiResponse::success($updatedDetails->getData(),['message' => 'User profile saved successfully.']);
+            return APIResponse::success($updatedDetails->getData(),['message' => 'User profile saved successfully.']);
         } catch (Exception $exception) {
             // Return error response if an exception occurs
             return ErrorResponse::badRequest($exception->getMessage());
@@ -73,7 +73,7 @@ class ArtistDetailsController
                 // Call the service method to save the profile picture
                 $profilePicturePath = $this->artistDetailsService->saveProfilePicture($userId, $tmpFilePath);
                 // Return success response
-                return ApiResponse::success(['message' => 'Profile picture saved successfully.'], $profilePicturePath);
+                return APIResponse::success(['message' => 'Profile picture saved successfully.'], $profilePicturePath);
             } else {
                 // Return error response if no file is uploaded
                 return ErrorResponse::badRequest('No profile picture uploaded.');
@@ -92,9 +92,9 @@ class ArtistDetailsController
         try {
             $userId = $_SESSION[SESSION_USER_ID];
             $userDetails = $this->artistDetailsService->getUserProfile($userId);
-            return ApiResponse::success($userDetails->getData());
+            return APIResponse::success($userDetails->getData());
         } catch (Exception $exception) {
-            return ApiResponse::error($exception->getMessage());
+            return APIResponse::error($exception->getMessage());
         }
     }
 
@@ -116,7 +116,7 @@ class ArtistDetailsController
                 return $artistResponse->getData();
             }, $artistResponses);
 
-            return ApiResponse::success($artistData);
+            return APIResponse::success($artistData);
         } catch (Exception $exception) {
             return ErrorResponse::badRequest($exception->getMessage());
         }
@@ -144,7 +144,7 @@ class ArtistDetailsController
                 return $artistResponse->getData();
             }, $artistResponses);
 
-            return ApiResponse::success($artistData);
+            return APIResponse::success($artistData);
 //            return ApiResponse::success($artists);
         } catch (Exception $exception) {
             return ErrorResponse::badRequest($exception->getMessage());
@@ -166,7 +166,7 @@ class ArtistDetailsController
             throw new Exception("Invalid artist ID: $id");
         }
         try {
-            return ApiResponse::success( $this->artistDetailsService->getArtistById($id)->getData());
+            return APIResponse::success( $this->artistDetailsService->getArtistById($id)->getData());
         } catch (Exception $exception) {
            return ErrorResponse::badRequest($exception->getMessage());
         }

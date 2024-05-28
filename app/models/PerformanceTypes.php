@@ -1,6 +1,6 @@
 <?php
 
-namespace App\models;
+namespace app\models;
 class PerformanceTypes {
     private int $performance_type_id;
     private string $performance_type;

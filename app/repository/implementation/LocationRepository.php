@@ -1,6 +1,6 @@
 <?php
 
-namespace App\repository\implementation;
+namespace app\repository\implementation;
 
 use config\Database;
 
@@ -12,7 +12,7 @@ class LocationRepository
         $this->db = new Database;
     }
 
-    public function saveLocation(\App\dto\request\LocationRequest $locationRequest): int|string
+    public function saveLocation(\app\dto\request\LocationRequest $locationRequest): int|string
     {
         // Prepare an SQL INSERT statement
         $sql = "INSERT INTO locations (municipality_id, location_name) VALUES ( ?, ?)";

@@ -1,11 +1,11 @@
 <?php
 
-namespace App\service\implementation;
+namespace app\service\implementation;
 
-use App\dto\request\ArtistPerformanceRequest;
-use App\dto\response\ArtistPerformanceResponse;
-use App\repository\implementation\ArtistPerformanceRepository;
-use App\repository\implementation\LocationRepository;
+use app\dto\request\ArtistPerformanceRequest;
+use app\dto\response\ArtistPerformanceResponse;
+use app\repository\implementation\ArtistPerformanceRepository;
+use app\repository\implementation\LocationRepository;
 
 class ArtistPerformanceService
 {

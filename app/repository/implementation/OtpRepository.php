@@ -1,10 +1,10 @@
 <?php
 
-namespace App\repository\implementation;
+namespace app\repository\implementation;
 
-use App\models\Otp;
-use App\Repository\OtpRepositoryInterface;
-use Config\Database;
+use app\models\Otp;
+use app\repository\OtpRepositoryInterface;
+use config\Database;
 use DateTime;
 use Exception;
 

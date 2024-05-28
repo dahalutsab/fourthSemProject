@@ -1,6 +1,6 @@
 <?php
 
-namespace App\models;
+namespace app\models;
 
 use DateTime;
 use DateTimeZone;

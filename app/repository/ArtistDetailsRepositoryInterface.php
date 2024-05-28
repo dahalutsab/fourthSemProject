@@ -1,9 +1,9 @@
 <?php
 
-namespace App\repository;
+namespace app\repository;
 
-use App\dto\request\ArtistDetailsRequest;
-use App\models\ArtistDetails;
+use app\dto\request\ArtistDetailsRequest;
+use app\models\ArtistDetails;
 
 interface ArtistDetailsRepositoryInterface
 {

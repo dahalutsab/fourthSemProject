@@ -1,10 +1,10 @@
 <?php
 
-namespace App\repository\implementation;
+namespace app\repository\implementation;
 
-use App\dto\request\ArtistDetailsRequest;
-use App\models\ArtistDetails;
-use App\repository\ArtistDetailsRepositoryInterface;
+use app\dto\request\ArtistDetailsRequest;
+use app\models\ArtistDetails;
+use app\repository\ArtistDetailsRepositoryInterface;
 use config\Database;
 use Exception;
 

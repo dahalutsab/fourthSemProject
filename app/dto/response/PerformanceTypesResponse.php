@@ -1,6 +1,6 @@
 <?php
 
-namespace App\dto\response;
+namespace app\dto\response;
 
 class PerformanceTypesResponse
 {

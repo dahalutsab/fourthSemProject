@@ -1,9 +1,9 @@
 <?php
 
-namespace App\repository\implementation;
+namespace app\repository\implementation;
 
-use App\dto\request\PerformanceTypeRequest;
-use App\models\PerformanceTypes;
+use app\dto\request\PerformanceTypeRequest;
+use app\models\PerformanceTypes;
 use config\Database;
 use Exception;
 

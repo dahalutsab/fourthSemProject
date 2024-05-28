@@ -1,6 +1,6 @@
 <?php
 
-namespace App\validator;
+namespace app\validator;
 use InvalidArgumentException;
 
 class UserRequestValidator

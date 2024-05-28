@@ -1,8 +1,8 @@
 <?php
 
-namespace App\service\implementation;
+namespace app\service\implementation;
 
-use App\repository\implementation\LocationRepository;
+use app\repository\implementation\LocationRepository;
 
 class LocationService
 {
@@ -13,7 +13,7 @@ class LocationService
         $this->locationRepository = new LocationRepository;
     }
 
-    public function saveLocation(\App\dto\request\LocationRequest $locationRequest): int|string
+    public function saveLocation(\app\dto\request\LocationRequest $locationRequest): int|string
     {
         return $this->locationRepository->saveLocation($locationRequest);
     }

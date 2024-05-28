@@ -1,6 +1,6 @@
 <?php
 
-namespace App\dto\request;
+namespace app\dto\request;
 class UserRequest {
     private string $username;
     private string $email;

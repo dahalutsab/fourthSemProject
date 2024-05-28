@@ -1,10 +1,10 @@
 <?php
 
-namespace App\payment;
+namespace app\payment;
 
-use App\Response\ApiResponse;
-use App\service\implementation\EsewaIntegrationService;
-use App\service\implementation\TransactionService;
+use app\Response\APIResponse;
+use app\service\implementation\EsewaIntegrationService;
+use app\service\implementation\TransactionService;
 use Exception;
 
 class EsewaIntegration
@@ -28,12 +28,12 @@ class EsewaIntegration
                 $secretKey = "8gBm/:&EnhH.1/q";
                 $hash = hash_hmac('sha256', $message, $secretKey, true);
                 $hashed = base64_encode($hash);
-                ApiResponse::success($hashed, "Signature generated successfully");
+                APIResponse::success($hashed, "Signature generated successfully");
             } else {
-                ApiResponse::error("Invalid request method");
+                APIResponse::error("Invalid request method");
             }
         } catch (\Exception $e) {
-            ApiResponse::error($e->getMessage());
+            APIResponse::error($e->getMessage());
         }
     }
 

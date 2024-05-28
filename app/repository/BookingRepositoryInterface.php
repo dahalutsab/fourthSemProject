@@ -1,8 +1,8 @@
 <?php
 
-namespace App\repository;
+namespace app\repository;
 
-use App\models\Booking;
+use app\models\Booking;
 
 interface BookingRepositoryInterface
 {

@@ -1,9 +1,9 @@
 <?php
 
-namespace App\repository;
+namespace app\repository;
 
-use App\dto\request\UserDetailsRequest;
-use App\models\UserDetails;
+use app\dto\request\UserDetailsRequest;
+use app\models\UserDetails;
 
 interface UserDetailsRepositoryInterface
 {

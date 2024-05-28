@@ -1,8 +1,8 @@
 <?php
 
-namespace App\service\implementation;
+namespace app\service\implementation;
 
-use App\service\MailerServiceInterface;
+use app\service\MailerServiceInterface;
 use PHPMailer\PHPMailer\Exception;
 use PHPMailer\PHPMailer\PHPMailer;
 

@@ -2,7 +2,7 @@
 
 namespace app\models;
 
-namespace App\models;
+namespace app\models;
 
 
 // Booking.php

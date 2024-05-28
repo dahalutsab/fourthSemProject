@@ -1,9 +1,9 @@
 <?php
 
-namespace App\service\implementation;
+namespace app\service\implementation;
 
-use App\repository\implementation\CategoryRepository;
-use App\service\CategoryServiceInterface;
+use app\repository\implementation\CategoryRepository;
+use app\service\CategoryServiceInterface;
 
 class CategoryService implements CategoryServiceInterface
 {

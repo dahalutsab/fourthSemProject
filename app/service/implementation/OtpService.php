@@ -1,10 +1,10 @@
 <?php
 
-namespace App\service\implementation;
+namespace app\service\implementation;
 
-use App\Models\Otp;
-use App\repository\implementation\OtpRepository;
-use App\service\OtpServiceInterface;
+use app\models\Otp;
+use app\repository\implementation\OtpRepository;
+use app\service\OtpServiceInterface;
 use Exception;
 
 

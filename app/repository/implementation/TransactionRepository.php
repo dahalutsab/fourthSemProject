@@ -1,8 +1,8 @@
 <?php
 
-namespace App\repository\implementation;
+namespace app\repository\implementation;
 
-use App\models\Transaction;
+use app\models\Transaction;
 use config\Database;
 
 class TransactionRepository

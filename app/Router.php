@@ -1,9 +1,9 @@
 <?php
 declare(strict_types=1);
 
-namespace App;
+namespace app;
 
-use App\Interceptor\Interceptor;
+use app\interceptor\Interceptor;
 
 class Router
 {

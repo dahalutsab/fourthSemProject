@@ -1,9 +1,9 @@
 <?php
 
-namespace App\repository\implementation;
+namespace app\repository\implementation;
 
-use App\models\Booking;
-use App\repository\BookingRepositoryInterface;
+use app\models\Booking;
+use app\repository\BookingRepositoryInterface;
 use config\Database;
 use Exception;
 use mysqli;

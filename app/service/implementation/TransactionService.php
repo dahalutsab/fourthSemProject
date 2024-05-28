@@ -1,8 +1,8 @@
 <?php
 
-namespace App\service\implementation;
+namespace app\service\implementation;
 
-use App\repository\implementation\TransactionRepository;
+use app\repository\implementation\TransactionRepository;
 use Exception;
 
 class TransactionService

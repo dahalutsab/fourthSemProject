@@ -1,11 +1,11 @@
 <?php
-namespace App\service\implementation;
+namespace app\service\implementation;
 
 
-use App\dto\request\UserRequest;
-use App\dto\response\UserResponse;
-use App\repository\implementation\UserRepository;
-use App\Service\UserServiceInterface;
+use app\dto\request\UserRequest;
+use app\dto\response\UserResponse;
+use app\repository\implementation\UserRepository;
+use app\service\UserServiceInterface;
 use InvalidArgumentException;
 
 

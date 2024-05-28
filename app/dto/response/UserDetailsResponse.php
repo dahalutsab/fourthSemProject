@@ -1,8 +1,8 @@
 <?php
 
-namespace App\dto\response;
+namespace app\dto\response;
 
-use App\models\UserDetails;
+use app\models\UserDetails;
 
 class UserDetailsResponse
 {

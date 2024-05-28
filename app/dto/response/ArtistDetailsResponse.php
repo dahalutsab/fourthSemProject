@@ -1,9 +1,9 @@
 <?php
 
-namespace App\dto\response;
+namespace app\dto\response;
 
 
-use App\models\ArtistDetails;
+use app\models\ArtistDetails;
 
 class ArtistDetailsResponse {
     private array $data;

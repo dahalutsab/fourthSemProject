@@ -1,11 +1,11 @@
 <?php
 
-namespace App\controllers;
+namespace app\controllers;
 
-use App\Dto\Request\MediaRequest;
+use app\dto\request\MediaRequest;
 use app\dto\response\MediaResponse;
-use App\Response\ApiResponse;
-use App\service\implementation\MediaService;
+use app\Response\APIResponse;
+use app\service\implementation\MediaService;
 use Exception;
 
 
@@ -31,9 +31,9 @@ class MediaController
 
             $mediaRequest = new MediaRequest($userId, $media, $title, $description);
             $mediaResponse = $this->mediaService->saveMedia($mediaRequest);
-            return ApiResponse::success($mediaResponse->toArray(), ['message' => $mediaResponse->getType() .' saved successfully.']);
+            return APIResponse::success($mediaResponse->toArray(), ['message' => $mediaResponse->getType() .' saved successfully.']);
         } catch (Exception $e) {
-            return ApiResponse::error($e->getMessage(), 500);
+            return APIResponse::error($e->getMessage(), 500);
         }
     }
 
@@ -47,9 +47,9 @@ class MediaController
         try {
             $userId = $_SESSION[SESSION_USER_ID] ?? 0;
             $mediaResponse = $this->mediaService->getMediaByUser($userId);
-            return ApiResponse::success($mediaResponse, ['message' => 'Media fetched successfully.']);
+            return APIResponse::success($mediaResponse, ['message' => 'Media fetched successfully.']);
         } catch (Exception $e) {
-            return ApiResponse::error($e->getMessage(), 500);
+            return APIResponse::error($e->getMessage(), 500);
         }
 
     }
@@ -65,9 +65,9 @@ class MediaController
                 throw new Exception("Invalid artist ID: $id");
             }
             $mediaResponse = $this->mediaService->getMediaByArtistId($id);
-            return ApiResponse::success($mediaResponse, ['message' => 'Media fetched successfully.']);
+            return APIResponse::success($mediaResponse, ['message' => 'Media fetched successfully.']);
         } catch (Exception $e) {
-            return ApiResponse::error($e->getMessage(), 500);
+            return APIResponse::error($e->getMessage(), 500);
         }
     }
 

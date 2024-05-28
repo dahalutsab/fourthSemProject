@@ -7,11 +7,12 @@ $baseDir = dirname($vendorDir);
 
 return array(
     'config\\' => array($baseDir . '/config'),
+    'app\\views\\' => array($baseDir . '/app/views'),
+    'app\\service\\' => array($baseDir . '/app/service'),
+    'app\\repository\\' => array($baseDir . '/app/repository'),
+    'app\\models\\' => array($baseDir . '/app/models'),
+    'app\\interceptor\\' => array($baseDir . '/app/interceptor'),
+    'app\\controllers\\' => array($baseDir . '/app/controllers'),
+    'app\\' => array($baseDir . '/app'),
     'PHPMailer\\PHPMailer\\' => array($vendorDir . '/phpmailer/phpmailer/src'),
-    'App\\views\\' => array($baseDir . '/app/views'),
-    'App\\service\\' => array($baseDir . '/app/service'),
-    'App\\repository\\' => array($baseDir . '/app/repository'),
-    'App\\models\\' => array($baseDir . '/app/models'),
-    'App\\controllers\\' => array($baseDir . '/app/controllers'),
-    'App\\' => array($baseDir . '/app'),
 );

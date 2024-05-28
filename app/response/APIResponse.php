@@ -1,7 +1,7 @@
 <?php
-namespace App\Response;
+namespace app\response;
 
-class ApiResponse
+class APIResponse
 {
     public static function success($data, $message = null, $code = 200): void
     {

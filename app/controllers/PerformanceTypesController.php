@@ -1,10 +1,10 @@
 <?php
 
-namespace App\controllers;
+namespace app\controllers;
 
-use App\dto\request\PerformanceTypeRequest;
-use App\Response\ApiResponse;
-use App\service\implementation\PerformanceTypesService;
+use app\dto\request\PerformanceTypeRequest;
+use app\response\APIResponse;
+use app\service\implementation\PerformanceTypesService;
 use Exception;
 
 class PerformanceTypesController
@@ -25,9 +25,9 @@ class PerformanceTypesController
                 $_POST['cost_per_hour']
             );
             $response = $this->performanceTypesService->saveArtistPerformance($performanceTypeRequest);
-            return ApiResponse::success($response->toArray(), "Performance type added successfully");
+            return APIResponse::success($response->toArray(), "Performance type added successfully");
         } catch (\Exception $e) {
-            return ApiResponse::error($e->getMessage());
+            return APIResponse::error($e->getMessage());
         }
     }
 
@@ -44,9 +44,9 @@ class PerformanceTypesController
             }
 
             $response = $this->performanceTypesService->getArtistPerformance($id);
-            return ApiResponse::success($response, "Performance types fetched successfully");
+            return APIResponse::success($response, "Performance types fetched successfully");
         } catch (\Exception $e) {
-            return ApiResponse::error($e->getMessage());
+            return APIResponse::error($e->getMessage());
         }
     }
 
@@ -70,9 +70,9 @@ class PerformanceTypesController
             );
 
             $response = $this->performanceTypesService->updateArtistPerformance($id, $performanceTypeRequest);
-            return ApiResponse::success($response->toArray(), "Performance type updated successfully");
+            return APIResponse::success($response->toArray(), "Performance type updated successfully");
         } catch (\Exception $e) {
-            return ApiResponse::error($e->getMessage());
+            return APIResponse::error($e->getMessage());
         }
     }
 
@@ -89,9 +89,9 @@ class PerformanceTypesController
             }
 
             $this->performanceTypesService->deleteArtistPerformance($id);
-            return ApiResponse::success(null, "Performance type deleted successfully");
+            return APIResponse::success(null, "Performance type deleted successfully");
         } catch (\Exception $e) {
-            return ApiResponse::error($e->getMessage());
+            return APIResponse::error($e->getMessage());
         }
     }
 
@@ -121,9 +121,9 @@ class PerformanceTypesController
             // Call the service method to get the cost per hour
             $response = $this->performanceTypesService->getCostPerHour($id, $eventStartTime, $eventEndTime);
 
-            return ApiResponse::success($response, "Cost for the performance fetched successfully");
+            return APIResponse::success($response, "Cost for the performance fetched successfully");
         } catch (\Exception $e) {
-            return ApiResponse::error($e->getMessage());
+            return APIResponse::error($e->getMessage());
         }
     }
 

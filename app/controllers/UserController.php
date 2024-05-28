@@ -1,17 +1,17 @@
 <?php
 
-namespace App\Controllers;
+namespace app\controllers;
 
 
-use App\dto\request\UserRequest;
-use App\Response\ApiResponse;
-use App\service\implementation\MailerService;
-use App\service\implementation\OtpService;
-use App\service\implementation\UserService;
-use App\service\MailerServiceInterface;
-use App\service\OtpServiceInterface;
-use App\service\UserServiceInterface;
-use App\validator\UserRequestValidator;
+use app\dto\request\UserRequest;
+use app\Response\APIResponse;
+use app\service\implementation\MailerService;
+use app\service\implementation\OtpService;
+use app\service\implementation\UserService;
+use app\service\MailerServiceInterface;
+use app\service\OtpServiceInterface;
+use app\service\UserServiceInterface;
+use app\validator\UserRequestValidator;
 use Exception;
 
 class UserController
@@ -53,9 +53,9 @@ class UserController
             // User creation successful
             $_SESSION[SESSION_EMAIL] = $formData['email'];
             $this->otpService->sendOtp($formData['email'], $formData['username']);
-            return ApiResponse::success($user->toArray(), ['message' => 'User created successfully.']);
+            return APIResponse::success($user->toArray(), ['message' => 'User created successfully.']);
         } catch (Exception $exception) {
-            return ApiResponse::error($exception->getMessage());
+            return APIResponse::error($exception->getMessage());
         }
     }
 
@@ -72,7 +72,7 @@ class UserController
 
             // Perform basic validation
             if (empty($otp)) {
-                return ApiResponse::error('OTP is required.');
+                return APIResponse::error('OTP is required.');
             }
 
             // Get userId from email from user table
@@ -80,12 +80,12 @@ class UserController
 
             // Verify OTP
             if ($this->otpService->verifyOtp($userId, $otp)) {
-                return ApiResponse::success([], ['message' => 'OTP verification successful.']);
+                return APIResponse::success([], ['message' => 'OTP verification successful.']);
             } else {
-                return ApiResponse::error('OTP verification failed.');
+                return APIResponse::error('OTP verification failed.');
             }
         } catch (Exception $exception) {
-            return ApiResponse::error($exception->getMessage());
+            return APIResponse::error($exception->getMessage());
         }
     }
 
@@ -93,9 +93,9 @@ class UserController
     {
         try {
             $userId = $_SESSION[SESSION_USER_ID] ?? 1;
-            return ApiResponse::success($this->userService->getUserById($userId)->toArray());
+            return APIResponse::success($this->userService->getUserById($userId)->toArray());
         } catch (Exception $exception) {
-            return ApiResponse::error($exception->getMessage());
+            return APIResponse::error($exception->getMessage());
         }
     }
 }

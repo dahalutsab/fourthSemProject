@@ -1,12 +1,11 @@
 <?php
 
-namespace App\service\implementation;
+namespace app\service\implementation;
 
-use App\dto\request\ArtistDetailsRequest;
-use App\dto\response\ArtistDetailsResponse;
-use App\repository\implementation\ArtistDetailsRepository;
-use App\Response\ApiResponse;
-use App\service\ArtistDetailsServiceInterface;
+use app\dto\request\ArtistDetailsRequest;
+use app\dto\response\ArtistDetailsResponse;
+use app\repository\implementation\ArtistDetailsRepository;
+use app\service\ArtistDetailsServiceInterface;
 use Exception;
 
 class ArtistDetailsService implements ArtistDetailsServiceInterface

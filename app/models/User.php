@@ -1,8 +1,7 @@
 <?php
 
-namespace App\models;
+namespace app\models;
 
-use App\dto\response\RoleResponse;
 use DateTime;
 use DateTimeZone;
 

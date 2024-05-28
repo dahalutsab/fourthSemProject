@@ -1,10 +1,10 @@
 <?php
 
-namespace App\service\implementation;
+namespace app\service\implementation;
 
-use App\dto\request\PerformanceTypeRequest;
-use App\dto\response\PerformanceTypesResponse;
-use App\repository\implementation\PerformanceTypesRepository;
+use app\dto\request\PerformanceTypeRequest;
+use app\dto\response\PerformanceTypesResponse;
+use app\repository\implementation\PerformanceTypesRepository;
 
 class PerformanceTypesService
 {

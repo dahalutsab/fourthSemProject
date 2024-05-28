@@ -1,6 +1,6 @@
 <?php
 
-namespace App\http;
+namespace app\http;
 class Request
 {
     private array $data;

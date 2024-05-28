@@ -1,9 +1,9 @@
 <?php
 
-namespace App\service;
+namespace app\service;
 
-use App\dto\request\UserDetailsRequest;
-use App\dto\response\UserDetailsResponse;
+use app\dto\request\UserDetailsRequest;
+use app\dto\response\UserDetailsResponse;
 
 interface UserDetailsServiceInterface
 {

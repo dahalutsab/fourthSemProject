@@ -1,6 +1,6 @@
 <?php
 
-namespace App\repository;
+namespace app\repository;
 
 interface RoleRepositoryInterface
 {

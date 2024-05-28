@@ -1,15 +1,12 @@
 <?php
 
-namespace App\service\implementation;
+namespace app\service\implementation;
 
-use App\dto\request\ArtistDetailsRequest;
-use App\dto\request\UserDetailsRequest;
-use App\dto\response\ArtistDetailsResponse;
-use App\dto\response\UserDetailsResponse;
-use App\models\UserDetails;
-use App\repository\implementation\UserDetailsRepository;
-use App\repository\UserDetailsRepositoryInterface;
-use App\service\UserDetailsServiceInterface;
+use app\dto\request\UserDetailsRequest;
+use app\dto\response\UserDetailsResponse;
+use app\repository\implementation\UserDetailsRepository;
+use app\repository\UserDetailsRepositoryInterface;
+use app\service\UserDetailsServiceInterface;
 use Exception;
 
 

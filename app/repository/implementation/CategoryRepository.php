@@ -1,5 +1,5 @@
 <?php
-namespace App\repository\implementation;
+namespace app\repository\implementation;
 
 use config\Database;
 use Exception;

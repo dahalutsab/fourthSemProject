@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Repository\Implementation;
+namespace app\repository\implementation;
 
-use App\DTO\Request\UserDetailsRequest;
-use App\Models\UserDetails;
-use App\Repository\UserDetailsRepositoryInterface;
+use app\DTO\Request\UserDetailsRequest;
+use app\Models\UserDetails;
+use app\Repository\UserDetailsRepositoryInterface;
 use config\Database;
 use Exception;
 use mysqli_result;

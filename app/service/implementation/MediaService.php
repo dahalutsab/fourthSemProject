@@ -1,10 +1,10 @@
 <?php
-namespace App\Service\Implementation;
+namespace app\service\implementation;
 
-use App\Dto\Request\MediaRequest;
-use App\Dto\Response\MediaResponse;
-use App\Models\Media;
-use App\Repository\Implementation\MediaRepository;
+use app\dto\request\MediaRequest;
+use app\dto\response\MediaResponse;
+use app\models\Media;
+use app\repository\implementation\MediaRepository;
 use Exception;
 
 class MediaService

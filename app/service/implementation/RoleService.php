@@ -1,10 +1,10 @@
 <?php
 
-namespace App\service\implementation;
+namespace app\service\implementation;
 
-use App\dto\response\RoleResponse;
-use App\repository\implementation\RoleRepository;
-use App\Service\RoleServiceInterface;
+use app\dto\response\RoleResponse;
+use app\repository\implementation\RoleRepository;
+use app\service\RoleServiceInterface;
 
 
 class RoleService implements RoleServiceInterface

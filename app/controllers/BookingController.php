@@ -1,10 +1,10 @@
 <?php
 
-namespace App\controllers;
+namespace app\controllers;
 
-use App\repository\implementation\BookingRepository;
-use App\Response\ApiResponse;
-use App\service\implementation\BookingService;
+use app\repository\implementation\BookingRepository;
+use app\response\APIResponse;
+use app\service\implementation\BookingService;
 use Exception;
 
 class BookingController
@@ -44,12 +44,12 @@ class BookingController
                 $data['user_id'] = $userId;
 
                 $booking = $this->bookingService->createBooking($data);
-                 ApiResponse::success($booking->toArray(), 'Booking created successfully');
+                 APIResponse::success($booking->toArray(), 'Booking created successfully');
             } else {
-                 ApiResponse::error('Invalid request method');
+                 APIResponse::error('Invalid request method');
             }
         } catch (\Exception $e) {
-             ApiResponse::error($e->getMessage());
+             APIResponse::error($e->getMessage());
         }
     }
 
@@ -68,13 +68,13 @@ class BookingController
                 }
                 $booking = $this->bookingService->getBookingById($id);
                 if ($booking) {
-                    ApiResponse::success($booking->toArray(), 'Booking fetched successfully');
+                    APIResponse::success($booking->toArray(), 'Booking fetched successfully');
                 } else {
-                    ApiResponse::error('Booking not found');
+                    APIResponse::error('Booking not found');
                 }
             }
         } catch (\Exception $e) {
-            ApiResponse::error($e->getMessage());
+            APIResponse::error($e->getMessage());
         }
     }
 
@@ -88,13 +88,13 @@ class BookingController
 
                 $updated = $this->bookingService->updateBookingStatus($id, $status);
                 if ($updated) {
-                    ApiResponse::success($updated, 'Booking status updated successfully');
+                    APIResponse::success($updated, 'Booking status updated successfully');
                 } else {
-                    ApiResponse::error('Booking status update failed');
+                    APIResponse::error('Booking status update failed');
                 }
             }
         } catch (\Exception $e) {
-            ApiResponse::error($e->getMessage());
+            APIResponse::error($e->getMessage());
         }
     }
 }

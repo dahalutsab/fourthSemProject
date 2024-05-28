@@ -1,9 +1,9 @@
 <?php
-namespace App\repository\implementation;
+namespace app\repository\implementation;
 
-use App\dto\request\UserRequest;
-use App\models\User;
-use App\Repository\UserRepositoryInterface;
+use app\dto\request\UserRequest;
+use app\models\User;
+use app\repository\UserRepositoryInterface;
 use config\Database;
 use Exception;
 

@@ -1,9 +1,9 @@
 <?php
 
-namespace App\controllers;
-use App\Response\ApiResponse;
-use App\service\implementation\RoleService;
-use App\service\RoleServiceInterface;
+namespace app\controllers;
+use app\response\APIResponse;
+use app\service\implementation\RoleService;
+use app\service\RoleServiceInterface;
 
 
 class RoleController
@@ -20,7 +20,7 @@ class RoleController
     public function getRolesForUsers()
     {
         $roles = $this->userService->getRolesForUsers();
-        return ApiResponse::success($roles,'Roles fetched successfully');
+        return APIResponse::success($roles,'Roles fetched successfully');
     }
 
 

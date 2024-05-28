@@ -1,8 +1,8 @@
 <?php
 
-namespace App\dto\response;
+namespace app\dto\response;
 
-use App\models\Booking;
+use app\models\Booking;
 
 class BookingResponse
 {

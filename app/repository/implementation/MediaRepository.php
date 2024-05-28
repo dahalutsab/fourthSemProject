@@ -1,7 +1,7 @@
 <?php
-namespace App\Repository\Implementation;
+namespace app\repository\implementation;
 
-use App\Models\Media;
+use app\models\Media;
 use config\Database;
 
 class MediaRepository

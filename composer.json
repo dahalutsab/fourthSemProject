@@ -2,14 +2,14 @@
     "name": "legion/open-mic-hub",
     "autoload": {
         "psr-4": {
-            "App\\": "app/",
-            "App\\controllers\\": "app/controllers/",
-            "App\\models\\": "app/models/",
-            "App\\views\\": "app/views/",
-            "App\\repository\\": "app/repository/",
-            "App\\service\\": "app/service/",
-            "config\\": "config/"
-
+            "app\\": "app/",
+            "app\\controllers\\": "app/controllers/",
+            "app\\models\\": "app/models/",
+            "app\\views\\": "app/views/",
+            "app\\repository\\": "app/repository/",
+            "app\\service\\": "app/service/",
+            "config\\": "config/",
+            "app\\interceptor\\": "app/interceptor/"
         }
     },
     "authors": [

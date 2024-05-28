@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 
-namespace App\Interceptor;
+namespace app\interceptor;
 
 use JetBrains\PhpStorm\NoReturn;
 
@@ -35,7 +35,7 @@ class Interceptor
     {
         if ($this->requiresLogin($path) && !$this->isUserAuthenticated()) {
             http_response_code(401); // Unauthorized
-            $_SESSION['redirect_to'] = $path;
+            $_SESSION[SESSION_REDIRECT_TO] = $path;
             header("Location: /login");
             exit;
         }
