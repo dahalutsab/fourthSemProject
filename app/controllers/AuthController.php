@@ -49,9 +49,9 @@ class AuthController {
             return;
         }
 
-        if ($_SESSION[SESSION_REDIRECT_TO]) {
-            header('Location: ' . $_SESSION['redirect_to']);
-            unset($_SESSION['redirect_to']);
+        if (isset($_SESSION[SESSION_REDIRECT_TO])) {
+            header('Location: ' . $_SESSION[SESSION_REDIRECT_TO]);
+            unset($_SESSION[SESSION_REDIRECT_TO]);
             return;
         }
         header('Location: /dashboard');

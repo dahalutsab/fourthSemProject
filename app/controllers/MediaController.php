@@ -4,7 +4,7 @@ namespace app\controllers;
 
 use app\dto\request\MediaRequest;
 use app\dto\response\MediaResponse;
-use app\Response\APIResponse;
+use app\response\APIResponse;
 use app\service\implementation\MediaService;
 use Exception;
 
