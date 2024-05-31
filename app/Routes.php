@@ -9,6 +9,7 @@ use app\controllers\DashboardViewController;
 use app\controllers\ErrorViewController;
 use app\controllers\LocationController;
 use app\controllers\MediaController;
+use app\controllers\MessageController;
 use app\controllers\PerformanceTypesController;
 use app\controllers\RoleController;
 use app\controllers\UserController;
@@ -152,6 +153,12 @@ $router->get('/dashboard/payment/failure', [DashboardViewController::class, 'pay
 $router->post('/payment/khalti', [KhaltiIntegration::class, 'initiate']);
 $router->get('/payment/khalti-response', [KhaltiIntegration::class, 'response']);
 
+
+//messages
+$router->get('/dashboard/messages', [DashboardViewController::class, 'messages']);
+
+$router->get('/api/getAllUsers', [UserController::class, 'getAllUsers']);
+$router->get('/api/getMessagesBetweenUsers', [MessageController::class, 'getMessagesBetweenUsers']);
 
 // route to access denied
 $router->get('/access-denied', [ErrorViewController::class, 'accessDenied']);

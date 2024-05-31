@@ -22,8 +22,8 @@ document.getElementById('esewa_select').addEventListener('click', function() {
                 const product_code = 'EPAYTEST';
                 const product_service_charge = 0;
                 const product_delivery_charge = 0;
-                const success_url = 'http://openmichub.com/dashboard/payment/success';
-                const failure_url = 'http://openmichub.com/dashboard/payment/failure';
+                const success_url = 'http://localhost/dashboard/payment/success';
+                const failure_url = 'http://localhost/dashboard/payment/failure';
                 const signed_field_names = "total_amount,transaction_uuid,product_code";
 
                 fetch('/api/generate-signature', {

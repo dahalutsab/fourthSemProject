@@ -16,6 +16,14 @@ document.addEventListener("DOMContentLoaded", () => {
             if (isMain) {
                 mediaElement.autoplay = true;
                 mediaElement.loop = true;
+            } else {
+
+                mediaElement.style.pointerEvents = 'none'; // Disable interaction
+                mediaElement.autoplay = false;
+                mediaElement.loop = false;
+                mediaElement.muted = true;
+                mediaElement.setAttribute('playsinline', true); // Prevent fullscreen on mobile
+
             }
         } else if (mediaItem.media_type === 'photo') {
             mediaElement = document.createElement('img');

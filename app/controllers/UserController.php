@@ -98,4 +98,14 @@ class UserController
             return APIResponse::error($exception->getMessage());
         }
     }
+
+
+    public function getAllUsers(): void
+    {
+        try {
+            APIResponse::success($this->userService->getAllUsers());
+        } catch (Exception $exception) {
+             APIResponse::error($exception->getMessage());
+        }
+    }
 }

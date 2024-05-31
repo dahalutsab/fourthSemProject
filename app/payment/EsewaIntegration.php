@@ -2,8 +2,7 @@
 
 namespace app\payment;
 
-use app\Response\APIResponse;
-use app\service\implementation\EsewaIntegrationService;
+use app\response\APIResponse;
 use app\service\implementation\TransactionService;
 use Exception;
 

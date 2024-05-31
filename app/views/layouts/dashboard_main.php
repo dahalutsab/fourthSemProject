@@ -16,6 +16,7 @@
     <link rel="stylesheet" href="<?= BASE_CSS_PATH ?>dashboard_breadcrumb.css">
     <link rel="stylesheet" href="<?= BASE_CSS_PATH ?>dashboard_component.css">
     <link rel="stylesheet" href="<?= BASE_CSS_PATH ?>artist-media-management.css">
+    <link rel="stylesheet" href="<?= BASE_CSS_PATH ?>messages.css">
     <link rel="stylesheet" href="<?= BASE_CSS_PATH ?>dashboard_footer.css">
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>

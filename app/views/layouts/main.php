@@ -39,6 +39,7 @@
 <script src="<?= BASE_JS_PATH ?>script.js"></script>
 <script src="<?= BASE_JS_PATH ?>bootstrap.bundle.min.js"></script>
 <script src="<?= BASE_JS_PATH ?>loader.js"></script>
+<script src="<?= BASE_JS_PATH ?>socket.js"></script>
 
 </body>
 </html>

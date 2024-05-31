@@ -82,6 +82,13 @@ class DashboardViewController
         $this->render(compact('pageTitle', 'content'));
     }
 
+    public function messages(): void
+    {
+        $pageTitle = 'Messages';
+        $content = 'message';
+        $this->render(compact('pageTitle', 'content'));
+    }
+
     private function render(array $data): void
     {
         extract($data);

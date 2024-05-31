@@ -123,4 +123,17 @@ class UserRepository implements UserRepositoryInterface {
         }
 
     }
+
+    public function getAllUsers(): array
+    {
+        $stmt = $this->database->getConnection()->prepare("SELECT * FROM users");
+        $stmt->execute();
+
+        $result = $stmt->get_result();
+        $users = [];
+        while ($row = $result->fetch_assoc()) {
+            $users[] = new User($row['id'], $row['username'], $row['email'], $row['password'], $row['role_id'], $row['is_verified'], $row['is_active']);
+        }
+        return $users;
+    }
 }
