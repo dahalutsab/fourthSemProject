@@ -29,11 +29,11 @@ USER myuser
 # Create necessary directory structure
 RUN mkdir -p /app/vendor/phpmailer/phpmailer
 
+# Switch back to root user to copy vendor directory and install composer dependencies
+USER root
+
 # Copy vendor directory into Docker image
 COPY ./vendor /app/vendor
-
-# Switch back to root user to install composer dependencies
-USER root
 
 # Install composer dependencies
 RUN composer install
