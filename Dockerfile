@@ -32,11 +32,11 @@ RUN mkdir -p /app/vendor/phpmailer/phpmailer
 # Copy vendor directory into Docker image
 COPY ./vendor /app/vendor
 
+# Switch back to root user to install composer dependencies
+USER root
+
 # Install composer dependencies
 RUN composer install
-
-# Switch back to root user to expose the port
-USER root
 
 # Make port 8080 available to the world outside this container
 EXPOSE 8080
