@@ -47,7 +47,28 @@
                     <button type="submit" class="submit-btn">Verify</button>
                 </div>
                 <p class="text-center mb-0">
-                    Didn't receive an email? <a href="#">Send again</a>
+                    Didn't receive an email? <a href="#" onclick="function sendOtpAgain() {
+                        // Send a request to the server to send OTP again
+                        fetch('/api/user/send-otp', {
+                            method: 'POST',
+                            headers: {
+                                'Content-Type': 'application/json',
+                            },
+
+                        })
+                            .then((response) => response.json())
+                            .then((data) => {
+                                if (data.status === 'success') {
+                                    toastr.success(data.message);
+                                } else {
+                                    toastr.error(data.error);
+                                }
+                            })
+                            .catch((error) => {
+                                console.error('Error:', error);
+                            });
+                    }
+                    sendOtpAgain()"><span style="color: var(--button-color)">Send again</span></a>
                 </p>
             </form>
         </div>

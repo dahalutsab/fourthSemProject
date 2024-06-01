@@ -1,10 +1,17 @@
-const conn = new WebSocket('ws://localhost:8080');
-conn.onopen = function(e) {
-//     print the echo message from the server
-    console.log("Connection established!");
-    conn.send("Hello World");
+const socket = new WebSocket('ws://localhost:8080');
+
+socket.onopen = function() {
+    console.log('WebSocket connection opened');
 };
 
-conn.onmessage = function(e) {
-    console.log(e.data);
+socket.onmessage = function(event) {
+    console.log('Message received: ', event.data);
+};
+
+socket.onclose = function() {
+    console.log('WebSocket connection closed');
+};
+
+socket.onerror = function(error) {
+    console.log('WebSocket error: ', error);
 };

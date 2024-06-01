@@ -53,9 +53,38 @@ class UserController
             // User creation successful
             $_SESSION[SESSION_EMAIL] = $formData['email'];
             $this->otpService->sendOtp($formData['email'], $formData['username']);
-            return APIResponse::success($user->toArray(), ['message' => 'User created successfully.']);
+             APIResponse::success($user->toArray(), ['message' => 'User created successfully.']);
         } catch (Exception $exception) {
-            return APIResponse::error($exception->getMessage());
+             APIResponse::error($exception->getMessage());
+        }
+    }
+
+    /**
+     * @throws Exception
+     */
+    public function sendOtp(): void
+    {
+        try {
+            // Retrieve form data sent by the router
+            $email = $_SESSION[SESSION_EMAIL] ?? '';
+
+            // Perform basic validation
+            if (empty($email)) {
+                 APIResponse::error('Email is required.');
+            }
+
+            // Get username from email from user table
+            $userResponse = $this->userService->getUserByEmail($email);
+            $username = $userResponse->getUsername();
+
+            // Send OTP
+            if ($this->otpService->sendOtp($email, $username)) {
+                 APIResponse::success([], ['message' => 'OTP sent successfully.']);
+            } else {
+                 APIResponse::error('Failed to send OTP.');
+            }
+        } catch (Exception $exception) {
+             APIResponse::error($exception->getMessage());
         }
     }
 
@@ -63,7 +92,7 @@ class UserController
     /**
      * @throws Exception
      */
-    public function verifyOtp()
+    public function verifyOtp(): void
     {
         try {
             // Retrieve form data sent by the router
@@ -72,7 +101,7 @@ class UserController
 
             // Perform basic validation
             if (empty($otp)) {
-                return APIResponse::error('OTP is required.');
+                 APIResponse::error('OTP is required.');
             }
 
             // Get userId from email from user table
@@ -80,22 +109,22 @@ class UserController
 
             // Verify OTP
             if ($this->otpService->verifyOtp($userId, $otp)) {
-                return APIResponse::success([], ['message' => 'OTP verification successful.']);
+                 APIResponse::success([], ['message' => 'OTP verification successful.']);
             } else {
-                return APIResponse::error('OTP verification failed.');
+                 APIResponse::error('OTP verification failed.');
             }
         } catch (Exception $exception) {
-            return APIResponse::error($exception->getMessage());
+             APIResponse::error($exception->getMessage());
         }
     }
 
-    public function getUser(): null
+    public function getUser(): void
     {
         try {
             $userId = $_SESSION[SESSION_USER_ID] ?? 1;
-            return APIResponse::success($this->userService->getUserById($userId)->toArray());
+             APIResponse::success($this->userService->getUserById($userId)->toArray());
         } catch (Exception $exception) {
-            return APIResponse::error($exception->getMessage());
+             APIResponse::error($exception->getMessage());
         }
     }
 

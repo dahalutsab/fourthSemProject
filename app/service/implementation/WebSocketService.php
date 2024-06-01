@@ -52,7 +52,7 @@ class WebSocketService implements MessageComponentInterface
         $message = $data['content'];
 
         // Save the message to the database
-        $this->messageRepository->saveMessage($sender_id, $receiver_id, $message);
+        $messageId = $this->messageRepository->saveMessage($sender_id, $receiver_id, $message);
 
         // Broadcast the message to the receiver
         foreach ($this->clients as $client) {
@@ -63,7 +63,12 @@ class WebSocketService implements MessageComponentInterface
                     'content' => $message,
                     'timestamp' => date('Y-m-d H:i:s')
                 ]));
+
+//                update the delivered, sent etc status
+                $this->messageRepository->updateMessageStatus($messageId, 'delivered');
+                echo "Message {$messageId} delivered to {$receiver_id}\n";
             }
+
         }
     }
 

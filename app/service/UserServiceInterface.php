@@ -10,4 +10,6 @@ interface UserServiceInterface {
     public function getUserById($userId);
 
     public function getAllUsers();
+
+    public function getUserByEmail($email);
 }

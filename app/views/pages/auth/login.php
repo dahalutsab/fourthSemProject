@@ -36,7 +36,7 @@
                     <button type="submit" class="submit-btn" name="submit-login">Login</button>
                 </div>
                 <p class="text-center mb-0">
-                    Don't have an account? Please <a href="/signup">Sign Up</a>
+                    Don't have an account? Please <a href="/signup"><span style="color: var(--button-color)">Sign Up</span></a>
                 </p>
             </form>
         </div>

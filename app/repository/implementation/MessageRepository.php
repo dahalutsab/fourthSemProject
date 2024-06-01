@@ -12,7 +12,7 @@ class MessageRepository
         $this->db = new Database;
     }
 
-    public function saveMessage($sender_id, $receiver_id, $content): bool
+    public function saveMessage($sender_id, $receiver_id, $content)
     {
         $stmt = $this->db->getConnection()->prepare(
             "INSERT INTO messages (sender_id, receiver_id, content) VALUES (?, ?, ?)"
@@ -25,7 +25,8 @@ class MessageRepository
 
         $stmt->bind_param("iis", $sender_id, $receiver_id, $content);
 
-        return $stmt->execute();
+        $stmt->execute();
+        return $stmt->insert_id;
     }
 
     public function getMessagesBetweenUsers($user1_id, $user2_id)
@@ -46,5 +47,20 @@ class MessageRepository
 
         $result = $stmt->get_result();
         return $result->fetch_all(MYSQLI_ASSOC);
+    }
+
+    public function updateMessageStatus(mixed $messageId, mixed $status)
+    {
+        $stmt = $this->db->getConnection()->prepare(
+            "UPDATE messages SET status = ? WHERE id = ?"
+        );
+
+        if ($stmt === false) {
+            die('Prepare failed: ' . $this->db->getConnection()->error);
+        }
+
+        $stmt->bind_param("ii", $status, $messageId);
+
+        $stmt->execute();
     }
 }

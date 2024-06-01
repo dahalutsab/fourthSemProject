@@ -81,6 +81,7 @@ $router->get('/logout', [AuthController::class, 'logout']);
 // route to otp verification
 $router->get('/verify-otp', [ViewController::class, 'verifyOtp']);
 $router->post('/api/user/verify-otp', [UserController::class, 'verifyOtp']);
+$router->post('/api/user/send-otp', [UserController::class, 'sendOtp']);
 
 // route to artist details
 $router->get('/artist-details', [ViewController::class, 'artistDetails']);

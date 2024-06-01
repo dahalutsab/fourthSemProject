@@ -54,11 +54,15 @@ class UserService implements UserServiceInterface {
     public function getAllUsers(): array
     {
         $users = $this->userRepository->getAllUsers();
-//        return all the data in the form of an array
         return array_map(function ($user) {
             $userResponse = new UserResponse($user);
             return $userResponse->toArray();
         }, $users);
+    }
+
+    public function getUserByEmail($email): UserResponse
+    {
+        return new UserResponse($this->userRepository->getUserByColumnValue('email', $email));
     }
 
 }

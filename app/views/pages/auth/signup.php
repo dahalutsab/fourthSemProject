@@ -52,7 +52,7 @@
                     <button type="submit" class="submit-btn" name="submit-signup">Create Account</button>
                 </div>
                 <p class="text-center mb-0">
-                    Have an account? Please <a href="/login">Login</a>
+                    Have an account? Please <a href="/login"><span style="color: var(--button-color)">Login</span></a>
                 </p>
             </form>
         </div>
