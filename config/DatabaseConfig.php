@@ -2,10 +2,10 @@
 namespace config;
 
 class DatabaseConfig {
-    private string $host = 'localhost';
-    private string $username = 'root';
-    private string $password = '';
-    private string $database = 'open_mic_hub';
+    private string $host = 'fdb1032.awardspace.net';
+    private string $username = '4489259_openmichub';
+    private string $password = 'sY6gt4KH4#-gwvf';
+    private string $database = '4489259_openmichub';
 
 
     public function getHost(): string
