@@ -26,8 +26,11 @@ RUN chown -R myuser:myuser /app
 # Switch to the new user
 USER myuser
 
-# Install composer dependencies as a non-root user
-RUN composer install --no-interaction --prefer-dist --optimize-autoloader
+# Remove existing vendor directory and composer.lock file
+RUN rm -rf vendor && rm composer.lock
+
+# Update Composer dependencies
+RUN composer update --no-interaction --prefer-dist --optimize-autoloader --no-plugins
 
 # Switch back to root user to expose the port
 USER root
