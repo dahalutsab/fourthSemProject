@@ -26,17 +26,11 @@ RUN chown -R myuser:myuser /app
 # Switch to the new user
 USER myuser
 
-# Create necessary directory structure
-RUN mkdir -p /app/vendor/phpmailer/phpmailer
-
-# Switch back to root user to copy vendor directory and install composer dependencies
-USER root
-
-# Copy vendor directory into Docker image
-COPY ./vendor /app/vendor
-
 # Install composer dependencies
 RUN composer install
+
+# Switch back to root user to expose the port
+USER root
 
 # Make port 8080 available to the world outside this container
 EXPOSE 8080
