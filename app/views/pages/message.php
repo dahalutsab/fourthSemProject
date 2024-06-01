@@ -105,7 +105,7 @@
             }
         }
 
-        const socket = new WebSocket('ws://localhost:8080');
+        const socket = new WebSocket('ws://openmichub.onrender.com/:8080');
 
         // Handle WebSocket connection open
         socket.onopen = function() {
