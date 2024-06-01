@@ -2,11 +2,11 @@
 namespace config;
 
 class DatabaseConfig {
-    private string $host = 'fdb1032.awardspace.net';
-    private string $username = '4489259_openmichub';
-    private string $password = 'sY6gt4KH4#-gwvf';
-    private string $database = '4489259_openmichub';
-
+    private string $host = 'open-mic-hub-open-mic-hub.f.aivencloud.com';
+    private string $username = 'avnadmin';
+    private string $password = 'AVNS_hbwIEeidNEY5AW-Z1iG';
+    private string $database = 'defaultdb';
+    private int $port = 10668;
 
     public function getHost(): string
     {
@@ -26,5 +26,10 @@ class DatabaseConfig {
     public function getDatabase(): string
     {
         return $this->database;
+    }
+
+    public function getPort(): int
+    {
+        return $this->port;
     }
 }

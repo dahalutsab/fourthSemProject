@@ -17,9 +17,10 @@ use mysqli;
         $host = $config->getHost();
         $username = $config->getUsername();
         $password = $config->getPassword();
+        $port = $config->getPort();
         $database = $config->getDatabase();
 
-        $this->connection = new mysqli($host, $username, $password, $database);
+        $this->connection = new mysqli($host, $username, $password, $database, $port);
 
         if ($this->connection->connect_error) {
             die("Connection failed: " . $this->connection->connect_error);
