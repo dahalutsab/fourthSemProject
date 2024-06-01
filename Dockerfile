@@ -18,6 +18,7 @@ RUN apt-get update && apt-get install -y \
     && curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
 
 # Install composer dependencies as root
+RUN composer clear-cache
 RUN composer install
 
 # Create a non-root user
