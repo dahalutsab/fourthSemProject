@@ -22,6 +22,7 @@
         "phpmailer/phpmailer": "*",
       "ext-fileinfo": "*",
       "ext-curl": "*",
-        "cboden/ratchet": "^0.4.4"
+        "cboden/ratchet": "^0.4.4",
+        "react/promise": "^3.2"
     }
 }
