@@ -26,6 +26,9 @@ RUN chown -R myuser:myuser /app
 # Switch to the new user
 USER myuser
 
+# Create necessary directory structure
+RUN mkdir -p /app/vendor/phpmailer/phpmailer
+
 # Copy vendor directory into Docker image
 COPY ./vendor /app/vendor
 
