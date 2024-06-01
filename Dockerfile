@@ -1,5 +1,5 @@
 # Use an official PHP runtime as a parent image
-FROM php:7.4-cli
+FROM php:8.1.0-cli
 
 # Set the working directory in the container to /app
 WORKDIR /app
