@@ -19,14 +19,14 @@ RUN apt-get update && apt-get install -y \
 # Create a non-root user
 RUN useradd -m myuser
 
-# Set the working directory in the container to /app
-WORKDIR /app
-
 # Change ownership of /app to the new user
 RUN chown -R myuser:myuser /app
 
 # Switch to the new user
 USER myuser
+
+# Copy vendor directory into Docker image
+COPY ./vendor /app/vendor
 
 # Install composer dependencies
 RUN composer install
