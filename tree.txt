@@ -1,0 +1,2544 @@
+Folder PATH listing for volume Windows-SSD
+Volume serial number is 5269-C593
+C:.
+|   composer.json
+|   composer.lock
+|   README.md
+|   server.php
+|   tree.txt
+|   
++---.idea
+|   |   .gitignore
+|   |   dataSources.local.xml
+|   |   dataSources.xml
+|   |   jsLibraryMappings.xml
+|   |   misc.xml
+|   |   modules.xml
+|   |   OpenMicHub.iml
+|   |   php.xml
+|   |   vcs.xml
+|   |   workspace.xml
+|   |   
+|   +---dataSources
+|   |   |   2ccf38d9-3135-4cbe-8003-272013f2013b.xml
+|   |   |   
+|   |   \---2ccf38d9-3135-4cbe-8003-272013f2013b
+|   |       \---storage_v2
+|   |           \---_src_
+|   |               \---schema
+|   |                       information_schema.FNRwLQ.meta
+|   |                       mysql.osA4Bg.meta
+|   |                       open_mic_hub.CNLZWw.meta
+|   |                       performance_schema.kIw0nw.meta
+|   |                       
+|   \---inspectionProfiles
+|           Project_Default.xml
+|           
++---app
+|   |   Router.php
+|   |   Routes.php
+|   |   
+|   +---controllers
+|   |       ArtistDetailsController.php
+|   |       AuthController.php
+|   |       BookingController.php
+|   |       CategoryController.php
+|   |       DashboardViewController.php
+|   |       ErrorViewController.php
+|   |       LocationController.php
+|   |       MediaController.php
+|   |       MessageController.php
+|   |       PerformanceTypesController.php
+|   |       RoleController.php
+|   |       UserController.php
+|   |       UserDetailsController.php
+|   |       ViewController.php
+|   |       
+|   +---dto
+|   |   +---request
+|   |   |       ArtistDetailsRequest.php
+|   |   |       ArtistPerformanceRequest.php
+|   |   |       LocationRequest.php
+|   |   |       MediaRequest.php
+|   |   |       PerformanceTypeRequest.php
+|   |   |       UserDetailsRequest.php
+|   |   |       UserRequest.php
+|   |   |       
+|   |   \---response
+|   |           ArtistDetailsResponse.php
+|   |           ArtistPerformanceResponse.php
+|   |           BookingResponse.php
+|   |           MediaResponse.php
+|   |           PerformanceTypesResponse.php
+|   |           RoleResponse.php
+|   |           UserDetailsResponse.php
+|   |           UserResponse.php
+|   |           
+|   +---http
+|   |       Request.php
+|   |       
+|   +---interceptor
+|   |       Interceptor.php
+|   |       
+|   +---middleware
+|   |       ArtistMiddleware.php
+|   |       
+|   +---models
+|   |       ArtistDetails.php
+|   |       ArtistPerformance.php
+|   |       Booking.php
+|   |       District.php
+|   |       Locations.php
+|   |       Media.php
+|   |       Municipality.php
+|   |       Otp.php
+|   |       PerformanceTypes.php
+|   |       Province.php
+|   |       Role.php
+|   |       SocialMediaLink.php
+|   |       Transaction.php
+|   |       User.php
+|   |       UserDetails.php
+|   |       
+|   +---payment
+|   |       EsewaIntegration.php
+|   |       KhaltiIntegration.php
+|   |       
+|   +---repository
+|   |   |   ArtistDetailsRepositoryInterface.php
+|   |   |   BookingRepositoryInterface.php
+|   |   |   OtpRepositoryInterface.php
+|   |   |   RoleRepositoryInterface.php
+|   |   |   UserDetailsRepositoryInterface.php
+|   |   |   UserRepositoryInterface.php
+|   |   |   
+|   |   \---implementation
+|   |           ArtistDetailsRepository.php
+|   |           ArtistPerformanceRepository.php
+|   |           BookingRepository.php
+|   |           CategoryRepository.php
+|   |           LocationRepository.php
+|   |           MediaRepository.php
+|   |           MessageRepository.php
+|   |           OtpRepository.php
+|   |           PerformanceTypesRepository.php
+|   |           RoleRepository.php
+|   |           TransactionRepository.php
+|   |           UserDetailsRepository.php
+|   |           UserRepository.php
+|   |           
+|   +---response
+|   |       APIResponse.php
+|   |       ErrorResponse.php
+|   |       
+|   +---service
+|   |   |   ArtistDetailsServiceInterface.php
+|   |   |   AuthServiceInterface.php
+|   |   |   CategoryServiceInterface.php
+|   |   |   MailerServiceInterface.php
+|   |   |   OtpServiceInterface.php
+|   |   |   RoleServiceInterface.php
+|   |   |   UserDetailsServiceInterface.php
+|   |   |   UserServiceInterface.php
+|   |   |   
+|   |   \---implementation
+|   |           ArtistDetailsService.php
+|   |           ArtistPerformanceService.php
+|   |           AuthService.php
+|   |           BookingService.php
+|   |           CategoryService.php
+|   |           EsewaIntegrationService.php
+|   |           LocationService.php
+|   |           MailerService.php
+|   |           MediaService.php
+|   |           OtpService.php
+|   |           PerformanceTypesService.php
+|   |           RoleService.php
+|   |           TransactionService.php
+|   |           UserDetailsService.php
+|   |           UserService.php
+|   |           WebSocketService.php
+|   |           
+|   +---templates
+|   |       email_template.html
+|   |       
+|   +---validator
+|   |       UserRequestValidator.php
+|   |       
+|   \---views
+|       +---components
+|       |       artists.php
+|       |       artist_card.php
+|       |       contactUs.php
+|       |       dashboard_breadcrumb.php
+|       |       dashboard_footer.php
+|       |       dashboard_navbar.php
+|       |       dashboard_sidebar.php
+|       |       footer.php
+|       |       home.php
+|       |       loader.html
+|       |       navbar.php
+|       |       
+|       +---error
+|       |       404.php
+|       |       accessDenied.php
+|       |       
+|       +---layouts
+|       |       dashboard_main.php
+|       |       main.php
+|       |       
+|       \---pages
+|           |   aboutUs.php
+|           |   artist_details.php
+|           |   dashboard.php
+|           |   dashboard_landing.php
+|           |   dashboard_profile.php
+|           |   message.php
+|           |   spinner.php
+|           |   test.php
+|           |   
+|           +---admin_media
+|           |       add_artist_media.php
+|           |       artist-media-management.php
+|           |       
+|           +---artist_booking
+|           |       artist_booking_form.php
+|           |       
+|           +---artist_performance
+|           |       add_artist_performance_types.php
+|           |       artist_performance_types_and_cost.php
+|           |       view_all_artist_performance_types.php
+|           |       
+|           +---auth
+|           |       login.php
+|           |       login_signup.php
+|           |       otp.php
+|           |       signup.php
+|           |       
+|           \---payment
+|                   Khalti.php
+|                   payment_failure.php
+|                   payment_page.php
+|                   payment_success.php
+|                   
++---config
+|       config.php
+|       Database.php
+|       DatabaseConfig.php
+|       session.php
+|       session_constants.php
+|       
++---public
+|   |   .htaccess
+|   |   index.php
+|   |   
+|   +---assets
+|   |   +---css
+|   |   |       404.css
+|   |   |       add_artist_media.css
+|   |   |       artist-card.css
+|   |   |       artist-details.css
+|   |   |       artist-media-management.css
+|   |   |       artists.css
+|   |   |       bootstrap.min.css
+|   |   |       bootstrap.min.css.map
+|   |   |       contactUs.css
+|   |   |       dashboard_breadcrumb.css
+|   |   |       dashboard_component.css
+|   |   |       dashboard_footer.css
+|   |   |       dashboard_main.css
+|   |   |       dashboard_navbar.css
+|   |   |       dashboard_profile.css
+|   |   |       dashboard_sidebar.css
+|   |   |       dashboard_toggle.css
+|   |   |       error_message.css
+|   |   |       footer.css
+|   |   |       home.css
+|   |   |       login_signup.css
+|   |   |       messages.css
+|   |   |       navbar.css
+|   |   |       style.css
+|   |   |       
+|   |   +---images
+|   |   |   |   1.png
+|   |   |   |   2.png
+|   |   |   |   3.png
+|   |   |   |   4.png
+|   |   |   |   default-profile.png
+|   |   |   |   emoji.png
+|   |   |   |   esewa-logo-small.svg
+|   |   |   |   esewa.png
+|   |   |   |   Esewa_logo.webp
+|   |   |   |   hero-image.png
+|   |   |   |   khalti-logo-F0B049E67E-seeklogo.com.png
+|   |   |   |   Khalti-Logo.png
+|   |   |   |   logo_openmic.png
+|   |   |   |   openMicLogo.png
+|   |   |   |   user.png
+|   |   |   |   utsab.jpg
+|   |   |   |   
+|   |   |   +---svg
+|   |   |   |       logo_openmic.svg
+|   |   |   |       
+|   |   |   \---topics
+|   |   |           colleagues-working-cozy-office-medium-shot.png
+|   |   |           undraw_Compose_music_re_wpiw.png
+|   |   |           undraw_Educator_re_ju47.png
+|   |   |           undraw_Finance_re_gnv2.png
+|   |   |           undraw_Graduation_re_gthn.png
+|   |   |           undraw_Group_video_re_btu7.png
+|   |   |           undraw_happy_music_g6wc.png
+|   |   |           undraw_online_ad_re_ol62.png
+|   |   |           undraw_Podcast_audience_re_4i5q.png
+|   |   |           undraw_Redesign_feedback_re_jvm0.png
+|   |   |           undraw_Remote_design_team_re_urdx.png
+|   |   |           undraw_viral_tweet_gndb.png
+|   |   |           
+|   |   \---js
+|   |           add_artist_media.js
+|   |           add_artist_performance_types.js
+|   |           ajaxHandler.js
+|   |           artist-dashboard-media-management.js
+|   |           artist_booking_form.js
+|   |           bootstrap.bundle.min.js
+|   |           dashboard.js
+|   |           dashboard_profile.js
+|   |           displayErrorMessage.js
+|   |           esewa_handling.js
+|   |           loader.js
+|   |           load_artist_cards.js
+|   |           navbar.js
+|   |           otp.js
+|   |           script.js
+|   |           signup.js
+|   |           socket.js
+|   |           toastr.js
+|   |           view_artist_details.js
+|   |           
+|   +---upload
+|   |   +---photo
+|   |   |       GanttChartProposal.png
+|   |   |       Picture1.png
+|   |   |       Picture2.png
+|   |   |       Picture6.png
+|   |   |       Screenshot 2024-03-19 050811.png
+|   |   |       Utsab.jpg
+|   |   |       
+|   |   \---video
+|   |           Wolfenstein 3D 2023.06.16 - 18.39.37.01.mp4
+|   |           
+|   \---uploads
+|       +---photo
+|       |       Utsab.jpg
+|       |       
+|       +---profile_pictures
+|       |       13_1713922811_662862fb971d7.png
+|       |       13_1713922863_6628632f65262.png
+|       |       13_1713922902_6628635684c08.jpg
+|       |       13_1713922934_66286376f1d30.jpg
+|       |       13_1713924487_66286987c5e79.jpg
+|       |       13_1713924972_66286b6ce57f0.png
+|       |       13_1713925148_66286c1c4178b.jpg
+|       |       13_1714012979_6629c33316677.png
+|       |       13_1714013027_6629c3633089f.png
+|       |       13_1714013059_6629c383efbf1.jpg
+|       |       13_1714013199_6629c40fd92b1.png
+|       |       13_1714013705_6629c60999de3.jpg
+|       |       13_1714013838_6629c68e43d46.png
+|       |       13_1714014239_6629c81f22dfc.jpg
+|       |       13_1714032182_662a0e36a0268.jpg
+|       |       13_1714034651_662a17dba3aa3.png
+|       |       13_1714034718_662a181e7ed3d.jpg
+|       |       13_1714034841_662a1899343dc.png
+|       |       13_1714034858_662a18aa72098.png
+|       |       13_1714034889_662a18c93cc94.png
+|       |       13_1714034916_662a18e48a589.png
+|       |       13_1714034932_662a18f4c81de.png
+|       |       13_1714034951_662a19079604d.png
+|       |       13_1714034982_662a192604ea6.png
+|       |       13_1714035003_662a193badb6a.png
+|       |       13_1714035045_662a19654e14d.png
+|       |       13_1714035087_662a198f9c3e8.jpg
+|       |       13_1714035102_662a199e2945a.png
+|       |       13_1714035649_662a1bc132ed1.jpg
+|       |       13_1716263417_664c19f9402b4.png
+|       |       19_1714006967_6629abb7efd3c.png
+|       |       19_1714011677_6629be1dbbcc3.jpg
+|       |       19_1714012306_6629c092c4f2a.png
+|       |       19_1714012340_6629c0b4bb759.png
+|       |       19_1714012400_6629c0f0bb089.png
+|       |       19_1716168141_664aa5cd8e5ff.jpg
+|       |       19_1716291072_664c8600ec515.png
+|       |       19_1716865605_66554a455734b.jpg
+|       |       36_1716437912_664ec398b87a4.jpg
+|       |       662860502af86_php525A.tmp
+|       |       _1714044358_662a3dc67eb2e.png
+|       |       _1714044367_662a3dcfb1dfc.png
+|       |       
+|       \---video
+|               Jiunu nai hola (cover)Tribal rain_apson jirel.mp4
+|               Wolfenstein 3D 2023.06.16 - 18.39.37.01.mp4
+|               
++---sql
+|       schema.sql
+|       updatedSqlSchema.sql
+|       
+\---vendor
+    |   autoload.php
+    |   
+    +---cboden
+    |   \---ratchet
+    |       |   .gitignore
+    |       |   CHANGELOG.md
+    |       |   composer.json
+    |       |   LICENSE
+    |       |   Makefile
+    |       |   phpunit.xml.dist
+    |       |   README.md
+    |       |   SECURITY.md
+    |       |   
+    |       +---.github
+    |       |   \---workflows
+    |       |           ci.yml
+    |       |           
+    |       +---src
+    |       |   \---Ratchet
+    |       |       |   AbstractConnectionDecorator.php
+    |       |       |   App.php
+    |       |       |   ComponentInterface.php
+    |       |       |   ConnectionInterface.php
+    |       |       |   MessageComponentInterface.php
+    |       |       |   MessageInterface.php
+    |       |       |   
+    |       |       +---Http
+    |       |       |       CloseResponseTrait.php
+    |       |       |       HttpRequestParser.php
+    |       |       |       HttpServer.php
+    |       |       |       HttpServerInterface.php
+    |       |       |       NoOpHttpServerController.php
+    |       |       |       OriginCheck.php
+    |       |       |       Router.php
+    |       |       |       
+    |       |       +---Server
+    |       |       |       EchoServer.php
+    |       |       |       FlashPolicy.php
+    |       |       |       IoConnection.php
+    |       |       |       IoServer.php
+    |       |       |       IpBlackList.php
+    |       |       |       
+    |       |       +---Session
+    |       |       |   |   SessionProvider.php
+    |       |       |   |   
+    |       |       |   +---Serialize
+    |       |       |   |       HandlerInterface.php
+    |       |       |   |       PhpBinaryHandler.php
+    |       |       |   |       PhpHandler.php
+    |       |       |   |       
+    |       |       |   \---Storage
+    |       |       |       |   VirtualSessionStorage.php
+    |       |       |       |   
+    |       |       |       \---Proxy
+    |       |       |               VirtualProxy.php
+    |       |       |               
+    |       |       +---Wamp
+    |       |       |       Exception.php
+    |       |       |       JsonException.php
+    |       |       |       ServerProtocol.php
+    |       |       |       Topic.php
+    |       |       |       TopicManager.php
+    |       |       |       WampConnection.php
+    |       |       |       WampServer.php
+    |       |       |       WampServerInterface.php
+    |       |       |       
+    |       |       \---WebSocket
+    |       |               ConnContext.php
+    |       |               MessageCallableInterface.php
+    |       |               MessageComponentInterface.php
+    |       |               WsConnection.php
+    |       |               WsServer.php
+    |       |               WsServerInterface.php
+    |       |               
+    |       \---tests
+    |           |   bootstrap.php
+    |           |   
+    |           +---autobahn
+    |           |   |   fuzzingclient-all.json
+    |           |   |   fuzzingclient-profile.json
+    |           |   |   fuzzingclient-quick.json
+    |           |   |   
+    |           |   \---bin
+    |           |           fuzzingserver.php
+    |           |           
+    |           +---helpers
+    |           |   \---Ratchet
+    |           |       |   AbstractMessageComponentTestCase.php
+    |           |       |   NullComponent.php
+    |           |       |   
+    |           |       +---Mock
+    |           |       |       Component.php
+    |           |       |       Connection.php
+    |           |       |       ConnectionDecorator.php
+    |           |       |       WampComponent.php
+    |           |       |       
+    |           |       +---Wamp
+    |           |       |   \---Stub
+    |           |       |           WsWampServerInterface.php
+    |           |       |           
+    |           |       \---WebSocket
+    |           |           \---Stub
+    |           |                   WsMessageComponentInterface.php
+    |           |                   
+    |           \---unit
+    |               |   AbstractConnectionDecoratorTest.php
+    |               |   
+    |               +---Http
+    |               |       HttpRequestParserTest.php
+    |               |       HttpServerTest.php
+    |               |       OriginCheckTest.php
+    |               |       RouterTest.php
+    |               |       
+    |               +---Server
+    |               |       EchoServerTest.php
+    |               |       FlashPolicyComponentTest.php
+    |               |       IoConnectionTest.php
+    |               |       IoServerTest.php
+    |               |       IpBlackListComponentTest.php
+    |               |       
+    |               +---Session
+    |               |   |   SessionComponentTest.php
+    |               |   |   
+    |               |   +---Serialize
+    |               |   |       PhpHandlerTest.php
+    |               |   |       
+    |               |   \---Storage
+    |               |           VirtualSessionStoragePDOTest.php
+    |               |           
+    |               \---Wamp
+    |                       ServerProtocolTest.php
+    |                       TopicManagerTest.php
+    |                       TopicTest.php
+    |                       WampConnectionTest.php
+    |                       WampServerTest.php
+    |                       
+    +---composer
+    |       autoload_classmap.php
+    |       autoload_files.php
+    |       autoload_namespaces.php
+    |       autoload_psr4.php
+    |       autoload_real.php
+    |       autoload_static.php
+    |       ClassLoader.php
+    |       installed.json
+    |       installed.php
+    |       InstalledVersions.php
+    |       LICENSE
+    |       platform_check.php
+    |       
+    +---evenement
+    |   \---evenement
+    |       |   .gitattributes
+    |       |   .gitignore
+    |       |   CHANGELOG.md
+    |       |   composer.json
+    |       |   LICENSE
+    |       |   phpunit.xml.dist
+    |       |   README.md
+    |       |   
+    |       +---.github
+    |       |   \---workflows
+    |       |           ci.yaml
+    |       |           
+    |       +---doc
+    |       |       00-intro.md
+    |       |       01-api.md
+    |       |       02-plugin-system.md
+    |       |       
+    |       +---examples
+    |       |       benchmark-emit-no-arguments.php
+    |       |       benchmark-emit-once.php
+    |       |       benchmark-emit-one-argument.php
+    |       |       benchmark-emit.php
+    |       |       benchmark-remove-listener-once.php
+    |       |       
+    |       +---src
+    |       |       EventEmitter.php
+    |       |       EventEmitterInterface.php
+    |       |       EventEmitterTrait.php
+    |       |       
+    |       \---tests
+    |               EventEmitterTest.php
+    |               functions.php
+    |               Listener.php
+    |               
+    +---guzzlehttp
+    |   \---psr7
+    |       |   .editorconfig
+    |       |   .gitattributes
+    |       |   .gitignore
+    |       |   .php-cs-fixer.dist.php
+    |       |   CHANGELOG.md
+    |       |   composer.json
+    |       |   LICENSE
+    |       |   Makefile
+    |       |   phpstan-baseline.neon
+    |       |   phpstan.neon.dist
+    |       |   phpunit.xml.dist
+    |       |   psalm-baseline.xml
+    |       |   psalm.xml
+    |       |   README.md
+    |       |   
+    |       +---.github
+    |       |   |   .editorconfig
+    |       |   |   FUNDING.yml
+    |       |   |   stale.yml
+    |       |   |   
+    |       |   \---workflows
+    |       |           checks.yml
+    |       |           ci.yml
+    |       |           integration.yml
+    |       |           static.yml
+    |       |           
+    |       +---src
+    |       |   |   AppendStream.php
+    |       |   |   BufferStream.php
+    |       |   |   CachingStream.php
+    |       |   |   DroppingStream.php
+    |       |   |   FnStream.php
+    |       |   |   Header.php
+    |       |   |   HttpFactory.php
+    |       |   |   InflateStream.php
+    |       |   |   LazyOpenStream.php
+    |       |   |   LimitStream.php
+    |       |   |   Message.php
+    |       |   |   MessageTrait.php
+    |       |   |   MimeType.php
+    |       |   |   MultipartStream.php
+    |       |   |   NoSeekStream.php
+    |       |   |   PumpStream.php
+    |       |   |   Query.php
+    |       |   |   Request.php
+    |       |   |   Response.php
+    |       |   |   Rfc7230.php
+    |       |   |   ServerRequest.php
+    |       |   |   Stream.php
+    |       |   |   StreamDecoratorTrait.php
+    |       |   |   StreamWrapper.php
+    |       |   |   UploadedFile.php
+    |       |   |   Uri.php
+    |       |   |   UriComparator.php
+    |       |   |   UriNormalizer.php
+    |       |   |   UriResolver.php
+    |       |   |   Utils.php
+    |       |   |   
+    |       |   \---Exception
+    |       |           MalformedUriException.php
+    |       |           
+    |       +---tests
+    |       |   |   AppendStreamTest.php
+    |       |   |   BufferStreamTest.php
+    |       |   |   CachingStreamTest.php
+    |       |   |   DroppingStreamTest.php
+    |       |   |   FnStreamTest.php
+    |       |   |   HasToString.php
+    |       |   |   HeaderTest.php
+    |       |   |   InflateStreamTest.php
+    |       |   |   LazyOpenStreamTest.php
+    |       |   |   LimitStreamTest.php
+    |       |   |   MessageTest.php
+    |       |   |   MimeTypeTest.php
+    |       |   |   MultipartStreamTest.php
+    |       |   |   NoSeekStreamTest.php
+    |       |   |   PumpStreamTest.php
+    |       |   |   QueryTest.php
+    |       |   |   ReadSeekOnlyStream.php
+    |       |   |   RequestTest.php
+    |       |   |   ResponseTest.php
+    |       |   |   ServerRequestTest.php
+    |       |   |   StreamDecoratorTraitTest.php
+    |       |   |   StreamTest.php
+    |       |   |   StreamWrapperTest.php
+    |       |   |   UploadedFileTest.php
+    |       |   |   UriComparatorTest.php
+    |       |   |   UriNormalizerTest.php
+    |       |   |   UriResolverTest.php
+    |       |   |   UriTest.php
+    |       |   |   UtilsTest.php
+    |       |   |   
+    |       |   \---Integration
+    |       |           server.php
+    |       |           ServerRequestFromGlobalsTest.php
+    |       |           
+    |       \---vendor-bin
+    |           +---php-cs-fixer
+    |           |       composer.json
+    |           |       
+    |           +---phpstan
+    |           |       composer.json
+    |           |       
+    |           \---psalm
+    |                   composer.json
+    |                   
+    +---phpmailer
+    |   |   .codecov.yml
+    |   |   .editorconfig
+    |   |   .gitattributes
+    |   |   .gitignore
+    |   |   changelog.md
+    |   |   COMMITMENT
+    |   |   composer.json
+    |   |   get_oauth_token.php
+    |   |   LICENSE
+    |   |   phpcs.xml.dist
+    |   |   phpdoc.dist.xml
+    |   |   phpunit.xml.dist
+    |   |   README.md
+    |   |   SECURITY.md
+    |   |   UPGRADING.md
+    |   |   VERSION
+    |   |   
+    |   +---.github
+    |   |   |   dependabot.yml
+    |   |   |   FUNDING.yml
+    |   |   |   
+    |   |   +---actions
+    |   |   |   \---build-docs
+    |   |   |           Dockerfile
+    |   |   |           entrypoint.sh
+    |   |   |           
+    |   |   +---ISSUE_TEMPLATE
+    |   |   |       bug_report.md
+    |   |   |       
+    |   |   \---workflows
+    |   |           docs.yaml
+    |   |           scorecards.yml
+    |   |           tests.yml
+    |   |           
+    |   +---.phan
+    |   |       config.php
+    |   |       
+    |   +---docs
+    |   |       README.md
+    |   |       
+    |   +---examples
+    |   |   |   azure_xoauth2.phps
+    |   |   |   callback.phps
+    |   |   |   contactform-ajax.phps
+    |   |   |   contactform.phps
+    |   |   |   contents.html
+    |   |   |   contentsutf8.html
+    |   |   |   DKIM_gen_keys.phps
+    |   |   |   DKIM_sign.phps
+    |   |   |   exceptions.phps
+    |   |   |   extending.phps
+    |   |   |   gmail.phps
+    |   |   |   gmail_xoauth.phps
+    |   |   |   mail.phps
+    |   |   |   mailing_list.phps
+    |   |   |   pop_before_smtp.phps
+    |   |   |   README.md
+    |   |   |   sendmail.phps
+    |   |   |   sendoauth2.phps
+    |   |   |   send_file_upload.phps
+    |   |   |   send_multiple_file_upload.phps
+    |   |   |   simple_contact_form.phps
+    |   |   |   smime_signed_mail.phps
+    |   |   |   smtp.phps
+    |   |   |   smtp_check.phps
+    |   |   |   smtp_low_memory.phps
+    |   |   |   smtp_no_auth.phps
+    |   |   |   ssl_options.phps
+    |   |   |   
+    |   |   \---images
+    |   |           PHPMailer card logo.afdesign
+    |   |           PHPMailer card logo.png
+    |   |           PHPMailer card logo.svg
+    |   |           phpmailer.png
+    |   |           phpmailer_mini.png
+    |   |           
+    |   +---language
+    |   |       phpmailer.lang-af.php
+    |   |       phpmailer.lang-ar.php
+    |   |       phpmailer.lang-as.php
+    |   |       phpmailer.lang-az.php
+    |   |       phpmailer.lang-ba.php
+    |   |       phpmailer.lang-be.php
+    |   |       phpmailer.lang-bg.php
+    |   |       phpmailer.lang-bn.php
+    |   |       phpmailer.lang-ca.php
+    |   |       phpmailer.lang-cs.php
+    |   |       phpmailer.lang-da.php
+    |   |       phpmailer.lang-de.php
+    |   |       phpmailer.lang-el.php
+    |   |       phpmailer.lang-eo.php
+    |   |       phpmailer.lang-es.php
+    |   |       phpmailer.lang-et.php
+    |   |       phpmailer.lang-fa.php
+    |   |       phpmailer.lang-fi.php
+    |   |       phpmailer.lang-fo.php
+    |   |       phpmailer.lang-fr.php
+    |   |       phpmailer.lang-gl.php
+    |   |       phpmailer.lang-he.php
+    |   |       phpmailer.lang-hi.php
+    |   |       phpmailer.lang-hr.php
+    |   |       phpmailer.lang-hu.php
+    |   |       phpmailer.lang-hy.php
+    |   |       phpmailer.lang-id.php
+    |   |       phpmailer.lang-it.php
+    |   |       phpmailer.lang-ja.php
+    |   |       phpmailer.lang-ka.php
+    |   |       phpmailer.lang-ko.php
+    |   |       phpmailer.lang-lt.php
+    |   |       phpmailer.lang-lv.php
+    |   |       phpmailer.lang-mg.php
+    |   |       phpmailer.lang-mn.php
+    |   |       phpmailer.lang-ms.php
+    |   |       phpmailer.lang-nb.php
+    |   |       phpmailer.lang-nl.php
+    |   |       phpmailer.lang-pl.php
+    |   |       phpmailer.lang-pt.php
+    |   |       phpmailer.lang-pt_br.php
+    |   |       phpmailer.lang-ro.php
+    |   |       phpmailer.lang-ru.php
+    |   |       phpmailer.lang-si.php
+    |   |       phpmailer.lang-sk.php
+    |   |       phpmailer.lang-sl.php
+    |   |       phpmailer.lang-sr.php
+    |   |       phpmailer.lang-sr_latn.php
+    |   |       phpmailer.lang-sv.php
+    |   |       phpmailer.lang-tl.php
+    |   |       phpmailer.lang-tr.php
+    |   |       phpmailer.lang-uk.php
+    |   |       phpmailer.lang-vi.php
+    |   |       phpmailer.lang-zh.php
+    |   |       phpmailer.lang-zh_cn.php
+    |   |       
+    |   +---phpmailer
+    |   |   |   .codecov.yml
+    |   |   |   .editorconfig
+    |   |   |   .gitattributes
+    |   |   |   .gitignore
+    |   |   |   changelog.md
+    |   |   |   COMMITMENT
+    |   |   |   composer.json
+    |   |   |   get_oauth_token.php
+    |   |   |   LICENSE
+    |   |   |   phpcs.xml.dist
+    |   |   |   phpdoc.dist.xml
+    |   |   |   phpunit.xml.dist
+    |   |   |   README.md
+    |   |   |   SECURITY.md
+    |   |   |   UPGRADING.md
+    |   |   |   VERSION
+    |   |   |   
+    |   |   +---.github
+    |   |   |   |   dependabot.yml
+    |   |   |   |   FUNDING.yml
+    |   |   |   |   
+    |   |   |   +---actions
+    |   |   |   |   \---build-docs
+    |   |   |   |           Dockerfile
+    |   |   |   |           entrypoint.sh
+    |   |   |   |           
+    |   |   |   +---ISSUE_TEMPLATE
+    |   |   |   |       bug_report.md
+    |   |   |   |       
+    |   |   |   \---workflows
+    |   |   |           docs.yaml
+    |   |   |           scorecards.yml
+    |   |   |           tests.yml
+    |   |   |           
+    |   |   +---.phan
+    |   |   |       config.php
+    |   |   |       
+    |   |   +---docs
+    |   |   |       README.md
+    |   |   |       
+    |   |   +---examples
+    |   |   |   |   azure_xoauth2.phps
+    |   |   |   |   callback.phps
+    |   |   |   |   contactform-ajax.phps
+    |   |   |   |   contactform.phps
+    |   |   |   |   contents.html
+    |   |   |   |   contentsutf8.html
+    |   |   |   |   DKIM_gen_keys.phps
+    |   |   |   |   DKIM_sign.phps
+    |   |   |   |   exceptions.phps
+    |   |   |   |   extending.phps
+    |   |   |   |   gmail.phps
+    |   |   |   |   gmail_xoauth.phps
+    |   |   |   |   mail.phps
+    |   |   |   |   mailing_list.phps
+    |   |   |   |   pop_before_smtp.phps
+    |   |   |   |   README.md
+    |   |   |   |   sendmail.phps
+    |   |   |   |   sendoauth2.phps
+    |   |   |   |   send_file_upload.phps
+    |   |   |   |   send_multiple_file_upload.phps
+    |   |   |   |   simple_contact_form.phps
+    |   |   |   |   smime_signed_mail.phps
+    |   |   |   |   smtp.phps
+    |   |   |   |   smtp_check.phps
+    |   |   |   |   smtp_low_memory.phps
+    |   |   |   |   smtp_no_auth.phps
+    |   |   |   |   ssl_options.phps
+    |   |   |   |   
+    |   |   |   \---images
+    |   |   |           PHPMailer card logo.afdesign
+    |   |   |           PHPMailer card logo.png
+    |   |   |           PHPMailer card logo.svg
+    |   |   |           phpmailer.png
+    |   |   |           phpmailer_mini.png
+    |   |   |           
+    |   |   +---language
+    |   |   |       phpmailer.lang-af.php
+    |   |   |       phpmailer.lang-ar.php
+    |   |   |       phpmailer.lang-as.php
+    |   |   |       phpmailer.lang-az.php
+    |   |   |       phpmailer.lang-ba.php
+    |   |   |       phpmailer.lang-be.php
+    |   |   |       phpmailer.lang-bg.php
+    |   |   |       phpmailer.lang-bn.php
+    |   |   |       phpmailer.lang-ca.php
+    |   |   |       phpmailer.lang-cs.php
+    |   |   |       phpmailer.lang-da.php
+    |   |   |       phpmailer.lang-de.php
+    |   |   |       phpmailer.lang-el.php
+    |   |   |       phpmailer.lang-eo.php
+    |   |   |       phpmailer.lang-es.php
+    |   |   |       phpmailer.lang-et.php
+    |   |   |       phpmailer.lang-fa.php
+    |   |   |       phpmailer.lang-fi.php
+    |   |   |       phpmailer.lang-fo.php
+    |   |   |       phpmailer.lang-fr.php
+    |   |   |       phpmailer.lang-gl.php
+    |   |   |       phpmailer.lang-he.php
+    |   |   |       phpmailer.lang-hi.php
+    |   |   |       phpmailer.lang-hr.php
+    |   |   |       phpmailer.lang-hu.php
+    |   |   |       phpmailer.lang-hy.php
+    |   |   |       phpmailer.lang-id.php
+    |   |   |       phpmailer.lang-it.php
+    |   |   |       phpmailer.lang-ja.php
+    |   |   |       phpmailer.lang-ka.php
+    |   |   |       phpmailer.lang-ko.php
+    |   |   |       phpmailer.lang-lt.php
+    |   |   |       phpmailer.lang-lv.php
+    |   |   |       phpmailer.lang-mg.php
+    |   |   |       phpmailer.lang-mn.php
+    |   |   |       phpmailer.lang-ms.php
+    |   |   |       phpmailer.lang-nb.php
+    |   |   |       phpmailer.lang-nl.php
+    |   |   |       phpmailer.lang-pl.php
+    |   |   |       phpmailer.lang-pt.php
+    |   |   |       phpmailer.lang-pt_br.php
+    |   |   |       phpmailer.lang-ro.php
+    |   |   |       phpmailer.lang-ru.php
+    |   |   |       phpmailer.lang-si.php
+    |   |   |       phpmailer.lang-sk.php
+    |   |   |       phpmailer.lang-sl.php
+    |   |   |       phpmailer.lang-sr.php
+    |   |   |       phpmailer.lang-sr_latn.php
+    |   |   |       phpmailer.lang-sv.php
+    |   |   |       phpmailer.lang-tl.php
+    |   |   |       phpmailer.lang-tr.php
+    |   |   |       phpmailer.lang-uk.php
+    |   |   |       phpmailer.lang-vi.php
+    |   |   |       phpmailer.lang-zh.php
+    |   |   |       phpmailer.lang-zh_cn.php
+    |   |   |       
+    |   |   +---src
+    |   |   |       DSNConfigurator.php
+    |   |   |       Exception.php
+    |   |   |       OAuth.php
+    |   |   |       OAuthTokenProvider.php
+    |   |   |       PHPMailer.php
+    |   |   |       POP3.php
+    |   |   |       SMTP.php
+    |   |   |       
+    |   |   \---test
+    |   |       |   DebugLogTestListener.php
+    |   |       |   fakefunctions.php
+    |   |       |   fakepopserver.sh
+    |   |       |   fakesendmail.sh
+    |   |       |   PreSendTestCase.php
+    |   |       |   runfakepopserver.sh
+    |   |       |   SendTestCase.php
+    |   |       |   testbootstrap-dist.php
+    |   |       |   TestCase.php
+    |   |       |   validators.php
+    |   |       |   
+    |   |       +---Fixtures
+    |   |       |   +---FileIsAccessibleTest
+    |   |       |   |       accessible.txt
+    |   |       |   |       inaccessible.txt
+    |   |       |   |       
+    |   |       |   \---LocalizationTest
+    |   |       |           phpmailer.lang-fr.php
+    |   |       |           phpmailer.lang-nl.php
+    |   |       |           phpmailer.lang-xa_scri_cc.php
+    |   |       |           phpmailer.lang-xb_scri.php
+    |   |       |           phpmailer.lang-xc_cc.php
+    |   |       |           phpmailer.lang-xd_cc.php
+    |   |       |           phpmailer.lang-xd_scri.php
+    |   |       |           phpmailer.lang-xe.php
+    |   |       |           phpmailer.lang-xx.php
+    |   |       |           phpmailer.lang-yy.php
+    |   |       |           phpmailer.lang-zz.php
+    |   |       |           
+    |   |       +---Language
+    |   |       |       TranslationCompletenessTest.php
+    |   |       |       
+    |   |       +---OAuth
+    |   |       |       OAuthTest.php
+    |   |       |       
+    |   |       +---PHPMailer
+    |   |       |       AddEmbeddedImageTest.php
+    |   |       |       AddrFormatTest.php
+    |   |       |       AddStringAttachmentTest.php
+    |   |       |       AddStringEmbeddedImageTest.php
+    |   |       |       AuthCRAMMD5Test.php
+    |   |       |       CustomHeaderTest.php
+    |   |       |       DKIMTest.php
+    |   |       |       DSNConfiguratorTest.php
+    |   |       |       EncodeQTest.php
+    |   |       |       EncodeStringTest.php
+    |   |       |       FileIsAccessibleTest.php
+    |   |       |       FilenameToTypeTest.php
+    |   |       |       GenerateIdTest.php
+    |   |       |       GetLastMessageIDTest.php
+    |   |       |       HasLineLongerThanMaxTest.php
+    |   |       |       Html2TextTest.php
+    |   |       |       ICalTest.php
+    |   |       |       IsPermittedPathTest.php
+    |   |       |       IsValidHostTest.php
+    |   |       |       LocalizationTest.php
+    |   |       |       MailTransportTest.php
+    |   |       |       MbPathinfoTest.php
+    |   |       |       MimeTypesTest.php
+    |   |       |       NormalizeBreaksTest.php
+    |   |       |       ParseAddressesTest.php
+    |   |       |       PHPMailerTest.php
+    |   |       |       PunyencodeAddressTest.php
+    |   |       |       QuotedStringTest.php
+    |   |       |       ReplyToGetSetClearTest.php
+    |   |       |       SetErrorTest.php
+    |   |       |       SetFromTest.php
+    |   |       |       SetTest.php
+    |   |       |       SetWordWrapTest.php
+    |   |       |       Utf8CharBoundaryTest.php
+    |   |       |       ValidateAddressCustomValidatorTest.php
+    |   |       |       ValidateAddressTest.php
+    |   |       |       WrapTextTest.php
+    |   |       |       XMailerTest.php
+    |   |       |       
+    |   |       +---POP3
+    |   |       |       PopBeforeSmtpTest.php
+    |   |       |       
+    |   |       \---Security
+    |   |               DenialOfServiceVectorsTest.php
+    |   |               
+    |   +---src
+    |   |       DSNConfigurator.php
+    |   |       Exception.php
+    |   |       OAuth.php
+    |   |       OAuthTokenProvider.php
+    |   |       PHPMailer.php
+    |   |       POP3.php
+    |   |       SMTP.php
+    |   |       
+    |   \---test
+    |       |   DebugLogTestListener.php
+    |       |   fakefunctions.php
+    |       |   fakepopserver.sh
+    |       |   fakesendmail.sh
+    |       |   PreSendTestCase.php
+    |       |   runfakepopserver.sh
+    |       |   SendTestCase.php
+    |       |   testbootstrap-dist.php
+    |       |   TestCase.php
+    |       |   validators.php
+    |       |   
+    |       +---Fixtures
+    |       |   +---FileIsAccessibleTest
+    |       |   |       accessible.txt
+    |       |   |       inaccessible.txt
+    |       |   |       
+    |       |   \---LocalizationTest
+    |       |           phpmailer.lang-fr.php
+    |       |           phpmailer.lang-nl.php
+    |       |           phpmailer.lang-xa_scri_cc.php
+    |       |           phpmailer.lang-xb_scri.php
+    |       |           phpmailer.lang-xc_cc.php
+    |       |           phpmailer.lang-xd_cc.php
+    |       |           phpmailer.lang-xd_scri.php
+    |       |           phpmailer.lang-xe.php
+    |       |           phpmailer.lang-xx.php
+    |       |           phpmailer.lang-yy.php
+    |       |           phpmailer.lang-zz.php
+    |       |           
+    |       +---Language
+    |       |       TranslationCompletenessTest.php
+    |       |       
+    |       +---OAuth
+    |       |       OAuthTest.php
+    |       |       
+    |       +---PHPMailer
+    |       |       AddEmbeddedImageTest.php
+    |       |       AddrFormatTest.php
+    |       |       AddStringAttachmentTest.php
+    |       |       AddStringEmbeddedImageTest.php
+    |       |       AuthCRAMMD5Test.php
+    |       |       CustomHeaderTest.php
+    |       |       DKIMTest.php
+    |       |       DSNConfiguratorTest.php
+    |       |       EncodeQTest.php
+    |       |       EncodeStringTest.php
+    |       |       FileIsAccessibleTest.php
+    |       |       FilenameToTypeTest.php
+    |       |       GenerateIdTest.php
+    |       |       GetLastMessageIDTest.php
+    |       |       HasLineLongerThanMaxTest.php
+    |       |       Html2TextTest.php
+    |       |       ICalTest.php
+    |       |       IsPermittedPathTest.php
+    |       |       IsValidHostTest.php
+    |       |       LocalizationTest.php
+    |       |       MailTransportTest.php
+    |       |       MbPathinfoTest.php
+    |       |       MimeTypesTest.php
+    |       |       NormalizeBreaksTest.php
+    |       |       ParseAddressesTest.php
+    |       |       PHPMailerTest.php
+    |       |       PunyencodeAddressTest.php
+    |       |       QuotedStringTest.php
+    |       |       ReplyToGetSetClearTest.php
+    |       |       SetErrorTest.php
+    |       |       SetFromTest.php
+    |       |       SetTest.php
+    |       |       SetWordWrapTest.php
+    |       |       Utf8CharBoundaryTest.php
+    |       |       ValidateAddressCustomValidatorTest.php
+    |       |       ValidateAddressTest.php
+    |       |       WrapTextTest.php
+    |       |       XMailerTest.php
+    |       |       
+    |       +---POP3
+    |       |       PopBeforeSmtpTest.php
+    |       |       
+    |       \---Security
+    |               DenialOfServiceVectorsTest.php
+    |               
+    +---psr
+    |   +---http-factory
+    |   |   |   .gitattributes
+    |   |   |   .gitignore
+    |   |   |   .pullapprove.yml
+    |   |   |   composer.json
+    |   |   |   LICENSE
+    |   |   |   README.md
+    |   |   |   
+    |   |   \---src
+    |   |           RequestFactoryInterface.php
+    |   |           ResponseFactoryInterface.php
+    |   |           ServerRequestFactoryInterface.php
+    |   |           StreamFactoryInterface.php
+    |   |           UploadedFileFactoryInterface.php
+    |   |           UriFactoryInterface.php
+    |   |           
+    |   \---http-message
+    |       |   CHANGELOG.md
+    |       |   composer.json
+    |       |   LICENSE
+    |       |   README.md
+    |       |   
+    |       +---docs
+    |       |       PSR7-Interfaces.md
+    |       |       PSR7-Usage.md
+    |       |       
+    |       \---src
+    |               MessageInterface.php
+    |               RequestInterface.php
+    |               ResponseInterface.php
+    |               ServerRequestInterface.php
+    |               StreamInterface.php
+    |               UploadedFileInterface.php
+    |               UriInterface.php
+    |               
+    +---ralouphie
+    |   \---getallheaders
+    |       |   .gitattributes
+    |       |   .gitignore
+    |       |   .travis.yml
+    |       |   composer.json
+    |       |   LICENSE
+    |       |   phpunit.xml
+    |       |   README.md
+    |       |   
+    |       +---src
+    |       |       getallheaders.php
+    |       |       
+    |       \---tests
+    |               GetAllHeadersTest.php
+    |               
+    +---ratchet
+    |   \---rfc6455
+    |       |   .gitignore
+    |       |   composer.json
+    |       |   LICENSE
+    |       |   phpunit.xml.dist
+    |       |   README.md
+    |       |   
+    |       +---.github
+    |       |   \---workflows
+    |       |           ci.yml
+    |       |           
+    |       +---src
+    |       |   +---Handshake
+    |       |   |       ClientNegotiator.php
+    |       |   |       InvalidPermessageDeflateOptionsException.php
+    |       |   |       NegotiatorInterface.php
+    |       |   |       PermessageDeflateOptions.php
+    |       |   |       RequestVerifier.php
+    |       |   |       ResponseVerifier.php
+    |       |   |       ServerNegotiator.php
+    |       |   |       
+    |       |   \---Messaging
+    |       |           CloseFrameChecker.php
+    |       |           DataInterface.php
+    |       |           Frame.php
+    |       |           FrameInterface.php
+    |       |           Message.php
+    |       |           MessageBuffer.php
+    |       |           MessageInterface.php
+    |       |           
+    |       \---tests
+    |           |   AbResultsTest.php
+    |           |   bootstrap.php
+    |           |   
+    |           +---ab
+    |           |       clientRunner.php
+    |           |       docker_bootstrap.sh
+    |           |       fuzzingclient.json
+    |           |       fuzzingclient_skip_deflate.json
+    |           |       fuzzingserver.json
+    |           |       fuzzingserver_skip_deflate.json
+    |           |       run_ab_tests.sh
+    |           |       startServer.php
+    |           |       
+    |           \---unit
+    |               +---Handshake
+    |               |       PermessageDeflateOptionsTest.php
+    |               |       RequestVerifierTest.php
+    |               |       ResponseVerifierTest.php
+    |               |       ServerNegotiatorTest.php
+    |               |       
+    |               \---Messaging
+    |                       FrameTest.php
+    |                       MessageBufferTest.php
+    |                       MessageTest.php
+    |                       
+    +---react
+    |   +---cache
+    |   |   |   .gitattributes
+    |   |   |   .gitignore
+    |   |   |   CHANGELOG.md
+    |   |   |   composer.json
+    |   |   |   LICENSE
+    |   |   |   phpunit.xml.dist
+    |   |   |   phpunit.xml.legacy
+    |   |   |   README.md
+    |   |   |   
+    |   |   +---.github
+    |   |   |   \---workflows
+    |   |   |           ci.yml
+    |   |   |           
+    |   |   +---src
+    |   |   |       ArrayCache.php
+    |   |   |       CacheInterface.php
+    |   |   |       
+    |   |   \---tests
+    |   |           ArrayCacheTest.php
+    |   |           TestCase.php
+    |   |           
+    |   +---dns
+    |   |   |   .gitattributes
+    |   |   |   .gitignore
+    |   |   |   CHANGELOG.md
+    |   |   |   composer.json
+    |   |   |   LICENSE
+    |   |   |   phpunit.xml.dist
+    |   |   |   phpunit.xml.legacy
+    |   |   |   README.md
+    |   |   |   
+    |   |   +---.github
+    |   |   |   \---workflows
+    |   |   |           ci.yml
+    |   |   |           
+    |   |   +---examples
+    |   |   |       01-one.php
+    |   |   |       02-concurrent.php
+    |   |   |       03-cached.php
+    |   |   |       11-all-ips.php
+    |   |   |       12-all-types.php
+    |   |   |       13-reverse-dns.php
+    |   |   |       91-query-a-and-aaaa.php
+    |   |   |       92-query-any.php
+    |   |   |       
+    |   |   +---src
+    |   |   |   |   BadServerException.php
+    |   |   |   |   RecordNotFoundException.php
+    |   |   |   |   
+    |   |   |   +---Config
+    |   |   |   |       Config.php
+    |   |   |   |       HostsFile.php
+    |   |   |   |       
+    |   |   |   +---Model
+    |   |   |   |       Message.php
+    |   |   |   |       Record.php
+    |   |   |   |       
+    |   |   |   +---Protocol
+    |   |   |   |       BinaryDumper.php
+    |   |   |   |       Parser.php
+    |   |   |   |       
+    |   |   |   +---Query
+    |   |   |   |       CachingExecutor.php
+    |   |   |   |       CancellationException.php
+    |   |   |   |       CoopExecutor.php
+    |   |   |   |       ExecutorInterface.php
+    |   |   |   |       FallbackExecutor.php
+    |   |   |   |       HostsFileExecutor.php
+    |   |   |   |       Query.php
+    |   |   |   |       RetryExecutor.php
+    |   |   |   |       SelectiveTransportExecutor.php
+    |   |   |   |       TcpTransportExecutor.php
+    |   |   |   |       TimeoutException.php
+    |   |   |   |       TimeoutExecutor.php
+    |   |   |   |       UdpTransportExecutor.php
+    |   |   |   |       
+    |   |   |   \---Resolver
+    |   |   |           Factory.php
+    |   |   |           Resolver.php
+    |   |   |           ResolverInterface.php
+    |   |   |           
+    |   |   \---tests
+    |   |       |   FunctionalResolverTest.php
+    |   |       |   TestCase.php
+    |   |       |   
+    |   |       +---Config
+    |   |       |       ConfigTest.php
+    |   |       |       HostsFileTest.php
+    |   |       |       
+    |   |       +---Fixtures
+    |   |       |   \---etc
+    |   |       |           resolv.conf
+    |   |       |           
+    |   |       +---Model
+    |   |       |       MessageTest.php
+    |   |       |       
+    |   |       +---Protocol
+    |   |       |       BinaryDumperTest.php
+    |   |       |       ParserTest.php
+    |   |       |       
+    |   |       +---Query
+    |   |       |       CachingExecutorTest.php
+    |   |       |       CoopExecutorTest.php
+    |   |       |       FallbackExecutorTest.php
+    |   |       |       HostsFileExecutorTest.php
+    |   |       |       QueryTest.php
+    |   |       |       RetryExecutorTest.php
+    |   |       |       SelectiveTransportExecutorTest.php
+    |   |       |       TcpTransportExecutorTest.php
+    |   |       |       TimeoutExecutorTest.php
+    |   |       |       UdpTransportExecutorTest.php
+    |   |       |       
+    |   |       \---Resolver
+    |   |               FactoryTest.php
+    |   |               ResolveAliasesTest.php
+    |   |               ResolverTest.php
+    |   |               
+    |   +---event-loop
+    |   |   |   .gitattributes
+    |   |   |   .gitignore
+    |   |   |   CHANGELOG.md
+    |   |   |   composer.json
+    |   |   |   LICENSE
+    |   |   |   phpunit.xml.dist
+    |   |   |   phpunit.xml.legacy
+    |   |   |   README.md
+    |   |   |   
+    |   |   +---.github
+    |   |   |   \---workflows
+    |   |   |           ci.yml
+    |   |   |           
+    |   |   +---examples
+    |   |   |       01-timers.php
+    |   |   |       02-periodic.php
+    |   |   |       03-ticks.php
+    |   |   |       04-signals.php
+    |   |   |       11-consume-stdin.php
+    |   |   |       12-generate-yes.php
+    |   |   |       13-http-client-blocking.php
+    |   |   |       14-http-client-async.php
+    |   |   |       21-http-server.php
+    |   |   |       91-benchmark-ticks.php
+    |   |   |       92-benchmark-timers.php
+    |   |   |       93-benchmark-ticks-delay.php
+    |   |   |       94-benchmark-timers-delay.php
+    |   |   |       95-benchmark-memory.php
+    |   |   |       
+    |   |   +---src
+    |   |   |   |   ExtEventLoop.php
+    |   |   |   |   ExtEvLoop.php
+    |   |   |   |   ExtLibeventLoop.php
+    |   |   |   |   ExtLibevLoop.php
+    |   |   |   |   ExtUvLoop.php
+    |   |   |   |   Factory.php
+    |   |   |   |   Loop.php
+    |   |   |   |   LoopInterface.php
+    |   |   |   |   SignalsHandler.php
+    |   |   |   |   StreamSelectLoop.php
+    |   |   |   |   TimerInterface.php
+    |   |   |   |   
+    |   |   |   +---Tick
+    |   |   |   |       FutureTickQueue.php
+    |   |   |   |       
+    |   |   |   \---Timer
+    |   |   |           Timer.php
+    |   |   |           Timers.php
+    |   |   |           
+    |   |   \---tests
+    |   |       |   AbstractLoopTest.php
+    |   |       |   BinTest.php
+    |   |       |   ExtEventLoopTest.php
+    |   |       |   ExtEvLoopTest.php
+    |   |       |   ExtLibeventLoopTest.php
+    |   |       |   ExtLibevLoopTest.php
+    |   |       |   ExtUvLoopTest.php
+    |   |       |   LoopTest.php
+    |   |       |   SignalsHandlerTest.php
+    |   |       |   StreamSelectLoopTest.php
+    |   |       |   TestCase.php
+    |   |       |   
+    |   |       +---bin
+    |   |       |       01-ticks-loop-class.php
+    |   |       |       02-ticks-loop-instance.php
+    |   |       |       03-ticks-loop-stop.php
+    |   |       |       11-uncaught.php
+    |   |       |       12-undefined.php
+    |   |       |       21-stop.php
+    |   |       |       22-stop-uncaught.php
+    |   |       |       
+    |   |       \---Timer
+    |   |               AbstractTimerTest.php
+    |   |               ExtEventTimerTest.php
+    |   |               ExtEvTimerTest.php
+    |   |               ExtLibeventTimerTest.php
+    |   |               ExtLibevTimerTest.php
+    |   |               ExtUvTimerTest.php
+    |   |               StreamSelectTimerTest.php
+    |   |               TimersTest.php
+    |   |               
+    |   +---promise
+    |   |   |   .gitattributes
+    |   |   |   .gitignore
+    |   |   |   CHANGELOG.md
+    |   |   |   composer.json
+    |   |   |   LICENSE
+    |   |   |   phpstan.neon.dist
+    |   |   |   phpunit.xml.dist
+    |   |   |   phpunit.xml.legacy
+    |   |   |   README.md
+    |   |   |   
+    |   |   +---.github
+    |   |   |   \---workflows
+    |   |   |           ci.yml
+    |   |   |           
+    |   |   +---src
+    |   |   |   |   Deferred.php
+    |   |   |   |   functions.php
+    |   |   |   |   functions_include.php
+    |   |   |   |   Promise.php
+    |   |   |   |   PromiseInterface.php
+    |   |   |   |   
+    |   |   |   +---Exception
+    |   |   |   |       CompositeException.php
+    |   |   |   |       LengthException.php
+    |   |   |   |       
+    |   |   |   \---Internal
+    |   |   |           CancellationQueue.php
+    |   |   |           FulfilledPromise.php
+    |   |   |           RejectedPromise.php
+    |   |   |           
+    |   |   \---tests
+    |   |       |   DeferredTest.php
+    |   |       |   DeferredTestCancelNoopThenRejectShouldNotReportUnhandled.phpt
+    |   |       |   DeferredTestCancelThatRejectsShouldNotReportUnhandled.phpt
+    |   |       |   DeferredTestRejectShouldReportUnhandled.phpt
+    |   |       |   DeferredTestRejectThenCancelShouldNotReportUnhandled.phpt
+    |   |       |   Fiber.php
+    |   |       |   FunctionAllTest.php
+    |   |       |   FunctionAllTestRejectedShouldReportUnhandled.phpt
+    |   |       |   FunctionAllTestRejectedThenMatchingThatReturnsShouldNotReportUnhandled.phpt
+    |   |       |   FunctionAnyTest.php
+    |   |       |   FunctionAnyTestRejectedShouldReportUnhandled.phpt
+    |   |       |   FunctionAnyTestRejectedThenMatchingThatReturnsShouldNotReportUnhandled.phpt
+    |   |       |   FunctionCheckTypehintTest.php
+    |   |       |   FunctionRaceTest.php
+    |   |       |   FunctionRaceTestRejectedShouldReportUnhandled.phpt
+    |   |       |   FunctionRaceTestRejectedThenMatchingThatReturnsShouldNotReportUnhandled.phpt
+    |   |       |   FunctionRejectTest.php
+    |   |       |   FunctionRejectTestCancelShouldNotReportUnhandled.phpt
+    |   |       |   FunctionRejectTestCatchMatchingShouldNotReportUnhandled.phpt
+    |   |       |   FunctionRejectTestCatchMismatchShouldReportUnhandled.phpt
+    |   |       |   FunctionRejectTestFinallyThatReturnsShouldReportUnhandled.phpt
+    |   |       |   FunctionRejectTestFinallyThatThrowsNewExceptionShouldReportUnhandledForNewExceptionOnly.phpt
+    |   |       |   FunctionRejectTestShouldReportUnhandled.phpt
+    |   |       |   FunctionRejectTestShouldReportUnhandledWithPreviousExceptions.phpt
+    |   |       |   FunctionRejectTestThenMatchingThatReturnsShouldNotReportUnhandled.phpt
+    |   |       |   FunctionRejectTestThenMatchingThatThrowsNewExceptionShouldReportUnhandledRejectionForNewExceptionOnly.phpt
+    |   |       |   FunctionRejectTestThenMismatchThrowsTypeErrorAndShouldReportUnhandledForTypeErrorOnlyOnPhp7.phpt
+    |   |       |   FunctionRejectTestThenMismatchThrowsTypeErrorAndShouldReportUnhandledForTypeErrorOnlyOnPhp8.phpt
+    |   |       |   FunctionResolveTest.php
+    |   |       |   FunctionResolveTestThenShouldNotReportUnhandled.phpt
+    |   |       |   FunctionSetRejectionHandlerShouldBeInvokedForUnhandled.phpt
+    |   |       |   FunctionSetRejectionHandlerShouldInvokeLastHandlerForUnhandled.phpt
+    |   |       |   FunctionSetRejectionHandlerThatHasUnhandledShouldReportUnhandled.phpt
+    |   |       |   FunctionSetRejectionHandlerThatThrowsShouldTerminateProgramForUnhandled.phpt
+    |   |       |   FunctionSetRejectionHandlerThatThrowsShouldTerminateProgramForUnhandledWithPreviousExceptions.phpt
+    |   |       |   FunctionSetRejectionHandlerThatTriggersDefaultHandlerShouldTerminateProgramForUnhandled.phpt
+    |   |       |   FunctionSetRejectionHandlerThatTriggersErrorHandlerThatThrowsShouldTerminateProgramForUnhandled.phpt
+    |   |       |   FunctionSetRejectionHandlerThatUsesNestedSetRejectionHandlerShouldInvokeInnerHandlerForUnhandled.phpt
+    |   |       |   PHP8.php
+    |   |       |   PromiseTest.php
+    |   |       |   PromiseTestCancelThatRejectsAfterwardsShouldNotReportUnhandled.phpt
+    |   |       |   PromiseTestCancelThatRejectsShouldNotReportUnhandled.phpt
+    |   |       |   TestCase.php
+    |   |       |   
+    |   |       +---fixtures
+    |   |       |       CallbackWithDNFTypehintClass.php
+    |   |       |       CallbackWithIntersectionTypehintClass.php
+    |   |       |       CallbackWithoutTypehintClass.php
+    |   |       |       CallbackWithTypehintClass.php
+    |   |       |       CallbackWithUnionTypehintClass.php
+    |   |       |       CountableException.php
+    |   |       |       IterableException.php
+    |   |       |       SimpleFulfilledTestThenable.php
+    |   |       |       SimpleTestCancellable.php
+    |   |       |       SimpleTestCancellableThenable.php
+    |   |       |       
+    |   |       +---Internal
+    |   |       |       CancellationQueueTest.php
+    |   |       |       FulfilledPromiseTest.php
+    |   |       |       RejectedPromiseTest.php
+    |   |       |       
+    |   |       +---PromiseAdapter
+    |   |       |       CallbackPromiseAdapter.php
+    |   |       |       PromiseAdapterInterface.php
+    |   |       |       
+    |   |       +---PromiseTest
+    |   |       |       CancelTestTrait.php
+    |   |       |       FullTestTrait.php
+    |   |       |       PromiseFulfilledTestTrait.php
+    |   |       |       PromisePendingTestTrait.php
+    |   |       |       PromiseRejectedTestTrait.php
+    |   |       |       PromiseSettledTestTrait.php
+    |   |       |       RejectTestTrait.php
+    |   |       |       ResolveTestTrait.php
+    |   |       |       
+    |   |       \---types
+    |   |               all.php
+    |   |               any.php
+    |   |               deferred.php
+    |   |               promise.php
+    |   |               race.php
+    |   |               reject.php
+    |   |               resolve.php
+    |   |               
+    |   +---socket
+    |   |   |   .gitattributes
+    |   |   |   .gitignore
+    |   |   |   CHANGELOG.md
+    |   |   |   composer.json
+    |   |   |   LICENSE
+    |   |   |   phpunit.xml.dist
+    |   |   |   phpunit.xml.legacy
+    |   |   |   README.md
+    |   |   |   
+    |   |   +---.github
+    |   |   |   \---workflows
+    |   |   |           ci.yml
+    |   |   |           
+    |   |   +---examples
+    |   |   |       01-echo-server.php
+    |   |   |       02-chat-server.php
+    |   |   |       03-http-server.php
+    |   |   |       11-http-client.php
+    |   |   |       12-https-client.php
+    |   |   |       21-netcat-client.php
+    |   |   |       22-http-client.php
+    |   |   |       91-benchmark-server.php
+    |   |   |       99-generate-self-signed.php
+    |   |   |       localhost.pem
+    |   |   |       localhost_swordfish.pem
+    |   |   |       
+    |   |   +---src
+    |   |   |       Connection.php
+    |   |   |       ConnectionInterface.php
+    |   |   |       Connector.php
+    |   |   |       ConnectorInterface.php
+    |   |   |       DnsConnector.php
+    |   |   |       FdServer.php
+    |   |   |       FixedUriConnector.php
+    |   |   |       HappyEyeBallsConnectionBuilder.php
+    |   |   |       HappyEyeBallsConnector.php
+    |   |   |       LimitingServer.php
+    |   |   |       SecureConnector.php
+    |   |   |       SecureServer.php
+    |   |   |       Server.php
+    |   |   |       ServerInterface.php
+    |   |   |       SocketServer.php
+    |   |   |       StreamEncryption.php
+    |   |   |       TcpConnector.php
+    |   |   |       TcpServer.php
+    |   |   |       TimeoutConnector.php
+    |   |   |       UnixConnector.php
+    |   |   |       UnixServer.php
+    |   |   |       
+    |   |   \---tests
+    |   |       |   ConnectionTest.php
+    |   |       |   ConnectorTest.php
+    |   |       |   DnsConnectorTest.php
+    |   |       |   FdServerTest.php
+    |   |       |   FixedUriConnectorTest.php
+    |   |       |   FunctionalConnectorTest.php
+    |   |       |   FunctionalSecureServerTest.php
+    |   |       |   FunctionalTcpServerTest.php
+    |   |       |   HappyEyeBallsConnectionBuilderTest.php
+    |   |       |   HappyEyeBallsConnectorTest.php
+    |   |       |   IntegrationTest.php
+    |   |       |   LimitingServerTest.php
+    |   |       |   SecureConnectorTest.php
+    |   |       |   SecureIntegrationTest.php
+    |   |       |   SecureServerTest.php
+    |   |       |   ServerTest.php
+    |   |       |   SocketServerTest.php
+    |   |       |   TcpConnectorTest.php
+    |   |       |   TcpServerTest.php
+    |   |       |   TestCase.php
+    |   |       |   TimeoutConnectorTest.php
+    |   |       |   TimerSpeedUpEventLoop.php
+    |   |       |   UnixConnectorTest.php
+    |   |       |   UnixServerTest.php
+    |   |       |   
+    |   |       \---Stub
+    |   |               CallableStub.php
+    |   |               ConnectionStub.php
+    |   |               ServerStub.php
+    |   |               
+    |   \---stream
+    |       |   .gitattributes
+    |       |   .gitignore
+    |       |   CHANGELOG.md
+    |       |   composer.json
+    |       |   LICENSE
+    |       |   phpunit.xml.dist
+    |       |   phpunit.xml.legacy
+    |       |   README.md
+    |       |   
+    |       +---.github
+    |       |   \---workflows
+    |       |           ci.yml
+    |       |           
+    |       +---examples
+    |       |       01-http.php
+    |       |       02-https.php
+    |       |       11-cat.php
+    |       |       91-benchmark-throughput.php
+    |       |       
+    |       +---src
+    |       |       CompositeStream.php
+    |       |       DuplexResourceStream.php
+    |       |       DuplexStreamInterface.php
+    |       |       ReadableResourceStream.php
+    |       |       ReadableStreamInterface.php
+    |       |       ThroughStream.php
+    |       |       Util.php
+    |       |       WritableResourceStream.php
+    |       |       WritableStreamInterface.php
+    |       |       
+    |       \---tests
+    |           |   CompositeStreamTest.php
+    |           |   DuplexResourceStreamIntegrationTest.php
+    |           |   DuplexResourceStreamTest.php
+    |           |   EnforceBlockingWrapper.php
+    |           |   FunctionalInternetTest.php
+    |           |   ReadableResourceStreamTest.php
+    |           |   TestCase.php
+    |           |   ThroughStreamTest.php
+    |           |   UtilTest.php
+    |           |   WritableResourceStreamTest.php
+    |           |   
+    |           \---Stub
+    |                   ReadableStreamStub.php
+    |                   
+    \---symfony
+        +---deprecation-contracts
+        |   |   .gitattributes
+        |   |   .gitignore
+        |   |   CHANGELOG.md
+        |   |   composer.json
+        |   |   function.php
+        |   |   LICENSE
+        |   |   README.md
+        |   |   
+        |   \---.github
+        |       |   PULL_REQUEST_TEMPLATE.md
+        |       |   
+        |       \---workflows
+        |               check-subtree-split.yml
+        |               
+        +---http-foundation
+        |   |   .gitattributes
+        |   |   .gitignore
+        |   |   AcceptHeader.php
+        |   |   AcceptHeaderItem.php
+        |   |   BinaryFileResponse.php
+        |   |   ChainRequestMatcher.php
+        |   |   CHANGELOG.md
+        |   |   composer.json
+        |   |   Cookie.php
+        |   |   ExpressionRequestMatcher.php
+        |   |   FileBag.php
+        |   |   HeaderBag.php
+        |   |   HeaderUtils.php
+        |   |   InputBag.php
+        |   |   IpUtils.php
+        |   |   JsonResponse.php
+        |   |   LICENSE
+        |   |   ParameterBag.php
+        |   |   phpunit.xml.dist
+        |   |   README.md
+        |   |   RedirectResponse.php
+        |   |   Request.php
+        |   |   RequestMatcher.php
+        |   |   RequestMatcherInterface.php
+        |   |   RequestStack.php
+        |   |   Response.php
+        |   |   ResponseHeaderBag.php
+        |   |   ServerBag.php
+        |   |   StreamedJsonResponse.php
+        |   |   StreamedResponse.php
+        |   |   UriSigner.php
+        |   |   UrlHelper.php
+        |   |   
+        |   +---.github
+        |   |   |   PULL_REQUEST_TEMPLATE.md
+        |   |   |   
+        |   |   \---workflows
+        |   |           check-subtree-split.yml
+        |   |           
+        |   +---Exception
+        |   |       BadRequestException.php
+        |   |       ConflictingHeadersException.php
+        |   |       JsonException.php
+        |   |       RequestExceptionInterface.php
+        |   |       SessionNotFoundException.php
+        |   |       SuspiciousOperationException.php
+        |   |       UnexpectedValueException.php
+        |   |       
+        |   +---File
+        |   |   |   File.php
+        |   |   |   Stream.php
+        |   |   |   UploadedFile.php
+        |   |   |   
+        |   |   \---Exception
+        |   |           AccessDeniedException.php
+        |   |           CannotWriteFileException.php
+        |   |           ExtensionFileException.php
+        |   |           FileException.php
+        |   |           FileNotFoundException.php
+        |   |           FormSizeFileException.php
+        |   |           IniSizeFileException.php
+        |   |           NoFileException.php
+        |   |           NoTmpDirFileException.php
+        |   |           PartialFileException.php
+        |   |           UnexpectedTypeException.php
+        |   |           UploadException.php
+        |   |           
+        |   +---RateLimiter
+        |   |       AbstractRequestRateLimiter.php
+        |   |       PeekableRequestRateLimiterInterface.php
+        |   |       RequestRateLimiterInterface.php
+        |   |       
+        |   +---RequestMatcher
+        |   |       AttributesRequestMatcher.php
+        |   |       ExpressionRequestMatcher.php
+        |   |       HostRequestMatcher.php
+        |   |       IpsRequestMatcher.php
+        |   |       IsJsonRequestMatcher.php
+        |   |       MethodRequestMatcher.php
+        |   |       PathRequestMatcher.php
+        |   |       PortRequestMatcher.php
+        |   |       SchemeRequestMatcher.php
+        |   |       
+        |   +---Session
+        |   |   |   FlashBagAwareSessionInterface.php
+        |   |   |   Session.php
+        |   |   |   SessionBagInterface.php
+        |   |   |   SessionBagProxy.php
+        |   |   |   SessionFactory.php
+        |   |   |   SessionFactoryInterface.php
+        |   |   |   SessionInterface.php
+        |   |   |   SessionUtils.php
+        |   |   |   
+        |   |   +---Attribute
+        |   |   |       AttributeBag.php
+        |   |   |       AttributeBagInterface.php
+        |   |   |       
+        |   |   +---Flash
+        |   |   |       AutoExpireFlashBag.php
+        |   |   |       FlashBag.php
+        |   |   |       FlashBagInterface.php
+        |   |   |       
+        |   |   \---Storage
+        |   |       |   MetadataBag.php
+        |   |       |   MockArraySessionStorage.php
+        |   |       |   MockFileSessionStorage.php
+        |   |       |   MockFileSessionStorageFactory.php
+        |   |       |   NativeSessionStorage.php
+        |   |       |   NativeSessionStorageFactory.php
+        |   |       |   PhpBridgeSessionStorage.php
+        |   |       |   PhpBridgeSessionStorageFactory.php
+        |   |       |   SessionStorageFactoryInterface.php
+        |   |       |   SessionStorageInterface.php
+        |   |       |   
+        |   |       +---Handler
+        |   |       |       AbstractSessionHandler.php
+        |   |       |       IdentityMarshaller.php
+        |   |       |       MarshallingSessionHandler.php
+        |   |       |       MemcachedSessionHandler.php
+        |   |       |       MigratingSessionHandler.php
+        |   |       |       MongoDbSessionHandler.php
+        |   |       |       NativeFileSessionHandler.php
+        |   |       |       NullSessionHandler.php
+        |   |       |       PdoSessionHandler.php
+        |   |       |       RedisSessionHandler.php
+        |   |       |       SessionHandlerFactory.php
+        |   |       |       StrictSessionHandler.php
+        |   |       |       
+        |   |       \---Proxy
+        |   |               AbstractProxy.php
+        |   |               SessionHandlerProxy.php
+        |   |               
+        |   +---Test
+        |   |   \---Constraint
+        |   |           RequestAttributeValueSame.php
+        |   |           ResponseCookieValueSame.php
+        |   |           ResponseFormatSame.php
+        |   |           ResponseHasCookie.php
+        |   |           ResponseHasHeader.php
+        |   |           ResponseHeaderLocationSame.php
+        |   |           ResponseHeaderSame.php
+        |   |           ResponseIsRedirected.php
+        |   |           ResponseIsSuccessful.php
+        |   |           ResponseIsUnprocessable.php
+        |   |           ResponseStatusCodeSame.php
+        |   |           
+        |   \---Tests
+        |       |   AcceptHeaderItemTest.php
+        |       |   AcceptHeaderTest.php
+        |       |   BinaryFileResponseTest.php
+        |       |   CookieTest.php
+        |       |   ExpressionRequestMatcherTest.php
+        |       |   FileBagTest.php
+        |       |   HeaderBagTest.php
+        |       |   HeaderUtilsTest.php
+        |       |   InputBagTest.php
+        |       |   IpUtilsTest.php
+        |       |   JsonResponseTest.php
+        |       |   ParameterBagTest.php
+        |       |   RedirectResponseTest.php
+        |       |   RequestMatcherTest.php
+        |       |   RequestStackTest.php
+        |       |   RequestTest.php
+        |       |   ResponseFunctionalTest.php
+        |       |   ResponseHeaderBagTest.php
+        |       |   ResponseTest.php
+        |       |   ResponseTestCase.php
+        |       |   ServerBagTest.php
+        |       |   StreamedJsonResponseTest.php
+        |       |   StreamedResponseTest.php
+        |       |   UriSignerTest.php
+        |       |   UrlHelperTest.php
+        |       |   
+        |       +---File
+        |       |   |   FakeFile.php
+        |       |   |   FileTest.php
+        |       |   |   UploadedFileTest.php
+        |       |   |   
+        |       |   \---Fixtures
+        |       |       |   -test
+        |       |       |   .unknownextension
+        |       |       |   case-sensitive-mime-type.xlsm
+        |       |       |   other-file.example
+        |       |       |   test
+        |       |       |   test.gif
+        |       |       |   
+        |       |       \---directory
+        |       |               .empty
+        |       |               
+        |       +---Fixtures
+        |       |   |   FooEnum.php
+        |       |   |   
+        |       |   +---response-functional
+        |       |   |       common.inc
+        |       |   |       cookie_raw_urlencode.expected
+        |       |   |       cookie_raw_urlencode.php
+        |       |   |       cookie_samesite_lax.expected
+        |       |   |       cookie_samesite_lax.php
+        |       |   |       cookie_samesite_strict.expected
+        |       |   |       cookie_samesite_strict.php
+        |       |   |       cookie_urlencode.expected
+        |       |   |       cookie_urlencode.php
+        |       |   |       deleted_cookie.expected
+        |       |   |       deleted_cookie.php
+        |       |   |       early_hints.php
+        |       |   |       invalid_cookie_name.expected
+        |       |   |       invalid_cookie_name.php
+        |       |   |       
+        |       |   \---xml
+        |       |           http-status-codes.xml
+        |       |           
+        |       +---RateLimiter
+        |       |       AbstractRequestRateLimiterTest.php
+        |       |       MockAbstractRequestRateLimiter.php
+        |       |       
+        |       +---RequestMatcher
+        |       |       AttributesRequestMatcherTest.php
+        |       |       ExpressionRequestMatcherTest.php
+        |       |       HostRequestMatcherTest.php
+        |       |       IpsRequestMatcherTest.php
+        |       |       IsJsonRequestMatcherTest.php
+        |       |       MethodRequestMatcherTest.php
+        |       |       PathRequestMatcherTest.php
+        |       |       PortRequestMatcherTest.php
+        |       |       SchemeRequestMatcherTest.php
+        |       |       
+        |       +---schema
+        |       |       http-status-codes.rng
+        |       |       iana-registry.rng
+        |       |       
+        |       +---Session
+        |       |   |   SessionTest.php
+        |       |   |   
+        |       |   +---Attribute
+        |       |   |       AttributeBagTest.php
+        |       |   |       
+        |       |   +---Flash
+        |       |   |       AutoExpireFlashBagTest.php
+        |       |   |       FlashBagTest.php
+        |       |   |       
+        |       |   \---Storage
+        |       |       |   MetadataBagTest.php
+        |       |       |   MockArraySessionStorageTest.php
+        |       |       |   MockFileSessionStorageTest.php
+        |       |       |   NativeSessionStorageTest.php
+        |       |       |   PhpBridgeSessionStorageTest.php
+        |       |       |   
+        |       |       +---Handler
+        |       |       |   |   AbstractRedisSessionHandlerTestCase.php
+        |       |       |   |   AbstractSessionHandlerTest.php
+        |       |       |   |   IdentityMarshallerTest.php
+        |       |       |   |   MarshallingSessionHandlerTest.php
+        |       |       |   |   MemcachedSessionHandlerTest.php
+        |       |       |   |   MigratingSessionHandlerTest.php
+        |       |       |   |   MongoDbSessionHandlerTest.php
+        |       |       |   |   NativeFileSessionHandlerTest.php
+        |       |       |   |   NullSessionHandlerTest.php
+        |       |       |   |   PdoSessionHandlerTest.php
+        |       |       |   |   PredisClusterSessionHandlerTest.php
+        |       |       |   |   PredisSessionHandlerTest.php
+        |       |       |   |   RedisArraySessionHandlerTest.php
+        |       |       |   |   RedisClusterSessionHandlerTest.php
+        |       |       |   |   RedisSessionHandlerTest.php
+        |       |       |   |   RelaySessionHandlerTest.php
+        |       |       |   |   SessionHandlerFactoryTest.php
+        |       |       |   |   StrictSessionHandlerTest.php
+        |       |       |   |   
+        |       |       |   +---Fixtures
+        |       |       |   |       common.inc
+        |       |       |   |       empty_destroys.expected
+        |       |       |   |       empty_destroys.php
+        |       |       |   |       invalid_regenerate.expected
+        |       |       |   |       invalid_regenerate.php
+        |       |       |   |       read_only.expected
+        |       |       |   |       read_only.php
+        |       |       |   |       regenerate.expected
+        |       |       |   |       regenerate.php
+        |       |       |   |       storage.expected
+        |       |       |   |       storage.php
+        |       |       |   |       with_cookie.expected
+        |       |       |   |       with_cookie.php
+        |       |       |   |       with_cookie_and_session.expected
+        |       |       |   |       with_cookie_and_session.php
+        |       |       |   |       with_samesite.expected
+        |       |       |   |       with_samesite.php
+        |       |       |   |       with_samesite_and_migration.expected
+        |       |       |   |       with_samesite_and_migration.php
+        |       |       |   |       
+        |       |       |   \---stubs
+        |       |       |           mongodb.php
+        |       |       |           
+        |       |       \---Proxy
+        |       |               AbstractProxyTest.php
+        |       |               SessionHandlerProxyTest.php
+        |       |               
+        |       \---Test
+        |           \---Constraint
+        |                   RequestAttributeValueSameTest.php
+        |                   ResponseCookieValueSameTest.php
+        |                   ResponseFormatSameTest.php
+        |                   ResponseHasCookieTest.php
+        |                   ResponseHasHeaderTest.php
+        |                   ResponseHeaderLocationSameTest.php
+        |                   ResponseHeaderSameTest.php
+        |                   ResponseIsRedirectedTest.php
+        |                   ResponseIsSuccessfulTest.php
+        |                   ResponseIsUnprocessableTest.php
+        |                   ResponseStatusCodeSameTest.php
+        |                   
+        +---polyfill-mbstring
+        |   |   bootstrap.php
+        |   |   bootstrap80.php
+        |   |   composer.json
+        |   |   LICENSE
+        |   |   Mbstring.php
+        |   |   README.md
+        |   |   
+        |   \---Resources
+        |       \---unidata
+        |               caseFolding.php
+        |               lowerCase.php
+        |               titleCaseRegexp.php
+        |               upperCase.php
+        |               
+        +---polyfill-php80
+        |   |   bootstrap.php
+        |   |   composer.json
+        |   |   LICENSE
+        |   |   Php80.php
+        |   |   PhpToken.php
+        |   |   README.md
+        |   |   
+        |   \---Resources
+        |       \---stubs
+        |               Attribute.php
+        |               PhpToken.php
+        |               Stringable.php
+        |               UnhandledMatchError.php
+        |               ValueError.php
+        |               
+        +---polyfill-php83
+        |   |   bootstrap.php
+        |   |   bootstrap81.php
+        |   |   composer.json
+        |   |   LICENSE
+        |   |   Php83.php
+        |   |   README.md
+        |   |   
+        |   \---Resources
+        |       \---stubs
+        |               DateError.php
+        |               DateException.php
+        |               DateInvalidOperationException.php
+        |               DateInvalidTimeZoneException.php
+        |               DateMalformedIntervalStringException.php
+        |               DateMalformedPeriodStringException.php
+        |               DateMalformedStringException.php
+        |               DateObjectError.php
+        |               DateRangeError.php
+        |               Override.php
+        |               SQLite3Exception.php
+        |               
+        \---routing
+            |   .gitattributes
+            |   .gitignore
+            |   Alias.php
+            |   CHANGELOG.md
+            |   CompiledRoute.php
+            |   composer.json
+            |   LICENSE
+            |   phpunit.xml.dist
+            |   README.md
+            |   RequestContext.php
+            |   RequestContextAwareInterface.php
+            |   Route.php
+            |   RouteCollection.php
+            |   RouteCompiler.php
+            |   RouteCompilerInterface.php
+            |   Router.php
+            |   RouterInterface.php
+            |   
+            +---.github
+            |   |   PULL_REQUEST_TEMPLATE.md
+            |   |   
+            |   \---workflows
+            |           check-subtree-split.yml
+            |           
+            +---Annotation
+            |       Route.php
+            |       
+            +---Attribute
+            |       Route.php
+            |       
+            +---DependencyInjection
+            |       AddExpressionLanguageProvidersPass.php
+            |       RoutingResolverPass.php
+            |       
+            +---Exception
+            |       ExceptionInterface.php
+            |       InvalidArgumentException.php
+            |       InvalidParameterException.php
+            |       MethodNotAllowedException.php
+            |       MissingMandatoryParametersException.php
+            |       NoConfigurationException.php
+            |       ResourceNotFoundException.php
+            |       RouteCircularReferenceException.php
+            |       RouteNotFoundException.php
+            |       RuntimeException.php
+            |       
+            +---Generator
+            |   |   CompiledUrlGenerator.php
+            |   |   ConfigurableRequirementsInterface.php
+            |   |   UrlGenerator.php
+            |   |   UrlGeneratorInterface.php
+            |   |   
+            |   \---Dumper
+            |           CompiledUrlGeneratorDumper.php
+            |           GeneratorDumper.php
+            |           GeneratorDumperInterface.php
+            |           
+            +---Loader
+            |   |   AnnotationClassLoader.php
+            |   |   AnnotationDirectoryLoader.php
+            |   |   AnnotationFileLoader.php
+            |   |   AttributeClassLoader.php
+            |   |   AttributeDirectoryLoader.php
+            |   |   AttributeFileLoader.php
+            |   |   ClosureLoader.php
+            |   |   ContainerLoader.php
+            |   |   DirectoryLoader.php
+            |   |   GlobFileLoader.php
+            |   |   ObjectLoader.php
+            |   |   PhpFileLoader.php
+            |   |   Psr4DirectoryLoader.php
+            |   |   XmlFileLoader.php
+            |   |   YamlFileLoader.php
+            |   |   
+            |   +---Configurator
+            |   |   |   AliasConfigurator.php
+            |   |   |   CollectionConfigurator.php
+            |   |   |   ImportConfigurator.php
+            |   |   |   RouteConfigurator.php
+            |   |   |   RoutingConfigurator.php
+            |   |   |   
+            |   |   \---Traits
+            |   |           AddTrait.php
+            |   |           HostTrait.php
+            |   |           LocalizedRouteTrait.php
+            |   |           PrefixTrait.php
+            |   |           RouteTrait.php
+            |   |           
+            |   \---schema
+            |       \---routing
+            |               routing-1.0.xsd
+            |               
+            +---Matcher
+            |   |   CompiledUrlMatcher.php
+            |   |   ExpressionLanguageProvider.php
+            |   |   RedirectableUrlMatcher.php
+            |   |   RedirectableUrlMatcherInterface.php
+            |   |   RequestMatcherInterface.php
+            |   |   TraceableUrlMatcher.php
+            |   |   UrlMatcher.php
+            |   |   UrlMatcherInterface.php
+            |   |   
+            |   \---Dumper
+            |           CompiledUrlMatcherDumper.php
+            |           CompiledUrlMatcherTrait.php
+            |           MatcherDumper.php
+            |           MatcherDumperInterface.php
+            |           StaticPrefixCollection.php
+            |           
+            +---Requirement
+            |       EnumRequirement.php
+            |       Requirement.php
+            |       
+            \---Tests
+                |   CompiledRouteTest.php
+                |   RequestContextTest.php
+                |   RouteCollectionTest.php
+                |   RouteCompilerTest.php
+                |   RouterTest.php
+                |   RouteTest.php
+                |   
+                +---Attribute
+                |       RouteTest.php
+                |       
+                +---DependencyInjection
+                |       AddExpressionLanguageProvidersPassTest.php
+                |       RoutingResolverPassTest.php
+                |       
+                +---Fixtures
+                |   |   annotated.php
+                |   |   bad_format.yml
+                |   |   bar.xml
+                |   |   class-attributes.php
+                |   |   class-attributes.xml
+                |   |   class-attributes.yaml
+                |   |   collection-defaults.php
+                |   |   CustomCompiledRoute.php
+                |   |   CustomRouteCompiler.php
+                |   |   CustomXmlFileLoader.php
+                |   |   defaults.php
+                |   |   defaults.xml
+                |   |   defaults.yml
+                |   |   empty.yml
+                |   |   file_resource.yml
+                |   |   foo.xml
+                |   |   foo1.xml
+                |   |   imported-with-defaults.php
+                |   |   imported-with-defaults.xml
+                |   |   imported-with-defaults.yml
+                |   |   importer-with-defaults.php
+                |   |   importer-with-defaults.xml
+                |   |   importer-with-defaults.yml
+                |   |   incomplete.yml
+                |   |   list_defaults.xml
+                |   |   list_in_list_defaults.xml
+                |   |   list_in_map_defaults.xml
+                |   |   list_null_values.xml
+                |   |   localized.xml
+                |   |   map_defaults.xml
+                |   |   map_in_list_defaults.xml
+                |   |   map_in_map_defaults.xml
+                |   |   map_null_values.xml
+                |   |   missing_id.xml
+                |   |   missing_path.xml
+                |   |   namespaceprefix.xml
+                |   |   nonesense_resource_plus_path.yml
+                |   |   nonesense_type_without_resource.yml
+                |   |   nonvalid-deprecated-route.xml
+                |   |   nonvalid.xml
+                |   |   nonvalid.yml
+                |   |   nonvalid2.yml
+                |   |   nonvalidkeys.yml
+                |   |   nonvalidnode.xml
+                |   |   nonvalidroute.xml
+                |   |   null_values.xml
+                |   |   php_dsl.php
+                |   |   php_dsl_i18n.php
+                |   |   php_dsl_sub.php
+                |   |   php_dsl_sub_i18n.php
+                |   |   php_dsl_sub_root.php
+                |   |   php_object_dsl.php
+                |   |   psr4-attributes.php
+                |   |   psr4-attributes.xml
+                |   |   psr4-attributes.yaml
+                |   |   psr4-controllers-redirection.php
+                |   |   psr4-controllers-redirection.xml
+                |   |   psr4-controllers-redirection.yaml
+                |   |   RedirectableUrlMatcher.php
+                |   |   requirements_without_placeholder_name.yml
+                |   |   scalar_defaults.xml
+                |   |   special_route_name.yml
+                |   |   TraceableAttributeClassLoader.php
+                |   |   validpattern.php
+                |   |   validpattern.xml
+                |   |   validpattern.yml
+                |   |   validresource.php
+                |   |   validresource.xml
+                |   |   validresource.yml
+                |   |   when-env.xml
+                |   |   when-env.yml
+                |   |   withdoctype.xml
+                |   |   with_define_path_variable.php
+                |   |   
+                |   +---alias
+                |   |       alias.php
+                |   |       alias.xml
+                |   |       alias.yaml
+                |   |       expected.php
+                |   |       invalid-alias.yaml
+                |   |       invalid-deprecated-no-package.xml
+                |   |       invalid-deprecated-no-package.yaml
+                |   |       invalid-deprecated-no-version.xml
+                |   |       invalid-deprecated-no-version.yaml
+                |   |       override.yaml
+                |   |       
+                |   +---AnnotationFixtures
+                |   |       AbstractClassController.php
+                |   |       ActionPathController.php
+                |   |       BazClass.php
+                |   |       DefaultValueController.php
+                |   |       EncodingClass.php
+                |   |       ExplicitLocalizedActionPathController.php
+                |   |       FooController.php
+                |   |       GlobalDefaultsClass.php
+                |   |       InvokableController.php
+                |   |       InvokableFQCNAliasConflictController.php
+                |   |       InvokableLocalizedController.php
+                |   |       InvokableMethodController.php
+                |   |       LocalizedActionPathController.php
+                |   |       LocalizedMethodActionControllers.php
+                |   |       LocalizedPrefixLocalizedActionController.php
+                |   |       LocalizedPrefixMissingLocaleActionController.php
+                |   |       LocalizedPrefixMissingRouteLocaleActionController.php
+                |   |       LocalizedPrefixWithRouteWithoutLocale.php
+                |   |       MethodActionControllers.php
+                |   |       MethodsAndSchemes.php
+                |   |       MissingRouteNameController.php
+                |   |       NothingButNameController.php
+                |   |       PrefixedActionLocalizedRouteController.php
+                |   |       PrefixedActionPathController.php
+                |   |       RequirementsWithoutPlaceholderNameController.php
+                |   |       RouteWithEnv.php
+                |   |       RouteWithPrefixController.php
+                |   |       Utf8ActionControllers.php
+                |   |       
+                |   +---AttributedClasses
+                |   |       AbstractClass.php
+                |   |       BarClass.php
+                |   |       BazClass.php
+                |   |       EncodingClass.php
+                |   |       FooClass.php
+                |   |       FooTrait.php
+                |   |       
+                |   +---AttributeFixtures
+                |   |       ActionPathController.php
+                |   |       BazClass.php
+                |   |       DefaultValueController.php
+                |   |       EncodingClass.php
+                |   |       ExplicitLocalizedActionPathController.php
+                |   |       ExtendedRoute.php
+                |   |       ExtendedRouteOnClassController.php
+                |   |       ExtendedRouteOnMethodController.php
+                |   |       FooController.php
+                |   |       GlobalDefaultsClass.php
+                |   |       InvokableController.php
+                |   |       InvokableFQCNAliasConflictController.php
+                |   |       InvokableLocalizedController.php
+                |   |       InvokableMethodController.php
+                |   |       LocalizedActionPathController.php
+                |   |       LocalizedMethodActionControllers.php
+                |   |       LocalizedPrefixLocalizedActionController.php
+                |   |       LocalizedPrefixMissingLocaleActionController.php
+                |   |       LocalizedPrefixMissingRouteLocaleActionController.php
+                |   |       LocalizedPrefixWithRouteWithoutLocale.php
+                |   |       MethodActionControllers.php
+                |   |       MethodsAndSchemes.php
+                |   |       MissingRouteNameController.php
+                |   |       NothingButNameController.php
+                |   |       PrefixedActionLocalizedRouteController.php
+                |   |       PrefixedActionPathController.php
+                |   |       RequirementsWithoutPlaceholderNameController.php
+                |   |       RouteWithEnv.php
+                |   |       RouteWithPrefixController.php
+                |   |       RouteWithPriorityController.php
+                |   |       Utf8ActionControllers.php
+                |   |       
+                |   +---Attributes
+                |   |       FooAttributes.php
+                |   |       
+                |   +---AttributesFixtures
+                |   |       AttributesClassParamAfterCommaController.php
+                |   |       AttributesClassParamAfterParenthesisController.php
+                |   |       AttributesClassParamInlineAfterCommaController.php
+                |   |       AttributesClassParamInlineAfterParenthesisController.php
+                |   |       AttributesClassParamInlineQuotedAfterCommaController.php
+                |   |       AttributesClassParamInlineQuotedAfterParenthesisController.php
+                |   |       AttributesClassParamQuotedAfterCommaController.php
+                |   |       AttributesClassParamQuotedAfterParenthesisController.php
+                |   |       
+                |   +---controller
+                |   |   |   import_controller.xml
+                |   |   |   import_controller.yml
+                |   |   |   import_override_defaults.xml
+                |   |   |   import_override_defaults.yml
+                |   |   |   import__controller.xml
+                |   |   |   import__controller.yml
+                |   |   |   override_defaults.xml
+                |   |   |   override_defaults.yml
+                |   |   |   routing.xml
+                |   |   |   routing.yml
+                |   |   |   
+                |   |   \---empty_wildcard
+                |   |           .gitignore
+                |   |           
+                |   +---directory
+                |   |   |   routes3.yml
+                |   |   |   
+                |   |   \---recurse
+                |   |           routes1.yml
+                |   |           routes2.yml
+                |   |           
+                |   +---directory_import
+                |   |       import.yml
+                |   |       
+                |   +---dumper
+                |   |       compiled_url_matcher0.php
+                |   |       compiled_url_matcher1.php
+                |   |       compiled_url_matcher10.php
+                |   |       compiled_url_matcher11.php
+                |   |       compiled_url_matcher12.php
+                |   |       compiled_url_matcher13.php
+                |   |       compiled_url_matcher14.php
+                |   |       compiled_url_matcher2.php
+                |   |       compiled_url_matcher3.php
+                |   |       compiled_url_matcher4.php
+                |   |       compiled_url_matcher5.php
+                |   |       compiled_url_matcher6.php
+                |   |       compiled_url_matcher7.php
+                |   |       compiled_url_matcher8.php
+                |   |       compiled_url_matcher9.php
+                |   |       
+                |   +---Enum
+                |   |       TestIntBackedEnum.php
+                |   |       TestStringBackedEnum.php
+                |   |       TestStringBackedEnum2.php
+                |   |       TestUnitEnum.php
+                |   |       
+                |   +---glob
+                |   |       bar.xml
+                |   |       bar.yml
+                |   |       baz.xml
+                |   |       baz.yml
+                |   |       import_multiple.xml
+                |   |       import_multiple.yml
+                |   |       import_single.xml
+                |   |       import_single.yml
+                |   |       php_dsl.php
+                |   |       php_dsl_bar.php
+                |   |       php_dsl_baz.php
+                |   |       
+                |   +---import_with_name_prefix
+                |   |       routing.xml
+                |   |       routing.yml
+                |   |       
+                |   +---import_with_no_trailing_slash
+                |   |       routing.xml
+                |   |       routing.yml
+                |   |       
+                |   +---locale_and_host
+                |   |       import-with-host-expected-collection.php
+                |   |       import-with-locale-and-host-expected-collection.php
+                |   |       import-with-single-host-expected-collection.php
+                |   |       import-without-host-expected-collection.php
+                |   |       imported.php
+                |   |       imported.xml
+                |   |       imported.yml
+                |   |       importer-with-host.php
+                |   |       importer-with-host.xml
+                |   |       importer-with-host.yml
+                |   |       importer-with-locale-and-host.php
+                |   |       importer-with-locale-and-host.xml
+                |   |       importer-with-locale-and-host.yml
+                |   |       importer-with-single-host.php
+                |   |       importer-with-single-host.xml
+                |   |       importer-with-single-host.yml
+                |   |       importer-without-host.php
+                |   |       importer-without-host.xml
+                |   |       importer-without-host.yml
+                |   |       
+                |   +---localized
+                |   |       imported-with-locale-but-not-localized.xml
+                |   |       imported-with-locale-but-not-localized.yml
+                |   |       imported-with-locale.xml
+                |   |       imported-with-locale.yml
+                |   |       imported-with-utf8.php
+                |   |       imported-with-utf8.xml
+                |   |       imported-with-utf8.yml
+                |   |       importer-with-controller-default.yml
+                |   |       importer-with-locale-imports-non-localized-route.xml
+                |   |       importer-with-locale-imports-non-localized-route.yml
+                |   |       importer-with-locale.xml
+                |   |       importer-with-locale.yml
+                |   |       importer-with-utf8.php
+                |   |       importer-with-utf8.xml
+                |   |       importer-with-utf8.yml
+                |   |       importing-localized-route.yml
+                |   |       localized-prefix.yml
+                |   |       localized-route.yml
+                |   |       missing-locale-in-importer.yml
+                |   |       not-localized.yml
+                |   |       officially_formatted_locales.yml
+                |   |       route-without-path-or-locales.yml
+                |   |       utf8.php
+                |   |       utf8.xml
+                |   |       utf8.yml
+                |   |       
+                |   +---OtherAnnotatedClasses
+                |   |       AnonymousClassInTrait.php
+                |   |       NoStartTagClass.php
+                |   |       VariadicClass.php
+                |   |       
+                |   +---psr4-controllers-redirection
+                |   |       psr4-attributes.php
+                |   |       psr4-attributes.xml
+                |   |       psr4-attributes.yaml
+                |   |       
+                |   \---Psr4Controllers
+                |       |   MyController.php
+                |       |   MyUnannotatedController.php
+                |       |   
+                |       \---SubNamespace
+                |           |   IrrelevantClass.php
+                |           |   IrrelevantEnum.php
+                |           |   IrrelevantInterface.php
+                |           |   MyAbstractController.php
+                |           |   MyChildController.php
+                |           |   MyControllerWithATrait.php
+                |           |   SomeSharedImplementation.php
+                |           |   
+                |           \---EvenDeeperNamespace
+                |                   MyOtherController.php
+                |                   
+                +---Generator
+                |   |   UrlGeneratorTest.php
+                |   |   
+                |   \---Dumper
+                |           CompiledUrlGeneratorDumperTest.php
+                |           
+                +---Loader
+                |       AttributeClassLoaderTestCase.php
+                |       AttributeClassLoaderWithAnnotationsTest.php
+                |       AttributeClassLoaderWithAttributesTest.php
+                |       AttributeDirectoryLoaderTest.php
+                |       AttributeFileLoaderTest.php
+                |       ClosureLoaderTest.php
+                |       ContainerLoaderTest.php
+                |       DirectoryLoaderTest.php
+                |       FileLocatorStub.php
+                |       GlobFileLoaderTest.php
+                |       ObjectLoaderTest.php
+                |       PhpFileLoaderTest.php
+                |       Psr4DirectoryLoaderTest.php
+                |       XmlFileLoaderTest.php
+                |       YamlFileLoaderTest.php
+                |       
+                +---Matcher
+                |   |   CompiledRedirectableUrlMatcherTest.php
+                |   |   CompiledUrlMatcherTest.php
+                |   |   ExpressionLanguageProviderTest.php
+                |   |   RedirectableUrlMatcherTest.php
+                |   |   TraceableUrlMatcherTest.php
+                |   |   UrlMatcherTest.php
+                |   |   
+                |   \---Dumper
+                |           CompiledUrlMatcherDumperTest.php
+                |           StaticPrefixCollectionTest.php
+                |           
+                \---Requirement
+                        EnumRequirementTest.php
+                        RequirementTest.php
+                        
