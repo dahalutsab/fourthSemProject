@@ -23,6 +23,7 @@
       "ext-fileinfo": "*",
       "ext-curl": "*",
         "cboden/ratchet": "^0.4.4",
-        "react/promise": "^3.2"
+        "react/promise": "^3.2",
+        "symfony/polyfill-php83": "^1.29"
     }
 }
