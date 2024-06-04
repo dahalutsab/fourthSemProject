@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Chat</title>
-    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <style>
         .card {
             height: 500px;
@@ -13,17 +12,53 @@
             overflow-y: scroll;
             height: 400px;
         }
-        .card-body .text-right {
-            color: blue;
-            text-align: right;
-        }
-        .card-body .text-left {
-            color: green;
-            text-align: left;
-        }
+
         .card-footer {
             padding-top: 15px;
             padding-bottom: 15px;
+        }
+
+        .message {
+            display: flex;
+            margin-bottom: 15px;
+        }
+
+        .message.left {
+            justify-content: flex-start;
+        }
+
+        .message.right {
+            justify-content: flex-end;
+        }
+
+        .message-bubble {
+            max-width: 70%;
+            padding: 10px 15px;
+            border-radius: 20px;
+            position: relative;
+        }
+
+        .message.left .message-bubble {
+            background-color: #e9ecef;
+            color: #000;
+            border-top-left-radius: 0;
+        }
+
+        .message.right .message-bubble {
+            background-color: #007bff;
+            color: white;
+            border-top-right-radius: 0;
+        }
+
+        .message-text {
+            margin: 0;
+        }
+
+        .message-time {
+            font-size: 0.8em;
+            margin-top: 5px;
+            color: rgba(0, 0, 0, 0.5);
+            text-align: right;
         }
     </style>
 </head>
@@ -94,8 +129,13 @@
                             const messages = response.data;
                             let chatBodyHtml = '';
                             messages.forEach(message => {
-                                const align = message.sender_id === sessionUserId ? 'text-right' : 'text-left';
-                                chatBodyHtml += `<div class="${align}">${message.content}</div>`;
+                                const align = message.sender_id === sessionUserId ? 'right' : 'left';
+                                chatBodyHtml += `<div class="message ${align}">
+                                                    <div class="message-bubble">
+                                                        <div class="message-text">${message.content}</div>
+                                                        <div class="message-time">${new Date(message.timestamp).toLocaleTimeString()}</div>
+                                                    </div>
+                                                 </div>`;
                             });
                             $('#chatBody').html(chatBodyHtml);
                             $('#chatBody').scrollTop($('#chatBody')[0].scrollHeight);
@@ -116,8 +156,13 @@
         socket.onmessage = function(event) {
             const message = JSON.parse(event.data);
             if (message.sender_id === selectedUserId || message.receiver_id === selectedUserId) {
-                const align = message.sender_id === sessionUserId ? 'text-right' : 'text-left';
-                const chatBodyHtml = `<div class="${align}">${message.content}</div>`;
+                const align = message.sender_id === sessionUserId ? 'right' : 'left';
+                const chatBodyHtml = `<div class="message ${align}">
+                                        <div class="message-bubble">
+                                            <div class="message-text">${message.content}</div>
+                                            <div class="message-time">${new Date(message.timestamp).toLocaleTimeString()}</div>
+                                        </div>
+                                      </div>`;
                 $('#chatBody').append(chatBodyHtml);
                 $('#chatBody').scrollTop($('#chatBody')[0].scrollHeight);
             }
@@ -135,11 +180,18 @@
                 const message = {
                     sender_id: sessionUserId,
                     receiver_id: selectedUserId,
-                    content: messageContent
+                    content: messageContent,
+                    timestamp: new Date().toISOString()
                 };
                 socket.send(JSON.stringify(message));
                 $('#messageInput').val('');
-                $('#chatBody').append(`<div class="text-right">${messageContent}</div>`);
+                const chatBodyHtml = `<div class="message right">
+                                        <div class="message-bubble">
+                                            <div class="message-text">${messageContent}</div>
+                                            <div class="message-time">${new Date(message.timestamp).toLocaleTimeString()}</div>
+                                        </div>
+                                      </div>`;
+                $('#chatBody').append(chatBodyHtml);
                 $('#chatBody').scrollTop($('#chatBody')[0].scrollHeight);
             }
         });

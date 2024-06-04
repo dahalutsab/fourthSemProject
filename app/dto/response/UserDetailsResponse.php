@@ -14,13 +14,13 @@ class UserDetailsResponse
     private ?array $socialMedia;
     private ?string $bio;
 
-    public function __construct(UserDetails $userDetails) {
-        $this->id = $userDetails->getId() ?? 0;
-        $this->fullName = $userDetails->getFullName() ?? '';
-        $this->phone = $userDetails->getPhone() ?? '';
-        $this->address = $userDetails->getAddress() ?? '';
-        $this->profilePicture = $userDetails->getProfilePicture() ?? '';
-        $this->bio = $userDetails->getBio() ?? '';
+    public function __construct(?UserDetails $userDetails) {
+        $this->id = $userDetails ? $userDetails->getId() : 0;
+        $this->fullName = $userDetails ? $userDetails->getFullName() : '';
+        $this->phone = $userDetails ? $userDetails->getPhone() : '';
+        $this->address = $userDetails ? $userDetails->getAddress() : '';
+        $this->profilePicture = $userDetails ? $userDetails->getProfilePicture() : '';
+        $this->bio = $userDetails ? $userDetails->getBio() : '';
     }
 
     public function getData(): array {

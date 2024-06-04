@@ -8,7 +8,12 @@
     --text-color: #fff;
 }
 
-
+/*:root {*/
+/*    --background-color: #AACCFF;  !* Light blue background *!*/
+/*    --button-color: #F2994A;     !* Orange accent for buttons *!*/
+/*    --card-color: #fff;          !* White cards *!*/
+/*    --text-color: #333;          !* Darker text for better contrast *!*/
+/*}*/
 body {
     margin: 0;
     padding: 0;

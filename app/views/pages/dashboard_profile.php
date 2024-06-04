@@ -10,7 +10,7 @@
                 <form id="imageUploadForm" enctype="multipart/form-data">
                     <img src="<?=BASE_IMAGE_PATH?>profile.png" class="avatar img-circle img-thumbnail" id="dashboard-user-image" alt="avatar">
                     <h6>Upload a different photo...</h6>
-                    <input type="file" class="text-center center-block file-upload" name="profile_picture" id="profile_picture" alt="">
+                    <input type="file" class=" btn-success" name="profile_picture" id="profile_picture" alt="">
                     <button class="btn btn-success" type="submit"><i class="fas fa-upload me-2"></i>Upload</button>
                 </form>
             </div>
