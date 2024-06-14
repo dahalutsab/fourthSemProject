@@ -134,36 +134,33 @@
             </div>
         </div>
 
-        <div class="col-12">
-            <div class="row d-flex justify-content-center">
-                <div class="col-md-12 col-lg-10 col-xl-8">
-                    <div class="card">
-                        <div class="card-body p-4">
-                            <h4 class="text-center mb-4 pb-2">Comments</h4>
-                            <div class="comment-section" id="commentSection">
-                                <!-- Comment form -->
-                                <!--                                check if userId exits in session-->
-                                <?php if (isset($_SESSION[SESSION_USER_ID])): ?>
-                                    <div class="comment-form mb-4">
-                                        <div class="star-rating">
-                                            <input type="radio" name="rating" id="rating-5" value="5"><label for="rating-5">&#9733;</label>
-                                            <input type="radio" name="rating" id="rating-4" value="4"><label for="rating-4">&#9733;</label>
-                                            <input type="radio" name="rating" id="rating-3" value="3"><label for="rating-3">&#9733;</label>
-                                            <input type="radio" name="rating" id="rating-2" value="2"><label for="rating-2">&#9733;</label>
-                                            <input type="radio" name="rating" id="rating-1" value="1"><label for="rating-1">&#9733;</label>
-                                        </div>
-                                        <textarea class="form-control mb-2" id="commentInput" rows="3" placeholder="Add a comment"></textarea>
-                                        <button class="btn btn-primary" id="submitComment">Submit</button>
-                                    </div>
-                                <?php else: ?>
-                                    <p class="text-center">Please <a href="/login">login</a> to post a comment.</p>
-                                <?php endif; ?>
-                                <!-- Comments display area -->
-                                <div class="comment-list" id="commentList">
-                                    <!-- Comments will be dynamically populated here -->
+        <div class="row d-flex justify-content-center">
+            <div class="col-md-12 col-lg-10 col-xl-8">
+                <div class="card">
+                    <div class="card-body p-4">
+                        <h4 class="text-center mb-4 pb-2">Comments</h4>
+                        <?php if (isset($_SESSION[SESSION_USER_ID])): ?>
+                        <div class="comment-section" id="commentSection">
+                            <!-- Comment form -->
+                            <div class="comment-form mb-4">
+                                <div class="star-rating">
+                                    <input type="radio" name="rating" id="rating-5" value="5"><label for="rating-5">&#9733;</label>
+                                    <input type="radio" name="rating" id="rating-4" value="4"><label for="rating-4">&#9733;</label>
+                                    <input type="radio" name="rating" id="rating-3" value="3"><label for="rating-3">&#9733;</label>
+                                    <input type="radio" name="rating" id="rating-2" value="2"><label for="rating-2">&#9733;</label>
+                                    <input type="radio" name="rating" id="rating-1" value="1"><label for="rating-1">&#9733;</label>
                                 </div>
+                                <label for="commentInput"></label><textarea class="form-control mb-2" id="commentInput" rows="3" placeholder="Add a comment"></textarea>
+                                <button class="btn btn-primary" id="submitComment">Submit</button>
+                            </div>
+                            <!-- Comments display area -->
+                            <div class="comment-list" id="commentList">
+                                <!-- Comments will be dynamically populated here -->
                             </div>
                         </div>
+                        <?php else: ?>
+                        <p class="text-center">Please <a href="/login">login</a> to post a comment.</p>
+                        <?php endif; ?>
                     </div>
                 </div>
             </div>
@@ -354,21 +351,42 @@
                         const commentBox = document.createElement('div');
                         commentBox.classList.add('comment-box');
                         commentBox.innerHTML = `
-                        <img src="${comment.userProfileImage}" alt="User profile">
-                        <div class="comment-content">
-                            <h5>${comment.userName}</h5>
-                            <div class="star-rating" style="--rating: ${comment.rating};"></div>
-                            <p>${comment.text}</p>
-                            <div class="comment-actions">
-                                <button class="btn btn-link reply-button" data-comment-id="${comment.comment_id}">Reply</button>
-                            </div>
-                            <div class="reply-box" id="replyBox-${comment.comment_id}">
-                                <textarea class="form-control mb-2" id="replyInput-${comment.comment_id}" rows="1" placeholder="Add a reply"></textarea>
-                                <button class="btn btn-primary reply-button" data-comment-id="${comment.comment_id}">Submit Reply</button>
-                            </div>
+                    <img src="${comment.userProfileImage}" alt="User profile">
+                    <div class="comment-content">
+                        <h5>${comment.userName}</h5>
+                        <div class="star-rating" style="--rating: ${comment.rating};"></div>
+                        <p>${comment.text}</p>
+                        <div class="comment-actions">
+                            <button class="btn btn-link reply-button" data-comment-id="${comment.comment_id}">Reply</button>
                         </div>
-                        `;
+                        <div class="reply-box" id="replyBox-${comment.comment_id}">
+                            <textarea class="form-control mb-2" id="replyInput-${comment.comment_id}" rows="1" placeholder="Add a reply"></textarea>
+                            <button class="btn btn-primary reply-button" data-comment-id="${comment.comment_id}">Submit Reply</button>
+                        </div>
+                    </div>
+                    `;
                         commentList.appendChild(commentBox);
+
+                        // Display replies
+                        if (comment.replies) {
+                            const replyList = document.createElement('div');
+                            replyList.classList.add('reply-list');
+
+                            comment.replies.forEach(reply => {
+                                const replyBox = document.createElement('div');
+                                replyBox.classList.add('reply-box');
+                                replyBox.innerHTML = `
+                            <img src="${reply.userProfileImage}" alt="User profile">
+                            <div class="reply-content">
+                                <h5>${reply.userName}</h5>
+                                <p>${reply.text}</p>
+                            </div>
+                            `;
+                                replyList.appendChild(replyBox);
+                            });
+
+                            commentBox.appendChild(replyList);
+                        }
                     });
                 } else {
                     console.error('Failed to fetch comments:', data.message);

@@ -21,32 +21,28 @@ class CommentRepository implements CommentRepositoryInterface
      */
     public function findByArtist($artistId): array
     {
-        try {
-            $artist_id = $this->getArtistIdByDetailsId($artistId);
-        }
-        catch (Exception $e) {
-            throw new Exception('Invalid artist ID');
-        }
-        $stmt = $this->mysqli->prepare("SELECT 
-            c.id AS comment_id,
-            c.user_id,
-            c.artist_id,
-            c.rating,
-            c.text,
-            c.upvotes,
-            c.parent_id,
-            c.created_at,
-            u.username AS userName,
-            ud.profilePicture AS userProfileImage
-        FROM 
-            comments c
-        LEFT JOIN 
-            users u ON c.user_id = u.id
-        LEFT JOIN 
-            userdetails ud ON c.user_id = ud.user_id
-        WHERE artist_id = ? AND parent_id IS NULL
-        ORDER BY 
-            c.created_at DESC;
+        $artist_id = $this->getArtistIdByDetailsId($artistId);
+        $stmt = $this->mysqli->prepare("
+            SELECT
+                c.id AS comment_id,
+                c.user_id,
+                c.artist_id,
+                c.rating,
+                c.text,
+                c.upvotes,
+                c.parent_id,
+                c.created_at,
+                u.username AS userName,
+                ud.profilePicture AS userProfileImage
+            FROM 
+                comments c
+            LEFT JOIN
+                users u ON c.user_id = u.id
+            LEFT JOIN
+                userdetails ud ON c.user_id = ud.user_id
+            WHERE artist_id = ?
+            ORDER BY
+                c.created_at DESC;
         ");
         $stmt->bind_param('i', $artist_id);
         $stmt->execute();
@@ -54,10 +50,17 @@ class CommentRepository implements CommentRepositoryInterface
         $comments = [];
 
         while ($row = $result->fetch_assoc()) {
-            $comments[] = $row;
+            $comments[$row['comment_id']] = $row;
         }
 
-        return $comments;
+        foreach ($comments as $id => $comment) {
+            if ($comment['parent_id'] !== null) {
+                $comments[$comment['parent_id']]['replies'][] = $comment;
+                unset($comments[$id]);
+            }
+        }
+
+        return array_values($comments); // Re-index array keys
     }
 
     /**
