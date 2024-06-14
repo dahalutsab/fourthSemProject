@@ -2,6 +2,7 @@ document.addEventListener('DOMContentLoaded', function() {
     // Fetch artist ID from URL parameter
     const urlParams = new URLSearchParams(window.location.search);
     const artistId = urlParams.get('id');
+    const userId = sessionStorage.getItem('userId'); // Assuming user ID is stored in session storage
 
     if (artistId) {
         // Fetch media data for the artist
@@ -115,6 +116,104 @@ document.addEventListener('DOMContentLoaded', function() {
                     }
                 })
                 .catch(error => console.error('Error fetching performance types:', error));
+        });
+
+        // Fetch comments
+        fetch(`/api/comments?artist_id=${artistId}`)
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    const comments = data.data;
+                    const commentsContainer = document.querySelector('.card-body .comments-section');
+                    commentsContainer.innerHTML = ''; // Clear any existing content
+
+                    comments.forEach(comment => {
+                        const commentElement = document.createElement('div');
+                        commentElement.classList.add('comment');
+                        commentElement.innerHTML = `
+                            <div class="comment-header">
+                                <strong>${comment.user_name}</strong> <span>${new Date(comment.created_at).toLocaleString()}</span>
+                            </div>
+                            <div class="comment-body">
+                                <p>${comment.text}</p>
+                                <div class="comment-footer">
+                                    <button class="btn btn-link upvote-btn" data-comment-id="${comment.id}">Upvote (${comment.upvotes})</button>
+                                </div>
+                            </div>
+                        `;
+                        commentsContainer.appendChild(commentElement);
+                    });
+
+                    // Add event listeners to upvote buttons
+                    document.querySelectorAll('.upvote-btn').forEach(button => {
+                        button.addEventListener('click', function() {
+                            const commentId = this.getAttribute('data-comment-id');
+                            fetch(`/api/comments/upvote`, {
+                                method: 'POST',
+                                headers: {
+                                    'Content-Type': 'application/json'
+                                },
+                                body: JSON.stringify({ comment_id: commentId })
+                            })
+                                .then(response => response.json())
+                                .then(data => {
+                                    if (data.success) {
+                                        // Update the upvote count
+                                        this.textContent = `Upvote (${data.data.upvotes})`;
+                                    } else {
+                                        console.error('Failed to upvote comment:', data.message);
+                                    }
+                                })
+                                .catch(error => console.error('Error upvoting comment:', error));
+                        });
+                    });
+                } else {
+                    console.error('Failed to fetch comments:', data.message);
+                }
+            })
+            .catch(error => console.error('Error fetching comments:', error));
+
+        // Handle new comment submission
+        document.querySelector('#commentForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+
+            const commentText = document.querySelector('#commentText').value;
+
+            fetch(`/api/comments`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ user_id: userId, artist_id: artistId, text: commentText })
+            })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        // Clear the comment form
+                        document.querySelector('#commentText').value = '';
+
+                        // Optionally, you can also add the new comment to the comments section
+                        const newComment = data.data;
+                        const commentsContainer = document.querySelector('.card-body .comments-section');
+                        const commentElement = document.createElement('div');
+                        commentElement.classList.add('comment');
+                        commentElement.innerHTML = `
+                            <div class="comment-header">
+                                <strong>${newComment.user_name}</strong> <span>${new Date(newComment.created_at).toLocaleString()}</span>
+                            </div>
+                            <div class="comment-body">
+                                <p>${newComment.text}</p>
+                                <div class="comment-footer">
+                                    <button class="btn btn-link upvote-btn" data-comment-id="${newComment.id}">Upvote (0)</button>
+                                </div>
+                            </div>
+                        `;
+                        commentsContainer.appendChild(commentElement);
+                    } else {
+                        console.error('Failed to submit comment:', data.message);
+                    }
+                })
+                .catch(error => console.error('Error submitting comment:', error));
         });
     } else {
         console.error('No artist ID found in the URL.');

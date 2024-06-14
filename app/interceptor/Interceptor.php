@@ -16,20 +16,6 @@ class Interceptor
         $this->loginRequiredPaths = $loginRequiredPaths;
     }
 
-//    public function intercept(string $path, ?string $userRole): bool
-//    {
-//        if ($this->requiresLogin($path) && !$this->isUserAuthenticated()) {
-//            $this->redirectTo('/login');
-//            return false;
-//        }
-//
-//        if ($this->isRestricted($path, $userRole)) {
-//            $this->redirectTo('/access-denied');
-//            return false;
-//        }
-//
-//        return true;
-//    }
 
     public function intercept(string $path, ?string $userRole): bool
     {
@@ -43,19 +29,11 @@ class Interceptor
         if ($this->isRestricted($path, $userRole)) {
             http_response_code(403); // Forbidden
             return false;
-//            header("Location: /access-denied");
-//            exit;
         }
 
         return true;
     }
 
-
-
-//    private function requiresLogin(string $path): bool
-//    {
-//        return in_array($path, $this->loginRequiredPaths);
-//    }
     private function requiresLogin(string $path): bool
     {
         foreach ($this->loginRequiredPaths as $pattern) {

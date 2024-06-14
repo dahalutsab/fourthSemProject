@@ -5,6 +5,7 @@ use app\controllers\ArtistDetailsController;
 use app\controllers\AuthController;
 use app\controllers\BookingController;
 use app\controllers\CategoryController;
+use app\controllers\CommentController;
 use app\controllers\DashboardViewController;
 use app\controllers\ErrorViewController;
 use app\controllers\LocationController;
@@ -160,6 +161,14 @@ $router->get('/dashboard/messages', [DashboardViewController::class, 'messages']
 
 $router->get('/api/getAllUsers', [UserController::class, 'getAllUsers']);
 $router->get('/api/getMessagesBetweenUsers', [MessageController::class, 'getMessagesBetweenUsers']);
+
+
+//comments
+$router->get('/dashboard/comments', [DashboardViewController::class, 'comments']);
+$router->get('/api/comments/{artistId}', [CommentController::class, 'getComments']);
+$router->post('/api/comments/add', [CommentController::class, 'postComment']);
+$router->post('/api/replies/add', [CommentController::class, 'postReply']);
+$router->post('/api/comments/upvote/{commentId}', [CommentController::class, 'upvoteComment']);
 
 // route to access denied
 $router->get('/access-denied', [ErrorViewController::class, 'accessDenied']);

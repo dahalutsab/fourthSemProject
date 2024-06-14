@@ -168,12 +168,12 @@
 
                         <div class="row mb-3">
                             <div class="col-xs-12">
-                                <label for="bio" class="form-label">Bio</label>
+                                <label for="bio_edit" class="form-label">Bio</label>
                                 <textarea class="form-control" name="bio" id="bio_edit" rows="3" placeholder="Enter your bio"></textarea>
                             </div>
                             <div class="row mb-3 artist-specific">
                                 <div class="col-xs-12">
-                                    <label for="description" class="form-label">Description</label>
+                                    <label for="description_edit" class="form-label">Description</label>
                                     <textarea class="form-control" name="description" id="description_edit" rows="5" placeholder="Enter your description"></textarea>
                                 </div>
                             </div>

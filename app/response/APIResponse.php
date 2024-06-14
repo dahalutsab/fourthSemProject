@@ -25,6 +25,7 @@ class APIResponse
         ];
 
          self::sendResponse($response, $code);
+         exit();
     }
 
     private static function sendResponse($response, $code): void

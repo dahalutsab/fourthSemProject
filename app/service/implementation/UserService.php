@@ -6,6 +6,7 @@ use app\dto\request\UserRequest;
 use app\dto\response\UserResponse;
 use app\repository\implementation\UserRepository;
 use app\service\UserServiceInterface;
+use Exception;
 use InvalidArgumentException;
 
 
@@ -46,6 +47,9 @@ class UserService implements UserServiceInterface {
         return $this->userRepository->setUserVerificationTrue($userId);
     }
 
+    /**
+     * @throws Exception
+     */
     public function getUserById($userId): UserResponse
     {
         return new UserResponse($this->userRepository->getUserById($userId));

@@ -89,6 +89,13 @@ class DashboardViewController
         $this->render(compact('pageTitle', 'content'));
     }
 
+    public function comments(): void
+    {
+        $pageTitle = 'Comments';
+        $content = 'ratings_and_review';
+        $this->render(compact('pageTitle', 'content'));
+    }
+
     private function render(array $data): void
     {
         extract($data);
