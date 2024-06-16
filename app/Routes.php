@@ -156,6 +156,9 @@ $router->post('/payment/khalti', [KhaltiIntegration::class, 'initiate']);
 $router->get('/payment/khalti-response', [KhaltiIntegration::class, 'response']);
 
 
+$router->get('/api/booking/get-artist-payments', [BookingController::class, 'artistPaymentsList']);
+$router->get('/api/booking/get-user-payments', [BookingController::class, 'userPaymentsList']);
+
 //messages
 $router->get('/dashboard/messages', [DashboardViewController::class, 'messages']);
 

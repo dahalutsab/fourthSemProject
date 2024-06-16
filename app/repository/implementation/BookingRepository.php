@@ -158,5 +158,46 @@ class BookingRepository implements BookingRepositoryInterface
         $result = $stmt->get_result();
         return $result->fetch_all(MYSQLI_ASSOC);
     }
+
+    public function getArtistPayments(mixed $artistId): array
+    {
+        $sql = "SELECT users.username as user,
+                       transactions.created_at as payment_date,
+                       bookings.total_cost as amount,
+                       transactions.status,
+                        transactions.payment_service as payment_method
+                FROM bookings
+                INNER JOIN users ON bookings.user_id = users.id
+                INNER JOIN transactions ON bookings.booking_id = transactions.booking_id
+                WHERE bookings.artist_id = ?
+                ORDER BY transactions.created_at DESC";
+
+        $stmt = $this->db->prepare($sql);
+        $stmt->bind_param("i", $artistId);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        return $result->fetch_all(MYSQLI_ASSOC);
+    }
+
+    public function getUserPayments(mixed $userId): array
+    {
+        $sql = "SELECT users.username as artist,
+                       transactions.created_at as payment_date,
+                       bookings.total_cost as amount,
+                       transactions.status,
+                        transactions.payment_service as payment_method
+                FROM bookings
+                INNER JOIN users ON bookings.artist_id = users.id
+                INNER JOIN transactions ON bookings.booking_id = transactions.booking_id
+                WHERE bookings.user_id = ?
+                ORDER BY transactions.created_at DESC";
+
+        $stmt = $this->db->prepare($sql);
+        $stmt->bind_param("i", $userId);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        return $result->fetch_all(MYSQLI_ASSOC);
+
+    }
 }
 

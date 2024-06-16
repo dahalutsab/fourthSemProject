@@ -56,5 +56,15 @@ class BookingService
          return $this->bookingRepository->getArtistBookings($artistId);
     }
 
+    public function getArtistPayments(mixed $artistId)
+    {
+        return $this->bookingRepository->getArtistPayments($artistId);
+    }
+
+    public function getUserPayments(mixed $userId)
+    {
+        return $this->bookingRepository->getUserPayments($userId);
+    }
+
 
 }

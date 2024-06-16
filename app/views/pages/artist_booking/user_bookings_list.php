@@ -47,7 +47,7 @@
                 });
                 $('#user-bookings-list').html(bookingsList);
             } else {
-                alert(response.message);
+                toastr.error(response.message);
             }
         },
         error: function() {

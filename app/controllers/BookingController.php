@@ -119,4 +119,26 @@ class BookingController
             APIResponse::error($e->getMessage());
         }
     }
+
+    public function artistPaymentsList(): void
+    {
+        try {
+            $artistId = $_SESSION[SESSION_USER_ID];
+            $payments = $this->bookingService->getArtistPayments($artistId);
+            APIResponse::success($payments, 'Artist payments fetched successfully');
+        } catch (\Exception $e) {
+            APIResponse::error($e->getMessage());
+        }
+    }
+
+    public function userPaymentsList(): void
+    {
+        try {
+            $userId = $_SESSION[SESSION_USER_ID];
+            $payments = $this->bookingService->getUserPayments($userId);
+            APIResponse::success($payments, 'User payments fetched successfully');
+        } catch (\Exception $e) {
+            APIResponse::error($e->getMessage());
+        }
+    }
 }

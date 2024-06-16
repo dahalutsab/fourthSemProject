@@ -121,7 +121,7 @@ class DashboardViewController
     public function artistPaymentsList(): void
     {
         $pageTitle = 'Artist Payments';
-        $content = 'artist_payments/artist_payments_list';
+        $content = 'artist_booking/artist_payment_list';
         $this->render(compact('pageTitle', 'content'));
     }
 
@@ -135,7 +135,7 @@ class DashboardViewController
     public function userPaymentsList(): void
     {
         $pageTitle = 'User Payments';
-        $content = 'user_payments/user_payments_list';
+        $content = 'artist_booking/user_payment_list';
         $this->render(compact('pageTitle', 'content'));
     }
 

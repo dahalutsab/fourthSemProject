@@ -17,4 +17,10 @@ interface BookingRepositoryInterface
     public function getUserBookings(mixed $userId);
 
     public function getArtistBookings(mixed $artistId);
+
+    public function getArtistPayments(mixed $artistId);
+
+    public function getUserPayments(mixed $userId);
+
+
 }
