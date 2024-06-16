@@ -123,5 +123,35 @@ class BookingRepository implements BookingRepositoryInterface
             throw new Exception("Error getting artist ID by performance ID: " . $e->getMessage());
         }
     }
+
+    public function getUserBookings(mixed $userId)
+    {
+        $sql = "SELECT * FROM bookings WHERE user_id = ?";
+        $stmt = $this->db->prepare($sql);
+        $stmt->bind_param("i", $userId);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        $bookings = $result->fetch_all(MYSQLI_ASSOC);
+        return $bookings;
+    }
+
+public function getArtistBookings(mixed $artistId)
+{
+    $sql = "SELECT bookings.booking_id,
+                   (SELECT performance_type FROM performance_types WHERE performance_type_id = bookings.performance_type_id) as performance_type,
+                   bookings.event_date,
+                   bookings.status,
+                   bookings.total_cost,
+                   COALESCE((SELECT transactions.status FROM transactions WHERE transactions.booking_id = bookings.booking_id ORDER BY transactions.created_at DESC LIMIT 1), 'not_paid') as payment_status
+            FROM bookings
+            WHERE bookings.artist_id = ?";
+
+    $stmt = $this->db->prepare($sql);
+    $stmt->bind_param("i", $artistId);
+    $stmt->execute();
+    $result = $stmt->get_result();
+    $bookings = $result->fetch_all(MYSQLI_ASSOC);
+    return $bookings;
+}
 }
 

@@ -96,6 +96,49 @@ class DashboardViewController
         $this->render(compact('pageTitle', 'content'));
     }
 
+
+    public function addUser(): void
+    {
+        $pageTitle = 'Add User';
+        $content = 'user_management/add_user';
+        $this->render(compact('pageTitle', 'content'));
+    }
+
+    public function manageUser(): void
+    {
+        $pageTitle = 'Manage User';
+        $content = 'user_management/manage_user';
+        $this->render(compact('pageTitle', 'content'));
+    }
+
+    public function artistBookingsList(): void
+    {
+        $pageTitle = 'Artist Bookings';
+        $content = 'artist_booking/artist_booking_list';
+        $this->render(compact('pageTitle', 'content'));
+    }
+
+    public function artistPaymentsList(): void
+    {
+        $pageTitle = 'Artist Payments';
+        $content = 'artist_payments/artist_payments_list';
+        $this->render(compact('pageTitle', 'content'));
+    }
+
+    public function userBookingsList(): void
+    {
+        $pageTitle = 'User Bookings';
+        $content = 'artist_booking/user_bookings_list';
+        $this->render(compact('pageTitle', 'content'));
+    }
+
+    public function userPaymentsList(): void
+    {
+        $pageTitle = 'User Payments';
+        $content = 'user_payments/user_payments_list';
+        $this->render(compact('pageTitle', 'content'));
+    }
+
     private function render(array $data): void
     {
         extract($data);

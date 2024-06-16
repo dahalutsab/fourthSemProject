@@ -79,7 +79,7 @@ class BookingController
     }
 
 
-    public function updateStatus()
+    public function updateStatus(): void
     {
         try {
             if ($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -93,6 +93,28 @@ class BookingController
                     APIResponse::error('Booking status update failed');
                 }
             }
+        } catch (\Exception $e) {
+            APIResponse::error($e->getMessage());
+        }
+    }
+
+    public function userBookingsList(): void
+    {
+        try {
+            $userId = $_SESSION[SESSION_USER_ID];
+            $bookings = $this->bookingService->getUserBookings($userId);
+            APIResponse::success($bookings, 'User bookings fetched successfully');
+        } catch (\Exception $e) {
+            APIResponse::error($e->getMessage());
+        }
+    }
+
+    public function artistBookingsList(): void
+    {
+        try {
+            $artistId = $_SESSION[SESSION_USER_ID];
+            $bookings = $this->bookingService->getArtistBookings($artistId);
+            APIResponse::success($bookings, 'Artist bookings fetched successfully');
         } catch (\Exception $e) {
             APIResponse::error($e->getMessage());
         }

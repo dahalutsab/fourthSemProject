@@ -45,4 +45,16 @@ class BookingService
         // Business logic, validation, etc.
         return $this->bookingRepository->updateStatus($id, $status);
     }
+
+    public function getUserBookings(mixed $userId)
+    {
+        return $this->bookingRepository->getUserBookings($userId);
+    }
+
+    public function getArtistBookings(mixed $artistId)
+    {
+         return $this->bookingRepository->getArtistBookings($artistId);
+    }
+
+
 }

@@ -100,7 +100,7 @@
                 <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown">
                     <img src="<?=BASE_IMAGE_PATH?>utsab.jpg" alt="Profile" class="rounded-circle">
                     <span class="d-none d-md-block dropdown-toggle ps-2">Apson</span>
-                </a><!-- End Profile Iamge Icon -->
+                </a><!-- End Profile Image Icon -->
 
                 <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
                     <li class="dropdown-header">

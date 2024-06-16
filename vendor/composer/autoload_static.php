@@ -16,6 +16,10 @@ class ComposerStaticInitf1c43721e108034d83741c5a25a83bad
     );
 
     public static $prefixLengthsPsr4 = array (
+        'm' => 
+        array (
+            'migrations\\' => 11,
+        ),
         'c' => 
         array (
             'config\\' => 7,
@@ -65,6 +69,10 @@ class ComposerStaticInitf1c43721e108034d83741c5a25a83bad
     );
 
     public static $prefixDirsPsr4 = array (
+        'migrations\\' => 
+        array (
+            0 => __DIR__ . '/../..' . '/migrations',
+        ),
         'config\\' => 
         array (
             0 => __DIR__ . '/../..' . '/config',
@@ -151,8 +159,8 @@ class ComposerStaticInitf1c43721e108034d83741c5a25a83bad
         ),
         'Psr\\Http\\Message\\' => 
         array (
-            0 => __DIR__ . '/..' . '/psr/http-message/src',
-            1 => __DIR__ . '/..' . '/psr/http-factory/src',
+            0 => __DIR__ . '/..' . '/psr/http-factory/src',
+            1 => __DIR__ . '/..' . '/psr/http-message/src',
         ),
         'PHPMailer\\PHPMailer\\' => 
         array (

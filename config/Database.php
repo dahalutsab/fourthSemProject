@@ -7,6 +7,7 @@ use mysqli;
 
 #[AllowDynamicProperties] class Database {
 
+    private mysqli $connection;
 
     public function __construct() {
         $this->connect(new DatabaseConfig());

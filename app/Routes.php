@@ -170,6 +170,21 @@ $router->post('/api/comments/add', [CommentController::class, 'postComment']);
 $router->post('/api/replies/add', [CommentController::class, 'postReply']);
 $router->post('/api/comments/upvote/{commentId}', [CommentController::class, 'upvoteComment']);
 
+
+$router->get('/dashboard/user/add', [DashboardViewController::class, 'addUser']);
+$router->get('/dashboard/user/manage', [DashboardViewController::class, 'manageUser']);
+
+$router->get('/dashboard/artist/booking', [DashboardViewController::class, 'artistBookingsList']);
+$router->get('/dashboard/artist/payment', [DashboardViewController::class, 'artistPaymentsList']);
+$router->get('/dashboard/user/booking', [DashboardViewController::class, 'userBookingsList']);
+$router->get('/dashboard/user/payment', [DashboardViewController::class, 'userPaymentsList']);
+
+
+$router->get('/api/booking/update-status', [BookingController::class, 'updateStatus']);
+$router->get('/api/booking/get-user-bookings', [BookingController::class, 'userBookingsList']);
+$router->get('/api/booking/get-artist-bookings', [BookingController::class, 'artistBookingsList']);
+
+
 // route to access denied
 $router->get('/access-denied', [ErrorViewController::class, 'accessDenied']);
 // route to 404 if any error

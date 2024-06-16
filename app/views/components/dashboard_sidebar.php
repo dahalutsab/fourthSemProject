@@ -1,5 +1,6 @@
 <aside id="sidebar" class="sidebar">
     <?php
+    $role = $_SESSION[SESSION_ROLE];
     $currentPath = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
     ?>
     <ul class="sidebar-nav" id="sidebar-nav">
@@ -9,8 +10,33 @@
                 <i class="fa-solid fa-grip"></i>
                 <span>Dashboard</span>
             </a>
-        </li><!-- End Dashboard Nav -->
+        </li>
 
+<!--        display if user is admin-->
+        <?php if ($role === 'ADMIN') { ?>
+            <li class="nav-item">
+                <?php $isUserActive = in_array($currentPath, ['/dashboard/user/add', '/dashboard/user/manage']); ?>
+                <a class="nav-link <?php echo $isUserActive ? '' : 'collapsed' ?>" data-bs-target="#user-nav" data-bs-toggle="collapse">
+                    <i class="fa-solid fa-user"></i>
+                    <span>Users</span>
+                    <i class="fas fa-chevron-down ms-auto"></i>
+                </a>
+                <ul id="user-nav" class="nav-content collapse <?php echo $isUserActive ? 'show' : '' ?>" data-bs-parent="#sidebar-nav">
+                    <li>
+                        <a class="nav-link <?php echo $currentPath === '/dashboard/user/add' ? 'active' : '' ?>" href="/dashboard/user/add">
+                            <i class="fas fa-plus"></i><span>Add User</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="nav-link <?php echo $currentPath === '/dashboard/user/manage' ? 'active' : '' ?>" href="/dashboard/user/manage">
+                            <i class="fas fa-circle"></i><span>Manage Users</span>
+                        </a>
+                    </li>
+                </ul>
+        <?php } ?>
+
+
+        <?php if ($role === 'ARTIST') { ?>
         <li class="nav-item">
             <?php $isMediaActive = in_array($currentPath, ['/dashboard/media/add', '/dashboard/media/manage']); ?>
             <a class="nav-link <?php echo $isMediaActive ? '' : 'collapsed' ?>" data-bs-target="#media-nav" data-bs-toggle="collapse">
@@ -31,6 +57,7 @@
                 </li>
             </ul>
         </li><!-- End Media Nav -->
+        <?php } ?>
 
         <li class="nav-item">
             <a class="nav-link <?php echo $currentPath === '/dashboard/profile' ? 'active' : '' ?>" href="/dashboard/profile">
@@ -39,6 +66,8 @@
             </a>
         </li><!-- End Profile Nav -->
 
+
+        <?php if ($role === 'ARTIST') { ?>
         <li class="nav-item">
             <?php $isPerformanceActive = in_array($currentPath, ['/dashboard/performance/add', '/dashboard/performance/manage']); ?>
             <a class="nav-link <?php echo $isPerformanceActive ? '' : 'collapsed' ?>" data-bs-target="#performance-nav" data-bs-toggle="collapse">
@@ -59,5 +88,50 @@
                 </li>
             </ul>
         </li><!-- End Performance Nav -->
+        <?php } ?>
+
+
+        <?php if ($role === 'USER') { ?>
+        <li class="nav-item">
+            <a class="nav-link <?php echo $currentPath === '/dashboard/user/booking' ? 'active' : '' ?>" href="/dashboard/user/booking">
+                <i class="fa-solid fa-calendar"></i>
+                <span>Booking</span>
+            </a>
+        </li><!-- End Booking Nav -->
+
+
+        <li class="nav-item">
+            <a class="nav-link <?php echo $currentPath === '/dashboard/user/payment' ? 'active' : '' ?>" href="/dashboard/user/payment">
+                <i class="fa-solid fa-money-bill"></i>
+                <span>Payment</span>
+            </a>
+        </li><!-- End Payment Nav -->
+        <?php } ?>
+
+        <?php if ($role === 'ADMIN') { ?>
+        <li class="nav-item">
+            <a class="nav-link <?php echo $currentPath === '/dashboard/category' ? 'active' : '' ?>" href="/dashboard/category">
+                <i class="fa-solid fa-list"></i>
+                <span>Category</span>
+            </a>
+        </li><!-- End Category Nav -->
+        <?php } ?>
+
+
+        <?php if ($role === 'ARTIST') { ?>
+        <li class="nav-item">
+            <a class="nav-link <?php echo $currentPath === '/dashboard/artist/booking' ? 'active' : '' ?>" href="/dashboard/artist/booking">
+                <i class="fa-solid fa-calendar"></i>
+                <span>Booking</span>
+            </a>
+        </li><!-- End Booking Nav -->
+
+        <li class="nav-item">
+            <a class="nav-link <?php echo $currentPath === '/dashboard/artist/payment' ? 'active' : '' ?>" href="/dashboard/artist/payment">
+                <i class="fa-solid fa-money-bill"></i>
+                <span>Payment</span>
+            </a>
+        <?php } ?>
+
     </ul>
 </aside>

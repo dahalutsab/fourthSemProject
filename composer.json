@@ -9,7 +9,8 @@
             "app\\repository\\": "app/repository/",
             "app\\service\\": "app/service/",
             "config\\": "config/",
-            "app\\interceptor\\": "app/interceptor/"
+            "app\\interceptor\\": "app/interceptor/",
+            "migrations\\": "migrations/"
         }
     },
     "authors": [

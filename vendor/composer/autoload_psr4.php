@@ -6,6 +6,7 @@ $vendorDir = dirname(__DIR__);
 $baseDir = dirname($vendorDir);
 
 return array(
+    'migrations\\' => array($baseDir . '/migrations'),
     'config\\' => array($baseDir . '/config'),
     'app\\views\\' => array($baseDir . '/app/views'),
     'app\\service\\' => array($baseDir . '/app/service'),
@@ -27,7 +28,7 @@ return array(
     'React\\Cache\\' => array($vendorDir . '/react/cache/src'),
     'Ratchet\\RFC6455\\' => array($vendorDir . '/ratchet/rfc6455/src'),
     'Ratchet\\' => array($vendorDir . '/cboden/ratchet/src/Ratchet'),
-    'Psr\\Http\\Message\\' => array($vendorDir . '/psr/http-message/src', $vendorDir . '/psr/http-factory/src'),
+    'Psr\\Http\\Message\\' => array($vendorDir . '/psr/http-factory/src', $vendorDir . '/psr/http-message/src'),
     'PHPMailer\\PHPMailer\\' => array($vendorDir . '/phpmailer/phpmailer/src'),
     'GuzzleHttp\\Psr7\\' => array($vendorDir . '/guzzlehttp/psr7/src'),
     'Evenement\\' => array($vendorDir . '/evenement/evenement/src'),

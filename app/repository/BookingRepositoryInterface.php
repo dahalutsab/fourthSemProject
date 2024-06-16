@@ -13,4 +13,8 @@ interface BookingRepositoryInterface
     public function updateStatus(int $id, string $status): int;
 
     public function getArtistIdByPerformanceId(mixed $performance_type_id);
+
+    public function getUserBookings(mixed $userId);
+
+    public function getArtistBookings(mixed $artistId);
 }
