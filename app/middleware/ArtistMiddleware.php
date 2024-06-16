@@ -14,7 +14,6 @@ class ArtistMiddleware
             // If the user is not an artist, return a response and stop processing the request
             http_response_code(403);
             echo json_encode(['error' => 'Forbidden']);
-            return;
         }
 
         // Call the next middleware or the route handler

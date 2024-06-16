@@ -166,6 +166,7 @@ function fetchCategoryById(categoryId) {
         })
         .then(data => {
             if (data && data.success) {
+                console.log(data);
                 document.getElementById('categoryName').textContent = data.data.name || 'N/A';
             } else {
                 console.error('Unexpected response format:', data);
