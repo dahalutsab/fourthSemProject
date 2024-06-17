@@ -13,6 +13,7 @@ use app\controllers\MediaController;
 use app\controllers\MessageController;
 use app\controllers\PerformanceTypesController;
 use app\controllers\RoleController;
+use app\controllers\SocialMediaLinkController;
 use app\controllers\UserController;
 use app\controllers\UserDetailsController;
 use app\controllers\ViewController;
@@ -189,6 +190,11 @@ $router->get('/api/booking/get-user-bookings', [BookingController::class, 'userB
 $router->get('/api/booking/get-artist-bookings', [BookingController::class, 'artistBookingsList']);
 $router->get('/api/booking-details', [BookingController::class, 'getBookingDetails']);
 
+
+//social media
+$router->post('/api/social-media-links/create', [SocialMediaLinkController::class, 'create']);
+$router->post('/api/social-media-links/update', [SocialMediaLinkController::class, 'update']);
+$router->get('/api/social-media-links/get-social-media-links-by-user-id', [SocialMediaLinkController::class, 'getSocialMediaLinksByUserId']);
 
 // route to access denied
 $router->get('/access-denied', [ErrorViewController::class, 'accessDenied']);

@@ -3,6 +3,7 @@ let overviewDataCache = null;
 
 document.addEventListener('DOMContentLoaded', function() {
     fetchUserDetail();
+    fetchSocialMediaLinks();
 });
 
 function fetchUserDetail() {
@@ -238,5 +239,69 @@ imageUploadForm.addEventListener('submit', function(event) {
         })
         .catch(error => {
             console.error('Error uploading image:', error);
+        });
+});
+
+
+
+function fetchSocialMediaLinks() {
+    fetch(`/api/social-media-links/get-social-media-links-by-user-id`)
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+            return response.json();
+        })
+        .then(data => {
+            if (data && data.success) {
+                populateSocialMediaLinks(data.data);
+            } else {
+                console.error('Unexpected response format:', data);
+            }
+        })
+        .catch(error => {
+            console.error('Error fetching social media links:', error);
+        });
+}
+
+function populateSocialMediaLinks(links) {
+    const linksContainer = document.getElementById('social-media-links');
+    linksContainer.innerHTML = '';
+
+    links.forEach(link => {
+        const linkElement = document.createElement('a');
+        linkElement.href = link.url;
+        linkElement.textContent = link.name;
+        linkElement.target = '_blank';
+        linksContainer.appendChild(linkElement);
+    });
+}
+
+const socialMediaForm = document.getElementById('socialMediaForm');
+socialMediaForm.addEventListener('submit', function(event) {
+    event.preventDefault();
+    const formData = new FormData(this);
+
+    fetch('/api/socialMediaLinks/updateSocialMediaLinks', {
+        method: 'POST',
+        body: formData
+    })
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Failed to update social media links');
+            }
+            return response.json();
+        })
+        .then(data => {
+            if (data && data.success) {
+                toastr.success(data.message.message);
+                fetchSocialMediaLinks();
+            } else {
+                toastr.error(data.message.error);
+                console.error('Unexpected response format:', data);
+            }
+        })
+        .catch(error => {
+            console.error('Error updating social media links:', error);
         });
 });

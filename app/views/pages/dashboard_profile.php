@@ -8,7 +8,7 @@
         <div class="col-sm-3">
             <div class="text-center">
                 <form id="imageUploadForm" enctype="multipart/form-data">
-                    <img src="<?=BASE_IMAGE_PATH?>profile.png" class="avatar img-circle img-thumbnail" id="dashboard-user-image" alt="avatar">
+                    <img src="<?=BASE_IMAGE_PATH?>default-profile.png" class="avatar img-circle img-thumbnail" id="dashboard-user-image" alt="avatar">
                     <h6>Upload a different photo...</h6>
                     <input type="file" class=" btn-success" name="profile_picture" id="profile_picture" alt="">
                     <button class="btn btn-success" type="submit"><i class="fas fa-upload me-2"></i>Upload</button>
@@ -18,10 +18,13 @@
             <div class="card">
                 <div class="card-header">Social Media</div>
                 <div class="card-body">
-                    <i class="fab fa-facebook me-2"></i>
-                    <i class="fab fa-instagram me-2"></i>
-                    <i class="fab fa-twitter me-2"></i>
-                    <i class="fab fa-youtube me-2"></i>
+                    <form id="socialMediaForm">
+                        <input type="text" name="facebook" placeholder="Facebook link">
+                        <input type="text" name="twitter" placeholder="Twitter link">
+                        <input type="text" name="instagram" placeholder="Instagram link">
+                        <input type="text" name="youtube" placeholder="YouTube link">
+                        <button type="submit" class="btn-success">Save</button>
+                    </form>
                 </div>
             </div>
         </div>
@@ -220,3 +223,6 @@
     </div>
 </div>
 <script src="<?=BASE_JS_PATH?>dashboard_profile.js"></script>
+<script>
+
+</script>
