@@ -181,11 +181,12 @@ $router->get('/dashboard/artist/booking', [DashboardViewController::class, 'arti
 $router->get('/dashboard/artist/payment', [DashboardViewController::class, 'artistPaymentsList']);
 $router->get('/dashboard/user/booking', [DashboardViewController::class, 'userBookingsList']);
 $router->get('/dashboard/user/payment', [DashboardViewController::class, 'userPaymentsList']);
-
+$router->get('/dashboard/booking/view', [DashboardViewController::class, 'viewBookingDetails']);
 
 $router->get('/api/booking/update-status', [BookingController::class, 'updateStatus']);
 $router->get('/api/booking/get-user-bookings', [BookingController::class, 'userBookingsList']);
 $router->get('/api/booking/get-artist-bookings', [BookingController::class, 'artistBookingsList']);
+$router->get('/api/booking-details', [BookingController::class, 'getBookingDetails']);
 
 
 // route to access denied

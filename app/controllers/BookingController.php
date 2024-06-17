@@ -141,4 +141,21 @@ class BookingController
             APIResponse::error($e->getMessage());
         }
     }
+
+    public function getBookingDetails(): void
+    {
+        try {
+            if ($_SERVER['REQUEST_METHOD'] === 'GET') {
+                $bookingId = $_GET['id'];
+                $booking = $this->bookingService->getBookingDetails($bookingId);
+                if ($booking) {
+                    APIResponse::success($booking, 'Booking details fetched successfully');
+                } else {
+                    APIResponse::error('Booking not found');
+                }
+            }
+        } catch (\Exception $e) {
+            APIResponse::error($e->getMessage());
+        }
+    }
 }

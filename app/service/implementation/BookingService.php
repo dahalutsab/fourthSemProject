@@ -66,5 +66,10 @@ class BookingService
         return $this->bookingRepository->getUserPayments($userId);
     }
 
+    public function getBookingDetails(mixed $bookingId)
+    {
+        return $this->bookingRepository->getBookingDetails($bookingId);
+    }
+
 
 }

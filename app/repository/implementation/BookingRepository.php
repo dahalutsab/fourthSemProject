@@ -199,5 +199,40 @@ class BookingRepository implements BookingRepositoryInterface
         return $result->fetch_all(MYSQLI_ASSOC);
 
     }
+
+    public function getBookingDetails(mixed $bookingId): false|array|null
+    {
+//        get artist fullname from artistdetails, get user fullname from userdetails, artist and user email from users table, booking date, start and end time, total cost, advance amount, remaining amount, status, local area, province, district, municipality from bookings table
+        $sql = "SELECT bookings.booking_id,
+                       (SELECT performance_type FROM performance_types WHERE performance_type_id = bookings.performance_type_id) as performance_type,
+                       bookings.event_date,
+                       bookings.event_start_time,
+                       bookings.event_end_time,
+                       bookings.total_cost,
+                       bookings.advance_amount,
+                       bookings.remaining_amount,
+                       bookings.status,
+                       bookings.local_area,
+                       provinces.province_name,
+                       districts.district_name,
+                       municipalities.municipality_name,
+                       users.username as user,
+                       users.email as user_email,
+                       artist.username as artist,
+                       artist.email as artist_email
+                FROM bookings
+                INNER JOIN users ON bookings.user_id = users.id
+                INNER JOIN users as artist ON bookings.artist_id = artist.id
+                INNER JOIN provinces ON bookings.province_id = provinces.province_id
+                INNER JOIN districts ON bookings.district_id = districts.district_id
+                INNER JOIN municipalities ON bookings.municipality_id = municipalities.municipality_id
+                WHERE bookings.booking_id = ?";
+
+        $stmt = $this->db->prepare($sql);
+        $stmt->bind_param("i", $bookingId);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        return $result->fetch_assoc();
+    }
 }
 

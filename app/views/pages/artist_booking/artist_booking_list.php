@@ -54,5 +54,10 @@
             alert('Error fetching artist bookings');
         }
     });
+
+    $('#artist-bookings-list').on('click', '.btn-primary', function() {
+        let bookingId = $(this).closest('tr').find('td:first').text();
+        window.location.href = `/dashboard/booking/view?bookingId=${bookingId}`;
+    });
 });
 </script>
