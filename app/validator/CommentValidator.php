@@ -7,7 +7,6 @@ class CommentValidator {
     {
         $errors = [];
 
-
         if (!isset($_SESSION[SESSION_USER_ID]) || !is_int((int)$_SESSION[SESSION_USER_ID])) {
             $errors[] = 'Invalid user ID';
         }

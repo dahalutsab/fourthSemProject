@@ -130,4 +130,16 @@ class ArtistDetailsService implements ArtistDetailsServiceInterface
             throw new Exception($exception->getMessage());
         }
     }
+
+    /**
+     * @throws Exception
+     */
+    public function getArtistRating($id): float
+    {
+        try {
+            return $this->artistDetailsRepository->getArtistRating($id);
+        } catch (Exception $exception) {
+            throw new Exception($exception->getMessage());
+        }
+    }
 }

@@ -20,4 +20,5 @@ interface ArtistDetailsServiceInterface
     public function getArtistById($id): ArtistDetailsResponse;
 
 
+    public function getArtistRating($id): float;
 }

@@ -29,7 +29,7 @@ class CommentController {
             return;
         }
         $comments = $this->commentService->getCommentsByArtist($artistId);
-        APIResponse::success($comments);
+        APIResponse::success($comments, "Comments retrieved successfully");
     }
 
     public function postComment(): void
@@ -44,7 +44,7 @@ class CommentController {
             return;
         }
 
-        $commentRequest = new CommentRequest($data['userId'], $data['artistId'], $data['text'], $data['rating'] ?? null, $data['parent_id'] ?? null);
+        $commentRequest = new CommentRequest($_SESSION[SESSION_USER_ID], $data['artistId'], $data['text'], $data['rating'] ?? null, $data['parent_id'] ?? null);
         $this->commentService->addComment($commentRequest);
         APIResponse::success("Comment added successfully");
     }

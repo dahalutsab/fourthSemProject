@@ -190,6 +190,7 @@ $router->get('/api/booking/get-user-bookings', [BookingController::class, 'userB
 $router->get('/api/booking/get-artist-bookings', [BookingController::class, 'artistBookingsList']);
 $router->get('/api/booking-details', [BookingController::class, 'getBookingDetails']);
 
+$router->get('/api/artistRating', [ArtistDetailsController::class, 'getArtistRating']);
 
 //social media
 $router->post('/api/social-media-links/create', [SocialMediaLinkController::class, 'create']);

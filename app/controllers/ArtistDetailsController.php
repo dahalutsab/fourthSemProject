@@ -170,4 +170,17 @@ class ArtistDetailsController
             ErrorResponse::badRequest($exception->getMessage());
         }
     }
+
+
+
+    public function getArtistRating(): void
+    {
+        try {
+            $artist_id = $_GET['artistId'];
+            $rating = $this->artistDetailsService->getArtistRating($artist_id);
+             APIResponse::success(['rating' => $rating]);
+        } catch (Exception $exception) {
+             ErrorResponse::badRequest($exception->getMessage());
+        }
+    }
 }

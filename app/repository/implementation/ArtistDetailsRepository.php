@@ -71,7 +71,7 @@ class ArtistDetailsRepository implements ArtistDetailsRepositoryInterface
 
         $isInsert = str_contains($query, 'INSERT');
         $params = $isInsert
-            ? ["isssssss", $userId, $fullName, $stageName, $phone, $address, $categoryID, $bio, $description, $profilePicture]
+            ? ["issssssss", $userId, $fullName, $stageName, $phone, $address, $categoryID, $bio, $description, $profilePicture]
             : ["sssssssi", $fullName, $stageName, $phone, $address, $categoryID, $bio, $description, $userId];
 
         $statement->bind_param(...$params);
@@ -190,6 +190,8 @@ class ArtistDetailsRepository implements ArtistDetailsRepositoryInterface
 
     public function getArtistById($id): ?ArtistDetails
     {
+//        also get the rating from the comments table and calculate the average rating and return it joining as the same data
+
         $query = "SELECT * FROM artist_details WHERE id = ?";
         $stmt = $this->database->getConnection()->prepare($query);
         $stmt->bind_param("i", $id);
@@ -211,8 +213,21 @@ class ArtistDetailsRepository implements ArtistDetailsRepositoryInterface
             $artist['category_id'],
             $artist['bio'],
             $artist['profile_picture'],
-            $artist['description']
+            $artist['description'],
+            $artist['social_media'],
         );
     }
+
+    public function getArtistRating($id)
+    {
+        $query = "SELECT AVG(rating) as rating FROM comments WHERE artist_id = ?";
+        $stmt = $this->database->getConnection()->prepare($query);
+        $stmt->bind_param("i", $id);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        $rating = $result->fetch_assoc();
+        return $rating['rating'] ?? 0.0;
+    }
+
 
 }

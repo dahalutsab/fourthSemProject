@@ -58,10 +58,10 @@ document.addEventListener('DOMContentLoaded', function () {
 
                     artists.forEach(artist => {
                         const card = document.createElement('div');
-                        card.classList.add('col-lg-4', 'col-md-6', 'col-12', 'mb-4', 'mb-lg-0');
+                        card.classList.add('col-lg-4', 'col-md-6', 'col-12', 'mb-4',);
 
                         card.innerHTML = `
-                            <div class="artist-aboutUs-content artist-block shadow">
+                            <div class="artist-aboutUs-content artist-block shadow mb-2">
                                 <div class="artist-img-block">
                                     <img src="${artist.profilePicture ? artist.profilePicture : 'default-image.jpg'}" alt="image">
                                 </div>
