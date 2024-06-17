@@ -47,6 +47,8 @@
             </div>
         </div>
     </div>
+
+    <button class="btn btn-primary" onclick="window.history.back()">Back</button>
 </div>
 
 <script>
