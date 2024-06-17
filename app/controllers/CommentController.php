@@ -57,8 +57,12 @@ class CommentController {
         $userId = $_SESSION[SESSION_USER_ID];
         $artistId = $data['artistId'];
 
+        if ($userId === null) {
+            APIResponse::error("You must be logged in to reply to a comment");
+            exit();
+        }
         if ($commentId === null || $text === null || $userId === null || $artistId === null) {
-            APIResponse::error("Comment ID, text and user ID are required");
+            APIResponse::error("Comment ID and text are required");
             exit();
         }
         $this->commentService->addReply($commentId, $artistId, $text, $userId);

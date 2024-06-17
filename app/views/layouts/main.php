@@ -18,6 +18,11 @@
     <link rel="stylesheet" href="<?= BASE_CSS_PATH ?>error_message.css">
     <link rel="stylesheet" href="<?= BASE_CSS_PATH ?>style.css">
     <script src="https://kit.fontawesome.com/3ab31dc8a0.js" crossorigin="anonymous"></script>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css">
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
+    <script src="<?= BASE_JS_PATH?>toastr.js"></script>
 </head>
 <body>
 <?php include __DIR__ . '/../components/loader.html' ?>

@@ -137,7 +137,8 @@ class ArtistDetailsService implements ArtistDetailsServiceInterface
     public function getArtistRating($id): float
     {
         try {
-            return $this->artistDetailsRepository->getArtistRating($id);
+            $artistId = $this->artistDetailsRepository->getArtistIdByArtistDetailsId($id);
+            return $this->artistDetailsRepository->getArtistRating($artistId);
         } catch (Exception $exception) {
             throw new Exception($exception->getMessage());
         }

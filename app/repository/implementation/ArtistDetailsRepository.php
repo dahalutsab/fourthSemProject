@@ -229,5 +229,23 @@ class ArtistDetailsRepository implements ArtistDetailsRepositoryInterface
         return $rating['rating'] ?? 0.0;
     }
 
+    /**
+     * @throws Exception
+     */
+    function getArtistIdByArtistDetailsId($artistDetailsId)
+    {
+        $query = "SELECT user_id FROM artist_details WHERE id = ?";
+        $stmt = $this->database->getConnection()->prepare($query);
+        $stmt->bind_param("i", $artistDetailsId);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        $artistId = $result->fetch_assoc()['user_id'];
+        if ($artistId === null) {
+            throw new Exception('Invalid artist details ID');
+        }
+        return $artistId;
+
+    }
+
 
 }
