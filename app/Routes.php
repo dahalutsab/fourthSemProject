@@ -184,6 +184,7 @@ $router->get('/dashboard/user/payment', [DashboardViewController::class, 'userPa
 $router->get('/dashboard/booking/view', [DashboardViewController::class, 'viewBookingDetails']);
 
 $router->get('/api/booking/update-status', [BookingController::class, 'updateStatus']);
+$router->post('/api/booking/cancel-booking', [BookingController::class, 'cancelBooking']);
 $router->get('/api/booking/get-user-bookings', [BookingController::class, 'userBookingsList']);
 $router->get('/api/booking/get-artist-bookings', [BookingController::class, 'artistBookingsList']);
 $router->get('/api/booking-details', [BookingController::class, 'getBookingDetails']);

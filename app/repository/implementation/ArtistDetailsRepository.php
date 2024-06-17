@@ -38,8 +38,8 @@ class ArtistDetailsRepository implements ArtistDetailsRepositoryInterface
 
     private function insertUserProfile(ArtistDetailsRequest $userProfileRequest): void
     {
-        $query = "INSERT INTO artist_details (user_id, full_name, stage_name, phone, address, category_id, bio, description) 
-                  VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+        $query = "INSERT INTO artist_details (user_id, full_name, stage_name, phone, address, category_id, bio, description, profile_picture) 
+                  VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
         $this->executeQuery($query, $userProfileRequest);
     }
 
@@ -67,10 +67,11 @@ class ArtistDetailsRepository implements ArtistDetailsRepositoryInterface
         $bio = $userProfileRequest->getBio();
         $description = $userProfileRequest->getDescription();
         $userId = $userProfileRequest->getUserId();
+        $profilePicture = "uploads/profile_pictures/default-profile.png";
 
         $isInsert = str_contains($query, 'INSERT');
         $params = $isInsert
-            ? ["isssssss", $userId, $fullName, $stageName, $phone, $address, $categoryID, $bio, $description]
+            ? ["isssssss", $userId, $fullName, $stageName, $phone, $address, $categoryID, $bio, $description, $profilePicture]
             : ["sssssssi", $fullName, $stageName, $phone, $address, $categoryID, $bio, $description, $userId];
 
         $statement->bind_param(...$params);

@@ -24,5 +24,7 @@ interface BookingRepositoryInterface
 
     public function getBookingDetails(mixed $bookingId);
 
+    public function cancelBooking(mixed $bookingId);
+
 
 }

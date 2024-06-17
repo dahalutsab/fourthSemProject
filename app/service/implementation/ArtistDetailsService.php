@@ -23,7 +23,6 @@ class ArtistDetailsService implements ArtistDetailsServiceInterface
     public function saveUserProfile(ArtistDetailsRequest $artistDetailsRequest): ArtistDetailsResponse
     {
         try {
-            // Call the repository method to save the user profile details
             $artistDetails = $this->artistDetailsRepository->saveUserProfile($artistDetailsRequest);
             return new ArtistDetailsResponse($artistDetails);
         } catch (Exception $exception) {

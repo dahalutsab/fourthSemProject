@@ -234,5 +234,14 @@ class BookingRepository implements BookingRepositoryInterface
         $result = $stmt->get_result();
         return $result->fetch_assoc();
     }
+
+    public function cancelBooking(mixed $bookingId): bool
+    {
+        $sql = "UPDATE bookings SET status = 'cancelled' WHERE booking_id = ?";
+        $stmt = $this->db->prepare($sql);
+        $stmt->bind_param("i", $bookingId);
+        $stmt->execute();
+        return $stmt->affected_rows > 0;
+    }
 }
 

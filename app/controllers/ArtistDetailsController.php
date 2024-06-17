@@ -20,10 +20,9 @@ class ArtistDetailsController
     }
 
 
-    public function editProfile(): null
+    public function editProfile(): void
     {
         try {
-            // Retrieve form data sent by the router
             $formData = [
                 'fullName' => $_POST['full_name'] ?? '',
                 'stageName' => $_POST['stage_name'] ?? '',
@@ -51,15 +50,15 @@ class ArtistDetailsController
             $updatedDetails = $this->artistDetailsService->saveUserProfile($artistDetailsRequest);
 
             // Return success response
-            return APIResponse::success($updatedDetails->getData(),['message' => 'User profile saved successfully.']);
+             APIResponse::success($updatedDetails->getData(),['message' => 'User profile saved successfully.']);
         } catch (Exception $exception) {
             // Return error response if an exception occurs
-            return ErrorResponse::badRequest($exception->getMessage());
+             ErrorResponse::badRequest($exception->getMessage());
         }
     }
 
 
-    public function saveProfilePicture(): null
+    public function saveProfilePicture(): void
     {
         try {
             // Check if the image file has been uploaded
@@ -73,35 +72,35 @@ class ArtistDetailsController
                 // Call the service method to save the profile picture
                 $profilePicturePath = $this->artistDetailsService->saveProfilePicture($userId, $tmpFilePath);
                 // Return success response
-                return APIResponse::success(['message' => 'Profile picture saved successfully.'], $profilePicturePath);
+                 APIResponse::success(['message' => 'Profile picture saved successfully.'], $profilePicturePath);
             } else {
                 // Return error response if no file is uploaded
-                return ErrorResponse::badRequest('No profile picture uploaded.');
+                 ErrorResponse::badRequest('No profile picture uploaded.');
             }
         } catch (Exception $exception) {
             // Return error response if an exception occurs
-            return ErrorResponse::badRequest($exception->getMessage());
+             ErrorResponse::badRequest($exception->getMessage());
         }
     }
 
     /**
      * @throws Exception
      */
-    public function getUserProfile (): null
+    public function getUserProfile (): void
     {
         try {
             $userId = $_SESSION[SESSION_USER_ID];
             $userDetails = $this->artistDetailsService->getUserProfile($userId);
-            return APIResponse::success($userDetails->getData());
+             APIResponse::success($userDetails->getData());
         } catch (Exception $exception) {
-            return APIResponse::error($exception->getMessage());
+             APIResponse::error($exception->getMessage());
         }
     }
 
     /**
      * @throws Exception
      */
-    public function getAllArtists(): null
+    public function getAllArtists(): void
     {
         try {
             $artists = $this->artistDetailsService->getAllArtists();
@@ -116,14 +115,14 @@ class ArtistDetailsController
                 return $artistResponse->getData();
             }, $artistResponses);
 
-            return APIResponse::success($artistData);
+             APIResponse::success($artistData);
         } catch (Exception $exception) {
-            return ErrorResponse::badRequest($exception->getMessage());
+             ErrorResponse::badRequest($exception->getMessage());
         }
     }
 
 
-    public function getAllArtistsByCategory(): null
+    public function getAllArtistsByCategory(): void
     {
         try {
             $requestUri = $_SERVER['REQUEST_URI'];
@@ -144,10 +143,10 @@ class ArtistDetailsController
                 return $artistResponse->getData();
             }, $artistResponses);
 
-            return APIResponse::success($artistData);
+             APIResponse::success($artistData);
 //            return ApiResponse::success($artists);
         } catch (Exception $exception) {
-            return ErrorResponse::badRequest($exception->getMessage());
+             ErrorResponse::badRequest($exception->getMessage());
         }
     }
 
@@ -155,7 +154,7 @@ class ArtistDetailsController
     /**
      * @throws Exception
      */
-    public function getArtistById(): null
+    public function getArtistById(): void
     {
         $requestUri = $_SERVER['REQUEST_URI'];
         $uriPath = parse_url($requestUri, PHP_URL_PATH);
@@ -166,9 +165,9 @@ class ArtistDetailsController
             throw new Exception("Invalid artist ID: $id");
         }
         try {
-            return APIResponse::success( $this->artistDetailsService->getArtistById($id)->getData());
+             APIResponse::success( $this->artistDetailsService->getArtistById($id)->getData());
         } catch (Exception $exception) {
-           return ErrorResponse::badRequest($exception->getMessage());
+            ErrorResponse::badRequest($exception->getMessage());
         }
     }
 }

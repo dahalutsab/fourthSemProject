@@ -39,8 +39,8 @@
                             <td>${booking.total_cost}</td>
                             <td>${booking.payment_status}</td>
                             <td>
-                                ${booking.payment_status != 'success' ? '<button class="btn btn-primary go-to-payment">Go to Payment</button>' : '<button class="btn btn-primary">View</button>'}
-                                <button class="btn btn-danger">Cancel</button>
+                                ${booking.payment_status !== 'success' ? '<button class="btn btn-primary go-to-payment">Go to Payment</button>' : '<button class="btn btn-primary">View</button>'}
+                                <button class="btn btn-danger" id="cancel-booking">Cancel</button>
                             </td>
                         </tr>
                     `;
@@ -58,6 +58,30 @@
     $('#user-bookings-list').on('click', '.go-to-payment', function() {
         let bookingId = $(this).closest('tr').find('td:first').text();
         window.location.href = `/dashboard/payment/${bookingId}`;
+    });
+
+    $('#user-bookings-list').on('click', '#cancel-booking', function() {
+        let bookingId = $(this).closest('tr').find('td:first').text();
+        $.ajax({
+            url: '/api/booking/cancel-booking?booking_id=' + bookingId,
+            type: 'POST',
+            data: {
+                booking_id: bookingId
+            },
+            success: function(response) {
+                if (response.success) {
+                    toastr.success(response.message);
+                    setTimeout(() => {
+                        location.reload();
+                    }, 1000);
+                } else {
+                    toastr.error(response.message);
+                }
+            },
+            error: function() {
+                toastr.error('Error cancelling booking');
+            }
+        });
     });
 });
 </script>

@@ -158,4 +158,21 @@ class BookingController
             APIResponse::error($e->getMessage());
         }
     }
+
+    public function cancelBooking(): void
+    {
+        try {
+            if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+                $bookingId = $_POST['booking_id'];
+                $cancelled = $this->bookingService->cancelBooking($bookingId);
+                if ($cancelled) {
+                    APIResponse::success($cancelled, 'Booking cancelled successfully');
+                } else {
+                    APIResponse::error('Booking cancellation failed');
+                }
+            }
+        } catch (\Exception $e) {
+            APIResponse::error($e->getMessage());
+        }
+    }
 }
