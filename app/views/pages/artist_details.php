@@ -209,7 +209,6 @@
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                        <button type="button" class="btn btn-primary">Book</button>
                     </div>
                 </div>
             </div>
@@ -525,8 +524,7 @@
         }
 
         function bookPerformance(performanceTypeId) {
-            // Implement the booking logic here, for example, open a booking form or send a booking request to the server
-            console.log('Booking performance type ID:', performanceTypeId);
+            window.location.href = `/dashboard/book-artist/${performanceTypeId}`;
         }
 
     </script>
