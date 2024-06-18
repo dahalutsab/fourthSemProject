@@ -28,4 +28,14 @@ class SocialMediaLinkService
     {
         return $this->socialMediaLinkRepository->getSocialMediaLinksByUserId($userId);
     }
+
+    public function getAllSocialMediaPlatforms(): array
+    {
+        return $this->socialMediaLinkRepository->getAllSocialMediaPlatforms();
+    }
+
+    public function deleteByArtistId(mixed $artistId): null
+    {
+        return $this->socialMediaLinkRepository->deleteByArtistId($artistId);
+    }
 }

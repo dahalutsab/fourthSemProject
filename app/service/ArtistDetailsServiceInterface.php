@@ -21,4 +21,6 @@ interface ArtistDetailsServiceInterface
 
 
     public function getArtistRating($id): float;
+
+    public function getAllArtistsForHomepage(): array;
 }

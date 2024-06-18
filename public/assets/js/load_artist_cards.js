@@ -5,6 +5,7 @@ document.addEventListener('DOMContentLoaded', function () {
     // Fetch and display all artists initially
     fetchArtists('/api/artistDetails/getAllArtists');
 
+
     // Fetch and populate categories
     fetch('/api/categories/getAllCategories')
         .then(response => response.json())
@@ -24,7 +25,14 @@ document.addEventListener('DOMContentLoaded', function () {
 
                     // Add event listener to fetch artists by category
                     navItem.querySelector('button').addEventListener('click', function () {
-                        fetchArtists(`/api/artistDetails/getAllArtistsByCategory/${category.id}`);
+                        // Remove 'active' class from all tabs
+                        document.querySelectorAll('#artistTab .nav-link').forEach(tab => {
+                            tab.classList.remove('active');
+                        });
+                        // Add 'active' class to the clicked tab
+                        this.classList.add('active');
+
+                        fetchArtists(`/api/artistDetails/getAllArtistsByCategory/${this.dataset.categoryId}`);
                     });
                 });
 
@@ -40,6 +48,13 @@ document.addEventListener('DOMContentLoaded', function () {
 
                 // Add event listener to fetch all artists
                 allTab.querySelector('button').addEventListener('click', function () {
+                    // Remove 'active' class from all tabs
+                    document.querySelectorAll('#artistTab .nav-link').forEach(tab => {
+                        tab.classList.remove('active');
+                    });
+                    // Add 'active' class to the clicked tab
+                    this.classList.add('active');
+
                     fetchArtists('/api/artistDetails/getAllArtists');
                 });
             } else {
@@ -60,47 +75,39 @@ document.addEventListener('DOMContentLoaded', function () {
                         const card = document.createElement('div');
                         card.classList.add('col-lg-4', 'col-md-6', 'col-12', 'mb-4',);
 
-                        card.innerHTML = `
-                            <div class="artist-aboutUs-content artist-block shadow mb-2">
-                                <div class="artist-img-block">
-                                    <img src="${artist.profilePicture ? artist.profilePicture : 'default-image.jpg'}" alt="image">
-                                </div>
-                                <div class="text-block">
-                                    <h2>${artist.fullName ? artist.fullName : artist.stageName}</h2>
-                                    <div class="Stars" style="--rating: 4.6;"></div>
-                                    <p>${artist.description ? artist.description : 'No description available.'}</p>
-                                </div>
-                                <div class="social-share">
-                                    <ul class="social-icon">
-                                        <li class="social-icon-item mx-lg-3 m-md-2 mx-sm-1">
-                                            <a href="#" class="social-icon-link">
-                                                <i class="fa-brands fa-facebook"></i>
-                                            </a>
-                                        </li>
-                                        <li class="social-icon-item mx-lg-3 m-md-2 mx-sm-1">
-                                            <a href="#" class="social-icon-link">
-                                                <i class="fa-brands fa-twitter"></i>
-                                            </a>
-                                        </li>
-                                        <li class="social-icon-item mx-lg-3 m-md-2 mx-sm-1">
-                                            <a href="#" class="social-icon-link">
-                                                <i class="fa-brands fa-instagram"></i>
-                                            </a>
-                                        </li>
-                                        <li class="social-icon-item mx-lg-3 m-md-2 mx-sm-1">
-                                            <a href="#" class="social-icon-link">
-                                                <i class="fa-brands fa-youtube"></i>
-                                            </a>
-                                        </li>
-                                    </ul>
-                                </div>
-                                <div class="hero-button">
-                                    <a href="/artist-details?id=${artist.id}" class="cus-btn primary m-lg-2 m-md-1">
-                                        <i class="fa-solid fa-circle-info"></i> View Details
-                                    </a>
-                                </div>
-                            </div>
+                        let socialMediaLinksHTML = '';
+                        artist.social_media_links.forEach(link => {
+                            socialMediaLinksHTML += `
+                            <li class="social-icon-item mx-lg-3 m-md-2 mx-sm-1">
+                                <a href="${link.url}" class="social-icon-link">
+                                    <i class="${link.platform_icon}"></i>
+                                </a>
+                            </li>
                         `;
+                        });
+
+                        card.innerHTML = `
+                        <div class="artist-aboutUs-content artist-block shadow mb-2">
+                            <div class="artist-img-block">
+                                <img src="${artist.profile_picture ? artist.profile_picture : 'default-image.jpg'}" alt="image">
+                            </div>
+                            <div class="text-block">
+                                <h2>${artist.full_name ? artist.full_name : artist.stage_name}</h2>
+                                <div class="Stars" style="--rating: ${artist.rating};"></div>
+                                <p>${artist.description ? artist.description : 'No description available.'}</p>
+                            </div>
+                            <div class="social-share">
+                                <ul class="social-icon">
+                                    ${socialMediaLinksHTML}
+                                </ul>
+                            </div>
+                            <div class="hero-button">
+                                <a href="/artist-details?id=${artist.id}" class="cus-btn primary m-lg-2 m-md-1">
+                                    <i class="fa-solid fa-circle-info"></i> View Details
+                                </a>
+                            </div>
+                        </div>
+                    `;
 
                         cardContainer.appendChild(card);
                     });
@@ -109,5 +116,4 @@ document.addEventListener('DOMContentLoaded', function () {
                 }
             })
             .catch(error => console.error('Error fetching artist details:', error));
-    }
-});
+    }});

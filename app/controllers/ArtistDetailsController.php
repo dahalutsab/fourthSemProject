@@ -134,16 +134,7 @@ class ArtistDetailsController
                 throw new Exception("Invalid category ID: $category");
             }
             $artists = $this->artistDetailsService->getAllArtistsByCategory($category);
-            $artistResponses = array_map(function ($artist) {
-                return new ArtistDetailsResponse($artist);
-            }, $artists);
-
-            // Get the data from each ArtistDetailsResponse object
-            $artistData = array_map(function ($artistResponse) {
-                return $artistResponse->getData();
-            }, $artistResponses);
-
-             APIResponse::success($artistData);
+             APIResponse::success($artists);
 //            return ApiResponse::success($artists);
         } catch (Exception $exception) {
              ErrorResponse::badRequest($exception->getMessage());
@@ -179,6 +170,16 @@ class ArtistDetailsController
             $artist_id = $_GET['artistId'];
             $rating = $this->artistDetailsService->getArtistRating($artist_id);
              APIResponse::success(['rating' => $rating]);
+        } catch (Exception $exception) {
+             ErrorResponse::badRequest($exception->getMessage());
+        }
+    }
+
+    public function getAllArtistsForHomepage(): void
+    {
+        try {
+            $artists = $this->artistDetailsService->getAllArtistsForHomepage();
+             APIResponse::success($artists);
         } catch (Exception $exception) {
              ErrorResponse::badRequest($exception->getMessage());
         }

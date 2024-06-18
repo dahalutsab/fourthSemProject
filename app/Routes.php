@@ -105,7 +105,8 @@ $router->get('/dashboard/profile', [DashboardViewController::class, 'profile']);
 $router->get('/profile', [DashboardViewController::class, 'profile'], [], '/login');
 $router->get('/api/artistDetails/getUserDetails', [ArtistDetailsController::class, 'getUserProfile']);
 $router->post('/api/artistDetails/updateProfile', [ArtistDetailsController::class, 'editProfile']);
-$router->get('/api/artistDetails/getAllArtists', [ArtistDetailsController::class, 'getAllArtists']);
+//$router->get('/api/artistDetails/getAllArtists', [ArtistDetailsController::class, 'getAllArtists']);
+$router->get('/api/artistDetails/getAllArtists', [ArtistDetailsController::class, 'getAllArtistsForHomepage']);
 $router->post('/api/artistDetails/updateProfilePicture', [ArtistDetailsController::class, 'saveProfilePicture']);
 $router->get('/api/artistDetails/{id}', [ArtistDetailsController::class, 'getArtistById']);
 $router->get('/api/artistDetails/getAllArtistsByCategory/{categoryId}', [ArtistDetailsController::class, 'getAllArtistsByCategory']);
@@ -193,9 +194,9 @@ $router->get('/api/booking-details', [BookingController::class, 'getBookingDetai
 $router->get('/api/artistRating', [ArtistDetailsController::class, 'getArtistRating']);
 
 //social media
-$router->post('/api/social-media-links/create', [SocialMediaLinkController::class, 'create']);
-$router->post('/api/social-media-links/update', [SocialMediaLinkController::class, 'update']);
-$router->get('/api/social-media-links/get-social-media-links-by-user-id', [SocialMediaLinkController::class, 'getSocialMediaLinksByUserId']);
+$router->get('/api/social-media-links/get-all-social-media-platforms', [SocialMediaLinkController::class, 'getAllSocialMediaPlatforms']);
+$router->get('/api/artist/get-social-media-links', [SocialMediaLinkController::class, 'getSocialMediaLinksByUserId']);
+$router->post('/api/artist/save-social-media', [SocialMediaLinkController::class, 'create']);
 
 // route to access denied
 $router->get('/access-denied', [ErrorViewController::class, 'accessDenied']);

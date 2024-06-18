@@ -15,47 +15,53 @@ class SocialMediaLinkController
         $this->socialMediaLinkService = new SocialMediaLinkService();
     }
 
+    public function getAllSocialMediaPlatforms(): void {
+        $socialMediaPlatforms = $this->socialMediaLinkService->getAllSocialMediaPlatforms();
+        APIResponse::success($socialMediaPlatforms);
+    }
+
     public function create(): void
     {
-        $userId = $_POST['user_id'];
-        $socialMediaLinks = $_POST['social_media_links'];
+        $inputJSON = file_get_contents('php://input');
+        $data = json_decode($inputJSON, true);
 
-        foreach ($socialMediaLinks as $socialMediaLink) {
+        if (json_last_error() !== JSON_ERROR_NONE || !isset($data['social_media_links'])) {
+            APIResponse::error('Invalid JSON data or missing social_media_links key');
+            return;
+        }
+
+        $artistId = $_SESSION[SESSION_USER_ID];
+        if (!$artistId) {
+            APIResponse::error('User not logged in');
+            return;
+        }
+
+        $this->socialMediaLinkService->deleteByArtistId($artistId);
+
+        foreach ($data['social_media_links'] as $socialMediaLink) {
             $data = [
-                'user_id' => $userId,
-                'name' => $socialMediaLink['name'],
-                'link' => $socialMediaLink['link']
+                'artist_id' => $artistId,
+                'platform_id' => $socialMediaLink['platform_id'],
+                'url' => $socialMediaLink['url']
             ];
             if (!$this->socialMediaLinkService->create($data)) {
                 APIResponse::error('Error creating social media link');
-            } else {
-                APIResponse::success('Social media link created successfully');
+                return;
             }
         }
 
+        APIResponse::success('Social media links updated successfully');
     }
 
-    public function update(): void
+    public function getSocialMediaLinksByUserId(): void
     {
-        $socialMediaLinks = $_POST['social_media_links'];
-
-        foreach ($socialMediaLinks as $socialMediaLink) {
-            $data = [
-                'id' => $socialMediaLink['id'],
-                'name' => $socialMediaLink['name'],
-                'link' => $socialMediaLink['link']
-            ];
-            if (!$this->socialMediaLinkService->update($data)) {
-                APIResponse::error('Error updating social media link');
-            } else {
-                APIResponse::success('Social media link updated successfully');
-            }
+        $userId = $_SESSION[SESSION_USER_ID];
+        if (!$userId) {
+            APIResponse::error('User not logged in');
+            return;
         }
+        $socialMediaLinks = $this->socialMediaLinkService->getSocialMediaLinksByUserId($userId);
+        APIResponse::success($socialMediaLinks);
     }
 
-    public function getSocialMediaLinksByUserId(): array
-    {
-        $userId = $_GET['user_id'];
-        return $this->socialMediaLinkService->getSocialMediaLinksByUserId($userId);
-    }
 }

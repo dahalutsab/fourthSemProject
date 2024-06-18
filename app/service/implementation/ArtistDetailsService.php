@@ -143,4 +143,9 @@ class ArtistDetailsService implements ArtistDetailsServiceInterface
             throw new Exception($exception->getMessage());
         }
     }
+
+    public function getAllArtistsForHomepage(): array
+    {
+        return $this->artistDetailsRepository->getAllArtistsForHomepage();
+    }
 }

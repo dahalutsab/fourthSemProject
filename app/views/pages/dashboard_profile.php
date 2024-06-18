@@ -1,4 +1,11 @@
-
+<style>
+    .social-icon {
+        margin-right: 8px;
+    }
+    .input-group {
+        margin-bottom: 15px;
+    }
+</style>
 <hr>
 <div class="container bootstrap snippet">
     <div class="row">
@@ -19,11 +26,8 @@
                 <div class="card-header">Social Media</div>
                 <div class="card-body">
                     <form id="socialMediaForm">
-                        <input type="text" name="facebook" placeholder="Facebook link">
-                        <input type="text" name="twitter" placeholder="Twitter link">
-                        <input type="text" name="instagram" placeholder="Instagram link">
-                        <input type="text" name="youtube" placeholder="YouTube link">
-                        <button type="submit" class="btn-success">Save</button>
+                        <!-- Dynamic input fields will be appended here -->
+                        <button type="submit" id="save-social-media" class="btn-success">Save</button>
                     </form>
                 </div>
             </div>
@@ -224,5 +228,153 @@
 </div>
 <script src="<?=BASE_JS_PATH?>dashboard_profile.js"></script>
 <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const form = document.getElementById('socialMediaForm');
+        let platformMap = {};
+        fetchSocialMediaPlatforms();
+
+        form.addEventListener('submit', function(event) {
+            event.preventDefault();
+            // Check if platformMap is populated
+            if (Object.keys(platformMap).length > 0) {
+                const data = collectFormData(platformMap);
+                saveSocialMediaLinks(data);
+            } else {
+                console.error('PlatformMap is empty or not populated yet.');
+            }
+        });
+
+        function fetchSocialMediaPlatforms() {
+            fetch('/api/social-media-links/get-all-social-media-platforms')
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        platformMap = createPlatformMap(data.data);
+                        renderInputFields(data.data);
+                    } else {
+                        console.error('Error fetching social media platforms:', data.message);
+                    }
+                })
+                .catch(error => console.error('Error fetching social media platforms:', error));
+        }
+
+        function createPlatformMap(platforms) {
+            const map = {};
+            platforms.forEach(platform => {
+                map[platform.platform_name.toLowerCase()] = platform.platform_id;
+            });
+            return map;
+        }
+
+        function renderInputFields(platforms) {
+            const form = document.getElementById('socialMediaForm');
+            platforms.forEach(platform => {
+                const inputGroup = document.createElement('div');
+                inputGroup.classList.add('input-group');
+
+                const icon = document.createElement('i');
+                icon.className = `${platform.icon_class} social-icon`;
+
+                const input = document.createElement('input');
+                input.type = 'text';
+                input.name = platform.platform_name.toLowerCase(); // Convert platform name to lowercase
+                input.placeholder = `${platform.platform_name} link`;
+                input.classList.add('form-control');
+
+                inputGroup.appendChild(icon);
+                inputGroup.appendChild(input);
+                form.insertBefore(inputGroup, form.lastElementChild);
+            });
+            fetchArtistSocialMediaLinks();
+        }
+
+        function collectFormData(platformMap) {
+            const form = document.getElementById('socialMediaForm');
+            const formData = new FormData(form);
+            const socialMedia = [];
+
+            // Iterate through keys in platformMap
+            for (let key in platformMap) {
+                if (platformMap.hasOwnProperty(key)) {
+                    const value = formData.get(key);
+                    if (value.trim() !== '') {
+                        const platformId = platformMap[key];
+                        socialMedia.push({
+                            platform_id: platformId,
+                            handle: key,
+                            url: value
+                        });
+                    }
+                }
+            }
+
+            if (socialMedia.length === 0) {
+                console.log('No social media data collected. Check the form inputs and the platformMap:', platformMap);
+            }
+
+            return {
+                artist_id: <?= $_SESSION[SESSION_USER_ID] ?>,
+                social_media: socialMedia
+            };
+        }
+
+        function saveSocialMediaLinks(data) {
+            fetch('/api/artist/save-social-media', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ social_media_links: data.social_media })
+            })
+                .then(response => response.json())
+                .then(result => {
+                    if (result.success) {
+                        toastr.success('Social media profiles saved successfully');
+                        fetchArtistSocialMediaLinks();
+                    } else {
+                        console.error('Error saving social media profiles:', result.message);
+                        alert('An error occurred while saving social media profiles');
+                    }
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                    alert('An error occurred while saving social media profiles');
+                });
+        }
+
+        function fetchArtistSocialMediaLinks() {
+            fetch('/api/artist/get-social-media-links')
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        populateSocialMediaLinks(data.data);
+                    } else {
+                        console.error('Error fetching social media links:', data.message);
+                    }
+                })
+                .catch(error => console.error('Error fetching social media links:', error));
+        }
+
+        function populateSocialMediaLinks(links) {
+            const form = document.getElementById('socialMediaForm');
+
+            links.forEach(link => {
+                const platformName = link.platform.toLowerCase(); // Convert platform name to lowercase for input field name
+                const url = link.url;
+
+                setFieldValue(platformName, url);
+            });
+
+            function setFieldValue(platformName, url) {
+                const inputField = form.querySelector(`input[name="${platformName}"]`);
+                if (inputField) {
+                    inputField.value = url;
+                } else {
+                    console.error(`Input field for ${platformName} not found.`);
+                }
+            }
+        }
+
+    });
 
 </script>

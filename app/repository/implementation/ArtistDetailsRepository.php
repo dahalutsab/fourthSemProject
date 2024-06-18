@@ -148,23 +148,47 @@ class ArtistDetailsRepository implements ArtistDetailsRepositoryInterface
 
     public function getAllArtistsByCategory($id): array
     {
-        $query = "SELECT * FROM artist_details WHERE category_id = $id";
-        $result = $this->database->getConnection()->query($query);
-        $singers = [];
+        $query = "SELECT * FROM artist_details where category_id = ?";
+        $stmt = $this->database->getConnection()->prepare($query);
+        $stmt->bind_param("i", $id);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        $artists = [];
         while ($row = $result->fetch_assoc()) {
-            $singers[] = new ArtistDetails(
-                $row['id'],
-                $row['full_name'],
-                $row['stage_name'],
-                $row['phone'],
-                $row['address'],
-                $row['category_id'],
-                $row['bio'],
-                $row['profile_picture'],
-                $row['description']
-            );
+            $artist = [
+                'id' => $row['id'],
+                'userId' => $row['user_id'],
+                'full_name' => $row['full_name'],
+                'stage_name' => $row['stage_name'],
+                'phone' => $row['phone'],
+                'address' => $row['address'],
+                'category_id' => $row['category_id'],
+                'bio' => $row['bio'],
+                'profile_picture' => $row['profile_picture'],
+                'description' => $row['description']
+            ];
+
+
+            $artist['rating'] = $this->getArtistRating($artist['userId']);
+
+            // Query to get the social media links
+            $socialMediaQuery = "SELECT asm.*, smp.platform_name as platform_name, smp.icon_class as platform_icon 
+                             FROM artistsocialmedia asm 
+                             INNER JOIN socialmediaplatforms smp ON asm.platform_id = smp.platform_id 
+                             WHERE asm.artist_id = ?";
+            $socialMediaStmt = $this->database->getConnection()->prepare($socialMediaQuery);
+            $socialMediaStmt->bind_param("i", $artist['id']);
+            $socialMediaStmt->execute();
+            $socialMediaResult = $socialMediaStmt->get_result();
+            $socialMediaLinks = [];
+            while ($socialMediaRow = $socialMediaResult->fetch_assoc()) {
+                $socialMediaLinks[] = $socialMediaRow;
+            }
+            $artist['social_media_links'] = $socialMediaLinks;
+            $artists[] = $artist;
         }
-        return $singers;
+        return $artists;
+
     }
 
     public function getAllArtists(): array
@@ -247,5 +271,46 @@ class ArtistDetailsRepository implements ArtistDetailsRepositoryInterface
 
     }
 
+    public function getAllArtistsForHomepage(): array
+    {
+        // Query to get all artists
+        $query = "SELECT * FROM artist_details";
+        $result = $this->database->getConnection()->query($query);
+        $artists = [];
+        while ($row = $result->fetch_assoc()) {
+            $artist = [
+                'id' => $row['id'],
+                'userId' => $row['user_id'],
+                'full_name' => $row['full_name'],
+                'stage_name' => $row['stage_name'],
+                'phone' => $row['phone'],
+                'address' => $row['address'],
+                'category_id' => $row['category_id'],
+                'bio' => $row['bio'],
+                'profile_picture' => $row['profile_picture'],
+                'description' => $row['description']
+            ];
+
+
+            $artist['rating'] = $this->getArtistRating($artist['userId']);
+
+            // Query to get the social media links
+            $socialMediaQuery = "SELECT asm.*, smp.platform_name as platform_name, smp.icon_class as platform_icon 
+                             FROM artistsocialmedia asm 
+                             INNER JOIN socialmediaplatforms smp ON asm.platform_id = smp.platform_id 
+                             WHERE asm.artist_id = ?";
+            $socialMediaStmt = $this->database->getConnection()->prepare($socialMediaQuery);
+            $socialMediaStmt->bind_param("i", $artist['id']);
+            $socialMediaStmt->execute();
+            $socialMediaResult = $socialMediaStmt->get_result();
+            $socialMediaLinks = [];
+            while ($socialMediaRow = $socialMediaResult->fetch_assoc()) {
+                $socialMediaLinks[] = $socialMediaRow;
+            }
+            $artist['social_media_links'] = $socialMediaLinks;
+            $artists[] = $artist;
+        }
+        return $artists;
+    }
 
 }
