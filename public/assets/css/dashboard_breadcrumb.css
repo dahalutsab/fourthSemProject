@@ -7,30 +7,30 @@
     font-size: 24px;
     margin-bottom: 0;
     font-weight: 600;
-    color: #012970;
+    color: var(--text-color);
 }
 
 .breadcrumb {
     font-size: 14px;
     font-family: "Nunito", sans-serif;
-    color: #899bbd;
+    color: var(--text-color);
     font-weight: 600;
 }
 
 .breadcrumb a {
-    color: #899bbd;
+    color: var(--text-color);
     transition: 0.3s;
 }
 
 .breadcrumb a:hover {
-    color: #51678f;
+    color: var(--button-color);
 }
 
 .breadcrumb .breadcrumb-item::before {
-    color: #899bbd;
+    color: var(--text-color);
 }
 
 .breadcrumb .active {
-    color: #51678f;
+    color: var(--button-color);
     font-weight: 600;
 }

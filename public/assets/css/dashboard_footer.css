@@ -15,5 +15,5 @@
 
 .footer .copyright {
     text-align: center;
-    color: #012970;
+    color: var(--text-color);
 }

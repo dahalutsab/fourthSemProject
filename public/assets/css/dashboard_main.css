@@ -5,6 +5,7 @@
     --text-color: #fff;
     --button-color-hover: #ff0051;
     scroll-behavior: smooth;
+    color: var(--text-color);
 }
 
 /*:root {*/
@@ -37,6 +38,11 @@ h4,
 h5,
 h6 {
     font-family: "Nunito", sans-serif;
+    color: var(--text-color);
+}
+
+span, a, p {
+    color: var(--text-color);
 }
 
 svg {

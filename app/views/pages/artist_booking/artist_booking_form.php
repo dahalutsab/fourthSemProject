@@ -1,10 +1,9 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Event Details Form</title>
+    <title>Event Form</title>
     <style>
         body {
             background-color: var(--background-color);
@@ -84,10 +83,10 @@
         }
     </style>
 </head>
+
 <body>
-<div class="container">
-    <h2 class="text-center mb-4">Event Details</h2>
-    <form id="eventForm">
+<div class="container mt-5">
+    <form method="post" id="eventForm">
         <div class="form-row mb-3">
             <div class="col">
                 <label for="province" class="form-label"><p>Province</p></label>
@@ -132,12 +131,38 @@
             </div>
         </div>
 
-        <div class="text-center mt-4">
-            <button type="submit" class="btn btn-color">Calculate Cost</button>
-        </div>
+        <button type="submit" class="btn calculate-cost btn-primary btn-color">Calculate Cost</button>
     </form>
 </div>
+
+<!-- Bootstrap Modal -->
+<div class="modal fade" id="costModal" tabindex="-1" aria-labelledby="costModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content card">
+            <div class="modal-header">
+                <h5 class="modal-title" id="costModalLabel">Cost Details</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <p>Total Cost: NPR <span id="totalCost"></span></p>
+                <p>Advance Amount(Need to pay via esewa): NPR <span id="advanceAmount"></span></p>
+                <p>Remaining Amount(Need to pay after performance): NPR <span id="remainingAmount"></span></p>
+            </div>
+            <div class="modal-footer">
+                <p>Advance Amount is 25% of the total cost</p>
+                <p>Remaining Amount is 75% of the total cost</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                <button type="button" class=" button-color" id="proceedToPayment">Proceed To Payment</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
 <script src="<?= BASE_JS_PATH?>artist_booking_form.js"></script>
+<!--<script src="--><?php //= BASE_JS_PATH?><!--esewa_handling.js"></script>-->
 
 </body>
 </html>

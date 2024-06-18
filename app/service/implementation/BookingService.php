@@ -37,6 +37,9 @@ class BookingService
     public function getBookingById($id): ?BookingResponse
     {
         $booking = $this->bookingRepository->getBookingById($id);
+        if (!$booking) {
+            return null;
+        }
         return new BookingResponse($booking);
     }
 
@@ -85,6 +88,8 @@ class BookingService
     {
         return $this->bookingRepository->rejectBooking($bookingId);
     }
+
+
 
 
 }

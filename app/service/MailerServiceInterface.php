@@ -4,5 +4,8 @@ namespace app\service;
 
 interface MailerServiceInterface
 {
-    public function sendMail($to, $username, $otp): bool;
+    public function asyncSendEmail($to, $subject, $body): void;
+    public function sendOTPMail($to, $username, $otp): bool;
+
+    public function sendCommonMail($to, $username, $subject, $message): bool;
 }

@@ -50,7 +50,7 @@ class OtpService implements OtpServiceInterface
         $_SESSION[SESSION_EMAIL] = $to;
         $this->saveOtp($otp, $to);
 
-        $this->mailerService->sendMail($to,$username, $otp );
+        $this->mailerService->sendOTPMail($to,$username, $otp );
         return true;
     }
 

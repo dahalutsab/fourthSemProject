@@ -30,5 +30,7 @@ interface BookingRepositoryInterface
 
     public function rejectBooking(mixed $bookingId);
 
+    public function getMailData(mixed $bookingId);
+
 
 }

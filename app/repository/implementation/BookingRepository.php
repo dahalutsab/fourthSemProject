@@ -261,5 +261,19 @@ class BookingRepository implements BookingRepositoryInterface
         $stmt->execute();
         return $stmt->affected_rows > 0;
     }
+
+    public function getMailData($bookingId): false|array|null
+    {
+        $sql = "SELECT users.username as username, users.email as email
+                FROM bookings
+                INNER JOIN users ON bookings.user_id = users.id
+                WHERE bookings.booking_id = ?";
+
+        $stmt = $this->db->prepare($sql);
+        $stmt->bind_param("i", $bookingId);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        return $result->fetch_assoc();
+    }
 }
 
