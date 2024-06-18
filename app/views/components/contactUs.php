@@ -1,3 +1,4 @@
+
 <section class="contact" id="contact">
     <div class="container">
         <div class="row justify-content-center">
@@ -68,3 +69,23 @@
         </div>
     </div>
 </section>
+
+
+<script>
+    const contactForm = document.getElementById('contactForm');
+    contactForm.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const formData = new FormData(contactForm);
+        const response = await fetch('/api/contact-us', {
+            method: 'POST',
+            body: formData
+        });
+        const data = await response.json();
+        if (data.success) {
+            toastr.success(data.data);
+            contactForm.reset();
+        } else {
+            toastr.error(data.error);
+        }
+    });
+</script>

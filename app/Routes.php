@@ -6,6 +6,7 @@ use app\controllers\AuthController;
 use app\controllers\BookingController;
 use app\controllers\CategoryController;
 use app\controllers\CommentController;
+use app\controllers\ContactUsController;
 use app\controllers\DashboardViewController;
 use app\controllers\ErrorViewController;
 use app\controllers\LocationController;
@@ -204,6 +205,9 @@ $router->post('/api/artist/save-social-media', [SocialMediaLinkController::class
 
 //admin
 $router->get('/dashboard/users/all', [DashboardViewController::class, 'viewAllUsers']);
+
+//contact us
+$router->post('/api/contact-us', [ContactUsController::class, 'saveContactUS']);
 // route to access denied
 $router->get('/access-denied', [ErrorViewController::class, 'accessDenied']);
 // route to 404 if any error
