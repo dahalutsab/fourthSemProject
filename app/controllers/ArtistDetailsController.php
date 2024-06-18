@@ -156,7 +156,7 @@ class ArtistDetailsController
             throw new Exception("Invalid artist ID: $id");
         }
         try {
-             APIResponse::success( $this->artistDetailsService->getArtistById($id)->getData());
+             APIResponse::success( $this->artistDetailsService->getArtistById($id));
         } catch (Exception $exception) {
             ErrorResponse::badRequest($exception->getMessage());
         }

@@ -212,34 +212,51 @@ class ArtistDetailsRepository implements ArtistDetailsRepositoryInterface
         return $singers;
     }
 
-    public function getArtistById($id): ?ArtistDetails
+    public function getArtistById($id): ?array
     {
-//        also get the rating from the comments table and calculate the average rating and return it joining as the same data
-
+        // Query to get the artist by id
         $query = "SELECT * FROM artist_details WHERE id = ?";
         $stmt = $this->database->getConnection()->prepare($query);
         $stmt->bind_param("i", $id);
         $stmt->execute();
         $result = $stmt->get_result();
-        $artist = $result->fetch_assoc();
+        $row = $result->fetch_assoc();
 
-        if (!$artist) {
-            error_log("No artist found with ID $id");
+        if (!$row) {
             return null;
         }
 
-        return new ArtistDetails(
-            $artist['id'],
-            $artist['full_name'],
-            $artist['stage_name'],
-            $artist['phone'],
-            $artist['address'],
-            $artist['category_id'],
-            $artist['bio'],
-            $artist['profile_picture'],
-            $artist['description'],
-            $artist['social_media'],
-        );
+        $artist = [
+            'id' => $row['id'],
+            'userId' => $row['user_id'],
+            'full_name' => $row['full_name'],
+            'stage_name' => $row['stage_name'],
+            'phone' => $row['phone'],
+            'address' => $row['address'],
+            'category_id' => $row['category_id'],
+            'bio' => $row['bio'],
+            'profile_picture' => $row['profile_picture'],
+            'description' => $row['description']
+        ];
+
+        $artist['rating'] = $this->getArtistRating($artist['userId']);
+
+        // Query to get the social media links
+        $socialMediaQuery = "SELECT asm.*, smp.platform_name as platform_name, smp.icon_class as platform_icon
+                         FROM artistsocialmedia asm
+                         INNER JOIN socialmediaplatforms smp ON asm.platform_id = smp.platform_id
+                         WHERE asm.artist_id = ?";
+        $socialMediaStmt = $this->database->getConnection()->prepare($socialMediaQuery);
+        $socialMediaStmt->bind_param("i", $artist['id']);
+        $socialMediaStmt->execute();
+        $socialMediaResult = $socialMediaStmt->get_result();
+        $socialMediaLinks = [];
+        while ($socialMediaRow = $socialMediaResult->fetch_assoc()) {
+            $socialMediaLinks[] = $socialMediaRow;
+        }
+        $artist['social_media_links'] = $socialMediaLinks;
+
+        return $artist;
     }
 
     public function getArtistRating($id)

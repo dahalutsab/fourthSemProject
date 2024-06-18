@@ -121,11 +121,11 @@ class ArtistDetailsService implements ArtistDetailsServiceInterface
     /**
      * @throws Exception
      */
-    public function getArtistById($id): ArtistDetailsResponse
+    public function getArtistById($id): array
     {
 
         try {
-             return new ArtistDetailsResponse($this->artistDetailsRepository->getArtistById($id));
+             return $this->artistDetailsRepository->getArtistById($id);
         } catch (Exception $exception) {
             throw new Exception($exception->getMessage());
         }

@@ -235,19 +235,36 @@
             setupPerformanceModal(artistId);
         }
 
+
         function fetchArtistDetails(artistId) {
             fetch(`/api/artistDetails/${artistId}`)
                 .then(response => response.json())
                 .then(data => {
                     if (data.success) {
                         const artist = data.data;
-                        document.querySelector('.artist-img-block img').src = artist.profilePicture || 'assets/images/default-image.jpg';
-                        document.querySelector('.text-block h2').textContent = artist.fullName || artist.stageName;
-                        document.querySelector('.text-block p').textContent = artist.description;
-                        document.querySelector('.book-artist').setAttribute('data-artist-id', artistId);
 
+                        // Update artist details
+                        document.querySelector('.artist-img-block img').src = artist.profile_picture || 'default-image.jpg';
+                        document.querySelector('.text-block h2').textContent = artist.full_name || artist.stage_name;
+                        document.querySelector('.text-block p').textContent = artist.description;
+                        document.querySelector('.Stars').style.setProperty('--rating', artist.rating);
                         document.querySelector('.description-icons #address').textContent = artist.address;
                         document.querySelector('.description-icons #phone').textContent = artist.phone;
+
+                        // Update social media links
+                        const socialIconList = document.querySelector('.social-icon');
+                        socialIconList.innerHTML = ''; // Clear existing links
+                        artist.social_media_links.forEach(link => {
+                            const socialIconItem = document.createElement('li');
+                            socialIconItem.classList.add('social-icon-item', 'mx-lg-3', 'm-md-2', 'mx-sm-1');
+
+                            socialIconItem.innerHTML = `
+                        <a href="${link.url}" class="social-icon-link">
+                            <i class="${link.platform_icon}"></i>
+                        </a>
+                    `;
+                            socialIconList.appendChild(socialIconItem);
+                        });
                     } else {
                         console.error('Failed to fetch artist details:', data.message);
                     }
