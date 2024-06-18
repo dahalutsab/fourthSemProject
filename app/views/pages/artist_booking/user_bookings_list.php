@@ -39,8 +39,8 @@
                             <td>${booking.total_cost}</td>
                             <td>${booking.payment_status}</td>
                             <td>
-                                ${booking.payment_status !== 'success' ? '<button class="btn btn-primary go-to-payment">Go to Payment</button>' : '<button class="btn btn-primary">View</button>'}
-                                <button class="btn btn-danger" id="cancel-booking">Cancel</button>
+                                ${booking.payment_status !== 'success' && booking.status !== 'cancelled' ? '<button class="btn btn-primary go-to-payment">Go to Payment</button>' : '<button class="btn btn-primary view-bookings">View</button>'}
+                                ${booking.status === 'cancelled' ? '' : '<button class="btn btn-danger" id="cancel-booking">Cancel</button>'  }
                             </td>
                         </tr>
                     `;
@@ -82,6 +82,11 @@
                 toastr.error('Error cancelling booking');
             }
         });
+    });
+
+    $('#user-bookings-list').on('click', '.view-bookings', function() {
+        let bookingId = $(this).closest('tr').find('td:first').text();
+        window.location.href = `/dashboard/booking/view?bookingId=${bookingId}`;
     });
 });
 </script>

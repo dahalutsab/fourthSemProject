@@ -76,5 +76,15 @@ class BookingService
         return $this->bookingRepository->cancelBooking($bookingId);
     }
 
+    public function acceptBooking(mixed $bookingId)
+    {
+        return $this->bookingRepository->acceptBooking($bookingId);
+    }
+
+    public function rejectBooking(mixed $bookingId)
+    {
+        return $this->bookingRepository->rejectBooking($bookingId);
+    }
+
 
 }

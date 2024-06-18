@@ -243,5 +243,23 @@ class BookingRepository implements BookingRepositoryInterface
         $stmt->execute();
         return $stmt->affected_rows > 0;
     }
+
+    public function acceptBooking(mixed $bookingId): bool
+    {
+        $sql = "UPDATE bookings SET status = 'approved' WHERE booking_id = ?";
+        $stmt = $this->db->prepare($sql);
+        $stmt->bind_param("i", $bookingId);
+        $stmt->execute();
+        return $stmt->affected_rows > 0;
+    }
+
+    public function rejectBooking(mixed $bookingId): bool
+    {
+        $sql = "UPDATE bookings SET status = 'declined' WHERE booking_id = ?";
+        $stmt = $this->db->prepare($sql);
+        $stmt->bind_param("i", $bookingId);
+        $stmt->execute();
+        return $stmt->affected_rows > 0;
+    }
 }
 

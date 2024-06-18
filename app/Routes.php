@@ -146,6 +146,9 @@ $router->post('/api/artistPerformance/book/{performanceTypeId}', [BookingControl
 $router->get('/dashboard/payment/{bookingId}', [DashboardViewController::class, 'paymentPage']);
 $router->get('/api/booking/get-booking/{bookingId}', [BookingController::class, 'getBookingById']);
 $router->get('dashboard/user/bookings', [DashboardViewController::class, 'userBookings']);
+$router->post('/api/booking/reject-booking', [BookingController::class, 'rejectBooking']);
+$router->post('/api/booking/accept-booking', [BookingController::class, 'acceptBooking']);
+$router->get('/api/booking/cancel-booking', [BookingController::class, 'cancelBooking']);
 
 //esewa
 $router->post('/api/generate-signature', [EsewaIntegration::class, 'generateSignature']);

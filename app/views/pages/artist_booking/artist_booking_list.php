@@ -39,8 +39,10 @@
                             <td>${booking.total_cost}</td>
                             <td>${booking.payment_status}</td>
                             <td>
-                                <button class="btn btn-primary">View</button>
-                                <button class="btn btn-danger">Cancel</button>
+                                <button class="btn btn-primary view-bookings">View</button>
+                                ${booking.status === 'pending' ? '<button class="btn btn-danger reject-booking">Reject</button>' : ''}
+                                ${booking.status === 'pending' ? '<button class="btn btn-primary accept-booking">Accept</button>' : ''}
+
                             </td>
                         </tr>
                     `;
@@ -55,9 +57,62 @@
         }
     });
 
-    $('#artist-bookings-list').on('click', '.btn-primary', function() {
+    $('#artist-bookings-list').on('click', '.view-bookings', function() {
         let bookingId = $(this).closest('tr').find('td:first').text();
         window.location.href = `/dashboard/booking/view?bookingId=${bookingId}`;
     });
+
+    $('#artist-bookings-list').on('click', '.reject-booking', function() {
+        let bookingId = $(this).closest('tr').find('td:first').text();
+        rejectBooking(bookingId);
+    });
+
+    $('#artist-bookings-list').on('click', '.accept-booking', function() {
+        let bookingId = $(this).closest('tr').find('td:first').text();
+        acceptBooking(bookingId);
+    });
+
+    function rejectBooking(bookingId) {
+        $.ajax({
+            url: '/api/booking/reject-booking',
+            type: 'POST',
+            data: {
+                booking_id: bookingId
+            },
+            success: function(response) {
+                if (response.success) {
+                    alert('Booking rejected successfully');
+                    window.location.reload();
+                } else {
+                    alert(response.message);
+                }
+            },
+            error: function() {
+                alert('Error rejecting booking');
+            }
+        });
+    }
+
+    function acceptBooking(bookingId) {
+        $.ajax({
+            url: '/api/booking/accept-booking',
+            type: 'POST',
+            data: {
+                booking_id: bookingId
+            },
+            success: function(response) {
+                if (response.success) {
+                    alert('Booking accepted successfully');
+                    window.location.reload();
+                } else {
+                    alert(response.message);
+                }
+            },
+            error: function() {
+                alert('Error accepting booking');
+            }
+        });
+    }
+
 });
 </script>

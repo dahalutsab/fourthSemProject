@@ -159,6 +159,42 @@ class BookingController
         }
     }
 
+    public function rejectBooking(): void
+    {
+        try {
+            if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+                $bookingId = $_POST['booking_id'];
+                $cancelled = $this->bookingService->rejectBooking($bookingId);
+                if ($cancelled) {
+                    APIResponse::success($cancelled, 'Booking cancelled successfully');
+                } else {
+                    APIResponse::error('Booking cancellation failed');
+                }
+            }
+        } catch (\Exception $e) {
+            APIResponse::error($e->getMessage());
+        }
+    }
+
+
+    public function acceptBooking(): void
+    {
+        try {
+            if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+                $bookingId = $_POST['booking_id'];
+                $accepted = $this->bookingService->acceptBooking($bookingId);
+                if ($accepted) {
+                    APIResponse::success($accepted, 'Booking accepted successfully');
+                } else {
+                    APIResponse::error('Booking acceptance failed');
+                }
+            }
+        } catch (\Exception $e) {
+            APIResponse::error($e->getMessage());
+        }
+    }
+
+
     public function cancelBooking(): void
     {
         try {
@@ -175,4 +211,5 @@ class BookingController
             APIResponse::error($e->getMessage());
         }
     }
+
 }
