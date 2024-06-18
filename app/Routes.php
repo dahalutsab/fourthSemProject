@@ -201,6 +201,9 @@ $router->get('/api/social-media-links/get-all-social-media-platforms', [SocialMe
 $router->get('/api/artist/get-social-media-links', [SocialMediaLinkController::class, 'getSocialMediaLinksByUserId']);
 $router->post('/api/artist/save-social-media', [SocialMediaLinkController::class, 'create']);
 
+
+//admin
+$router->get('/dashboard/users/all', [DashboardViewController::class, 'viewAllUsers']);
 // route to access denied
 $router->get('/access-denied', [ErrorViewController::class, 'accessDenied']);
 // route to 404 if any error

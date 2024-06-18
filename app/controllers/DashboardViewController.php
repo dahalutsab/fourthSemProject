@@ -146,6 +146,13 @@ class DashboardViewController
         $this->render(compact('pageTitle', 'content'));
     }
 
+    public function viewAllUsers(): void
+    {
+        $pageTitle = ' All Users';
+        $content = 'admin/users_list';
+        $this->render(compact('pageTitle', 'content'));
+    }
+
     private function render(array $data): void
     {
         extract($data);

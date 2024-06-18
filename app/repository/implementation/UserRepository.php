@@ -32,7 +32,7 @@ class UserRepository implements UserRepositoryInterface {
         $id = $stmt->insert_id;
 
         $stmt->close();
-        return new User($id, $username, $email, $hashedPassword, $role, false, true);
+        return new User($id, $username, $email, $hashedPassword, $role, false, true, false);
     }
 
 
@@ -47,7 +47,7 @@ class UserRepository implements UserRepositoryInterface {
         $row = $result->fetch_assoc();
 
         if ($row) {
-            return new User($row['id'], $row['username'], $row['email'], $row['password'], $row['role_id'], $row['is_verified'], $row['is_active']);
+            return new User($row['id'], $row['username'], $row['email'], $row['password'], $row['role_id'], $row['is_verified'], $row['is_active'], $row['is_blocked']);
         } else {
             return null;
         }
@@ -93,7 +93,7 @@ class UserRepository implements UserRepositoryInterface {
         $row = $result->fetch_assoc();
 
         if ($row) {
-            return new User($row['id'], $row['username'], $row['email'], $row['password'], $row['role_id'], $row['is_verified'], $row['is_active']);
+            return new User($row['id'], $row['username'], $row['email'], $row['password'], $row['role_id'], $row['is_verified'], $row['is_active'], $row['is_blocked']);
         } else {
             throw new Exception("User not found");
         }
@@ -132,7 +132,7 @@ class UserRepository implements UserRepositoryInterface {
         $result = $stmt->get_result();
         $users = [];
         while ($row = $result->fetch_assoc()) {
-            $users[] = new User($row['id'], $row['username'], $row['email'], $row['password'], $row['role_id'], $row['is_verified'], $row['is_active']);
+            $users[] = new User($row['id'], $row['username'], $row['email'], $row['password'], $row['role_id'], $row['is_verified'], $row['is_active'], $row['is_blocked']);
         }
         return $users;
     }

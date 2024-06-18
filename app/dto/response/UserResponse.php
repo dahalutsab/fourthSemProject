@@ -12,12 +12,15 @@ class UserResponse
     private int $role;
     private bool $isVerified;
 
+    private bool $isBlocked;
+
     public function __construct(User $user) {
         $this->id = $user->getId();
         $this->username = $user->getUsername();
         $this->email = $user->getEmail();
         $this->role = $user->getRoleId();
         $this->isVerified = $user->getIsVerified();
+        $this->isBlocked = $user->getIsBlocked();
     }
 
     public function toArray(): array
@@ -28,6 +31,7 @@ class UserResponse
             'email' => $this->getEmail(),
             'role' => $this->getRole(),
             'isVerified' => $this->getIsVerified(),
+            'isBlocked' => $this->getISBlocked()
         ];
     }
 
@@ -49,6 +53,11 @@ class UserResponse
 
     public function getIsVerified(): bool {
         return $this->isVerified;
+    }
+
+    private function getISBlocked(): bool
+    {
+        return $this->isBlocked;
     }
 
 

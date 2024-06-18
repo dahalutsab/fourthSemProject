@@ -18,7 +18,9 @@ class User
 
     private bool $isActive;
 
-    public function __construct($id, $username, $email, $password, $role_id, $isVerified, $isActive)
+    private bool $isBlocked;
+
+    public function __construct($id, $username, $email, $password, $role_id, $isVerified, $isActive, $isBlocked)
     {
         $this->id = $id;
         $this->username = $username;
@@ -29,6 +31,7 @@ class User
         $this->createdDate->setTimezone(new DateTimeZone('Asia/Kathmandu'));
         $this->isVerified = $isVerified;
         $this->isActive = $isActive;
+        $this->isBlocked = $isBlocked;
     }
 
     public function getId(): int
@@ -73,5 +76,10 @@ class User
     public function getRole(): int
     {
         return $this->role;
+    }
+
+    public function getIsBlocked(): bool
+    {
+        return $this->isBlocked;
     }
 }
