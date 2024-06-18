@@ -115,6 +115,13 @@
                 <span>Category</span>
             </a>
         </li><!-- End Category Nav -->
+
+        <li class="nav-item">
+            <a class="nav-link <?php echo $currentPath === '/dashboard/contactUs' ? 'active' : '' ?>" href="/dashboard/contactUs">
+                <i class="fa-solid fa-envelope"></i>
+                <span>Contact Us</span>
+            </a>
+        </li><!-- End Contact Us Nav -->
         <?php } ?>
 
 

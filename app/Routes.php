@@ -208,6 +208,9 @@ $router->get('/dashboard/users/all', [DashboardViewController::class, 'viewAllUs
 
 //contact us
 $router->post('/api/contact-us', [ContactUsController::class, 'saveContactUS']);
+$router->get('/dashboard/contactUs', [DashboardViewController::class, 'viewContactUsMessages']);
+$router->get('/api/contact-us-messages', [ContactUsController::class, 'getContactUsMessages']);
+
 // route to access denied
 $router->get('/access-denied', [ErrorViewController::class, 'accessDenied']);
 // route to 404 if any error

@@ -37,4 +37,22 @@ class ContactUsController
         }
 
     }
+
+
+    function getContactUsMessages(): void
+    {
+        $database = new Database();
+        $connection = $database->getConnection();
+
+        $stmt = $connection->prepare("SELECT * FROM contact_us");
+        $stmt->execute();
+        $result = $stmt->get_result();
+
+        $messages = [];
+        while ($row = $result->fetch_assoc()) {
+            $messages[] = $row;
+        }
+
+        APIResponse::success($messages);
+    }
 }

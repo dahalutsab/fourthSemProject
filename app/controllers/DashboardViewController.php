@@ -153,6 +153,13 @@ class DashboardViewController
         $this->render(compact('pageTitle', 'content'));
     }
 
+    public function viewContactUsMessages(): void
+    {
+        $pageTitle = 'Contact Us Messages';
+        $content = 'admin/contact_us_messages';
+        $this->render(compact('pageTitle', 'content'));
+    }
+
     private function render(array $data): void
     {
         extract($data);
