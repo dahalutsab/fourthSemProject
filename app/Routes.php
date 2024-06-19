@@ -131,6 +131,7 @@ $router->get('/dashboard/performance/add', [DashboardViewController::class, 'add
 $router->get('/dashboard/performance/manage', [DashboardViewController::class, 'managePerformance']);
 $router->post('/api/artistPerformance/save-artist-performance', [PerformanceTypesController::class, 'saveArtistPerformance']);
 $router->get('/api/artistPerformance/get-artist-performance/{artistId}', [PerformanceTypesController::class, 'getArtistPerformance']);
+$router->get('/api/artistPerformance/get-artist-performance-by-artist-details/{artistId}', [PerformanceTypesController::class, 'getArtistPerformanceByArtistDetails']);
 $router->post('/api/artistPerformance/update-artist-performance/{id}', [PerformanceTypesController::class, 'updateArtistPerformance']);
 $router->post('/api/artistPerformance/delete-artist-performance/{id}', [PerformanceTypesController::class, 'deleteArtistPerformance']);
 

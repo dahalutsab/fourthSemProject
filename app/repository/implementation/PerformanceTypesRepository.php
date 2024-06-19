@@ -146,4 +146,41 @@ class PerformanceTypesRepository
 
         return $row['cost_per_hour'];
     }
+
+    public function getArtistPerformanceByArtistDetails(float|int|string $artistId)
+    {
+        $query = "SELECT user_id FROM artist_details WHERE id = ?";
+        $stmt = $this->db->getConnection()->prepare($query);
+        $stmt->bind_param("i", $artistId);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        $row = $result->fetch_assoc();
+        $userId = $row['user_id'];
+
+
+        $stmt = $this->db->getConnection()->prepare(
+            "SELECT performance_type_id, performance_type, artist_id, cost_per_hour, is_deleted FROM performance_types WHERE artist_id = ? and is_deleted = 0"
+        );
+
+        if ($stmt === false) {
+            die('Prepare failed: ' . $this->db->getConnection()->error);
+        }
+
+        $stmt->bind_param("i", $userId);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        $performanceTypes = [];
+
+        while ($row = $result->fetch_assoc()) {
+            $performanceTypes[] = new PerformanceTypes(
+                $row['performance_type_id'],
+                $row['performance_type'],
+                $row['artist_id'],
+                $row['cost_per_hour']
+            );
+        }
+
+        return $performanceTypes;
+
+    }
 }

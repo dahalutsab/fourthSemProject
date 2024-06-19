@@ -97,4 +97,18 @@ class PerformanceTypesService
         ];
     }
 
+    public function getArtistPerformanceByArtistDetails(float|int|string $artistId)
+    {
+        if (!is_numeric($artistId)) {
+            throw new \InvalidArgumentException("Invalid artist ID: $artistId");
+        }
+        $performanceTypes = $this->performanceTypeRepository->getArtistPerformanceByArtistDetails($artistId);
+        $response = [];
+        foreach ($performanceTypes as $performanceType) {
+            $responses = new PerformanceTypesResponse($performanceType->getPerformanceTypeId(), $performanceType->getPerformanceType(), $performanceType->getArtistId(), $performanceType->getCostPerHour(), $performanceType->isDeleted());
+            $response[] = $responses->toArray();
+        }
+        return $response;
+    }
+
 }

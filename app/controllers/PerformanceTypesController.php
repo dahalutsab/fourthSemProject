@@ -16,7 +16,7 @@ class PerformanceTypesController
         $this->performanceTypesService = new PerformanceTypesService();
     }
 
-    public function saveArtistPerformance(): null
+    public function saveArtistPerformance(): void
     {
         try {
             $performanceTypeRequest = new PerformanceTypeRequest(
@@ -25,13 +25,13 @@ class PerformanceTypesController
                 $_POST['cost_per_hour']
             );
             $response = $this->performanceTypesService->saveArtistPerformance($performanceTypeRequest);
-            return APIResponse::success($response->toArray(), "Performance type added successfully");
+             APIResponse::success($response->toArray(), "Performance type added successfully");
         } catch (\Exception $e) {
-            return APIResponse::error($e->getMessage());
+             APIResponse::error($e->getMessage());
         }
     }
 
-    public function getArtistPerformance(): null
+    public function getArtistPerformance(): void
     {
         try {
             $requestUri = $_SERVER['REQUEST_URI'];
@@ -44,13 +44,32 @@ class PerformanceTypesController
             }
 
             $response = $this->performanceTypesService->getArtistPerformance($id);
-            return APIResponse::success($response, "Performance types fetched successfully");
+             APIResponse::success($response, "Performance types fetched successfully");
         } catch (\Exception $e) {
-            return APIResponse::error($e->getMessage());
+             APIResponse::error($e->getMessage());
         }
     }
 
-    public function updateArtistPerformance(): null
+    public function getArtistPerformanceByArtistDetails(): void
+    {
+        try {
+            $requestUri = $_SERVER['REQUEST_URI'];
+            $uriPath = parse_url($requestUri, PHP_URL_PATH);
+            $pathSegments = explode('/', $uriPath);
+
+            $artistId = end($pathSegments);
+            if (!is_numeric($artistId)) {
+                throw new Exception("Invalid artist ID: $artistId");
+            }
+
+            $response = $this->performanceTypesService->getArtistPerformanceByArtistDetails($artistId);
+             APIResponse::success($response, "Performance types fetched successfully");
+        } catch (\Exception $e) {
+             APIResponse::error($e->getMessage());
+        }
+    }
+
+    public function updateArtistPerformance(): void
     {
         try {
             $requestUri = $_SERVER['REQUEST_URI'];
@@ -70,13 +89,13 @@ class PerformanceTypesController
             );
 
             $response = $this->performanceTypesService->updateArtistPerformance($id, $performanceTypeRequest);
-            return APIResponse::success($response->toArray(), "Performance type updated successfully");
+             APIResponse::success($response->toArray(), "Performance type updated successfully");
         } catch (\Exception $e) {
-            return APIResponse::error($e->getMessage());
+             APIResponse::error($e->getMessage());
         }
     }
 
-    public function deleteArtistPerformance(): null
+    public function deleteArtistPerformance(): void
     {
         try {
             $requestUri = $_SERVER['REQUEST_URI'];
@@ -89,13 +108,13 @@ class PerformanceTypesController
             }
 
             $this->performanceTypesService->deleteArtistPerformance($id);
-            return APIResponse::success(null, "Performance type deleted successfully");
+             APIResponse::success(null, "Performance type deleted successfully");
         } catch (\Exception $e) {
-            return APIResponse::error($e->getMessage());
+             APIResponse::error($e->getMessage());
         }
     }
 
-    public function getCostPerHour(): null
+    public function getCostPerHour(): void
     {
         try {
             // Get the JSON payload from the POST request
@@ -121,9 +140,9 @@ class PerformanceTypesController
             // Call the service method to get the cost per hour
             $response = $this->performanceTypesService->getCostPerHour($id, $eventStartTime, $eventEndTime);
 
-            return APIResponse::success($response, "Cost for the performance fetched successfully");
+             APIResponse::success($response, "Cost for the performance fetched successfully");
         } catch (\Exception $e) {
-            return APIResponse::error($e->getMessage());
+             APIResponse::error($e->getMessage());
         }
     }
 
