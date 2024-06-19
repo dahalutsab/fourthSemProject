@@ -1,5 +1,6 @@
 <?php
 
+use app\repository\implementation\RequiredFieldsForArtists;
 use config\Database;
 
 $role = $_SESSION[SESSION_ROLE];
@@ -54,6 +55,12 @@ elseif ($role === 'ARTIST') {
     $stmt->execute();
     $totalPayment = $stmt->get_result()->fetch_assoc()['total_payment'];
 
+
+    $requiredFields = new RequiredFieldsForArtists();
+    $artistDetailsMessage = $requiredFields->getRequiredFieldsForArtistDetails();
+    $mediaMessage = $requiredFields->getRequiredFieldsForMedia();
+    $performanceTypeMessage = $requiredFields->getRequiredFieldsForPerformanceType();
+    $allMessages = array_merge($artistDetailsMessage, $mediaMessage, $performanceTypeMessage);
 }
 else {
     $query = "SELECT COUNT(*) as total_bookings FROM bookings WHERE user_id = ?";
@@ -81,6 +88,7 @@ else {
     $totalRatings = $stmt->get_result()->fetch_assoc()['total_ratings'];
 
 }
+
 
 
 ?>
@@ -186,6 +194,18 @@ else {
         </div>
 
         <?php elseif ($role === 'ARTIST') : ?>
+
+<!--        display error and on click * close the error div-->
+        <?php if (!empty($allMessages)) : ?>
+                <div class="alert alert-warning" role="alert">
+                    <strong>Warning!</strong> Fill the following fields to complete your profile:
+                    <ul>
+                        <?php foreach ($allMessages as $message) : ?>
+                            <li><?php echo $message; ?></li>
+                        <?php endforeach; ?>
+                    </ul>
+                </div>
+            <?php endif; ?>
         <div class="col-md-4">
             <div class="card">
                 <div class="card-body">
