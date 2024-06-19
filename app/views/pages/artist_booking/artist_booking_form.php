@@ -162,7 +162,6 @@
 
 
 <script src="<?= BASE_JS_PATH?>artist_booking_form.js"></script>
-<!--<script src="--><?php //= BASE_JS_PATH?><!--esewa_handling.js"></script>-->
 
 </body>
 </html>

@@ -44,7 +44,7 @@ class BookingController
                 $data['user_id'] = $userId;
 
                 $booking = $this->bookingService->createBooking($data);
-                 APIResponse::success($booking->toArray(), 'Booking created successfully');
+                 APIResponse::success($booking->toArray(),'Booking created successfully');
             } else {
                  APIResponse::error('Invalid request method');
             }

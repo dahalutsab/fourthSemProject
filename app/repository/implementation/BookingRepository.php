@@ -38,9 +38,9 @@ class BookingRepository implements BookingRepositoryInterface
             $eventDate = $booking->getEventDate();
             $eventStartTime = $booking->getEventStartTime();
             $eventEndTime = $booking->getEventEndTime();
-            $totalCost = $booking->getTotalCost();
-            $advanceAmount = $booking->getAdvanceAmount();
-            $remainingAmount = $booking->getRemainingAmount();
+            $totalCost = (float) str_replace(',', '', $data['total_cost']); // Remove commas from numeric values
+            $advanceAmount = (float) str_replace(',', '', $data['advance_amount']); // Remove commas from numeric values
+            $remainingAmount = (float) str_replace(',', '', $data['remaining_amount']);
             $performanceTypeId = $booking->getPerformanceTypeId();
             $status = $booking->getStatus();
             $stmt->bind_param(
@@ -63,8 +63,7 @@ class BookingRepository implements BookingRepositoryInterface
 
             $stmt->execute();
 
-            $booking->setId($this->db->insert_id);
-
+            $booking->setId($stmt->insert_id);
             return $booking;
         } catch (Exception $e) {
             throw new Exception("Error creating booking: " . $e->getMessage());

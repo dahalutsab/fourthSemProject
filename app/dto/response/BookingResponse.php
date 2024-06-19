@@ -41,7 +41,6 @@ class BookingResponse
         $this->status = $booking->getStatus();
     }
 
-//    return as array
     public function toArray(): array
     {
         return [
