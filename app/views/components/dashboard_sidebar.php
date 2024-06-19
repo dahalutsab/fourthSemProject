@@ -138,7 +138,19 @@
                 <i class="fa-solid fa-money-bill"></i>
                 <span>Payment</span>
             </a>
+        </li><!-- End Payment Nav -->
         <?php } ?>
+
+<!--        messages-->
+        <li class="nav-item">
+            <a class="nav-link <?php echo $currentPath === '/dashboard/messages' ? 'active' : '' ?>" href="/dashboard/messages">
+                <i class="fa-solid fa-envelope"></i>
+                <span>Messages</span>
+            </a>
+        </li><!-- End Messages Nav -->
+
+
+
 
     </ul>
 </aside>

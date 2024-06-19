@@ -1,10 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Chat</title>
-    <style>
+<style>
         .card {
             height: 500px;
         }
@@ -61,8 +55,7 @@
             text-align: right;
         }
     </style>
-</head>
-<body>
+<body
 <div class="container mt-5">
     <div class="row">
         <div class="col-md-4">
@@ -90,8 +83,6 @@
         </div>
     </div>
 </div>
-
-<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 <script>
     $(document).ready(function() {
         const sessionUserId = <?= $_SESSION[SESSION_USER_ID] ?>;
@@ -207,5 +198,3 @@
         fetchUsers();
     });
 </script>
-</body>
-</html>

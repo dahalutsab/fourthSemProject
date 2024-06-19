@@ -31,6 +31,7 @@ use config\Database;
         if (empty($artistDetails['full_name'])){
             $message[] = "Full Name";
         }
+        echo $artistDetails['full_name'];
 
         if (empty($artistDetails['phone'])){
             $message[] = "Phone Number";
@@ -73,7 +74,7 @@ use config\Database;
 
     public function getRequiredFieldsForPerformanceType(): array
     {
-        $sql = "SELECT COUNT(*) FROM performance_types WHERE artist_id = ?";
+        $sql = "SELECT COUNT(*) FROM performance_types WHERE artist_id = ? And is_deleted = 0";
         $stmt = $this->db->getConnection()->prepare($sql);
         $stmt->bind_param("i", $this->artistId);
         $stmt->execute();

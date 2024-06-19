@@ -25,6 +25,7 @@ class MessageController
                 'sender_id' => $msg['sender_id'],
                 'receiver_id' => $msg['receiver_id'],
                 'content' => $msg['content'],
+                'timestamp' => $msg['created_at']
             ];
         }
         APIResponse::success($messages);
