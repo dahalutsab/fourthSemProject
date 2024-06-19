@@ -101,6 +101,15 @@ class MediaRepository
     public function getMediaByArtistId(float|int|string $id)
     {
         $stmt = $this->db->getConnection()->prepare(
+            "SELECT user_id FROM artist_details WHERE id = ?"
+        );
+        $stmt->bind_param("i", $id);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        $userId = $result->fetch_assoc()['user_id'];
+
+
+        $stmt = $this->db->getConnection()->prepare(
             "SELECT media_id, user_id, media_type, media_url, title, description, created_at FROM media WHERE user_id = ?"
         );
 
@@ -108,7 +117,7 @@ class MediaRepository
             die('Prepare failed: ' . $this->db->getConnection()->error);
         }
 
-        $stmt->bind_param("i", $id);
+        $stmt->bind_param("i", $userId);
         $stmt->execute();
         $result = $stmt->get_result();
         $media = [];

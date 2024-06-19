@@ -21,7 +21,7 @@ class MediaController
     /**
      * @throws Exception
      */
-    public function saveMedia(): ?MediaResponse
+    public function saveMedia(): void
     {
         try {
             $userId = $_SESSION[SESSION_USER_ID] ?? 0;
@@ -31,9 +31,9 @@ class MediaController
 
             $mediaRequest = new MediaRequest($userId, $media, $title, $description);
             $mediaResponse = $this->mediaService->saveMedia($mediaRequest);
-            return APIResponse::success($mediaResponse->toArray(), ['message' => $mediaResponse->getType() .' saved successfully.']);
+             APIResponse::success($mediaResponse->toArray(), ['message' => $mediaResponse->getType() .' saved successfully.']);
         } catch (Exception $e) {
-            return APIResponse::error($e->getMessage(), 500);
+             APIResponse::error($e->getMessage(), 500);
         }
     }
 
@@ -42,18 +42,18 @@ class MediaController
         return $this->mediaService->getMedia($mediaId);
     }
 
-    public function getMediaByUser(): ?MediaResponse
+    public function getMediaByUser(): void
     {
         try {
             $userId = $_SESSION[SESSION_USER_ID] ?? 0;
             $mediaResponse = $this->mediaService->getMediaByUser($userId);
-            return APIResponse::success($mediaResponse, ['message' => 'Media fetched successfully.']);
+             APIResponse::success($mediaResponse, ['message' => 'Media fetched successfully.']);
         } catch (Exception $e) {
-            return APIResponse::error($e->getMessage(), 500);
+             APIResponse::error($e->getMessage(), 500);
         }
 
     }
-    public function getMediaByArtistId(): null
+    public function getMediaByArtistId(): void
     {
         try {
             $requestUri = $_SERVER['REQUEST_URI'];
@@ -65,10 +65,11 @@ class MediaController
                 throw new Exception("Invalid artist ID: $id");
             }
             $mediaResponse = $this->mediaService->getMediaByArtistId($id);
-            return APIResponse::success($mediaResponse, ['message' => 'Media fetched successfully.']);
+             APIResponse::success($mediaResponse, ['message' => 'Media fetched successfully.']);
         } catch (Exception $e) {
-            return APIResponse::error($e->getMessage(), 500);
+             APIResponse::error($e->getMessage(), 500);
         }
+
     }
 
 }

@@ -247,7 +247,7 @@ class ArtistDetailsRepository implements ArtistDetailsRepositoryInterface
                          INNER JOIN socialmediaplatforms smp ON asm.platform_id = smp.platform_id
                          WHERE asm.artist_id = ?";
         $socialMediaStmt = $this->database->getConnection()->prepare($socialMediaQuery);
-        $socialMediaStmt->bind_param("i", $artist['id']);
+        $socialMediaStmt->bind_param("i", $artist['userId']);
         $socialMediaStmt->execute();
         $socialMediaResult = $socialMediaStmt->get_result();
         $socialMediaLinks = [];
