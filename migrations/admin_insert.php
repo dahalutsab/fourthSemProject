@@ -7,7 +7,6 @@ class admin_insert
 {
     public function up(): void
     {
-//       if admin exists in the database, do not insert
         $db = new Database();
         $connection = $db->getConnection();
         $sql = "SELECT * FROM users WHERE email = 'admin@gmail.com'";
@@ -21,7 +20,7 @@ class admin_insert
 
         $sql = "INSERT INTO users (username, email, password, role_id, is_verified) VALUES (?, ?, ?, ?, ?)";
         $stmt = $connection->prepare($sql);
-        $stmt->bind_param("sssi", $username, $email, $password, $role_id, $is_verified);
+        $stmt->bind_param("sssii", $username, $email, $password, $role_id, $is_verified);
 
         $username = 'admin';
         $email = 'admin@gmail.com';

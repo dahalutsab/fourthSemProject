@@ -12,7 +12,6 @@ class ArtistDetails {
     private ?string $bio;
     private ?string $description;
     private ?string $profilePicture;
-    private ?array $socialMedia;
     private DateTimeImmutable $updated_at;
 
     public function __construct(
@@ -24,8 +23,7 @@ class ArtistDetails {
         ?string $category,
         ?string $bio,
         ?string $profilePicture,
-        ?string $description,
-        ?array $socialMedia = []
+        ?string $description
     ) {
         $this->id = $id;
         $this->fullName = $fullName;
@@ -36,7 +34,6 @@ class ArtistDetails {
         $this->bio = $bio;
         $this->profilePicture = $profilePicture;
         $this->description = $description;
-        $this->socialMedia = $socialMedia;
     }
 
 
@@ -111,13 +108,6 @@ class ArtistDetails {
         $this->profilePicture = $profilePicture;
     }
 
-    public function getSocialMedia(): ?array {
-        return $this->socialMedia;
-    }
-
-    public function setSocialMedia(array $socialMedia): void {
-        $this->socialMedia = $socialMedia;
-    }
 
     public function setUpdatedAt(): void {
         $this->updated_at = new DateTimeImmutable();
@@ -140,7 +130,6 @@ class ArtistDetails {
             'bio' => $this->bio,
             'profilePicture' => $this->profilePicture,
             'description' => $this->description,
-            'socialMedia' => $this->socialMedia,
             'updated_at' => $this->updated_at
         ];
     }

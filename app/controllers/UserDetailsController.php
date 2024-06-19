@@ -18,7 +18,7 @@ class UserDetailsController
     }
 
 
-    public function editProfile(): null
+    public function editProfile(): void
     {
         try {
             // Retrieve form data sent by the router
@@ -44,15 +44,15 @@ class UserDetailsController
             $updatedDetails = $this->userDetailsService->saveUserProfile($userDetailsRequest);
 
             // Return success response
-            return APIResponse::success($updatedDetails->getData(),['message' => 'User profile saved successfully.']);
+             APIResponse::success($updatedDetails->getData(),['message' => 'User profile saved successfully.']);
         } catch (Exception $exception) {
             // Return error response if an exception occurs
-            return ErrorResponse::badRequest($exception->getMessage());
+             ErrorResponse::badRequest($exception->getMessage());
         }
     }
 
 
-    public function saveProfilePicture(): null
+    public function saveProfilePicture(): void
     {
         try {
             // Check if the image file has been uploaded
@@ -66,14 +66,14 @@ class UserDetailsController
                 // Call the service method to save the profile picture
                 $profilePicturePath = $this->userDetailsService->saveProfilePicture($userId, $tmpFilePath);
                 // Return success response
-                return APIResponse::success(['message' => 'Profile picture saved successfully.'], $profilePicturePath);
+                 APIResponse::success(['message' => 'Profile picture saved successfully.'], $profilePicturePath);
             } else {
                 // Return error response if no file is uploaded
-                return ErrorResponse::badRequest('No profile picture uploaded.');
+                 ErrorResponse::badRequest('No profile picture uploaded.');
             }
         } catch (Exception $exception) {
             // Return error response if an exception occurs
-            return ErrorResponse::badRequest($exception->getMessage());
+             ErrorResponse::badRequest($exception->getMessage());
         }
     }
 
@@ -81,14 +81,14 @@ class UserDetailsController
     /**
      * @throws Exception
      */
-    public function getUserProfile (): null
+    public function getUserProfile (): void
     {
         try {
             $userId = $_SESSION[SESSION_USER_ID];
             $userDetails = $this->userDetailsService->getUserProfile($userId);
-            return APIResponse::success($userDetails->getData());
+             APIResponse::success($userDetails->getData());
         } catch (Exception $exception) {
-            return APIResponse::error($exception->getMessage());
+             APIResponse::error($exception->getMessage());
         }
     }
 

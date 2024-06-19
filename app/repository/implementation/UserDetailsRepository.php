@@ -45,8 +45,8 @@ class UserDetailsRepository implements UserDetailsRepositoryInterface
      */
     private function insertUserProfile(UserDetailsRequest $userProfileRequest): void
     {
-        $query = "INSERT INTO userdetails (user_id, fullName, phone, address, profilePicture, bio, created_at, profilePicture) 
-                  VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+        $query = "INSERT INTO userdetails (user_id, fullName, phone, address, profilePicture, bio, created_at) 
+                  VALUES (?, ?, ?, ?, ?, ?, ?)";
         $this->executeInsertQuery($query, $userProfileRequest);
     }
 

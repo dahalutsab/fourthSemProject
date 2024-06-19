@@ -314,10 +314,10 @@ class ArtistDetailsRepository implements ArtistDetailsRepositoryInterface
             // Query to get the social media links
             $socialMediaQuery = "SELECT asm.*, smp.platform_name as platform_name, smp.icon_class as platform_icon 
                              FROM artistsocialmedia asm 
-                             INNER JOIN socialmediaplatforms smp ON asm.platform_id = smp.platform_id 
+                            JOIN socialmediaplatforms smp ON asm.platform_id = smp.platform_id 
                              WHERE asm.artist_id = ?";
             $socialMediaStmt = $this->database->getConnection()->prepare($socialMediaQuery);
-            $socialMediaStmt->bind_param("i", $artist['id']);
+            $socialMediaStmt->bind_param("i", $artist['userId']);
             $socialMediaStmt->execute();
             $socialMediaResult = $socialMediaStmt->get_result();
             $socialMediaLinks = [];

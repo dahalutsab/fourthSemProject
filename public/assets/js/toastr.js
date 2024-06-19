@@ -1,4 +1,3 @@
-let toastr;
 /** @global toastr */
 toastr.options = {
     'closeButton': true,

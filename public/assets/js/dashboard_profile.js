@@ -195,13 +195,14 @@ registrationForm.addEventListener('submit', function(event) {
             return response.json();
         })
         .then(data => {
-            console.log(data);
             if (data && data.success) {
                 toastr.success(data.message.message);
-                fetchUserDetail(); // Re-fetch user details to update overview tab
-                document.getElementById('home-tab').click(); // Trigger click event on overview tab button
-            } else {
+                fetchUserDetail();
+                document.getElementById('home-tab').click();
+            } else if (data) {
                 toastr.error(data.message.error);
+                console.error('Unexpected response format:', data);
+            } else {
                 console.error('Unexpected response format:', data);
             }
         })
