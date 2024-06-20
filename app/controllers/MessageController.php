@@ -30,4 +30,11 @@ class MessageController
         }
         APIResponse::success($messages);
     }
+
+    public function getMyChats(): void
+    {
+        $user_id = $_SESSION[SESSION_USER_ID];
+        $chats = $this->messageRepository->getMyChats($user_id);
+        APIResponse::success($chats);
+    }
 }

@@ -114,7 +114,7 @@
                         </ul>
                     </div>
                     <div class="hero-button">
-                        <a href="#" class="cus-btn primary m-lg-2 m-md-1"><i class="fa fa-message"></i> Message</a>
+                        <a href="#" class="cus-btn primary m-lg-2 m-md-1" id="messageButton"><i class="fa fa-message"></i> Message</a>
                         <a href="#" class="cus-btn primary book-artist" id="open_book_modal" data-bs-toggle="modal"
                             data-bs-target="#bookArtistModal"><i class="fa fa-calendar-check"></i> Book</a>
                     </div>
@@ -221,10 +221,14 @@
 
             if (artistId) {
                 initializePage(artistId);
+                document.getElementById('messageButton').addEventListener('click', function() {
+                    messageArtist(userId);
+                });
             } else {
                 console.error('No artist ID found in the URL.');
             }
         });
+
 
         function initializePage(artistId) {
             fetchArtistDetails(artistId);
@@ -235,15 +239,15 @@
             setupPerformanceModal(artistId);
         }
 
-
+        let userId = null;
         function fetchArtistDetails(artistId) {
             fetch(`/api/artistDetails/${artistId}`)
                 .then(response => response.json())
                 .then(data => {
                     if (data.success) {
                         const artist = data.data;
+                        userId = artist.userId;
 
-                        // Update artist details
                         document.querySelector('.artist-img-block img').src = artist.profile_picture || 'default-image.jpg';
                         document.querySelector('.text-block h2').textContent = artist.full_name || artist.stage_name;
                         document.querySelector('.text-block p').textContent = artist.description;
@@ -542,6 +546,12 @@
 
         function bookPerformance(performanceTypeId) {
             window.location.href = `/dashboard/book-artist/${performanceTypeId}`;
+        }
+
+        function messageArtist(userId) {
+            if (userId !== null) {
+                window.location.href = `/dashboard/messages?user_id=${userId}`;
+            }
         }
 
     </script>

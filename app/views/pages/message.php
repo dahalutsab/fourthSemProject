@@ -6,61 +6,83 @@
             overflow-y: scroll;
             height: 400px;
         }
-
         .card-footer {
             padding-top: 15px;
             padding-bottom: 15px;
         }
-
         .message {
             display: flex;
             margin-bottom: 15px;
         }
-
         .message.left {
             justify-content: flex-start;
         }
-
         .message.right {
             justify-content: flex-end;
         }
-
         .message-bubble {
             max-width: 70%;
             padding: 10px 15px;
             border-radius: 20px;
             position: relative;
         }
-
         .message.left .message-bubble {
             background-color: #e9ecef;
             color: #000;
             border-top-left-radius: 0;
         }
-
         .message.right .message-bubble {
             background-color: #007bff;
             color: white;
             border-top-right-radius: 0;
         }
-
         .message-text {
             margin: 0;
         }
-
         .message-time {
             font-size: 0.8em;
             margin-top: 5px;
             color: rgba(0, 0, 0, 0.5);
             text-align: right;
         }
+        .list-group-item {
+            border-color: #ddd;
+        }
+        .list-group-item:hover {
+            background-color: #f0f2f5;
+            cursor: pointer;
+        }
+        .nav-tabs .nav-link {
+            color: #333;
+            border: none;
+        }
+        .nav-tabs .nav-link.active {
+            background-color: #f0f2f5;
+            border-bottom-color: transparent;
+        }
     </style>
-<body
 <div class="container mt-5">
     <div class="row">
         <div class="col-md-4">
-            <div class="list-group" id="userList">
-                <!-- User list will be populated here -->
+            <ul class="nav nav-tabs mb-3" id="userTabs" role="tablist">
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link active" id="allUsersTab" data-bs-toggle="tab" data-bs-target="#allUsers" type="button" role="tab" aria-controls="allUsers" aria-selected="true">All Users</button>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link" id="myChatsTab" data-bs-toggle="tab" data-bs-target="#myChats" type="button" role="tab" aria-controls="myChats" aria-selected="false">My Chats</button>
+                </li>
+            </ul>
+            <div class="tab-content" id="userTabContent">
+                <div class="tab-pane fade show active" id="allUsers" role="tabpanel" aria-labelledby="allUsersTab">
+                    <div class="list-group" id="allUsersList">
+                        <!-- All users will be populated here -->
+                    </div>
+                </div>
+                <div class="tab-pane fade" id="myChats" role="tabpanel" aria-labelledby="myChatsTab">
+                    <div class="list-group" id="myChatsList">
+                        <!-- My chats will be populated here -->
+                    </div>
+                </div>
             </div>
         </div>
         <div class="col-md-8">
@@ -83,32 +105,13 @@
         </div>
     </div>
 </div>
+
 <script>
     $(document).ready(function() {
         const sessionUserId = <?= $_SESSION[SESSION_USER_ID] ?>;
         let selectedUserId = null;
 
-        // Fetch and display user list
-        function fetchUsers() {
-            $.ajax({
-                url: '/api/getAllUsers',
-                method: 'GET',
-                success: function(response) {
-                    if (response.success) {
-                        const users = response.data;
-                        let userListHtml = '';
-                        users.forEach(user => {
-                            if (user.id !== sessionUserId) {
-                                userListHtml += `<a href="#" class="list-group-item list-group-item-action" data-user-id="${user.id}">${user.username}</a>`;
-                            }
-                        });
-                        $('#userList').html(userListHtml);
-                    }
-                }
-            });
-        }
-
-        // Fetch and display messages
+        // Function to fetch messages between users
         function fetchMessages() {
             if (selectedUserId) {
                 $.ajax({
@@ -136,14 +139,59 @@
             }
         }
 
+        // Function to fetch all users for "All Users" tab
+        function fetchAllUsers() {
+            $.ajax({
+                url: '/api/getAllUsers',
+                method: 'GET',
+                success: function(response) {
+                    if (response.success) {
+                        const users = response.data;
+                        let allUsersHtml = '';
+                        users.forEach(user => {
+                            if (user.id !== sessionUserId) {
+                                allUsersHtml += `<a href="#" class="list-group-item list-group-item-action" data-user-id="${user.id}">${user.username}</a>`;
+                            }
+                        });
+                        $('#allUsersList').html(allUsersHtml);
+                    }
+                }
+            });
+        }
+
+        // Function to fetch my chats for "My Chats" tab
+// Function to fetch my chats for "My Chats" tab
+        function fetchMyChats() {
+            $.ajax({
+                url: '/api/getMyChats',
+                method: 'GET',
+                success: function(response) {
+                    if (response.success) {
+                        const chats = response.data;
+                        let myChatsHtml = '';
+                        chats.forEach(chat => {
+                            myChatsHtml += `<a href="#" class="list-group-item list-group-item-action" data-user-id="${chat.id}">${chat.username}</a>`;
+                        });
+                        $('#myChatsList').html(myChatsHtml);
+                        // Select the first user in the list
+                        const firstUser = $('#myChatsList .list-group-item').first();
+                        if (firstUser.length > 0) {
+                            selectedUserId = firstUser.data('user-id');
+                            $('#chatHeader').text(`Chatting with ${firstUser.text()}`);
+                            fetchMessages();
+                        }
+                    }
+                }
+            });
+        }
+        // WebSocket initialization
         const socket = new WebSocket('ws://localhost:8080');
 
-        // Handle WebSocket connection open
+        // WebSocket event listeners
         socket.onopen = function() {
-            console.log('Connected to the server');
+            console.log('Connected to WebSocket server');
         };
 
-        // Handle WebSocket message
         socket.onmessage = function(event) {
             const message = JSON.parse(event.data);
             if (message.sender_id === selectedUserId || message.receiver_id === selectedUserId) {
@@ -159,12 +207,11 @@
             }
         };
 
-        // Handle WebSocket error
         socket.onerror = function(error) {
             console.error('WebSocket error:', error);
         };
 
-        // Send message
+        // Send message function
         $('#sendMessageButton').on('click', function() {
             const messageContent = $('#messageInput').val();
             if (messageContent && selectedUserId) {
@@ -187,14 +234,38 @@
             }
         });
 
-        // Handle user selection
-        $('#userList').on('click', '.list-group-item', function() {
+        // Handle user selection from user lists
+        $('#userTabContent').on('click', '.list-group-item', function() {
             selectedUserId = $(this).data('user-id');
             $('#chatHeader').text(`Chatting with ${$(this).text()}`);
             fetchMessages();
         });
 
-        // Initial fetch
-        fetchUsers();
+        // Initial fetch for "All Users" tab
+        fetchAllUsers();
+
+        // Switch tabs event handling
+        $('#allUsersTab').on('shown.bs.tab', function() {
+            fetchAllUsers();
+        });
+
+        $('#myChatsTab').on('shown.bs.tab', function() {
+            fetchMyChats();
+        });
+
+        // Function to open a specific chat from URL parameter
+        function openSpecificChat(user_id) {
+            selectedUserId = user_id;
+            fetchMessages();
+            $('#userTabs a[href="#myChats"]').tab('show');
+            $('#chatHeader').text(`Chatting with ${$('#myChatsList').find(`[data-user-id="${user_id}"]`).text()}`);
+        }
+
+        // Check for user_id parameter in the URL
+        const urlParams = new URLSearchParams(window.location.search);
+        if (urlParams.has('user_id')) {
+            const user_id = parseInt(urlParams.get('user_id'));
+            openSpecificChat(user_id);
+        }
     });
 </script>

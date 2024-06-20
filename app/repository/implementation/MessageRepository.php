@@ -63,4 +63,24 @@ class MessageRepository
 
         $stmt->execute();
     }
+
+    public function getMyChats(mixed $user_id)
+    {
+        $stmt = $this->db->getConnection()->prepare(
+            "SELECT u.id, u.username FROM users u WHERE u.id IN (SELECT DISTINCT sender_id FROM messages WHERE receiver_id = ?) OR u.id IN (SELECT DISTINCT receiver_id FROM messages WHERE sender_id = ?)"
+        );
+
+        if ($stmt === false) {
+            die('Prepare failed: ' . $this->db->getConnection()->error);
+        }
+
+        $stmt->bind_param("ii", $user_id, $user_id);
+
+        if (!$stmt->execute()) {
+            die('Execute failed: ' . $stmt->error);
+        }
+
+        $result = $stmt->get_result();
+        return $result->fetch_all(MYSQLI_ASSOC);
+    }
 }

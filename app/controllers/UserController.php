@@ -30,7 +30,7 @@ class UserController
     /**
      * @throws Exception
      */
-    public function signup()
+    public function signup(): void
     {
         try {
             // Retrieve form data sent by the router
