@@ -136,4 +136,14 @@ class UserRepository implements UserRepositoryInterface {
         }
         return $users;
     }
+
+    public function resetPassword(mixed $userId, mixed $password): bool
+    {
+        $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
+        $stmt = $this->database->getConnection()->prepare("UPDATE users SET password = ? WHERE id = ?");
+        $stmt->bind_param("si", $hashedPassword, $userId);
+        $stmt->execute();
+        $stmt->close();
+        return true;
+    }
 }

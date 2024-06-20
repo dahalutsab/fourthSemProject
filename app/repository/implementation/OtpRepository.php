@@ -67,6 +67,11 @@ class OtpRepository implements OtpRepositoryInterface
                 return new Otp($userId, $otp); // OTP is valid and not expired
             }
         }
+        else {
+            $_SESSION['otp-error'] = "Invalid OTP. Please try again.";
+            throw new Exception("Invalid OTP. Please try again.");
+
+        }
 
     }
 

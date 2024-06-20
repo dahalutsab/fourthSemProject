@@ -69,4 +69,5 @@ class UserService implements UserServiceInterface {
         return new UserResponse($this->userRepository->getUserByColumnValue('email', $email));
     }
 
+
 }

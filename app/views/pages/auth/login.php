@@ -15,6 +15,13 @@
                 <?php unset($_SESSION[SESSION_ERRORS]); ?>
             <?php endif; ?>
 
+            <?php if (isset($_SESSION[SESSION_SUCCESS])): ?>
+                <div class="alert alert-success">
+                    <?php echo $_SESSION[SESSION_SUCCESS]; ?>
+                </div>
+                <?php unset($_SESSION[SESSION_SUCCESS]); ?>
+            <?php endif; ?>
+
             <form id="login-form" action="/login" method="post">
                 <div class="form-group mb-3">
                     <div class="input-group">

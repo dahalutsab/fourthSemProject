@@ -23,6 +23,7 @@
         "phpmailer/phpmailer": "*",
       "ext-fileinfo": "*",
       "ext-curl": "*",
-        "cboden/ratchet": "^0.4.4"
+        "cboden/ratchet": "^0.4.4",
+      "ext-openssl": "*"
     }
 }

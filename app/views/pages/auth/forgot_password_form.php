@@ -5,26 +5,37 @@
                 <a href="/"><i class="fa fa-close"></i> </a>
             </div>
             <h4 class="card-title mt-3 text-center">Forgot Password?</h4>
-            <h2 class="text-center">Enter your email address</h2>
-            <!-- Display error messages if any -->
-                <div class="alert alert-danger">
-                        <p></p>
-                </div>
+            <h6 class="text-center">Enter your email address</h6>
 
-            <form  id="forgot-password-form">
+            <?php if (isset($_SESSION['forgot-password-error'])): ?>
+                <div class="alert alert-danger">
+                    <?php echo $_SESSION['forgot-password-error']; ?>
+                </div>
+                <?php unset($_SESSION['forgot-password-error']); ?>
+            <?php endif; ?>
+
+            <?php if (isset($_SESSION[SESSION_SUCCESS])): ?>
+                <div class="alert alert-success">
+                    <?php echo $_SESSION[SESSION_SUCCESS]; ?>
+                </div>
+                <?php unset($_SESSION[SESSION_SUCCESS]); ?>
+            <?php endif; ?>
+
+            <form action="/forgot-password" method="post" id="forgot-password-form">
                 <div class="form-group mb-3">
                     <div class="input-group">
                         <span class="input-group-text">
-                            <i class="fas fa-envelope"></i>
+                            <i class="fas fa-envelope"> </i>
                         </span>
-                        <label>
-                            <input type="email" class="form-control" placeholder="Email address" name="email" required>
-                        </label>
+                        <input type="email" class="form-control" placeholder="Email address" name="email" required>
                     </div>
                 </div>
                 <div class="form-group mb-3">
-                    <button type="submit" class="submit-btn" name="submit-forgot-password">Login</button>
+                    <button type="submit" class="submit-btn" name="submit-forgot-password">Proceed</button>
                 </div>
+                <p class="text-center mb-0">
+                    Remember your password? <a href="/login"><span style="color: var(--button-color)">Login</span></a>
+                </p>
             </form>
         </div>
     </div>

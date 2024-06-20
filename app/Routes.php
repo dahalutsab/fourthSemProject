@@ -86,6 +86,12 @@ $router->get('/verify-otp', [ViewController::class, 'verifyOtp']);
 $router->post('/api/user/verify-otp', [UserController::class, 'verifyOtp']);
 $router->post('/api/user/send-otp', [UserController::class, 'sendOtp']);
 
+//forgot password
+$router->get('/forgot-password', [ViewController::class, 'forgotPassword']);
+$router->post('/forgot-password', [AuthController::class, 'forgotPassword']);
+$router->get('/reset-password', [ViewController::class, 'resetPassword']);
+$router->post('/reset-password', [AuthController::class, 'resetPassword']);
+
 // route to artist details
 $router->get('/artist-details', [ViewController::class, 'artistDetails']);
 $router->post('/artist-details', [UserController::class, 'artistDetails']);

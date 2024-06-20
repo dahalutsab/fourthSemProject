@@ -7,4 +7,6 @@ const SESSION_EMAIL = 'email';
 const SESSION_ROLE = 'role';
 const SESSION_ERRORS = 'errors';
 
+const SESSION_SUCCESS = 'success';
+
 const SESSION_REDIRECT_TO = 'redirect_to';

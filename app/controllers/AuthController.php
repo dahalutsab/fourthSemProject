@@ -1,6 +1,7 @@
 <?php
 namespace app\controllers;
 
+use app\response\APIResponse;
 use app\service\implementation\AuthService;
 use Exception;
 use JetBrains\PhpStorm\NoReturn;
@@ -71,5 +72,53 @@ class AuthController {
         exit; // Always exit after redirecting
     }
 
+    public function forgotPassword(): void
+    {
+        // Retrieve form data sent by the router
+        $email = $_POST['email'] ?? '';
+        if (empty($email)) {
+            // Handle missing fields error
+            $_SESSION['forgot-password-error'] = "Email is required.";
+            header('Location: /forgot-password');
+            return;
+        }
+        try {
+            $this->authService->forgotPassword($email);
+        } catch (Exception $e) {
+            $_SESSION[SESSION_ERRORS] = $e->getMessage();
+            header('Location: /forgot-password');
+            return;
+        }
+        $_SESSION[SESSION_SUCCESS] = "The link has been sent to your email address. Please check your email to reset your password.";
+        header('Location: /forgot-password');
+    }
+
+    public function resetPassword(): void
+    {
+        if (isset($_POST['submit-change-password'])) {
+            $password = $_POST['password'] ?? '';
+            $confirmPassword = $_POST['confirm-password'] ?? '';
+            $data = $_GET['data'] ?? '';
+            if (empty($password) || empty($confirmPassword)) {
+                $_SESSION['forgot-password-error'] = "All fields are required.";
+                header('Location: /reset-password?data=' . $data);
+                return;
+            }
+            if ($password !== $confirmPassword) {
+                $_SESSION['forgot-password-error'] = "Passwords do not match.";
+                header('Location: /reset-password?data=' . $data);
+                return;
+            }
+            try {
+                $this->authService->resetPassword($password, $data);
+            } catch (Exception $e) {
+                $_SESSION['forgot-password-error'] = $e->getMessage();
+                header('Location: /reset-password?data=' . $data);
+                return;
+            }
+            $_SESSION[SESSION_SUCCESS] = "Password reset successful. Please login to continue.";
+            header('Location: /login');
+        }
+    }
 
 }

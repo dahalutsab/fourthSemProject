@@ -56,6 +56,20 @@ class ViewController
         $this->render(compact('pageTitle', 'content'));
     }
 
+    public function forgotPassword(): void
+    {
+        $pageTitle = 'Forgot Password';
+        $content = ['pages/auth/forgot_password_form'];
+        $this->render(compact('pageTitle', 'content'));
+    }
+
+    public function resetPassword(): void
+    {
+        $pageTitle = 'Reset Password';
+        $content = ['pages/auth/reset_password_form'];
+        $this->render(compact('pageTitle', 'content'));
+    }
+
     private function render(array $data): void
     {
         extract($data);
