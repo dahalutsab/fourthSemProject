@@ -37,7 +37,7 @@ class AuthController {
 
         // Store errors in session if any
         if (!empty($errors)) {
-            $_SESSION[SESSION_ERRORS] = $errors;
+            $_SESSION[SESSION_LOGIN_ERRORS] = $errors;
             return;
         }
 
@@ -45,7 +45,7 @@ class AuthController {
             $this->authService->login($email, $password);
             $_SESSION[SESSION_ROLE] = $this->authService->getUserRole($email);
         } catch (Exception $e) {
-            $_SESSION[SESSION_ERRORS][] = $e->getMessage();
+            $_SESSION[SESSION_LOGIN_ERRORS][] = $e->getMessage();
             header('Location: /login');
             return;
         }
@@ -85,7 +85,7 @@ class AuthController {
         try {
             $this->authService->forgotPassword($email);
         } catch (Exception $e) {
-            $_SESSION[SESSION_ERRORS] = $e->getMessage();
+            $_SESSION[SESSION_LOGIN_ERRORS] = $e->getMessage();
             header('Location: /forgot-password');
             return;
         }

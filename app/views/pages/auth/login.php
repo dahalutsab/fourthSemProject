@@ -6,13 +6,13 @@
             </div>
             <h4 class="card-title mt-3 text-center">Login</h4>
             <!-- Display error messages if any -->
-            <?php if (isset($_SESSION[SESSION_ERRORS])): ?>
+            <?php if (isset($_SESSION[SESSION_LOGIN_ERRORS])): ?>
                 <div class="alert alert-danger">
-                    <?php foreach ($_SESSION[SESSION_ERRORS] as $error): ?>
+                    <?php foreach ($_SESSION[SESSION_LOGIN_ERRORS] as $error): ?>
                         <p><?php echo $error; ?></p>
                     <?php endforeach; ?>
                 </div>
-                <?php unset($_SESSION[SESSION_ERRORS]); ?>
+                <?php unset($_SESSION[SESSION_LOGIN_ERRORS]); ?>
             <?php endif; ?>
 
             <?php if (isset($_SESSION[SESSION_SUCCESS])): ?>
@@ -44,6 +44,9 @@
                 </div>
                 <p class="text-center mb-0">
                     Don't have an account? Please <a href="/signup"><span style="color: var(--button-color)">Sign Up</span></a>
+                </p>
+                <p class="text-center mb-0">
+                    <a href="/forgot-password"><span style="color: var(--button-color)">Forgot Password ?</span></a>
                 </p>
             </form>
         </div>
