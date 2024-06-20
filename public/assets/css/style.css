@@ -7,6 +7,7 @@
     --card-color: #0a2644;
     --text-color: #fff;
     --button-color-hover: #ff0051;
+    --spinner_color: var(--button-color)
 }
 
 /*:root {*/
