@@ -10,10 +10,12 @@ use InvalidArgumentException;
 class BookingService
 {
     private BookingRepositoryInterface $bookingRepository;
+    private MailerService $mailerService;
 
     public function __construct(BookingRepositoryInterface $bookingRepository)
     {
         $this->bookingRepository = $bookingRepository;
+        $this->mailerService = new MailerService;
     }
 
     public function createBooking(array $data): BookingResponse
@@ -30,7 +32,33 @@ class BookingService
         $artistId = $this->bookingRepository->getArtistIdByPerformanceId($data['performance_type_id']);
         $data['artist_id'] = $artistId;
         $booking = $this->bookingRepository->create($data);
+        $this->sendArtistBookingMail($booking->getId());
         return  new BookingResponse($booking);
+    }
+
+    private function sendArtistBookingMail($bookingId): void
+    {
+        $mailData = $this->bookingRepository->getBookingDetails($bookingId);
+
+        // Extract the necessary details
+        $artistName = $mailData['artist'];
+        $artistEmail = $mailData['artist_email'];
+        $userName = $mailData['user'];
+        $userEmail = $mailData['user_email'];
+        $eventDate = $mailData['event_date'];
+        $eventStartTime = $mailData['event_start_time'];
+        $eventEndTime = $mailData['event_end_time'];
+        $localArea = $mailData['local_area'];
+        $performanceType = $mailData['performance_type'];
+
+        // Construct the email subject and message
+        $artistSubject = "New booking for {$performanceType} on {$eventDate}";
+        $userSubject = "You have successfully requested a {$performanceType} on {$eventDate}";
+        $artistMessage = "Dear {$artistName},You have a new booking from {$userName} for a {$performanceType} on {$eventDate} from {$eventStartTime} to {$eventEndTime} at {$localArea}.Please check your dashboard for more details.<br>Best regards,<br>Your Booking Team";
+        $userMessage = "Dear {$userName},Your booking for a {$performanceType} on {$eventDate} from {$eventStartTime} to {$eventEndTime} at {$localArea} has been successfully placed. <br> Please check your dashboard for more details.<br>Best regards,<br>Your Booking Team";
+        // Send the email asynchronously
+        $this->mailerService->sendAsyncMail($artistEmail, $artistName, $artistSubject, $artistMessage );
+        $this->mailerService->sendAsyncMail($userEmail, $userName, $userSubject, $userMessage);
     }
 
 

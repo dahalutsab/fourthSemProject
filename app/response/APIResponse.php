@@ -15,6 +15,7 @@ class APIResponse
         }
 
          self::sendResponse($response, $code);
+        exit();
     }
 
     public static function error($error, $code = 400): void

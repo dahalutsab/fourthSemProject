@@ -5,6 +5,7 @@ namespace app\controllers;
 use app\repository\implementation\BookingRepository;
 use app\response\APIResponse;
 use app\service\implementation\BookingService;
+use app\service\implementation\MailerService;
 use Exception;
 
 class BookingController
@@ -44,7 +45,9 @@ class BookingController
                 $data['user_id'] = $userId;
 
                 $booking = $this->bookingService->createBooking($data);
+
                  APIResponse::success($booking->toArray(),'Booking created successfully');
+
             } else {
                  APIResponse::error('Invalid request method');
             }

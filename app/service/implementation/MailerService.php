@@ -2,6 +2,8 @@
 
 namespace app\service\implementation;
 
+require __DIR__ . '/../../../vendor/autoload.php'; // Adjust path as needed
+
 use app\service\MailerServiceInterface;
 use PHPMailer\PHPMailer\Exception;
 use PHPMailer\PHPMailer\PHPMailer;
@@ -26,7 +28,7 @@ class MailerService implements MailerServiceInterface
         $this->mail->SMTPSecure = 'tls';
         $this->mail->Port = 587;
 
-        $this->mail->setFrom('verify@openmichub.com','Open Mic Hub');
+        $this->mail->setFrom('verify@openmichub.com', 'Open Mic Hub');
         $this->mail->isHTML();
     }
 
@@ -42,7 +44,8 @@ class MailerService implements MailerServiceInterface
             $html = str_replace('{otp}', $otp, $html);
             date_default_timezone_set('Asia/Kathmandu');
             $currentDateTime = date('Y-m-d H:i:s');
-            $html = str_replace('{currentDate}', $currentDateTime, $html);            $this->mail->addAddress($to);
+            $html = str_replace('{currentDate}', $currentDateTime, $html);
+            $this->mail->addAddress($to);
             $this->mail->Subject = "Verify your email address";
             $this->mail->Body = $html;
 
@@ -79,4 +82,14 @@ class MailerService implements MailerServiceInterface
         }
     }
 
+    public function sendAsyncMail(string $toEmail, string $toUserName, string $subject, string $message): void
+    {
+        $toEmail = escapeshellarg($toEmail);
+        $toUserName = escapeshellarg($toUserName);
+        $subject = escapeshellarg($subject);
+        $message = escapeshellarg($message);
+
+        $command = "php " . __DIR__ . "/../../scripts/send_email.php $toEmail $toUserName $subject $message > /dev/null 2>&1 &";
+        shell_exec($command);
+    }
 }

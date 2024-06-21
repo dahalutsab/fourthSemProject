@@ -30,3 +30,68 @@ Stack trace:
 #7 {main}
   thrown in C:\xampp\htdocs\OpenMicHub\app\response\APIResponse.php on line 33
 [21-Jun-2024 02:16:03 UTC] PHP Warning:  Undefined array key "user_id" in C:\xampp\htdocs\OpenMicHub\app\controllers\CommentController.php on line 56
+[21-Jun-2024 11:47:43 UTC] PHP Warning:  require(C:\xampp\htdocs\OpenMicHub\app\scripts/../vendor/autoload.php): Failed to open stream: No such file or directory in C:\xampp\htdocs\OpenMicHub\app\scripts\send_email.php on line 5
+[21-Jun-2024 11:47:43 UTC] PHP Fatal error:  Uncaught Error: Failed opening required 'C:\xampp\htdocs\OpenMicHub\app\scripts/../vendor/autoload.php' (include_path='.;C:\php\pear') in C:\xampp\htdocs\OpenMicHub\app\scripts\send_email.php:5
+Stack trace:
+#0 {main}
+  thrown in C:\xampp\htdocs\OpenMicHub\app\scripts\send_email.php on line 5
+[21-Jun-2024 11:51:00 UTC] PHP Warning:  require(C:\xampp\htdocs\OpenMicHub\app\scripts/../vendor/autoload.php): Failed to open stream: No such file or directory in C:\xampp\htdocs\OpenMicHub\app\scripts\send_email.php on line 5
+[21-Jun-2024 11:51:00 UTC] PHP Fatal error:  Uncaught Error: Failed opening required 'C:\xampp\htdocs\OpenMicHub\app\scripts/../vendor/autoload.php' (include_path='.;C:\php\pear') in C:\xampp\htdocs\OpenMicHub\app\scripts\send_email.php:5
+Stack trace:
+#0 {main}
+  thrown in C:\xampp\htdocs\OpenMicHub\app\scripts\send_email.php on line 5
+[21-Jun-2024 11:51:58 UTC] PHP Warning:  require(C:\xampp\htdocs\OpenMicHub\app\scripts/../vendor/autoload.php): Failed to open stream: No such file or directory in C:\xampp\htdocs\OpenMicHub\app\scripts\send_email.php on line 5
+[21-Jun-2024 11:51:58 UTC] PHP Fatal error:  Uncaught Error: Failed opening required 'C:\xampp\htdocs\OpenMicHub\app\scripts/../vendor/autoload.php' (include_path='.;C:\php\pear') in C:\xampp\htdocs\OpenMicHub\app\scripts\send_email.php:5
+Stack trace:
+#0 {main}
+  thrown in C:\xampp\htdocs\OpenMicHub\app\scripts\send_email.php on line 5
+[21-Jun-2024 11:53:22 UTC] PHP Warning:  require(C:\xampp\htdocs\OpenMicHub\app\scripts/../vendor/autoload.php): Failed to open stream: No such file or directory in C:\xampp\htdocs\OpenMicHub\app\scripts\send_email.php on line 5
+[21-Jun-2024 11:53:22 UTC] PHP Fatal error:  Uncaught Error: Failed opening required 'C:\xampp\htdocs\OpenMicHub\app\scripts/../vendor/autoload.php' (include_path='.;C:\php\pear') in C:\xampp\htdocs\OpenMicHub\app\scripts\send_email.php:5
+Stack trace:
+#0 {main}
+  thrown in C:\xampp\htdocs\OpenMicHub\app\scripts\send_email.php on line 5
+[21-Jun-2024 11:54:36 UTC] PHP Warning:  require(C:\xampp\htdocs\OpenMicHub\app\scripts/../vendor/autoload.php): Failed to open stream: No such file or directory in C:\xampp\htdocs\OpenMicHub\app\scripts\send_email.php on line 5
+[21-Jun-2024 11:54:36 UTC] PHP Fatal error:  Uncaught Error: Failed opening required 'C:\xampp\htdocs\OpenMicHub\app\scripts/../vendor/autoload.php' (include_path='.;C:\php\pear') in C:\xampp\htdocs\OpenMicHub\app\scripts\send_email.php:5
+Stack trace:
+#0 {main}
+  thrown in C:\xampp\htdocs\OpenMicHub\app\scripts\send_email.php on line 5
+[21-Jun-2024 11:55:17 UTC] PHP Warning:  require(C:\xampp\htdocs\OpenMicHub\app\scripts/../vendor/autoload.php): Failed to open stream: No such file or directory in C:\xampp\htdocs\OpenMicHub\app\scripts\send_email.php on line 5
+[21-Jun-2024 11:55:17 UTC] PHP Fatal error:  Uncaught Error: Failed opening required 'C:\xampp\htdocs\OpenMicHub\app\scripts/../vendor/autoload.php' (include_path='.;C:\php\pear') in C:\xampp\htdocs\OpenMicHub\app\scripts\send_email.php:5
+Stack trace:
+#0 {main}
+  thrown in C:\xampp\htdocs\OpenMicHub\app\scripts\send_email.php on line 5
+[21-Jun-2024 12:00:33 UTC] PHP Warning:  require(C:\xampp\htdocs\OpenMicHub\app\scripts/../vendor/autoload.php): Failed to open stream: No such file or directory in C:\xampp\htdocs\OpenMicHub\app\scripts\send_email.php on line 5
+[21-Jun-2024 12:00:33 UTC] PHP Fatal error:  Uncaught Error: Failed opening required 'C:\xampp\htdocs\OpenMicHub\app\scripts/../vendor/autoload.php' (include_path='.;C:\php\pear') in C:\xampp\htdocs\OpenMicHub\app\scripts\send_email.php:5
+Stack trace:
+#0 {main}
+  thrown in C:\xampp\htdocs\OpenMicHub\app\scripts\send_email.php on line 5
+[21-Jun-2024 12:00:54 UTC] PHP Warning:  require(C:\xampp\htdocs\OpenMicHub\app\scripts/../vendor/autoload.php): Failed to open stream: No such file or directory in C:\xampp\htdocs\OpenMicHub\app\scripts\send_email.php on line 5
+[21-Jun-2024 12:00:54 UTC] PHP Fatal error:  Uncaught Error: Failed opening required 'C:\xampp\htdocs\OpenMicHub\app\scripts/../vendor/autoload.php' (include_path='.;C:\php\pear') in C:\xampp\htdocs\OpenMicHub\app\scripts\send_email.php:5
+Stack trace:
+#0 {main}
+  thrown in C:\xampp\htdocs\OpenMicHub\app\scripts\send_email.php on line 5
+[21-Jun-2024 12:02:30 UTC] PHP Warning:  require(C:\xampp\htdocs\OpenMicHub\app\scripts/../vendor/autoload.php): Failed to open stream: No such file or directory in C:\xampp\htdocs\OpenMicHub\app\scripts\send_email.php on line 5
+[21-Jun-2024 12:02:30 UTC] PHP Fatal error:  Uncaught Error: Failed opening required 'C:\xampp\htdocs\OpenMicHub\app\scripts/../vendor/autoload.php' (include_path='.;C:\php\pear') in C:\xampp\htdocs\OpenMicHub\app\scripts\send_email.php:5
+Stack trace:
+#0 {main}
+  thrown in C:\xampp\htdocs\OpenMicHub\app\scripts\send_email.php on line 5
+[21-Jun-2024 12:16:13 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function app\service\implementation\pcntl_fork() in C:\xampp\htdocs\OpenMicHub\app\service\implementation\MailerService.php:96
+Stack trace:
+#0 C:\xampp\htdocs\OpenMicHub\app\views\pages\dashboard.php(12): app\service\implementation\MailerService->sendAsyncMail()
+#1 C:\xampp\htdocs\OpenMicHub\app\views\layouts\dashboard_main.php(37): require_once('...')
+#2 C:\xampp\htdocs\OpenMicHub\app\controllers\DashboardViewController.php(166): require_once('...')
+#3 C:\xampp\htdocs\OpenMicHub\app\controllers\DashboardViewController.php(12): app\controllers\DashboardViewController->render()
+#4 [internal function]: app\controllers\DashboardViewController->dashboard()
+#5 C:\xampp\htdocs\OpenMicHub\app\Router.php(81): call_user_func_array()
+#6 C:\xampp\htdocs\OpenMicHub\app\Routes.php(232): app\Router->run()
+#7 C:\xampp\htdocs\OpenMicHub\public\index.php(14): require_once('...')
+#8 {main}
+  thrown in C:\xampp\htdocs\OpenMicHub\app\service\implementation\MailerService.php on line 96
+[21-Jun-2024 14:13:30 UTC] PHP Warning:  Undefined array key 4 in C:\xampp\htdocs\OpenMicHub\app\scripts\send_email.php on line 52
+[21-Jun-2024 14:13:30 UTC] PHP Warning:  include(C:\xampp\htdocs\OpenMicHub\app\scripts/../../templates/email_template.html): Failed to open stream: No such file or directory in C:\xampp\htdocs\OpenMicHub\app\scripts\send_email.php on line 29
+[21-Jun-2024 14:13:30 UTC] PHP Warning:  include(): Failed opening 'C:\xampp\htdocs\OpenMicHub\app\scripts/../../templates/email_template.html' for inclusion (include_path='.;C:\php\pear') in C:\xampp\htdocs\OpenMicHub\app\scripts\send_email.php on line 29
+[21-Jun-2024 19:58:30 Asia/Kathmandu] Mailer Error: Message body empty
+[21-Jun-2024 14:13:30 UTC] PHP Warning:  Undefined array key 4 in C:\xampp\htdocs\OpenMicHub\app\scripts\send_email.php on line 52
+[21-Jun-2024 14:13:30 UTC] PHP Warning:  include(C:\xampp\htdocs\OpenMicHub\app\scripts/../../templates/email_template.html): Failed to open stream: No such file or directory in C:\xampp\htdocs\OpenMicHub\app\scripts\send_email.php on line 29
+[21-Jun-2024 14:13:30 UTC] PHP Warning:  include(): Failed opening 'C:\xampp\htdocs\OpenMicHub\app\scripts/../../templates/email_template.html' for inclusion (include_path='.;C:\php\pear') in C:\xampp\htdocs\OpenMicHub\app\scripts\send_email.php on line 29
+[21-Jun-2024 19:58:30 Asia/Kathmandu] Mailer Error: Message body empty
