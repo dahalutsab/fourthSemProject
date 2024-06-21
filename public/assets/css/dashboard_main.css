@@ -82,6 +82,16 @@ svg {
 }
 
 
+.btn-primary {
+    border: none;
+    background: var(--button-color);
+    color: var(--text-color);
+}
+
+.btn-primary:hover {
+    background: var(--button-color-hover);
+}
+
 
 .table {
     width: 100%;
@@ -108,4 +118,9 @@ svg {
 
 .table tbody tr:hover {
     background-color: rgba(255, 255, 255, 0.075);
+}
+
+.table tbody tr td {
+    background-color: var(--background-color) .5;
+    color: var(--text-color);
 }

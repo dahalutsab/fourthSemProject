@@ -28,13 +28,13 @@
             position: relative;
         }
         .message.left .message-bubble {
-            background-color: #e9ecef;
-            color: #000;
+            background-color: var(--text-color);
+            color: var(--button-color);
             border-top-left-radius: 0;
         }
         .message.right .message-bubble {
-            background-color: #007bff;
-            color: white;
+            background-color: var(--button-color);
+            color: var(--text-color);
             border-top-right-radius: 0;
         }
         .message-text {
@@ -43,7 +43,7 @@
         .message-time {
             font-size: 0.8em;
             margin-top: 5px;
-            color: rgba(0, 0, 0, 0.5);
+            color: var(--background-color);
             text-align: right;
         }
         .list-group-item {
