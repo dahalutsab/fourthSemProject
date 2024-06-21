@@ -37,6 +37,11 @@
     width: fit-content;
 }
 
+.cus-btn.primary:hover {
+    background: var(--button-color-hover);
+    color: var(--text-color);
+}
+
 
 .img-block {
     border-radius: 20px;

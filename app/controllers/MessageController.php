@@ -31,6 +31,13 @@ class MessageController
         APIResponse::success($messages);
     }
 
+    public function getAllUsersForChat(): void
+    {
+        $user_id = $_SESSION[SESSION_USER_ID];
+        $users = $this->messageRepository->getAllUsersForChat($user_id);
+        APIResponse::success($users);
+    }
+
     public function getMyChats(): void
     {
         $user_id = $_SESSION[SESSION_USER_ID];

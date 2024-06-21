@@ -10,6 +10,7 @@
             padding-top: 15px;
             padding-bottom: 15px;
         }
+
         .message {
             display: flex;
             margin-bottom: 15px;
@@ -53,14 +54,65 @@
             cursor: pointer;
         }
         .nav-tabs .nav-link {
-            color: #333;
+            color: var(--text-color);
             border: none;
         }
+
+        .nav-tabs .nav-link:hover {
+            background-color: var(--button-color);
+            color: var(--text-color);
+        }
+
         .nav-tabs .nav-link.active {
-            background-color: #f0f2f5;
+            background-color: var(--button-color);
+            color: var(--text-color);
             border-bottom-color: transparent;
         }
-    </style>
+
+        .nav-tabs .nav-link.active:hover {
+            background-color: var(--button-color-hover);
+            color: var(--text-color);
+        }
+
+
+
+        .user-avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: #ccc;
+            background-size: cover;
+            background-position: center;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            color: #fff;
+        }
+
+        .user-details {
+            margin-left: 10px;
+        }
+
+        .username {
+            font-weight: bold;
+        }
+
+        .user-username {
+            color: #999;
+        }
+
+        .list-group-item {
+            border-color: #ddd;
+            display: flex;
+        }
+
+        .list-group-item:hover {
+            background-color: #f0f2f5;
+            cursor: pointer;
+        }
+
+</style>
 <div class="container mt-5">
     <div class="row">
         <div class="col-md-4">
@@ -139,19 +191,31 @@
             }
         }
 
-        // Function to fetch all users for "All Users" tab
         function fetchAllUsers() {
             $.ajax({
-                url: '/api/getAllUsers',
+                url: '/api/getAllUsersForChat',
                 method: 'GET',
                 success: function(response) {
                     if (response.success) {
                         const users = response.data;
                         let allUsersHtml = '';
                         users.forEach(user => {
-                            if (user.id !== sessionUserId) {
-                                allUsersHtml += `<a href="#" class="list-group-item list-group-item-action" data-user-id="${user.id}">${user.username}</a>`;
-                            }
+                            const fullName = user.full_name ? user.full_name : user.username;
+                            const profilePicture = user.profile_picture ? `../${user.profile_picture}` : null;
+                            const avatarContent = user.profile_picture ? '' : fullName.charAt(0).toUpperCase();
+
+                            // Construct the HTML for each user item
+                            allUsersHtml += `
+                        <a href="#" class="list-group-item list-group-item-action" data-user-id="${user.id}">
+                            <div class="user-avatar ${!profilePicture ? 'bg-primary' : ''}" style="${profilePicture ? `background-image: url('${profilePicture}')` : ''}">
+                                ${avatarContent}
+                            </div>
+                            <div class="user-details">
+                                <div class="username">${fullName}</div>
+                                <div class="user-username">@${user.username}</div>
+                            </div>
+                        </a>
+                    `;
                         });
                         $('#allUsersList').html(allUsersHtml);
                     }
@@ -159,8 +223,6 @@
             });
         }
 
-        // Function to fetch my chats for "My Chats" tab
-// Function to fetch my chats for "My Chats" tab
         function fetchMyChats() {
             $.ajax({
                 url: '/api/getMyChats',
@@ -170,20 +232,31 @@
                         const chats = response.data;
                         let myChatsHtml = '';
                         chats.forEach(chat => {
-                            myChatsHtml += `<a href="#" class="list-group-item list-group-item-action" data-user-id="${chat.id}">${chat.username}</a>`;
+                            const fullName = chat.full_name ? chat.full_name : chat.username;
+                            const profilePicture = chat.profile_picture ? `../${chat.profile_picture}` : null;
+                            const avatarContent = chat.profile_picture ? '' : fullName.charAt(0).toUpperCase();
+
+                            // Construct the HTML for each chat item
+                            myChatsHtml += `
+                        <a href="#" class="list-group-item list-group-item-action" data-user-id="${chat.id}">
+                            <div class="user-avatar ${!profilePicture ? 'bg-primary' : ''}" style="${profilePicture ? `background-image: url('${profilePicture}')` : ''}">
+                                ${avatarContent}
+                            </div>
+                            <div class="user-details">
+                                <div class="username">${fullName}</div>
+                                <div class="user-username">@${chat.username}</div>
+                            </div>
+                        </a>
+                    `;
                         });
                         $('#myChatsList').html(myChatsHtml);
-                        // Select the first user in the list
-                        const firstUser = $('#myChatsList .list-group-item').first();
-                        if (firstUser.length > 0) {
-                            selectedUserId = firstUser.data('user-id');
-                            $('#chatHeader').text(`Chatting with ${firstUser.text()}`);
-                            fetchMessages();
-                        }
                     }
                 }
             });
         }
+
+
+
         // WebSocket initialization
         const socket = new WebSocket('ws://localhost:8080');
 
@@ -237,7 +310,8 @@
         // Handle user selection from user lists
         $('#userTabContent').on('click', '.list-group-item', function() {
             selectedUserId = $(this).data('user-id');
-            $('#chatHeader').text(`Chatting with ${$(this).text()}`);
+            const selectedUserName = $(this).find('.username').text(); // Extract the username from the selected list item
+            $('#chatHeader').text(`Chatting with ${selectedUserName}`); // Display the username in the chat header
             fetchMessages();
         });
 

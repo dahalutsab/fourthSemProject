@@ -177,6 +177,7 @@ $router->get('/dashboard/messages', [DashboardViewController::class, 'messages']
 
 $router->get('/api/getAllUsers', [UserController::class, 'getAllUsers']);
 $router->get('/api/getMessagesBetweenUsers', [MessageController::class, 'getMessagesBetweenUsers']);
+$router->get('/api/getAllUsersForChat', [MessageController::class, 'getAllUsersForChat']);
 $router->get('/api/getMyChats', [MessageController::class, 'getMyChats']);
 
 //comments

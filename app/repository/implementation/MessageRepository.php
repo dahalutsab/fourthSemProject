@@ -64,10 +64,52 @@ class MessageRepository
         $stmt->execute();
     }
 
+    public function getAllUsersForChat(mixed $user_id)
+    {
+        $stmt = $this->db->getConnection()->prepare(
+            "SELECT 
+        u.id, 
+        u.username, 
+        CASE WHEN r.role_name = 'ARTIST' THEN ad.full_name ELSE ud.fullName END as full_name,
+        CASE WHEN r.role_name = 'ARTIST' THEN ad.profile_picture ELSE ud.profilePicture END as profile_picture
+    FROM users u
+    LEFT JOIN artist_details ad ON u.id = ad.user_id
+    LEFT JOIN userdetails ud ON u.id = ud.user_id
+    INNER JOIN roles r ON u.role_id = r.role_id
+    WHERE u.id != ?"
+        );
+
+        if ($stmt === false) {
+            die('Prepare failed: ' . $this->db->getConnection()->error);
+        }
+
+        $stmt->bind_param("i", $user_id);
+
+        if (!$stmt->execute()) {
+            die('Execute failed: ' . $stmt->error);
+        }
+
+        $result = $stmt->get_result();
+        return $result->fetch_all(MYSQLI_ASSOC);
+    }
+
     public function getMyChats(mixed $user_id)
     {
         $stmt = $this->db->getConnection()->prepare(
-            "SELECT u.id, u.username FROM users u WHERE u.id IN (SELECT DISTINCT sender_id FROM messages WHERE receiver_id = ?) OR u.id IN (SELECT DISTINCT receiver_id FROM messages WHERE sender_id = ?)"
+            "SELECT 
+        u.id, 
+        u.username, 
+        CASE WHEN r.role_name = 'ARTIST' THEN ad.full_name ELSE ud.fullName END as full_name,
+        CASE WHEN r.role_name = 'ARTIST' THEN ad.profile_picture ELSE ud.profilePicture END as profile_picture
+    FROM users u
+    LEFT JOIN artist_details ad ON u.id = ad.user_id
+    LEFT JOIN userdetails ud ON u.id = ud.user_id
+    INNER JOIN roles r ON u.role_id = r.role_id
+    WHERE u.id IN (
+        SELECT DISTINCT sender_id FROM messages WHERE receiver_id = ?
+        UNION
+        SELECT DISTINCT receiver_id FROM messages WHERE sender_id = ?
+    )"
         );
 
         if ($stmt === false) {
@@ -83,4 +125,5 @@ class MessageRepository
         $result = $stmt->get_result();
         return $result->fetch_all(MYSQLI_ASSOC);
     }
+
 }
