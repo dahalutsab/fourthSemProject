@@ -152,7 +152,7 @@ function populateEditProfile(profileDetails, isArtist) {
     document.getElementById('description_edit').value = profileDetails.description || '';
 
     document.querySelectorAll('.artist-specific').forEach(element => {
-        element.style.display = isArtist ? 'block' : 'none';
+        element.style.display = isArtist ? 'flex' : 'none';
     });
 }
 

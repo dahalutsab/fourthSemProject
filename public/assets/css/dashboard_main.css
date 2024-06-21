@@ -50,6 +50,10 @@ svg {
     color: var(--text-color);
 }
 
+svg:hover {
+    color: var(--button-color);
+}
+
 .card {
     background-color: var(--card-color);
     color: var(--text-color);
@@ -90,6 +94,12 @@ svg {
 
 .btn-primary:hover {
     background: var(--button-color-hover);
+}
+
+.btn-secondary {
+    border: none;
+    background: var(--card-color);
+    color: var(--text-color);
 }
 
 

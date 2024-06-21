@@ -1,10 +1,98 @@
 <style>
+
+    /* General form styles */
+    #imageUploadForm {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin: 20px;
+    }
+
+    /* Avatar image styles */
+    #dashboard-user-image {
+        width: 150px;
+        height: 150px;
+        border-radius: 50%;
+        object-fit: cover;
+        margin-bottom: 10px;
+    }
+
+    /* File upload styles */
+    .file-upload {
+        margin-bottom: 10px;
+    }
+
+    /* Button styles */
+    .btn {
+        display: inline-block;
+        padding: 8px 16px;
+        border-radius: 4px;
+        text-decoration: none;
+        font-weight: bold;
+        transition: background-color 0.3s ease;
+    }
+
+    .btn-success {
+        background-color: var(--button-color);
+        color: var(--text-color);
+        border: none;
+    }
+
+    .btn-success:hover {
+        background-color: var(--button-color-hover);
+    }
+
+    .btn-success i {
+        margin-right: 5px;
+    }
     .social-icon {
         margin-right: 8px;
     }
     .input-group {
         margin-bottom: 15px;
     }
+    .avatar-container {
+        position: relative;
+        display: inline-block;
+    }
+
+    .avatar {
+        width: 150px;
+        height: 150px;
+        object-fit: cover;
+        border-radius: 50%;
+    }
+
+    .upload-icon {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        display: none;
+        cursor: pointer;
+        color: white;
+        font-size: 2rem;
+        background: rgba(0, 0, 0, 0.5);
+        border-radius: 50%;
+        padding: 10px;
+    }
+
+    .avatar-container:hover .upload-icon {
+        display: block;
+    }
+
+    .choose-image-btn {
+        display: none;
+    }
+
+    #chosen-file {
+        margin-left: 10px;
+    }
+
+    .btn-success svg {
+        color: var(--text-color);
+    }
+
 </style>
 <hr>
 <div class="container bootstrap snippet">
@@ -13,14 +101,15 @@
     </div>
     <div class="row">
         <div class="col-sm-3">
-            <div class="text-center">
-                <form id="imageUploadForm" enctype="multipart/form-data">
+            <form id="imageUploadForm" enctype="multipart/form-data">
+                <div class="avatar-container text-center">
                     <img src="<?=BASE_IMAGE_PATH?>default-profile.png" class="avatar img-circle img-thumbnail" id="dashboard-user-image" alt="avatar">
-                    <h6>Upload a different photo...</h6>
-                    <input type="file" class=" btn-success" name="profile_picture" id="profile_picture" alt="">
-                    <button class="btn btn-success" type="submit"><i class="fas fa-upload me-2"></i>Upload</button>
-                </form>
-            </div>
+                    <i class="fas fa-upload upload-icon" id="upload-icon"></i>
+                    <input type="file" class="choose-image-btn" name="profile_picture" id="profile_picture" style="display: none;">
+                </div>
+                <span id="chosen-file">No file chosen</span>
+                <button class="btn btn-success submit-image" type="submit"><i class="fas fa-upload me-2"></i>Upload</button>
+            </form>
             <hr>
             <div class="card">
                 <div class="card-header">Social Media</div>
@@ -32,7 +121,7 @@
                 </div>
             </div>
         </div>
-        <div class="col-sm-9">
+        <div class="col-sm-9 dashboard_profile">
             <ul class="nav nav-tabs" id="myTab" role="tablist">
                 <li class="nav-item" role="presentation">
                     <button class="nav-link active" id="home-tab" data-bs-toggle="tab" data-bs-target="#home" type="button" role="tab" aria-controls="home" aria-selected="true">
@@ -87,13 +176,6 @@
                                 <div class="col-sm-9" id="address"></div> <!-- Placeholder for address -->
                             </div>
 
-                            <!-- Address -->
-                            <div class="row mb-3">
-                                <div class="col-sm-3">
-                                    <strong>Gender:</strong>
-                                </div>
-                                <div class="col-sm-9" id="gender"></div> <!-- Placeholder for gender -->
-                            </div>
                             <!-- Category -->
                             <div class="row mb-3 artist-specific">
                                 <div class="col-sm-3">
@@ -146,24 +228,6 @@
                                 <input type="text" class="form-control" name="address" id="address_edit" placeholder="Enter your address" title="Enter your address">
                             </div>
                         </div>
-
-                        <div class="row mb-3">
-                            <div class="col-xs-12">
-                                <label class="form-label">Gender</label>
-                                <div class="form-check">
-                                    <input class="form-check-input" type="radio" name="gender" id="male" value="male">
-                                    <label class="form-check-label" for="male">Male</label>
-                                </div>
-                                <div class="form-check">
-                                    <input class="form-check-input" type="radio" name="gender" id="female" value="female">
-                                    <label class="form-check-label" for="female">Female</label>
-                                </div>
-                                <div class="form-check">
-                                    <input class="form-check-input" type="radio" name="gender" id="other" value="other">
-                                    <label class="form-check-label" for="other">Other</label>
-                                </div>
-                            </div>
-                        </div>
                         <div class="row mb-3 artist-specific">
                             <div class="col-xs-12">
                                 <label for="category" class="form-label">Category</label>
@@ -178,6 +242,7 @@
                                 <label for="bio_edit" class="form-label">Bio</label>
                                 <textarea class="form-control" name="bio" id="bio_edit" rows="3" placeholder="Enter your bio"></textarea>
                             </div>
+                        </div>
                             <div class="row mb-3 artist-specific">
                                 <div class="col-xs-12">
                                     <label for="description_edit" class="form-label">Description</label>
@@ -374,6 +439,33 @@
                 }
             }
         }
+
+    });
+
+    document.addEventListener('DOMContentLoaded', (event) => {
+        const photoArea = document.querySelector('.avatar-container');
+        photoArea.addEventListener('click', () => {
+            const fileInput = document.getElementById('profile_picture');
+            fileInput.click();
+        });
+
+    //     view the uploaded image inside image container
+        const fileInput = document.getElementById('profile_picture');
+        fileInput.addEventListener('change', (event) => {
+            const file = event.target.files[0];
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                const image = document.getElementById('dashboard-user-image');
+                image.src = e.target.result;
+                document.getElementById('chosen-file').innerText = file.name;
+            };
+            reader.readAsDataURL(file);
+
+            const uploadButton = document.querySelector('.submit-image');
+            uploadButton.style.display = 'block';
+
+        });
+
 
     });
 
