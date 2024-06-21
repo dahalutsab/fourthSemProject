@@ -40,13 +40,12 @@ class CommentController {
 
         if (!empty($errors)) {
             http_response_code(400);
-            echo json_encode(['errors' => $errors]);
-            return;
+            APIResponse::error("Invalid comment data", $errors);
         }
 
         $commentRequest = new CommentRequest($_SESSION[SESSION_USER_ID], $data['artistId'], $data['text'], $data['rating'] ?? null, $data['parent_id'] ?? null);
         $this->commentService->addComment($commentRequest);
-        APIResponse::success("Comment added successfully");
+        APIResponse::success("true","Comment added successfully");
     }
 
     public function postReply(): void
@@ -66,6 +65,7 @@ class CommentController {
             exit();
         }
         $this->commentService->addReply($commentId, $artistId, $text, $userId);
+        APIResponse::success("true","Reply added successfully");
     }
 
 

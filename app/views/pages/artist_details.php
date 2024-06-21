@@ -63,7 +63,7 @@
                     <nav aria-label="breadcrumb">
                         <ol class="breadcrumb">
                             <li class="breadcrumb-item"><a href="/">Homepage</a></li>
-                            <li class="breadcrumb-item active" aria-current="page">Singers</li>
+                            <li class="breadcrumb-item active" aria-current="page">Artist</li>
                         </ol>
                     </nav>
                 </div>
@@ -441,29 +441,49 @@
         }
 
         function submitComment(artistId) {
-            const commentText = document.getElementById('comment').value;
-            const rating = document.querySelector('.star-rating').dataset.rating;
+            const commentTextElement = document.getElementById('commentInput');
+            if (commentTextElement) {
+                const commentText = commentTextElement.value;
+                if (!commentText) {
+                    toastr.error('Please enter a comment');
+                    return;
+                }
+                const ratingElement = document.querySelector('.star-rating input[type="radio"]:checked');
+                const rating = ratingElement ? ratingElement.value : 'No rating selected';
 
-            fetch('/api/comments/add', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({ artistId, text: commentText, rating })
-            })
-                .then(response => response.json())
-                .then(data => {
-                    if (data.success) {
-                        fetchComments(artistId);
-                    } else {
-                        console.error('Failed to submit comment:', data.error);
-                        toastr.error(data.error);
-                    }
+                console.log(commentText, rating);
+                fetch('/api/comments/add', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ artistId, text: commentText, rating })
                 })
-                .catch(error => console.error('Error submitting comment:', error));
+                    .then(response => response.json())
+                    .then(data => {
+                        if (data.success) {
+                            toastr.success(data.message);
+                            fetchComments(artistId);
+                        } else {
+                            console.error('Failed to submit comment:', data.error);
+                            toastr.error(data.error);
+                        }
+                    })
+                    .catch(error => console.error('Error submitting comment:', error));
+            } else {
+                console.error('Comment element not found');
+            }
         }
 
         function submitReply(commentId, replyText, artistId) {
+            if (!replyText) {
+                toastr.error('Please enter a reply');
+                return;
+            }
+            if (!commentId) {
+                console.error('Comment ID is required to submit a reply');
+                return;
+            }
             fetch(`/api/replies/add`, {
                 method: 'POST',
                 headers: {
@@ -474,7 +494,7 @@
                 .then(response => response.json())
                 .then(data => {
                     if (data.success) {
-                        const artistId = new URLSearchParams(window.location.search).get('id');
+                        toastr.success(data.message)
                         fetchComments(artistId);
                     } else {
                         console.error('Failed to submit reply:', data.error);
