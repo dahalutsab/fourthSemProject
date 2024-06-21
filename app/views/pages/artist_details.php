@@ -1,60 +1,129 @@
 
-    <style>
-        .star-rating {
-            direction: rtl;
-            display: inline-flex;
-        }
+<style>
+    .star-rating {
+        direction: rtl;
+        display: inline-flex;
+    }
 
-        .star-rating input[type="radio"] {
-            display: none;
-        }
+    .star-rating input[type="radio"] {
+        display: none;
+    }
 
-        .star-rating label {
-            font-size: 2em;
-            color: lightgray;
-            cursor: pointer;
-        }
+    .star-rating label {
+        font-size: 2em;
+        color: lightgray;
+        cursor: pointer;
+    }
 
-        .star-rating input[type="radio"]:checked~label {
-            color: gold;
-        }
+    .star-rating input[type="radio"]:checked~label {
+        color: gold;
+    }
 
-        .comment-section {
-            margin-top: 30px;
-        }
+    /* Comments Section */
+    .comment-box {
+        padding: 15px;
+        margin-bottom: 15px;
+    }
 
-        .comment-box {
-            display: flex;
-            margin-bottom: 20px;
-        }
+    .comment-header {
+        display: flex;
+        align-items: center;
+        margin-bottom: 10px;
+    }
 
-        .comment-box img {
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            margin-right: 15px;
-        }
+    .comment-header img {
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        margin-right: 15px;
+    }
 
-        .comment-content {
-            flex-grow: 1;
-        }
+    .comment-content {
+        flex-grow: 1;
+    }
 
-        .comment-content h5 {
-            margin-bottom: 0;
-        }
+    .comment-content h5 {
+        margin: 0;
+        font-size: 1.2em;
+    }
 
-        .comment-actions {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
+    .comment-content p {
+        margin: 10px 0;
+    }
 
-        .reply-box {
-            margin-left: 60px;
-            margin-top: 20px;
-        }
-    </style>
+    .comment-actions {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-top: 10px;
+    }
 
+    .comment-actions .upvotes {
+        display: flex;
+        align-items: center;
+    }
+
+    .reply-box {
+        margin-top: 10px;
+        padding-left: 65px;
+        border-left: 2px solid var(--button-color);
+        display: flex;
+    }
+
+    .reply-box img {
+        width: 30px;
+        height: 30px;
+        border-radius: 50%;
+        margin-right: 10px;
+    }
+
+    .reply-box button {
+        background: var(--button-color);
+        border: none;
+        color: var(--text-color);
+        cursor: pointer;
+    }
+    .reply-box button:hover {
+        background: var(--button-color-hover);
+    }
+
+    .comment-actions button {
+        background: none;
+        border: none;
+        color: var(--button-color);
+        cursor: pointer;
+    }
+
+    .comment-actions button:hover {
+        text-decoration: underline;
+        color: var(--button-color-hover);
+    }
+
+
+    /* Form and Input */
+    .comment-form textarea {
+        width: 100%;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        padding: 10px;
+        margin-bottom: 10px;
+        resize: vertical;
+    }
+
+    .comment-form button {
+        background-color: var(--button-color);
+        color: var(--text-color);
+        border: none;
+        padding: 10px 20px;
+        cursor: pointer;
+        border-radius: 4px;
+        transition: background-color 0.3s ease;
+    }
+
+    .comment-form button:hover {
+        background-color: var(--button-color-hover);
+    }
+</style>
     <div class="container">
         <!-- Breadcrumb and back link -->
         <div class="row bg-gradient shadow">
@@ -376,22 +445,38 @@
         function createCommentBox(comment) {
             const commentBox = document.createElement('div');
             commentBox.classList.add('comment-box');
-            commentBox.innerHTML = `
-                <img src="${comment.userProfileImage}" alt="User profile">
-                <div class="comment-content">
-                    <h5>${comment.userName}</h5>
-                    <div class="star-rating" style="--rating: ${comment.rating};"></div>
-                    <p>${comment.text}</p>
-                    <div class="comment-actions">
-                        <span class="upvotes">${comment.upvotes} <i class="fa fa-thumbs-up"></i></span>
-                        <button class="btn btn-link reply-button" data-comment-id="${comment.comment_id}">Reply</button>
-                    </div>
-                    <div class="reply-box" id="replyBox-${comment.comment_id}" style="display: none;">
-                        <textarea class="form-control mb-2" id="replyInput-${comment.comment_id}" rows="1" placeholder="Add a reply"></textarea>
-                        <button class="btn btn-primary submit-reply-button" data-comment-id="${comment.comment_id}">Submit Reply</button>
-                    </div>
-                </div>
-            `;
+
+            const commentHeader = document.createElement('div');
+            commentHeader.classList.add('comment-header');
+            commentHeader.innerHTML = `
+        <img src="${comment.userProfileImage}" alt="User profile">
+        <div class="comment-content">
+            <h5>${comment.userName}</h5>
+            <div class="star-rating" style="--rating: ${comment.rating};"></div>
+            <p>${comment.text}</p>
+        </div>
+    `;
+
+            const commentActions = document.createElement('div');
+            commentActions.classList.add('comment-actions');
+            commentActions.innerHTML = `
+        <span class="upvotes">${comment.upvotes} <i class="fa fa-thumbs-up"></i></span>
+        <button class="btn btn-link reply-button" data-comment-id="${comment.comment_id}">Reply</button>
+    `;
+
+            const replyBox = document.createElement('div');
+            replyBox.classList.add('reply-box');
+            replyBox.id = `replyBox-${comment.comment_id}`;
+            replyBox.style.display = 'none';
+            replyBox.innerHTML = `
+        <textarea class="form-control mb-2" id="replyInput-${comment.comment_id}" rows="1" placeholder="Add a reply"></textarea>
+        <button class="btn btn-primary submit-reply-button" data-comment-id="${comment.comment_id}">Submit Reply</button>
+    `;
+
+            commentBox.appendChild(commentHeader);
+            commentBox.appendChild(commentActions);
+            commentBox.appendChild(replyBox);
+
             return commentBox;
         }
 
