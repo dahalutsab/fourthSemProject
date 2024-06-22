@@ -21,22 +21,22 @@
 </div>
 
 <script>
-    $(document).ready(function() {
-    $.ajax({
-        url: '/api/booking/get-artist-bookings',
-        type: 'GET',
-        success: function(response) {
-            if (response.success) {
-                let bookings = response.data;
-                let bookingsList = '';
-                bookings.forEach(booking => {
-                    bookingsList += `
+    function getArtistBookings() {
+        $.ajax({
+            url: '/api/booking/get-artist-bookings',
+            type: 'GET',
+            success: function(response) {
+                if (response.success) {
+                    let bookings = response.data;
+                    let bookingsList = '';
+                    bookings.forEach(booking => {
+                        bookingsList += `
                         <tr>
                             <td>${booking.booking_id}</td>
                             <td>${booking.performance_type}</td>
                             <td>${booking.event_date}</td>
                             <td>${booking.status}</td>
-                            <td>${booking.total_cost}</td>
+                            <td>${booking.advance_amount}</td>
                             <td>${booking.payment_status}</td>
                             <td>
                                 <button class="btn btn-primary view-bookings">View</button>
@@ -46,16 +46,20 @@
                             </td>
                         </tr>
                     `;
-                });
-                $('#artist-bookings-list').html(bookingsList);
-            } else {
-                alert(response.message);
+                    });
+                    $('#artist-bookings-list').html(bookingsList);
+                } else {
+                    alert(response.message);
+                }
+            },
+            error: function() {
+                alert('Error fetching artist bookings');
             }
-        },
-        error: function() {
-            alert('Error fetching artist bookings');
-        }
-    });
+        });
+    }
+
+    $(document).ready(function() {
+    getArtistBookings();
 
     $('#artist-bookings-list').on('click', '.view-bookings', function() {
         let bookingId = $(this).closest('tr').find('td:first').text();
@@ -81,14 +85,14 @@
             },
             success: function(response) {
                 if (response.success) {
-                    alert('Booking rejected successfully');
-                    window.location.reload();
+                    toastr.success(response.message);
+                    getArtistBookings();
                 } else {
-                    alert(response.message);
+                    toastr.error(response.error);
                 }
             },
             error: function() {
-                alert('Error rejecting booking');
+                toastr.error('Error rejecting booking');
             }
         });
     }
@@ -102,14 +106,14 @@
             },
             success: function(response) {
                 if (response.success) {
-                    alert('Booking accepted successfully');
-                    window.location.reload();
+                    toastr.success(response.message);
+                    getArtistBookings();
                 } else {
-                    alert(response.message);
+                    alert(response.error);
                 }
             },
             error: function() {
-                alert('Error accepting booking');
+                toastr.error("Something went wrong. Please try again later.")
             }
         });
     }

@@ -74,7 +74,73 @@ class BookingService
     public function updateBookingStatus(int $id, string $status): int
     {
         // Business logic, validation, etc.
-        return $this->bookingRepository->updateStatus($id, $status);
+        $update =  $this->bookingRepository->updateStatus($id, $status);
+        $this->sendBookingStatusMail($id);
+        return $update;
+    }
+
+    private function sendBookingStatusMail($bookingId): void
+    {
+        $mailData = $this->bookingRepository->getBookingDetails($bookingId);
+
+        // Extract the necessary details
+        $artistName = $mailData['artist'];
+        $artistEmail = $mailData['artist_email'];
+        $userName = $mailData['user'];
+        $userEmail = $mailData['user_email'];
+        $eventDate = $mailData['event_date'];
+        $eventStartTime = $mailData['event_start_time'];
+        $eventEndTime = $mailData['event_end_time'];
+        $localArea = $mailData['local_area'];
+        $performanceType = $mailData['performance_type'];
+        $bookingStatus = $mailData['status'];
+        $advanceAmount = $mailData['advance_amount'];
+        $paymentStatus = $mailData['payment_status'];
+        $paymentMessage = '';
+        $link = 'localhost/dashboard/booking/view?bookingId=' . $bookingId;
+        if ($paymentStatus === 'pending' || $paymentStatus === 'success') {
+            $paymentMessage = "Your advance amount Rs. {$advanceAmount} will be refunded shortly.";
+        }
+        switch ($bookingStatus) {
+            case 'approved':
+                $artistSubject = "Booking for {$performanceType} on {$eventDate} has been approved";
+                $userSubject = "Your booking for {$performanceType} on {$eventDate} has been approved";
+                $artistMessage = "Dear {$artistName}, You just approved a booking from {$userName} for a {$performanceType} on {$eventDate} from {$eventStartTime} to {$eventEndTime} at {$localArea}. Please check your dashboard or click on the following link for more details. <br><a href = 'http://localhost/dashboard/booking/view?bookingId={$bookingId}'>Details</a> for more details.<br>Best regards,<br>Open Mic Hub";
+                $userMessage = "Dear {$userName},Your booking for a {$performanceType} on {$eventDate} from {$eventStartTime} to {$eventEndTime} at {$localArea} has been approved. <br> Please check your dashboard or click on the following link for more details. <br><a href = 'http://localhost/dashboard/booking/view?bookingId={$bookingId}'>Details</a> for more details.<br>Best regards,<br>Open Mic Hub";
+                break;
+
+            case 'pending':
+                $artistSubject = "Booking for {$performanceType} on {$eventDate} is pending";
+                $userSubject = "Your booking for {$performanceType} on {$eventDate} is pending";
+                $artistMessage = "Dear {$artistName}, You have a pending booking from {$userName} for a {$performanceType} on {$eventDate} from {$eventStartTime} to {$eventEndTime} at {$localArea}. Please check your dashboard or click on the following link for more details. <br><a href = 'http://localhost/dashboard/booking/view?bookingId={$bookingId}'>Details</a> for more details.<br>Best regards,<br>Open Mic Hub";
+                $userMessage = "Dear {$userName},Your booking for a {$performanceType} on {$eventDate} from {$eventStartTime} to {$eventEndTime} at {$localArea} is pending. <br> Please check your dashboard or click on the following link for more details. <br><a href = 'http://localhost/dashboard/booking/view?bookingId={$bookingId}'>Details</a> for more details.<br>Best regards,<br>Open Mic Hub";
+                break;
+
+            case 'declined':
+                $artistSubject = "Booking for {$performanceType} on {$eventDate} has been declined";
+                $userSubject = "Your booking for {$performanceType} on {$eventDate} has been declined";
+                $artistMessage = "Dear {$artistName}, You just declined a booking from {$userName} for a {$performanceType} on {$eventDate} from {$eventStartTime} to {$eventEndTime} at {$localArea}. Please check your dashboard or click on the following link for more details. <br><a href = 'http://localhost/dashboard/booking/view?bookingId={$bookingId}'>Details</a> for more details.<br>Best regards,<br>Open Mic Hub";
+                $userMessage = "Dear {$userName},Your booking for a {$performanceType} on {$eventDate} from {$eventStartTime} to {$eventEndTime} at {$localArea} has been declined. Please contact the respective artist ({$artistName}) for more info if required. <br> {$paymentMessage}. Please check your dashboard or click on the following link for more details. <br><a href = 'http://localhost/dashboard/booking/view?bookingId={$bookingId}'>Details</a> for more details.<br>Best regards,<br>Open Mic Hub";
+                break;
+
+            case 'cancelled':
+                $artistSubject = "Booking for {$performanceType} on {$eventDate} has been cancelled";
+                $userSubject = "Your cancelled booking for {$performanceType} on {$eventDate}";
+                $artistMessage = "Dear {$artistName}, The booking from {$userName} for a {$performanceType} on {$eventDate} from {$eventStartTime} to {$eventEndTime} at {$localArea} has been cancelled. Please check your dashboard or click on the following link for more details. <br><a href = 'http://localhost/dashboard/booking/view?bookingId={$bookingId}'>Details</a> for more details.<br>Best regards,<br>Open Mic Hub";
+                $userMessage = "Dear {$userName}, you have cancelled your booking for a {$performanceType} on {$eventDate} from {$eventStartTime} to {$eventEndTime} at {$localArea}. <br> {$paymentMessage}. Please check your dashboard or click on the following link for more details. <br><a href = 'http://localhost/dashboard/booking/view?bookingId={$bookingId}'>Details</a> for more details.<br>Best regards,<br>Open Mic Hub";
+                break;
+
+            default:
+                $artistSubject = "Booking for {$performanceType} on {$eventDate} has been updated";
+                $userSubject = "Your booking for {$performanceType} on {$eventDate} has been updated";
+                $artistMessage = "Dear {$artistName}, The booking from {$userName} for a {$performanceType} on {$eventDate} from {$eventStartTime} to {$eventEndTime} at {$localArea} has been updated. Please check your dashboard for more details.<br>Best regards,<br>Open Mic Hub";
+                $userMessage = "Dear {$userName}, your booking for a {$performanceType} on {$eventDate} from {$eventStartTime} to {$eventEndTime} at {$localArea} has been updated. <br> {$paymentMessage}. Please check your dashboard for more details.  <br>Best regards,<br>Open Mic Hub";
+                break;
+        }
+
+        // Send the email asynchronously
+        $this->mailerService->sendAsyncMail($artistEmail, $artistName, $artistSubject, $artistMessage );
+        $this->mailerService->sendAsyncMail($userEmail, $userName, $userSubject, $userMessage);
     }
 
     public function getUserBookings(mixed $userId)
@@ -102,19 +168,19 @@ class BookingService
         return $this->bookingRepository->getBookingDetails($bookingId);
     }
 
-    public function cancelBooking(mixed $bookingId)
+    public function cancelBooking(mixed $bookingId): void
     {
-        return $this->bookingRepository->cancelBooking($bookingId);
+        $this->updateBookingStatus($bookingId, 'cancelled');
     }
 
-    public function acceptBooking(mixed $bookingId)
+    public function acceptBooking(mixed $bookingId): void
     {
-        return $this->bookingRepository->acceptBooking($bookingId);
+        $this->updateBookingStatus($bookingId, 'approved');
     }
 
-    public function rejectBooking(mixed $bookingId)
+    public function rejectBooking(mixed $bookingId): void
     {
-        return $this->bookingRepository->rejectBooking($bookingId);
+        $this->updateBookingStatus($bookingId, 'declined');
     }
 
 

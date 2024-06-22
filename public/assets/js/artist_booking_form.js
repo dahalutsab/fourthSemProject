@@ -138,7 +138,6 @@ document.addEventListener('DOMContentLoaded', function() {
                 if (data.success) {
                     const bookingId = data.data.bookingId;
 
-                    alert('Booking saved successfully! with booking id: ' + bookingId);
                     window.location = '/dashboard/payment/' + bookingId;
                 } else {
                     toastr.error( data.error);

@@ -4,6 +4,7 @@ namespace app\service\implementation;
 
 require __DIR__ . '/../../../vendor/autoload.php'; // Adjust path as needed
 
+use app\repository\implementation\TransactionRepository;
 use app\service\MailerServiceInterface;
 use PHPMailer\PHPMailer\Exception;
 use PHPMailer\PHPMailer\PHPMailer;
@@ -92,4 +93,29 @@ class MailerService implements MailerServiceInterface
         $command = "php " . __DIR__ . "/../../scripts/send_email.php $toEmail $toUserName $subject $message > /dev/null 2>&1 &";
         shell_exec($command);
     }
-}
+
+    public function sendPaymentConfirmation(mixed $bookingId): void
+    {
+        $paymentRepo = new TransactionRepository();
+        $paymentDetails = $paymentRepo->getUserPaymentInfoForMail($bookingId);
+
+        $userEmail = $paymentDetails['userEmail'];
+        $userName = $paymentDetails['userName'];
+        $artistEmail = $paymentDetails['artistEmail'];
+        $artistName = $paymentDetails['artistName'];
+        $artistUserName = $paymentDetails['artistName'];
+        $advanceAmount = $paymentDetails['advance_amount'];
+        $totalCost = $paymentDetails['total_cost'];
+        $remainingAmount = $paymentDetails['remaining_amount'];
+        $eventDate = $paymentDetails['event_date'];
+        $eventStartTime = $paymentDetails['event_start_time'];
+        $eventEndTime = $paymentDetails['event_end_time'];
+
+        $subject = "Payment Confirmation";
+        $artistMessage = "You have received a payment of NPR $advanceAmount for event on $eventDate from $eventStartTime to $eventEndTime . <br> The total cost of the event is NPR $totalCost. <br> The remaining amount to be received after event is NPR $remainingAmount.<br> You can view the details of the event in your dashboard. <br><br> Regards, <br> Open Mic Hub";
+
+        $userMessage = "You have successfully made a payment of NPR $advanceAmount for event on $eventDate from $eventStartTime to $eventEndTime .<br> The total cost of the event is NPR $totalCost. <br> The remaining amount to be paid after event is NPR $remainingAmount.<br> You can view the details of the event in your dashboard. <br><br> Regards, <br> Open Mic Hub";
+
+        $this->sendAsyncMail($artistEmail, $artistUserName, $subject, $artistMessage);
+        $this->sendAsyncMail($userEmail, $userName, $subject, $userMessage);
+    }}

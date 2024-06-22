@@ -3,6 +3,7 @@
 namespace app\payment;
 
 use app\response\APIResponse;
+use app\service\implementation\MailerService;
 use app\service\implementation\TransactionService;
 use Exception;
 
@@ -64,7 +65,9 @@ class EsewaIntegration
                     }
                     $this->transactionService->savePayment($bookingId, $status, $jsonDecodedData['transaction_uuid'], 'ESEWA');
                     if ($status === 'success') {
-                        header("Location: /dashboard/bookings");
+                        $mailService = new MailerService();
+                        $mailService->sendPaymentConfirmation( $bookingId);
+                        header("Location: /dashboard/user/booking");
                     } else {
                         header("Location: /payment/failure");
                     }

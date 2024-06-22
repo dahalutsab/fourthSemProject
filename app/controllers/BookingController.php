@@ -167,12 +167,8 @@ class BookingController
         try {
             if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 $bookingId = $_POST['booking_id'];
-                $cancelled = $this->bookingService->rejectBooking($bookingId);
-                if ($cancelled) {
-                    APIResponse::success($cancelled, 'Booking cancelled successfully');
-                } else {
-                    APIResponse::error('Booking cancellation failed');
-                }
+                $this->bookingService->rejectBooking($bookingId);
+                APIResponse::success("rejected", 'Booking rejected successfully');
             }
         } catch (\Exception $e) {
             APIResponse::error($e->getMessage());
@@ -185,12 +181,9 @@ class BookingController
         try {
             if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 $bookingId = $_POST['booking_id'];
-                $accepted = $this->bookingService->acceptBooking($bookingId);
-                if ($accepted) {
-                    APIResponse::success($accepted, 'Booking accepted successfully');
-                } else {
-                    APIResponse::error('Booking acceptance failed');
-                }
+                $this->bookingService->acceptBooking($bookingId);
+                APIResponse::success("Accepted", 'Booking accepted successfully');
+
             }
         } catch (\Exception $e) {
             APIResponse::error($e->getMessage());
@@ -203,12 +196,8 @@ class BookingController
         try {
             if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 $bookingId = $_POST['booking_id'];
-                $cancelled = $this->bookingService->cancelBooking($bookingId);
-                if ($cancelled) {
-                    APIResponse::success($cancelled, 'Booking cancelled successfully');
-                } else {
-                    APIResponse::error('Booking cancellation failed');
-                }
+                $this->bookingService->cancelBooking($bookingId);
+                APIResponse::success("Cancelled", 'Booking cancelled successfully');
             }
         } catch (\Exception $e) {
             APIResponse::error($e->getMessage());

@@ -130,6 +130,7 @@ class BookingRepository implements BookingRepositoryInterface
                    bookings.event_date,
                    bookings.status,
                    bookings.total_cost,
+                   bookings.advance_amount,
                    COALESCE((SELECT transactions.status FROM transactions WHERE transactions.booking_id = bookings.booking_id ORDER BY transactions.created_at DESC LIMIT 1), 'not_paid') as payment_status
             FROM bookings
             WHERE bookings.user_id = ?";
@@ -147,6 +148,7 @@ class BookingRepository implements BookingRepositoryInterface
                        bookings.event_date,
                        bookings.status,
                        bookings.total_cost,
+                        bookings.advance_amount,
                        COALESCE((SELECT transactions.status FROM transactions WHERE transactions.booking_id = bookings.booking_id ORDER BY transactions.created_at DESC LIMIT 1), 'not_paid') as payment_status
                 FROM bookings
                 WHERE bookings.artist_id = ?";
@@ -162,7 +164,7 @@ class BookingRepository implements BookingRepositoryInterface
     {
         $sql = "SELECT users.username as user,
                        transactions.created_at as payment_date,
-                       bookings.total_cost as amount,
+                       bookings.advance_amount as amount,
                        transactions.status,
                         transactions.payment_service as payment_method
                 FROM bookings
@@ -182,9 +184,9 @@ class BookingRepository implements BookingRepositoryInterface
     {
         $sql = "SELECT users.username as artist,
                        transactions.created_at as payment_date,
-                       bookings.total_cost as amount,
+                       bookings.advance_amount as amount,
                        transactions.status,
-                        transactions.payment_service as payment_method
+                    transactions.payment_service as payment_method
                 FROM bookings
                 INNER JOIN users ON bookings.artist_id = users.id
                 INNER JOIN transactions ON bookings.booking_id = transactions.booking_id
@@ -218,13 +220,15 @@ class BookingRepository implements BookingRepositoryInterface
                        users.username as user,
                        users.email as user_email,
                        artist.username as artist,
-                       artist.email as artist_email
+                       artist.email as artist_email,
+                       transactions.status as payment_status
                 FROM bookings
                 INNER JOIN users ON bookings.user_id = users.id
                 INNER JOIN users as artist ON bookings.artist_id = artist.id
                 INNER JOIN provinces ON bookings.province_id = provinces.province_id
                 INNER JOIN districts ON bookings.district_id = districts.district_id
                 INNER JOIN municipalities ON bookings.municipality_id = municipalities.municipality_id
+                INNER JOIN transactions ON bookings.booking_id = transactions.booking_id
                 WHERE bookings.booking_id = ?";
 
         $stmt = $this->db->prepare($sql);

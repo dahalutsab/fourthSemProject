@@ -2,6 +2,7 @@
 
 namespace app\payment;
 
+use app\service\implementation\MailerService;
 use app\service\implementation\TransactionService;
 
 class KhaltiIntegration
@@ -127,7 +128,9 @@ class KhaltiIntegration
             // Save the transaction details to the database
             $this->transactionService->savePayment($bookingId, $status, $transaction_id, 'KHALTI');
             if ($status === 'success') {
-                header('Location: dashboard/user/bookings' . $bookingId);
+                $mailService = new MailerService();
+                $mailService->sendPaymentConfirmation($bookingId);
+                header('Location: /dashboard/user/booking');
             } else {
                 header('Location: /payment/failure');
             }

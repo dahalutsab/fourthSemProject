@@ -36,7 +36,7 @@
                             <td>${booking.performance_type}</td>
                             <td>${booking.event_date}</td>
                             <td>${booking.status}</td>
-                            <td>${booking.total_cost}</td>
+                            <td>${booking.advance_amount}</td>
                             <td>${booking.payment_status}</td>
                             <td>
                                 ${booking.payment_status !== 'success' && booking.status !== 'cancelled' ? '<button class="btn btn-primary go-to-payment">Go to Payment</button>' : '<button class="btn btn-primary view-bookings">View</button>'}
