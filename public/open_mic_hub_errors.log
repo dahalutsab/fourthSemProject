@@ -95,3 +95,99 @@ Stack trace:
 [21-Jun-2024 14:13:30 UTC] PHP Warning:  include(C:\xampp\htdocs\OpenMicHub\app\scripts/../../templates/email_template.html): Failed to open stream: No such file or directory in C:\xampp\htdocs\OpenMicHub\app\scripts\send_email.php on line 29
 [21-Jun-2024 14:13:30 UTC] PHP Warning:  include(): Failed opening 'C:\xampp\htdocs\OpenMicHub\app\scripts/../../templates/email_template.html' for inclusion (include_path='.;C:\php\pear') in C:\xampp\htdocs\OpenMicHub\app\scripts\send_email.php on line 29
 [21-Jun-2024 19:58:30 Asia/Kathmandu] Mailer Error: Message body empty
+[22-Jun-2024 04:41:32 UTC] PHP Warning:  Trying to access array offset on null in C:\xampp\htdocs\OpenMicHub\app\service\implementation\BookingService.php on line 87
+[22-Jun-2024 04:41:32 UTC] PHP Warning:  Trying to access array offset on null in C:\xampp\htdocs\OpenMicHub\app\service\implementation\BookingService.php on line 88
+[22-Jun-2024 04:41:32 UTC] PHP Warning:  Trying to access array offset on null in C:\xampp\htdocs\OpenMicHub\app\service\implementation\BookingService.php on line 89
+[22-Jun-2024 04:41:32 UTC] PHP Warning:  Trying to access array offset on null in C:\xampp\htdocs\OpenMicHub\app\service\implementation\BookingService.php on line 90
+[22-Jun-2024 04:41:32 UTC] PHP Warning:  Trying to access array offset on null in C:\xampp\htdocs\OpenMicHub\app\service\implementation\BookingService.php on line 91
+[22-Jun-2024 04:41:32 UTC] PHP Warning:  Trying to access array offset on null in C:\xampp\htdocs\OpenMicHub\app\service\implementation\BookingService.php on line 92
+[22-Jun-2024 04:41:32 UTC] PHP Warning:  Trying to access array offset on null in C:\xampp\htdocs\OpenMicHub\app\service\implementation\BookingService.php on line 93
+[22-Jun-2024 04:41:32 UTC] PHP Warning:  Trying to access array offset on null in C:\xampp\htdocs\OpenMicHub\app\service\implementation\BookingService.php on line 94
+[22-Jun-2024 04:41:32 UTC] PHP Warning:  Trying to access array offset on null in C:\xampp\htdocs\OpenMicHub\app\service\implementation\BookingService.php on line 95
+[22-Jun-2024 04:41:32 UTC] PHP Warning:  Trying to access array offset on null in C:\xampp\htdocs\OpenMicHub\app\service\implementation\BookingService.php on line 96
+[22-Jun-2024 04:41:32 UTC] PHP Warning:  Trying to access array offset on null in C:\xampp\htdocs\OpenMicHub\app\service\implementation\BookingService.php on line 97
+[22-Jun-2024 04:41:32 UTC] PHP Warning:  Trying to access array offset on null in C:\xampp\htdocs\OpenMicHub\app\service\implementation\BookingService.php on line 98
+[22-Jun-2024 04:41:32 UTC] PHP Fatal error:  Uncaught TypeError: app\service\implementation\MailerService::sendAsyncMail(): Argument #1 ($toEmail) must be of type string, null given, called in C:\xampp\htdocs\OpenMicHub\app\service\implementation\BookingService.php on line 142 and defined in C:\xampp\htdocs\OpenMicHub\app\service\implementation\MailerService.php:86
+Stack trace:
+#0 C:\xampp\htdocs\OpenMicHub\app\service\implementation\BookingService.php(142): app\service\implementation\MailerService->sendAsyncMail()
+#1 C:\xampp\htdocs\OpenMicHub\app\service\implementation\BookingService.php(78): app\service\implementation\BookingService->sendBookingStatusMail()
+#2 C:\xampp\htdocs\OpenMicHub\app\service\implementation\BookingService.php(178): app\service\implementation\BookingService->updateBookingStatus()
+#3 C:\xampp\htdocs\OpenMicHub\app\controllers\BookingController.php(184): app\service\implementation\BookingService->acceptBooking()
+#4 [internal function]: app\controllers\BookingController->acceptBooking()
+#5 C:\xampp\htdocs\OpenMicHub\app\Router.php(81): call_user_func_array()
+#6 C:\xampp\htdocs\OpenMicHub\app\Routes.php(232): app\Router->run()
+#7 C:\xampp\htdocs\OpenMicHub\public\index.php(14): require_once('...')
+#8 {main}
+  thrown in C:\xampp\htdocs\OpenMicHub\app\service\implementation\MailerService.php on line 86
+[22-Jun-2024 08:30:34 UTC] PHP Warning:  Trying to access array offset on null in C:\xampp\htdocs\OpenMicHub\app\service\implementation\BookingService.php on line 87
+[22-Jun-2024 08:30:34 UTC] PHP Warning:  Trying to access array offset on null in C:\xampp\htdocs\OpenMicHub\app\service\implementation\BookingService.php on line 88
+[22-Jun-2024 08:30:34 UTC] PHP Warning:  Trying to access array offset on null in C:\xampp\htdocs\OpenMicHub\app\service\implementation\BookingService.php on line 89
+[22-Jun-2024 08:30:34 UTC] PHP Warning:  Trying to access array offset on null in C:\xampp\htdocs\OpenMicHub\app\service\implementation\BookingService.php on line 90
+[22-Jun-2024 08:30:34 UTC] PHP Warning:  Trying to access array offset on null in C:\xampp\htdocs\OpenMicHub\app\service\implementation\BookingService.php on line 91
+[22-Jun-2024 08:30:34 UTC] PHP Warning:  Trying to access array offset on null in C:\xampp\htdocs\OpenMicHub\app\service\implementation\BookingService.php on line 92
+[22-Jun-2024 08:30:34 UTC] PHP Warning:  Trying to access array offset on null in C:\xampp\htdocs\OpenMicHub\app\service\implementation\BookingService.php on line 93
+[22-Jun-2024 08:30:34 UTC] PHP Warning:  Trying to access array offset on null in C:\xampp\htdocs\OpenMicHub\app\service\implementation\BookingService.php on line 94
+[22-Jun-2024 08:30:34 UTC] PHP Warning:  Trying to access array offset on null in C:\xampp\htdocs\OpenMicHub\app\service\implementation\BookingService.php on line 95
+[22-Jun-2024 08:30:34 UTC] PHP Warning:  Trying to access array offset on null in C:\xampp\htdocs\OpenMicHub\app\service\implementation\BookingService.php on line 96
+[22-Jun-2024 08:30:34 UTC] PHP Warning:  Trying to access array offset on null in C:\xampp\htdocs\OpenMicHub\app\service\implementation\BookingService.php on line 97
+[22-Jun-2024 08:30:34 UTC] PHP Warning:  Trying to access array offset on null in C:\xampp\htdocs\OpenMicHub\app\service\implementation\BookingService.php on line 98
+[22-Jun-2024 08:30:34 UTC] PHP Fatal error:  Uncaught TypeError: app\service\implementation\MailerService::sendAsyncMail(): Argument #1 ($toEmail) must be of type string, null given, called in C:\xampp\htdocs\OpenMicHub\app\service\implementation\BookingService.php on line 142 and defined in C:\xampp\htdocs\OpenMicHub\app\service\implementation\MailerService.php:86
+Stack trace:
+#0 C:\xampp\htdocs\OpenMicHub\app\service\implementation\BookingService.php(142): app\service\implementation\MailerService->sendAsyncMail()
+#1 C:\xampp\htdocs\OpenMicHub\app\service\implementation\BookingService.php(78): app\service\implementation\BookingService->sendBookingStatusMail()
+#2 C:\xampp\htdocs\OpenMicHub\app\service\implementation\BookingService.php(173): app\service\implementation\BookingService->updateBookingStatus()
+#3 C:\xampp\htdocs\OpenMicHub\app\controllers\BookingController.php(199): app\service\implementation\BookingService->cancelBooking()
+#4 [internal function]: app\controllers\BookingController->cancelBooking()
+#5 C:\xampp\htdocs\OpenMicHub\app\Router.php(81): call_user_func_array()
+#6 C:\xampp\htdocs\OpenMicHub\app\Routes.php(232): app\Router->run()
+#7 C:\xampp\htdocs\OpenMicHub\public\index.php(14): require_once('...')
+#8 {main}
+  thrown in C:\xampp\htdocs\OpenMicHub\app\service\implementation\MailerService.php on line 86
+[22-Jun-2024 08:30:50 UTC] PHP Warning:  Trying to access array offset on null in C:\xampp\htdocs\OpenMicHub\app\service\implementation\BookingService.php on line 87
+[22-Jun-2024 08:30:50 UTC] PHP Warning:  Trying to access array offset on null in C:\xampp\htdocs\OpenMicHub\app\service\implementation\BookingService.php on line 88
+[22-Jun-2024 08:30:50 UTC] PHP Warning:  Trying to access array offset on null in C:\xampp\htdocs\OpenMicHub\app\service\implementation\BookingService.php on line 89
+[22-Jun-2024 08:30:50 UTC] PHP Warning:  Trying to access array offset on null in C:\xampp\htdocs\OpenMicHub\app\service\implementation\BookingService.php on line 90
+[22-Jun-2024 08:30:50 UTC] PHP Warning:  Trying to access array offset on null in C:\xampp\htdocs\OpenMicHub\app\service\implementation\BookingService.php on line 91
+[22-Jun-2024 08:30:50 UTC] PHP Warning:  Trying to access array offset on null in C:\xampp\htdocs\OpenMicHub\app\service\implementation\BookingService.php on line 92
+[22-Jun-2024 08:30:50 UTC] PHP Warning:  Trying to access array offset on null in C:\xampp\htdocs\OpenMicHub\app\service\implementation\BookingService.php on line 93
+[22-Jun-2024 08:30:50 UTC] PHP Warning:  Trying to access array offset on null in C:\xampp\htdocs\OpenMicHub\app\service\implementation\BookingService.php on line 94
+[22-Jun-2024 08:30:50 UTC] PHP Warning:  Trying to access array offset on null in C:\xampp\htdocs\OpenMicHub\app\service\implementation\BookingService.php on line 95
+[22-Jun-2024 08:30:50 UTC] PHP Warning:  Trying to access array offset on null in C:\xampp\htdocs\OpenMicHub\app\service\implementation\BookingService.php on line 96
+[22-Jun-2024 08:30:50 UTC] PHP Warning:  Trying to access array offset on null in C:\xampp\htdocs\OpenMicHub\app\service\implementation\BookingService.php on line 97
+[22-Jun-2024 08:30:50 UTC] PHP Warning:  Trying to access array offset on null in C:\xampp\htdocs\OpenMicHub\app\service\implementation\BookingService.php on line 98
+[22-Jun-2024 08:30:50 UTC] PHP Fatal error:  Uncaught TypeError: app\service\implementation\MailerService::sendAsyncMail(): Argument #1 ($toEmail) must be of type string, null given, called in C:\xampp\htdocs\OpenMicHub\app\service\implementation\BookingService.php on line 142 and defined in C:\xampp\htdocs\OpenMicHub\app\service\implementation\MailerService.php:86
+Stack trace:
+#0 C:\xampp\htdocs\OpenMicHub\app\service\implementation\BookingService.php(142): app\service\implementation\MailerService->sendAsyncMail()
+#1 C:\xampp\htdocs\OpenMicHub\app\service\implementation\BookingService.php(78): app\service\implementation\BookingService->sendBookingStatusMail()
+#2 C:\xampp\htdocs\OpenMicHub\app\service\implementation\BookingService.php(173): app\service\implementation\BookingService->updateBookingStatus()
+#3 C:\xampp\htdocs\OpenMicHub\app\controllers\BookingController.php(199): app\service\implementation\BookingService->cancelBooking()
+#4 [internal function]: app\controllers\BookingController->cancelBooking()
+#5 C:\xampp\htdocs\OpenMicHub\app\Router.php(81): call_user_func_array()
+#6 C:\xampp\htdocs\OpenMicHub\app\Routes.php(232): app\Router->run()
+#7 C:\xampp\htdocs\OpenMicHub\public\index.php(14): require_once('...')
+#8 {main}
+  thrown in C:\xampp\htdocs\OpenMicHub\app\service\implementation\MailerService.php on line 86
+[22-Jun-2024 08:31:47 UTC] PHP Warning:  Trying to access array offset on null in C:\xampp\htdocs\OpenMicHub\app\service\implementation\BookingService.php on line 87
+[22-Jun-2024 08:31:47 UTC] PHP Warning:  Trying to access array offset on null in C:\xampp\htdocs\OpenMicHub\app\service\implementation\BookingService.php on line 88
+[22-Jun-2024 08:31:47 UTC] PHP Warning:  Trying to access array offset on null in C:\xampp\htdocs\OpenMicHub\app\service\implementation\BookingService.php on line 89
+[22-Jun-2024 08:31:47 UTC] PHP Warning:  Trying to access array offset on null in C:\xampp\htdocs\OpenMicHub\app\service\implementation\BookingService.php on line 90
+[22-Jun-2024 08:31:47 UTC] PHP Warning:  Trying to access array offset on null in C:\xampp\htdocs\OpenMicHub\app\service\implementation\BookingService.php on line 91
+[22-Jun-2024 08:31:47 UTC] PHP Warning:  Trying to access array offset on null in C:\xampp\htdocs\OpenMicHub\app\service\implementation\BookingService.php on line 92
+[22-Jun-2024 08:31:47 UTC] PHP Warning:  Trying to access array offset on null in C:\xampp\htdocs\OpenMicHub\app\service\implementation\BookingService.php on line 93
+[22-Jun-2024 08:31:47 UTC] PHP Warning:  Trying to access array offset on null in C:\xampp\htdocs\OpenMicHub\app\service\implementation\BookingService.php on line 94
+[22-Jun-2024 08:31:47 UTC] PHP Warning:  Trying to access array offset on null in C:\xampp\htdocs\OpenMicHub\app\service\implementation\BookingService.php on line 95
+[22-Jun-2024 08:31:47 UTC] PHP Warning:  Trying to access array offset on null in C:\xampp\htdocs\OpenMicHub\app\service\implementation\BookingService.php on line 96
+[22-Jun-2024 08:31:47 UTC] PHP Warning:  Trying to access array offset on null in C:\xampp\htdocs\OpenMicHub\app\service\implementation\BookingService.php on line 97
+[22-Jun-2024 08:31:47 UTC] PHP Warning:  Trying to access array offset on null in C:\xampp\htdocs\OpenMicHub\app\service\implementation\BookingService.php on line 98
+[22-Jun-2024 08:31:47 UTC] PHP Fatal error:  Uncaught TypeError: app\service\implementation\MailerService::sendAsyncMail(): Argument #1 ($toEmail) must be of type string, null given, called in C:\xampp\htdocs\OpenMicHub\app\service\implementation\BookingService.php on line 142 and defined in C:\xampp\htdocs\OpenMicHub\app\service\implementation\MailerService.php:86
+Stack trace:
+#0 C:\xampp\htdocs\OpenMicHub\app\service\implementation\BookingService.php(142): app\service\implementation\MailerService->sendAsyncMail()
+#1 C:\xampp\htdocs\OpenMicHub\app\service\implementation\BookingService.php(78): app\service\implementation\BookingService->sendBookingStatusMail()
+#2 C:\xampp\htdocs\OpenMicHub\app\service\implementation\BookingService.php(173): app\service\implementation\BookingService->updateBookingStatus()
+#3 C:\xampp\htdocs\OpenMicHub\app\controllers\BookingController.php(199): app\service\implementation\BookingService->cancelBooking()
+#4 [internal function]: app\controllers\BookingController->cancelBooking()
+#5 C:\xampp\htdocs\OpenMicHub\app\Router.php(81): call_user_func_array()
+#6 C:\xampp\htdocs\OpenMicHub\app\Routes.php(232): app\Router->run()
+#7 C:\xampp\htdocs\OpenMicHub\public\index.php(14): require_once('...')
+#8 {main}
+  thrown in C:\xampp\htdocs\OpenMicHub\app\service\implementation\MailerService.php on line 86

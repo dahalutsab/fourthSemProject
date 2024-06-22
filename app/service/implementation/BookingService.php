@@ -97,7 +97,7 @@ class BookingService
         $advanceAmount = $mailData['advance_amount'];
         $paymentStatus = $mailData['payment_status'];
         $paymentMessage = '';
-        $link = 'localhost/dashboard/booking/view?bookingId=' . $bookingId;
+        $clickLink = "<a href = 'http://localhost/dashboard/booking/view?bookingId={$bookingId}'> link </a>";
         if ($paymentStatus === 'pending' || $paymentStatus === 'success') {
             $paymentMessage = "Your advance amount Rs. {$advanceAmount} will be refunded shortly.";
         }
@@ -105,29 +105,29 @@ class BookingService
             case 'approved':
                 $artistSubject = "Booking for {$performanceType} on {$eventDate} has been approved";
                 $userSubject = "Your booking for {$performanceType} on {$eventDate} has been approved";
-                $artistMessage = "Dear {$artistName}, You just approved a booking from {$userName} for a {$performanceType} on {$eventDate} from {$eventStartTime} to {$eventEndTime} at {$localArea}. Please check your dashboard or click on the following link for more details. <br><a href = 'http://localhost/dashboard/booking/view?bookingId={$bookingId}'>Details</a> for more details.<br>Best regards,<br>Open Mic Hub";
-                $userMessage = "Dear {$userName},Your booking for a {$performanceType} on {$eventDate} from {$eventStartTime} to {$eventEndTime} at {$localArea} has been approved. <br> Please check your dashboard or click on the following link for more details. <br><a href = 'http://localhost/dashboard/booking/view?bookingId={$bookingId}'>Details</a> for more details.<br>Best regards,<br>Open Mic Hub";
+                $artistMessage = "Dear {$artistName}, You just approved a booking from {$userName} for a {$performanceType} on {$eventDate} from {$eventStartTime} to {$eventEndTime} at {$localArea}. <br> Please check your dashboard or click on the {$clickLink} for more details.<br>Best regards,<br>Open Mic Hub";
+                $userMessage = "Dear {$userName},Your booking for a {$performanceType} on {$eventDate} from {$eventStartTime} to {$eventEndTime} at {$localArea} has been approved. <br> <br> Please check your dashboard or click on the {$clickLink} for more details.<br>Best regards,<br>Open Mic Hub";
                 break;
 
             case 'pending':
                 $artistSubject = "Booking for {$performanceType} on {$eventDate} is pending";
                 $userSubject = "Your booking for {$performanceType} on {$eventDate} is pending";
-                $artistMessage = "Dear {$artistName}, You have a pending booking from {$userName} for a {$performanceType} on {$eventDate} from {$eventStartTime} to {$eventEndTime} at {$localArea}. Please check your dashboard or click on the following link for more details. <br><a href = 'http://localhost/dashboard/booking/view?bookingId={$bookingId}'>Details</a> for more details.<br>Best regards,<br>Open Mic Hub";
-                $userMessage = "Dear {$userName},Your booking for a {$performanceType} on {$eventDate} from {$eventStartTime} to {$eventEndTime} at {$localArea} is pending. <br> Please check your dashboard or click on the following link for more details. <br><a href = 'http://localhost/dashboard/booking/view?bookingId={$bookingId}'>Details</a> for more details.<br>Best regards,<br>Open Mic Hub";
+                $artistMessage = "Dear {$artistName}, You have a pending booking from {$userName} for a {$performanceType} on {$eventDate} from {$eventStartTime} to {$eventEndTime} at {$localArea}. <br> Please check your dashboard or click on the  {$clickLink} for more details.<br>Best regards,<br>Open Mic Hub";
+                $userMessage = "Dear {$userName},Your booking for a {$performanceType} on {$eventDate} from {$eventStartTime} to {$eventEndTime} at {$localArea} is pending. <br> <br> Please check your dashboard or click on the  {$clickLink} for more details.<br>Best regards,<br>Open Mic Hub";
                 break;
 
             case 'declined':
                 $artistSubject = "Booking for {$performanceType} on {$eventDate} has been declined";
                 $userSubject = "Your booking for {$performanceType} on {$eventDate} has been declined";
-                $artistMessage = "Dear {$artistName}, You just declined a booking from {$userName} for a {$performanceType} on {$eventDate} from {$eventStartTime} to {$eventEndTime} at {$localArea}. Please check your dashboard or click on the following link for more details. <br><a href = 'http://localhost/dashboard/booking/view?bookingId={$bookingId}'>Details</a> for more details.<br>Best regards,<br>Open Mic Hub";
-                $userMessage = "Dear {$userName},Your booking for a {$performanceType} on {$eventDate} from {$eventStartTime} to {$eventEndTime} at {$localArea} has been declined. Please contact the respective artist ({$artistName}) for more info if required. <br> {$paymentMessage}. Please check your dashboard or click on the following link for more details. <br><a href = 'http://localhost/dashboard/booking/view?bookingId={$bookingId}'>Details</a> for more details.<br>Best regards,<br>Open Mic Hub";
+                $artistMessage = "Dear {$artistName}, You just declined a booking from {$userName} for a {$performanceType} on {$eventDate} from {$eventStartTime} to {$eventEndTime} at {$localArea}. <br> Please check your dashboard or click on the  {$clickLink} for more details.<br>Best regards,<br>Open Mic Hub";
+                $userMessage = "Dear {$userName},Your booking for a {$performanceType} on {$eventDate} from {$eventStartTime} to {$eventEndTime} at {$localArea} has been declined. Please contact the respective artist ({$artistName}) for more info if required. <br> {$paymentMessage}. <br> Please check your dashboard or click on the  {$clickLink} for more details. <br>Details</a> for more details.<br>Best regards,<br>Open Mic Hub";
                 break;
 
             case 'cancelled':
                 $artistSubject = "Booking for {$performanceType} on {$eventDate} has been cancelled";
                 $userSubject = "Your cancelled booking for {$performanceType} on {$eventDate}";
-                $artistMessage = "Dear {$artistName}, The booking from {$userName} for a {$performanceType} on {$eventDate} from {$eventStartTime} to {$eventEndTime} at {$localArea} has been cancelled. Please check your dashboard or click on the following link for more details. <br><a href = 'http://localhost/dashboard/booking/view?bookingId={$bookingId}'>Details</a> for more details.<br>Best regards,<br>Open Mic Hub";
-                $userMessage = "Dear {$userName}, you have cancelled your booking for a {$performanceType} on {$eventDate} from {$eventStartTime} to {$eventEndTime} at {$localArea}. <br> {$paymentMessage}. Please check your dashboard or click on the following link for more details. <br><a href = 'http://localhost/dashboard/booking/view?bookingId={$bookingId}'>Details</a> for more details.<br>Best regards,<br>Open Mic Hub";
+                $artistMessage = "Dear {$artistName}, The booking from {$userName} for a {$performanceType} on {$eventDate} from {$eventStartTime} to {$eventEndTime} at {$localArea} has been cancelled. <br> Please check your dashboard or click on the  {$clickLink} for more details.<br>Best regards,<br>Open Mic Hub";
+                $userMessage = "Dear {$userName}, you have cancelled your booking for a {$performanceType} on {$eventDate} from {$eventStartTime} to {$eventEndTime} at {$localArea}. <br> {$paymentMessage}. <br> Please check your dashboard or click on the  {$clickLink} for more details.<br>Best regards,<br>Open Mic Hub";
                 break;
 
             default:

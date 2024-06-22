@@ -228,7 +228,7 @@ class BookingRepository implements BookingRepositoryInterface
                 INNER JOIN provinces ON bookings.province_id = provinces.province_id
                 INNER JOIN districts ON bookings.district_id = districts.district_id
                 INNER JOIN municipalities ON bookings.municipality_id = municipalities.municipality_id
-                INNER JOIN transactions ON bookings.booking_id = transactions.booking_id
+                LEFT JOIN transactions ON bookings.booking_id = transactions.booking_id
                 WHERE bookings.booking_id = ?";
 
         $stmt = $this->db->prepare($sql);
