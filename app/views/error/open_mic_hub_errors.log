@@ -1,0 +1,5 @@
+[23-Jun-2024 06:02:32 UTC] PHP Warning:  Undefined variable $title in C:\xampp\htdocs\OpenMicHub\app\views\error\404.php on line 10
+[23-Jun-2024 06:02:32 UTC] PHP Fatal error:  Uncaught Error: Undefined constant "BASE_URL" in C:\xampp\htdocs\OpenMicHub\app\views\error\404.php:11
+Stack trace:
+#0 {main}
+  thrown in C:\xampp\htdocs\OpenMicHub\app\views\error\404.php on line 11

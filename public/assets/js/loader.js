@@ -20,3 +20,10 @@ window.fetch = (function(fetch) {
         return fetch.apply(this, arguments).finally(hideLoader);
     };
 })(window.fetch);
+
+
+$(document).ajaxStart(function() {
+    showLoader();
+}).ajaxStop(function() {
+    hideLoader();
+});

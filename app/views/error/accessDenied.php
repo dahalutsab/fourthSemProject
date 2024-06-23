@@ -21,7 +21,7 @@
         <h1>403</h1>
         <h2>Access Denied</h2>
         <p>Sorry but the page you are looking for is restricted based on role.</p>
-        <a id="backButton" ">Back to homepage</a>
+        <a id="backButton" >Back to homepage</a>
     </div>
 </div>
 

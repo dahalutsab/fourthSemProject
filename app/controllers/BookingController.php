@@ -166,7 +166,14 @@ class BookingController
     {
         try {
             if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-                $bookingId = $_POST['booking_id'];
+                $input = file_get_contents('php://input');
+                $data = json_decode($input, true);
+
+                if (json_last_error() !== JSON_ERROR_NONE) {
+                    throw new Exception('Invalid JSON data');
+                }
+
+                $bookingId = $data['booking_id'];
                 $this->bookingService->rejectBooking($bookingId);
                 APIResponse::success("rejected", 'Booking rejected successfully');
             }
@@ -175,27 +182,38 @@ class BookingController
         }
     }
 
-
     public function acceptBooking(): void
     {
         try {
             if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-                $bookingId = $_POST['booking_id'];
+                $input = file_get_contents('php://input');
+                $data = json_decode($input, true);
+
+                if (json_last_error() !== JSON_ERROR_NONE) {
+                    throw new Exception('Invalid JSON data');
+                }
+
+                $bookingId = $data['booking_id'];
                 $this->bookingService->acceptBooking($bookingId);
                 APIResponse::success("Accepted", 'Booking accepted successfully');
-
             }
         } catch (\Exception $e) {
             APIResponse::error($e->getMessage());
         }
     }
 
-
     public function cancelBooking(): void
     {
         try {
             if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-                $bookingId = $_POST['booking_id'];
+                $input = file_get_contents('php://input');
+                $data = json_decode($input, true);
+
+                if (json_last_error() !== JSON_ERROR_NONE) {
+                    throw new Exception('Invalid JSON data');
+                }
+
+                $bookingId = $data['booking_id'];
                 $this->bookingService->cancelBooking($bookingId);
                 APIResponse::success("Cancelled", 'Booking cancelled successfully');
             }

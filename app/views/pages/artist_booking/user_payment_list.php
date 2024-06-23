@@ -18,34 +18,32 @@
 </div>
 
 <script>
-    $(document).ready(function() {
-        $.ajax({
-            url: '/api/booking/get-user-payments',
-            type: 'GET',
-            success: function(response) {
+    document.addEventListener('DOMContentLoaded', function() {
+        fetch('/api/booking/get-user-payments')
+            .then(response => response.json())
+            .then(response => {
                 if (response.success) {
                     let payments = response.data;
                     let paymentsList = '';
                     payments.forEach((payment, index) => {
                         paymentsList += `
-                            <tr>
-                                <td>${index + 1}</td>
-                                <td>${payment.artist}</td>
-                                <td>${payment.payment_date}</td>
-                                <td>${payment.amount}</td>
-                                <td>${payment.status}</td>
-                                <td>${payment.payment_method}</td>
-                            </tr>
-                        `;
+                        <tr>
+                            <td>${index + 1}</td>
+                            <td>${payment.artist}</td>
+                            <td>${payment.payment_date}</td>
+                            <td>${payment.amount}</td>
+                            <td>${payment.status}</td>
+                            <td>${payment.payment_method}</td>
+                        </tr>
+                    `;
                     });
-                    $('#artist-payment-list').html(paymentsList);
+                    document.getElementById('artist-payment-list').innerHTML = paymentsList;
                 } else {
                     alert(response.message);
                 }
-            },
-            error: function() {
-                alert('Error fetching artist payments');
-            }
-        });
+            })
+            .catch(() => {
+                alert('Error fetching user payments');
+            });
     });
 </script>

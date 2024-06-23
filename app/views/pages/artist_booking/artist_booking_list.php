@@ -21,102 +21,103 @@
 </div>
 
 <script>
+
     function getArtistBookings() {
-        $.ajax({
-            url: '/api/booking/get-artist-bookings',
-            type: 'GET',
-            success: function(response) {
+        fetch('/api/booking/get-artist-bookings')
+            .then(response => response.json())
+            .then(response => {
                 if (response.success) {
                     let bookings = response.data;
                     let bookingsList = '';
                     bookings.forEach(booking => {
                         bookingsList += `
-                        <tr>
-                            <td>${booking.booking_id}</td>
-                            <td>${booking.performance_type}</td>
-                            <td>${booking.event_date}</td>
-                            <td>${booking.status}</td>
-                            <td>${booking.advance_amount}</td>
-                            <td>${booking.payment_status}</td>
-                            <td>
-                                <button class="btn btn-primary view-bookings">View</button>
-                                ${booking.status === 'pending' ? '<button class="btn btn-danger reject-booking">Reject</button>' : ''}
-                                ${booking.status === 'pending' ? '<button class="btn btn-primary accept-booking">Accept</button>' : ''}
-
-                            </td>
-                        </tr>
-                    `;
+                    <tr>
+                        <td>${booking.booking_id}</td>
+                        <td>${booking.performance_type}</td>
+                        <td>${booking.event_date}</td>
+                        <td>${booking.status}</td>
+                        <td>${booking.advance_amount}</td>
+                        <td>${booking.payment_status}</td>
+                        <td>
+                            <button class="btn btn-primary view-bookings">View</button>
+                            ${booking.status === 'pending' ? '<button class="btn btn-danger reject-booking">Reject</button>' : ''}
+                            ${booking.status === 'pending' ? '<button class="btn btn-primary accept-booking">Accept</button>' : ''}
+                        </td>
+                    </tr>
+                `;
                     });
-                    $('#artist-bookings-list').html(bookingsList);
+                    document.getElementById('artist-bookings-list').innerHTML = bookingsList;
                 } else {
                     alert(response.message);
                 }
-            },
-            error: function() {
+            })
+            .catch(() => {
                 alert('Error fetching artist bookings');
-            }
-        });
+            });
     }
 
-    $(document).ready(function() {
-    getArtistBookings();
-
-    $('#artist-bookings-list').on('click', '.view-bookings', function() {
-        let bookingId = $(this).closest('tr').find('td:first').text();
-        window.location.href = `/dashboard/booking/view?bookingId=${bookingId}`;
-    });
-
-    $('#artist-bookings-list').on('click', '.reject-booking', function() {
-        let bookingId = $(this).closest('tr').find('td:first').text();
-        rejectBooking(bookingId);
-    });
-
-    $('#artist-bookings-list').on('click', '.accept-booking', function() {
-        let bookingId = $(this).closest('tr').find('td:first').text();
-        acceptBooking(bookingId);
-    });
-
     function rejectBooking(bookingId) {
-        $.ajax({
-            url: '/api/booking/reject-booking',
-            type: 'POST',
-            data: {
-                booking_id: bookingId
+        fetch('/api/booking/reject-booking', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
             },
-            success: function(response) {
+            body: JSON.stringify({
+                booking_id: bookingId
+            })
+        })
+            .then(response => response.json())
+            .then(response => {
                 if (response.success) {
                     toastr.success(response.message);
                     getArtistBookings();
                 } else {
                     toastr.error(response.error);
                 }
-            },
-            error: function() {
+            })
+            .catch(() => {
                 toastr.error('Error rejecting booking');
-            }
-        });
+            });
     }
 
     function acceptBooking(bookingId) {
-        $.ajax({
-            url: '/api/booking/accept-booking',
-            type: 'POST',
-            data: {
-                booking_id: bookingId
+        fetch('/api/booking/accept-booking', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
             },
-            success: function(response) {
+            body: JSON.stringify({
+                booking_id: bookingId
+            })
+        })
+            .then(response => response.json())
+            .then(response => {
                 if (response.success) {
                     toastr.success(response.message);
                     getArtistBookings();
                 } else {
                     alert(response.error);
                 }
-            },
-            error: function() {
+            })
+            .catch(() => {
                 toastr.error("Something went wrong. Please try again later.")
-            }
-        });
+            });
     }
 
-});
+    document.addEventListener('DOMContentLoaded', function() {
+        getArtistBookings();
+
+        document.getElementById('artist-bookings-list').addEventListener('click', function(event) {
+            let target = event.target;
+            let bookingId = target.closest('tr').querySelector('td:first-child').textContent;
+
+            if (target.classList.contains('view-bookings')) {
+                window.location.href = `/dashboard/booking/view?bookingId=${bookingId}`;
+            } else if (target.classList.contains('reject-booking')) {
+                rejectBooking(bookingId);
+            } else if (target.classList.contains('accept-booking')) {
+                acceptBooking(bookingId);
+            }
+        });
+    });
 </script>

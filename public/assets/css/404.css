@@ -49,7 +49,7 @@ body {
     -ms-transform: scale(2.4);
     transform: scale(2.4);
     border-radius: 50%;
-    background-color: #f2f5f8;
+    background-color: var(--background-color);
     z-index: -1;
 }
 
@@ -59,7 +59,7 @@ body {
     font-weight: 700;
     margin-top: 0px;
     margin-bottom: 10px;
-    color: #151723;
+    color: var(--text-color);
     text-transform: uppercase;
 }
 
@@ -69,7 +69,7 @@ body {
     font-weight: 400;
     margin: 0;
     text-transform: uppercase;
-    color: #151723;
+    color: var(--text-color);
 }
 
 .notfound p {
