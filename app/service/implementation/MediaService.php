@@ -138,4 +138,12 @@ class MediaService
         }
         return $mediaResponse;
     }
+
+    public function deleteMedia(mixed $mediaId): bool
+    {
+        $artistId = $_SESSION[SESSION_USER_ID];
+        if (!$artistId)
+            return false;
+        return $this->mediaRepository->deleteMedia($mediaId, $artistId);
+    }
 }

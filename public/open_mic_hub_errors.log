@@ -192,3 +192,10 @@ Stack trace:
 #8 {main}
   thrown in C:\xampp\htdocs\OpenMicHub\app\service\implementation\MailerService.php on line 86
 [22-Jun-2024 09:49:16 UTC] PHP Warning:  Undefined array key "user_id" in C:\xampp\htdocs\OpenMicHub\app\controllers\CommentController.php on line 56
+[23-Jun-2024 04:35:57 UTC] PHP Warning:  Undefined array key "media_id" in C:\xampp\htdocs\OpenMicHub\app\controllers\MediaController.php on line 78
+[23-Jun-2024 04:36:56 UTC] PHP Warning:  Undefined array key "media_id" in C:\xampp\htdocs\OpenMicHub\app\controllers\MediaController.php on line 78
+[23-Jun-2024 04:38:49 UTC] PHP Warning:  Undefined array key "media_id" in C:\xampp\htdocs\OpenMicHub\app\controllers\MediaController.php on line 78
+[23-Jun-2024 04:42:14 UTC] PHP Warning:  Undefined array key "media_id" in C:\xampp\htdocs\OpenMicHub\app\controllers\MediaController.php on line 78
+[23-Jun-2024 05:15:16 UTC] PHP Warning:  Undefined array key "media_id" in C:\xampp\htdocs\OpenMicHub\app\controllers\MediaController.php on line 78
+[23-Jun-2024 05:16:04 UTC] PHP Warning:  Undefined array key "mediaId" in C:\xampp\htdocs\OpenMicHub\app\controllers\MediaController.php on line 78
+[23-Jun-2024 05:16:43 UTC] PHP Warning:  Undefined array key "mediaId" in C:\xampp\htdocs\OpenMicHub\app\controllers\MediaController.php on line 78

@@ -32,7 +32,7 @@ $roleRestrictedPaths = [
     '/api/admin' => [$admin],
     '/api/artist' => [$artist, $admin],
     '/api/user' => [$user, $artist, $admin],
-    '/api/media/delete-media' => [$admin],
+    '/api/media/delete-media' => [$artist],
     '/api/media/save-media' => [$artist, $admin],
     '/api/artistDetails/updateProfile' => [$artist, $admin],
     '/api/artistDetails/updateProfilePicture' => [$artist, $admin],
@@ -126,7 +126,7 @@ $router->get('/api/categories/getCategoryById', [CategoryController::class, 'get
 $router->post('/api/media/save-media', [MediaController::class, 'saveMedia'], [$artist]);
 $router->get('/api/media/get-media', [MediaController::class, 'getMedia'], [$artist]);
 $router->get('/api/media/get-all-media', [MediaController::class, 'getAllMedia']);
-$router->post('/api/media/delete-media', [MediaController::class, 'deleteMedia'], ['admin']);
+$router->post('/api/media/delete-media', [MediaController::class, 'deleteMedia']);
 $router->get('/api/media/get-media-by-user', [MediaController::class, 'getMediaByUser'], [$artist], '/access-denied');
 $router->get('/api/media/get-media-by-artist-id/{artistId}', [MediaController::class, 'getMediaByArtistId']);
 

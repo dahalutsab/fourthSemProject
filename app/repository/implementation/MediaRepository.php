@@ -2,6 +2,7 @@
 namespace app\repository\implementation;
 
 use app\models\Media;
+use app\response\APIResponse;
 use config\Database;
 
 class MediaRepository
@@ -135,5 +136,20 @@ class MediaRepository
         }
 
         return $media;
+    }
+
+    public function deleteMedia(mixed $mediaId, mixed $artistId): bool
+    {
+        $stmt = $this->db->getConnection()->prepare(
+            "DELETE FROM media WHERE media_id = ? AND user_id = ?"
+        );
+
+        if ($stmt === false) {
+            die('Prepare failed: ' . $this->db->getConnection()->error);
+        }
+
+        $stmt->bind_param("ii", $mediaId, $artistId);
+
+        return $stmt->execute();
     }
 }

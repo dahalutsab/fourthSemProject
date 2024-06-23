@@ -60,7 +60,7 @@ document.addEventListener("DOMContentLoaded", () => {
             if (index === 0) {
                 videoListItem.classList.add('active');
             }
-
+            videoListItem.dataset.mediaId = mediaItem.media_id;
             const mediaElement = createMediaElement(mediaItem);
             const titleElement = document.createElement('h3');
             titleElement.classList.add('list-title');
@@ -85,7 +85,7 @@ document.addEventListener("DOMContentLoaded", () => {
             dropdownMenu.classList.add('dropdown-menu');
             dropdownMenu.innerHTML = `
                 <li>
-                    <a class="dropdown-item">
+                    <a class="dropdown-item" id="delete-media">
                         <i class="mdi mdi-delete text-danger"></i>
                         Delete
                     </a>
@@ -118,57 +118,61 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     };
 
-    // // Fetch media data from the backend
-    // fetch('/api/media/get-media-by-user')
-    //     .then(response => response.json())
-    //     .then(data => {
-    //         if (data.success) {
-    //             const mediaItems = data.data;
-    //             if (mediaItems.length > 0) {
-    //                 populateMainVideo(mediaItems[0]);
-    //                 populateVideoList(mediaItems);
-    //             }
-    //         } else {
-    //             console.error('Failed to fetch media:', data.message);
-    //         }
-    //     })
-    //     .catch(error => console.error('Error fetching media:', error));
-
-//         // Fetch media data from the backend
-//         fetch('/api/media/get-media-by-user')
-//             .then(response => {
-//                 if (!response.ok) {
-//                     if (response.status === 401) {
-//                         // If the status code is 401 (Unauthorized), redirect to the login page
-//                         window.location.href = '/login';
-//                     } else if (response.status === 403) {
-//                         // If the status code is 403 (Forbidden), redirect to the access denied page
-//                         // window.location.href = '/access-denied';
-//                     } else {
-//                         // Handle other errors
-//                         throw new Error('Error fetching media');
-//                     }
-//                 }
-//                 return response.json();
-//             })
-//             .then(data => {
-//                 if (data.success) {
-//                     const mediaItems = data.data;
-//                     if (mediaItems.length > 0) {
-//                         populateMainVideo(mediaItems[0]);
-//                         populateVideoList(mediaItems);
-//                     }
-//                 } else {
-//                     console.error('Failed to fetch media:', data.message);
-//                 }
-//             })
-//             .catch(error => console.error('Error fetching media:', error));
-//
+    const deleteMedia = async (mediaId) => {
+        try {
+            const response = await fetch(`/api/media/delete-media`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ mediaId })
+            });
+            if (!response.ok) {
+                toastr.error('Error deleting media');
+            }
+            const data = await response.json();
+            if (data.success) {
+                toastr.success('Media deleted successfully');
+                await fetchMedia();
+            } else {
+                console.error('Failed to delete media:', data.message);
+            }
+        } catch (error) {
+            console.error('Error deleting media:', error);
+        }
+    }
+    // Event listener for delete media
+    document.addEventListener('click', (event) => {
+        if (event.target.id === 'delete-media') {
+            const videoListItem = event.target.closest('.video-list');
+            const mediaId = videoListItem.dataset.mediaId;
+            if(mediaId) {
+                if (confirm('Are you sure you want to delete this media?')) {
+                    deleteMedia(mediaId).then(r =>
+                        fetchMedia()
+                    );
+                }
+            }
+            else {
+                toastr.error('Error deleting media');
+            }
+        }
+    });
 
 
-    fetch('/api/media/get-media-by-user')
-        .then(response => handleAjaxError(response))
-        .then(data => {
+    const fetchMedia = async () => {
+        try {
+            const response = await fetch('/api/media/get-media-by-user');
+            if (!response.ok) {
+                if (response.status === 401) {
+                    window.location.href = '/login';
+                } else if (response.status === 403) {
+                    window.location.href = '/access-denied';
+                } else {
+                    toastr.error('Error fetching media');
+                }
+            }
+            const data = await response.json();
             if (data.success) {
                 const mediaItems = data.data;
                 if (mediaItems.length > 0) {
@@ -178,6 +182,10 @@ document.addEventListener("DOMContentLoaded", () => {
             } else {
                 console.error('Failed to fetch media:', data.message);
             }
-        })
-        .catch(error => console.error('Error fetching media:', error));
+        } catch (error) {
+            console.error('Error fetching media:', error);
+        }
+    };
+
+    fetchMedia().then(r => console.log('Media fetched successfully'));
 });

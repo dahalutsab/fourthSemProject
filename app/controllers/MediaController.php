@@ -72,4 +72,22 @@ class MediaController
 
     }
 
+    public function deleteMedia(): void
+    {
+        try {
+            $data = json_decode(file_get_contents("php://input"));
+            $mediaId = $data->mediaId;
+            if (!is_numeric($mediaId)) {
+                throw new Exception("Invalid media ID: $mediaId");
+            }
+            if ($this->mediaService->deleteMedia($mediaId)) {
+                APIResponse::success([], ['message' => 'Media deleted successfully.']);
+            } else {
+                APIResponse::error('Failed to delete media.', 500);
+            }
+        } catch (Exception $e) {
+             APIResponse::error($e->getMessage(), 500);
+        }
+    }
+
 }
