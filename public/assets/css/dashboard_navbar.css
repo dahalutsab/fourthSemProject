@@ -12,6 +12,7 @@
     animation-fill-mode: both;
     border: 0;
     box-shadow: 0 5px 30px 0 rgba(82, 63, 105, 0.2);
+    background: var(--card-color);
 }
 
 .dropdown-menu .dropdown-header,
@@ -19,10 +20,11 @@
     text-align: center;
     font-size: 15px;
     padding: 10px 25px;
+    color: var(--text-color);
 }
 
 .dropdown-menu .dropdown-footer a {
-    color: #444444;
+    color: var(--button-color);
     text-decoration: underline;
 }
 
@@ -177,7 +179,7 @@
 
 .header .search-form input {
     font-size: 14px;
-    color: #012970;
+    color: var(--text-color);
     border: 1px solid rgba(1, 41, 112, 0.2);
     padding: 7px 38px 7px 8px;
     border-radius: 3px;
@@ -200,7 +202,7 @@
 }
 
 .header .search-form button i {
-    color: #012970;
+    color: var(--text-color);
 }
 
 /*--------------------------------------------------------------
@@ -217,13 +219,13 @@
 
 .header-nav .nav-icon {
     font-size: 22px;
-    color: #012970;
+    color: var(--text-color);
     margin-right: 25px;
     position: relative;
 }
 
 .header-nav .nav-profile {
-    color: #012970;
+    color: var(--text-color);
 }
 
 .header-nav .nav-profile img {
@@ -233,6 +235,7 @@
 .header-nav .nav-profile span {
     font-size: 14px;
     font-weight: 600;
+    color: var(--text-color);
 }
 
 .header-nav .badge-number {
@@ -241,73 +244,6 @@
     font-weight: normal;
     font-size: 12px;
     padding: 3px 6px;
-}
-
-.header-nav .notifications {
-    inset: 8px -15px auto auto !important;
-}
-
-.header-nav .notifications .notification-item {
-    display: flex;
-    align-items: center;
-    padding: 15px 10px;
-    transition: 0.3s;
-}
-
-.header-nav .notifications .notification-item i {
-    margin: 0 20px 0 10px;
-    font-size: 24px;
-}
-
-.header-nav .notifications .notification-item h4 {
-    font-size: 16px;
-    font-weight: 600;
-    margin-bottom: 5px;
-}
-
-.header-nav .notifications .notification-item p {
-    font-size: 13px;
-    margin-bottom: 3px;
-    color: #919191;
-}
-
-.header-nav .notifications .notification-item:hover {
-    background-color: #f6f9ff;
-}
-
-.header-nav .messages {
-    inset: 8px -15px auto auto !important;
-}
-
-.header-nav .messages .message-item {
-    padding: 15px 10px;
-    transition: 0.3s;
-}
-
-.header-nav .messages .message-item a {
-    display: flex;
-}
-
-.header-nav .messages .message-item img {
-    margin: 0 20px 0 10px;
-    max-height: 40px;
-}
-
-.header-nav .messages .message-item h4 {
-    font-size: 16px;
-    font-weight: 600;
-    margin-bottom: 5px;
-    color: #444444;
-}
-
-.header-nav .messages .message-item p {
-    font-size: 13px;
-    margin-bottom: 3px;
-    color: #919191;
-}
-
-.header-nav .messages .message-item:hover {
-    background-color: #f6f9ff;
 }
 
 .header-nav .profile {
@@ -320,7 +256,7 @@
     font-size: 18px;
     margin-bottom: 0;
     font-weight: 600;
-    color: #444444;
+    color: var(--text-color)
 }
 
 .header-nav .profile .dropdown-header span {
@@ -331,6 +267,7 @@
     font-size: 14px;
     padding: 10px 15px;
     transition: 0.3s;
+    color: var(--text-color);
 }
 
 .header-nav .profile .dropdown-item i {
@@ -340,5 +277,7 @@
 }
 
 .header-nav .profile .dropdown-item:hover {
-    background-color: #f6f9ff;
+    background-color: var(--text-color);
+    color: var(--button-color);
 }
+

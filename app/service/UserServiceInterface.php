@@ -12,4 +12,6 @@ interface UserServiceInterface {
     public function getAllUsers();
 
     public function getUserByEmail($email);
+
+    public function getNavbarDetails($userId);
 }

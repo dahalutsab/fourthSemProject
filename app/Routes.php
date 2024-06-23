@@ -69,6 +69,9 @@ $router->get('/', [ViewController::class, 'index']);
 $router->get('/home', [ViewController::class, 'index']);
 $router->get('api/v1/home', [ViewController::class, 'index']);
 
+//navbar dashboard details
+$router->get('/api/navbar/details', [UserController::class, 'getNavbarDetails']);
+
 // route to signup
 $router->get('/signup', [ViewController::class, 'signup']);
 $router->post('/api/user/create-user', [UserController::class, 'signup']);

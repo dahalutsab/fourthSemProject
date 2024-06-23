@@ -137,4 +137,13 @@ class UserController
              APIResponse::error($exception->getMessage());
         }
     }
+
+    public function getNavbarDetails () : void {
+        try {
+            $userId = $_SESSION[SESSION_USER_ID] ?? 1;
+            APIResponse::success($this->userService->getNavbarDetails($userId));
+        } catch (Exception $exception) {
+            APIResponse::error($exception->getMessage());
+        }
+    }
 }

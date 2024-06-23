@@ -146,4 +146,61 @@ class UserRepository implements UserRepositoryInterface {
         $stmt->close();
         return true;
     }
+
+    public function getNavbarDetails($userId): ?array
+    {
+//        get username from users and profile picture from userdetails if role is user and artistdetails if role is artist
+        $stmt = $this->database->getConnection()->prepare("SELECT username, role_id FROM users WHERE id = ?");
+        $stmt->bind_param("i", $userId);
+        $stmt->execute();
+
+        $result = $stmt->get_result();
+        $row = $result->fetch_assoc();
+
+        if ($row) {
+            $username = $row['username'];
+            $role = $row['role_id'];
+            if ($role == 1) {
+                $stmt = $this->database->getConnection()->prepare("SELECT profilePicture FROM userdetails WHERE user_id = ?");
+                $stmt->bind_param("i", $userId);
+                $stmt->execute();
+
+                $result = $stmt->get_result();
+                $row = $result->fetch_assoc();
+
+                if ($row) {
+                    $imagePath = $row['profile_picture'];
+                } else {
+                    $imagePath = null;
+                }
+            } else {
+                $stmt = $this->database->getConnection()->prepare("SELECT profile_picture FROM artist_details WHERE user_id = ?");
+                $stmt->bind_param("i", $userId);
+                $stmt->execute();
+
+                $result = $stmt->get_result();
+                $row = $result->fetch_assoc();
+
+                if ($row) {
+                    $imagePath = $row['profile_picture'];
+                } else {
+                    $imagePath = null;
+                }
+            }
+
+            $stmt = $this->database->getConnection()->prepare("SELECT role_name FROM roles WHERE role_id = ?");
+            $stmt->bind_param("i", $role);
+            $stmt->execute();
+            $result = $stmt->get_result();
+            $row = $result->fetch_assoc();
+            $role = $row['role_name'];
+            return [
+                'imagePath' => $imagePath,
+                'username' => $username,
+                'role' => $role
+            ];
+        } else {
+            return null;
+        }
+    }
 }
