@@ -27,7 +27,8 @@ class Interceptor
         }
 
         if ($this->isRestricted($path, $userRole)) {
-            http_response_code(403); // Forbidden
+            http_response_code(403);
+            header("Location: /access-denied");
             return false;
         }
 

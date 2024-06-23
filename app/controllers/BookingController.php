@@ -222,4 +222,14 @@ class BookingController
         }
     }
 
+    public function getAllBookings(): void
+    {
+        try {
+            $bookings = $this->bookingService->getAllBookings();
+            APIResponse::success($bookings, 'All bookings fetched successfully');
+        } catch (\Exception $e) {
+            APIResponse::error($e->getMessage());
+        }
+    }
+
 }

@@ -139,6 +139,13 @@ class DashboardViewController
         $this->render(compact('pageTitle', 'content'));
     }
 
+    public function viewAllBookings(): void
+    {
+        $pageTitle = 'All Bookings';
+        $content = 'artist_booking/admin_all_booking_list';
+        $this->render(compact('pageTitle', 'content'));
+    }
+
     public function viewBookingDetails(): void
     {
         $pageTitle = 'Booking Details';

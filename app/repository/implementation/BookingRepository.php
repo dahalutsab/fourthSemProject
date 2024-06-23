@@ -278,5 +278,23 @@ class BookingRepository implements BookingRepositoryInterface
         $result = $stmt->get_result();
         return $result->fetch_assoc();
     }
+
+    public function getAllBookings(): array
+    {
+        $sql = "SELECT bookings.booking_id,
+                       (SELECT users.username FROM users WHERE users.id = bookings.artist_id) as artist_name,
+                       (SELECT users.username FROM users WHERE users.id = bookings.user_id) as user_name,
+                       (SELECT performance_type FROM performance_types WHERE performance_type_id = bookings.performance_type_id) as performance_type,
+                       bookings.event_date,
+                       bookings.status,
+                       bookings.advance_amount,
+                       COALESCE((SELECT transactions.status FROM transactions WHERE transactions.booking_id = bookings.booking_id ORDER BY transactions.created_at DESC LIMIT 1), 'not_paid') as payment_status
+                FROM bookings";
+
+        $stmt = $this->db->prepare($sql);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        return $result->fetch_all(MYSQLI_ASSOC);
+    }
 }
 

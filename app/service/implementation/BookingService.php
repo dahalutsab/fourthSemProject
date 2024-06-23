@@ -183,7 +183,10 @@ class BookingService
         $this->updateBookingStatus($bookingId, 'declined');
     }
 
-
+    public function getAllBookings()
+    {
+        return $this->bookingRepository->getAllBookings();
+    }
 
 
 }

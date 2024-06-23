@@ -39,6 +39,7 @@ $roleRestrictedPaths = [
     '/api/userDetails/updateProfile' => [$user, $artist, $admin],
     '/api/userDetails/updateProfilePicture' => [$user, $artist, $admin],
     '/api/media/get-media-by-user' => [$artist],
+    '/dashboard/booking' => [$admin],
 ];
 
 
@@ -203,12 +204,15 @@ $router->get('/dashboard/artist/payment', [DashboardViewController::class, 'arti
 $router->get('/dashboard/user/booking', [DashboardViewController::class, 'userBookingsList']);
 $router->get('/dashboard/user/payment', [DashboardViewController::class, 'userPaymentsList']);
 $router->get('/dashboard/booking/view', [DashboardViewController::class, 'viewBookingDetails']);
+//admin booking
+$router->get('/dashboard/booking', [DashboardViewController::class, 'viewAllBookings']);
 
 $router->get('/api/booking/update-status', [BookingController::class, 'updateStatus']);
 $router->post('/api/booking/cancel-booking', [BookingController::class, 'cancelBooking']);
 $router->get('/api/booking/get-user-bookings', [BookingController::class, 'userBookingsList']);
 $router->get('/api/booking/get-artist-bookings', [BookingController::class, 'artistBookingsList']);
 $router->get('/api/booking-details', [BookingController::class, 'getBookingDetails']);
+$router->get('/api/booking/get-all-bookings', [BookingController::class, 'getAllBookings']);
 
 $router->get('/api/artistRating', [ArtistDetailsController::class, 'getArtistRating']);
 

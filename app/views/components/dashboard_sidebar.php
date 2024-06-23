@@ -122,6 +122,13 @@
                 <span>Contact Us</span>
             </a>
         </li><!-- End Contact Us Nav -->
+
+        <li class="nav-item">
+            <a class="nav-link <?php echo $currentPath === '/dashboard/booking' ? 'active' : '' ?>" href="/dashboard/booking">
+                <i class="fa-solid fa-calendar"></i>
+                <span>Booking</span>
+            </a>
+        </li><!-- End Booking Nav -->
         <?php } ?>
 
 
