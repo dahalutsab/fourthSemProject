@@ -14,4 +14,6 @@ interface UserServiceInterface {
     public function getUserByEmail($email);
 
     public function getNavbarDetails($userId);
+
+    public function changePassword($data);
 }

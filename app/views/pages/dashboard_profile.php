@@ -281,7 +281,7 @@
                         </div>
                         <div class="row mb-3">
                             <div class="col-xs-12">
-                                <button class="btn btn-success" type="submit"><i class="fas fa-check-circle me-2"></i>Change Password</button>
+                                <button class="btn btn-success" type="submit" id="change-password"><i class="fas fa-check-circle me-2"></i>Change Password</button>
                                 <button class="btn btn-secondary" type="reset"><i class="fas fa-undo me-2"></i>Reset</button>
                             </div>
                         </div>
@@ -298,6 +298,25 @@
         let platformMap = {};
         fetchSocialMediaPlatforms();
 
+        // change password
+        const changePasswordForm = document.getElementById('changePasswordForm');
+
+
+        changePasswordForm.addEventListener('submit', function(event) {
+            event.preventDefault();
+            const data = new FormData(changePasswordForm);
+            // check if new password and confirm password match
+            if (data.get('new_password') !== data.get('confirm_password')) {
+                toastr.error('New password and confirm password do not match');
+                return;
+            }
+            changePassword({
+                current_password: data.get('current_password'),
+                new_password: data.get('new_password'),
+                confirm_password: data.get('confirm_password')
+            });
+        });
+
         form.addEventListener('submit', function(event) {
             event.preventDefault();
             // Check if platformMap is populated
@@ -308,6 +327,30 @@
                 console.error('PlatformMap is empty or not populated yet.');
             }
         });
+
+        function changePassword(data) {
+            fetch('/api/user/change-password', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(data)
+            })
+                .then(response => response.json())
+                .then(result => {
+                    if (result.success) {
+                        toastr.success(result.message.message);
+                        changePasswordForm.reset();
+                    } else {
+                        console.error('Error changing password:', result.error);
+                        toastr.error(result.error);
+                    }
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                    toastr.error(error.message);
+                });
+        }
 
         function fetchSocialMediaPlatforms() {
             fetch('/api/social-media-links/get-all-social-media-platforms')

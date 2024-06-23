@@ -146,4 +146,23 @@ class UserController
             APIResponse::error($exception->getMessage());
         }
     }
+
+    public function changePassword(): void
+    {
+        try {
+            $data = json_decode(file_get_contents('php://input'), true);
+            $formData = [
+                'oldPassword' => $data['current_password'] ?? '',
+                'newPassword' => $data['new_password'] ?? '',
+                'confirmPassword' => $data['confirm_password'] ?? '',
+            ];
+
+            $this->userService->changePassword($formData);
+
+            // Password change successful
+             APIResponse::success([], ['message' => 'Password changed successfully.']);
+        } catch (Exception $exception) {
+             APIResponse::error($exception->getMessage());
+        }
+    }
 }

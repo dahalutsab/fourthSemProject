@@ -74,4 +74,15 @@ class UserService implements UserServiceInterface {
         return $this->userRepository->getNavbarDetails($userId);
     }
 
+    /**
+     * @throws Exception
+     */
+    public function changePassword($data): bool
+    {
+        if($data['newPassword'] !== $data['confirmPassword']){
+            throw new InvalidArgumentException("Password and confirm password do not match");
+        }
+        return $this->userRepository->changePassword($data);
+    }
+
 }

@@ -203,4 +203,33 @@ class UserRepository implements UserRepositoryInterface {
             return null;
         }
     }
+
+    /**
+     * @throws Exception
+     */
+    public function changePassword($data): true
+    {
+        $userId = $_SESSION[SESSION_USER_ID];
+        $stmt = $this->database->getConnection()->prepare("SELECT password FROM users WHERE id = ?");
+        $stmt->bind_param("i", $userId);
+        $stmt->execute();
+
+        $result = $stmt->get_result();
+        $row = $result->fetch_assoc();
+
+        if ($row) {
+            if (password_verify($data['oldPassword'], $row['password'])) {
+                $hashedPassword = password_hash($data['newPassword'], PASSWORD_DEFAULT);
+                $stmt = $this->database->getConnection()->prepare("UPDATE users SET password = ? WHERE id = ?");
+                $stmt->bind_param("si", $hashedPassword, $userId);
+                $stmt->execute();
+                $stmt->close();
+                return true;
+            } else {
+                throw new Exception("Old password is incorrect");
+            }
+        } else {
+            throw new Exception("User not found");
+        }
+    }
 }
