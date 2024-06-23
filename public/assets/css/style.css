@@ -48,12 +48,67 @@ small {
     transition: all 0.3s ease;
 }
 
-/*.btn-primary {*/
-/*    background-color: #007bff;*/
-/*    border-color: #007bff;*/
-/*}*/
+.btn-primary {
+    border: none;
+    background: var(--button-color);
+    color: var(--text-color);
+}
 
-/*.btn-primary:hover {*/
-/*    background-color: #0056b3;*/
-/*    border-color: #004085;*/
-/*}*/
+.btn-primary:hover {
+    background: var(--button-color-hover);
+}
+
+.btn-secondary {
+    border: none;
+    background: var(--card-color);
+    color: var(--text-color);
+}
+
+.btn-secondary:hover {
+    background: var(--button-color-hover);
+}
+
+
+/* Modal customization */
+.modal-content {
+    background-color: var(--card-color);
+    color: var(--text-color);
+    border: none;
+    border-radius: 10px;
+}
+
+.modal-header, .modal-footer {
+    border: none;
+    background-color: var(--background-color);
+}
+
+.modal-header .close {
+    color: var(--text-color);
+}
+
+.modal-header .close:hover {
+    color: var(--button-color);
+}
+
+.modal-title {
+    color: var(--text-color);
+}
+
+.modal-body {
+    background-color: var(--card-color);
+    color: var(--text-color);
+}
+
+.modal-footer .btn-secondary {
+    background-color: var(--card-color);
+    color: var(--text-color);
+}
+
+.modal-footer .btn-primary {
+    background-color: var(--button-color);
+    color: var(--text-color);
+}
+
+.modal-footer .btn-primary:hover {
+    background-color: var(--button-color-hover);
+}

@@ -3,7 +3,7 @@
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
 
-require __DIR__ . '/../../vendor/autoload.php'; // Adjust path as needed
+require __DIR__ . '/../../vendor/autoload.php';
 
 function sendEmail($to, $toUserName,  $subject, $message): void
 {

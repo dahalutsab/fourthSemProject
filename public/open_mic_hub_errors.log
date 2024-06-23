@@ -191,3 +191,4 @@ Stack trace:
 #7 C:\xampp\htdocs\OpenMicHub\public\index.php(14): require_once('...')
 #8 {main}
   thrown in C:\xampp\htdocs\OpenMicHub\app\service\implementation\MailerService.php on line 86
+[22-Jun-2024 09:49:16 UTC] PHP Warning:  Undefined array key "user_id" in C:\xampp\htdocs\OpenMicHub\app\controllers\CommentController.php on line 56
