@@ -7,7 +7,7 @@ class ViewController
     public function index(): void
     {
         $pageTitle = 'Homepage';
-        $content = ['components/home', 'components/artists', 'components/contactUs']; // Add 'artists' to the content array
+        $content = ['components/home', 'components/artists', 'pages/our_services', 'components/contactUs']; // Add 'artists' to the content array
         $this->render(compact('pageTitle', 'content'));
     }
 

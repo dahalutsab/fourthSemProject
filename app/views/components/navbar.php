@@ -56,7 +56,7 @@
                 </li>
 
                 <li class="nav-item">
-                    <a href="/services" class="nav-link border-hover py-3">Our Services</a>
+                    <a href="#services" class="nav-link border-hover py-3">Our Services</a>
                 </li>
 
 
