@@ -19,7 +19,6 @@ class UserService implements UserServiceInterface {
         $this->roleService = new RoleService;
     }
 
-
     public function createUser(UserRequest $userRequest): UserResponse
     {
         if (!$this->roleService->validateRole($userRequest->getRole())) {
@@ -85,6 +84,9 @@ class UserService implements UserServiceInterface {
         return $this->userRepository->changePassword($data);
     }
 
+    /**
+     * @throws Exception
+     */
     public function blockUser($userId): bool
     {
         return $this->userRepository->blockUser($userId);

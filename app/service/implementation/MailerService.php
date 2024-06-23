@@ -118,4 +118,17 @@ class MailerService implements MailerServiceInterface
 
         $this->sendAsyncMail($artistEmail, $artistUserName, $subject, $artistMessage);
         $this->sendAsyncMail($userEmail, $userName, $subject, $userMessage);
-    }}
+    }
+
+    /**
+     * @throws Exception
+     */
+    public function sendMail(string $getEmail, string $subject, string $message): void
+    {
+        $this->mail->addAddress($getEmail);
+        $this->mail->Subject = $subject;
+        $this->mail->Body = $message;
+
+        $this->mail->send();
+    }
+}
