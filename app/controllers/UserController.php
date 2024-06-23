@@ -165,4 +165,19 @@ class UserController
              APIResponse::error($exception->getMessage());
         }
     }
+
+    public function blockUser(): void
+    {
+        try {
+            $data = json_decode(file_get_contents('php://input'), true);
+            $userId = $data['userId'] ?? '';
+
+            $this->userService->blockUser($userId);
+
+            // User blocked successfully
+             APIResponse::success([], ['message' => 'User blocked successfully.']);
+        } catch (Exception $exception) {
+             APIResponse::error($exception->getMessage());
+        }
+    }
 }

@@ -220,10 +220,10 @@ class UserRepository implements UserRepositoryInterface {
         if ($row) {
             if (password_verify($data['oldPassword'], $row['password'])) {
                 $hashedPassword = password_hash($data['newPassword'], PASSWORD_DEFAULT);
-                $stmt = $this->database->getConnection()->prepare("UPDATE users SET password = ? WHERE id = ?");
-                $stmt->bind_param("si", $hashedPassword, $userId);
+                $stmt = $this->database->getConnection()->prepare("UPDATE users SET password = ?, updated_at = ? WHERE id = ?");
+                $date = date('Y-m-d H:i:s');
+                $stmt->bind_param("ssi", $hashedPassword, $date, $userId);
                 $stmt->execute();
-                $stmt->close();
                 return true;
             } else {
                 throw new Exception("Old password is incorrect");
@@ -231,5 +231,13 @@ class UserRepository implements UserRepositoryInterface {
         } else {
             throw new Exception("User not found");
         }
+    }
+
+    public function blockUser($userId): true
+    {
+        $stmt = $this->database->getConnection()->prepare("UPDATE users SET is_blocked = true WHERE id = ?");
+        $stmt->bind_param("i", $userId);
+        $stmt->execute();
+        return true;
     }
 }

@@ -85,4 +85,9 @@ class UserService implements UserServiceInterface {
         return $this->userRepository->changePassword($data);
     }
 
+    public function blockUser($userId): bool
+    {
+        return $this->userRepository->blockUser($userId);
+    }
+
 }

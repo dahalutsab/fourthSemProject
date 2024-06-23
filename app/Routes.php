@@ -40,6 +40,8 @@ $roleRestrictedPaths = [
     '/api/userDetails/updateProfilePicture' => [$user, $artist, $admin],
     '/api/media/get-media-by-user' => [$artist],
     '/dashboard/booking' => [$admin],
+    '/dashboard/user/manage' => [$admin],
+    '/api/blockUser' => [$admin],
 ];
 
 
@@ -77,6 +79,9 @@ $router->get('/api/navbar/details', [UserController::class, 'getNavbarDetails'])
 $router->get('/signup', [ViewController::class, 'signup']);
 $router->post('/api/user/create-user', [UserController::class, 'signup']);
 $router->get('/api/user/get-user', [UserController::class, 'getUser']);
+
+//block user
+$router->post('/api/blockUser', [UserController::class, 'blockUser']);
 
 // route to log in
 $router->get('/login', [ViewController::class, 'login']);

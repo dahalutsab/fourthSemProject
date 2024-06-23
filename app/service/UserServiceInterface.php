@@ -16,4 +16,6 @@ interface UserServiceInterface {
     public function getNavbarDetails($userId);
 
     public function changePassword($data);
+
+    public function blockUser($userId);
 }

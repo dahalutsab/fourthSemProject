@@ -199,3 +199,7 @@ Stack trace:
 [23-Jun-2024 05:15:16 UTC] PHP Warning:  Undefined array key "media_id" in C:\xampp\htdocs\OpenMicHub\app\controllers\MediaController.php on line 78
 [23-Jun-2024 05:16:04 UTC] PHP Warning:  Undefined array key "mediaId" in C:\xampp\htdocs\OpenMicHub\app\controllers\MediaController.php on line 78
 [23-Jun-2024 05:16:43 UTC] PHP Warning:  Undefined array key "mediaId" in C:\xampp\htdocs\OpenMicHub\app\controllers\MediaController.php on line 78
+[23-Jun-2024 11:09:51 UTC] PHP Warning:  Trying to access array offset on null in C:\xampp\htdocs\OpenMicHub\app\repository\implementation\RequiredFieldsForArtists.php on line 34
+[23-Jun-2024 11:09:51 UTC] PHP Warning:  Trying to access array offset on null in C:\xampp\htdocs\OpenMicHub\app\repository\implementation\RequiredFieldsForArtists.php on line 34
+[23-Jun-2024 11:10:00 UTC] PHP Warning:  Trying to access array offset on null in C:\xampp\htdocs\OpenMicHub\app\repository\implementation\RequiredFieldsForArtists.php on line 34
+[23-Jun-2024 11:10:00 UTC] PHP Warning:  Trying to access array offset on null in C:\xampp\htdocs\OpenMicHub\app\repository\implementation\RequiredFieldsForArtists.php on line 34
