@@ -177,11 +177,15 @@ class ArtistDetailsController
 
     public function getAllArtistsForHomepage(): void
     {
-        try {
-            $artists = $this->artistDetailsService->getAllArtistsForHomepage();
-             APIResponse::success($artists);
-        } catch (Exception $exception) {
-             ErrorResponse::badRequest($exception->getMessage());
-        }
+        // Get the page and limit parameters from the query string
+        $page = isset($_GET['page']) ? intval($_GET['page']) : 1;
+        $limit = isset($_GET['limit']) ? intval($_GET['limit']) : 12;
+
+        // Call the service method with the page and limit parameters
+        $data = $this->artistDetailsService->getAllArtistsForHomepage($page, $limit);
+
+        http_response_code(200);
+        header('Content-Type: application/json');
+        echo json_encode($data);
     }
 }

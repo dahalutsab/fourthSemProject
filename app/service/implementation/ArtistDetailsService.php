@@ -144,8 +144,8 @@ class ArtistDetailsService implements ArtistDetailsServiceInterface
         }
     }
 
-    public function getAllArtistsForHomepage(): array
+    public function getAllArtistsForHomepage($page, $limit): array
     {
-        return $this->artistDetailsRepository->getAllArtistsForHomepage();
+        return $this->artistDetailsRepository->getAllArtistsForHomepage($page, $limit);
     }
 }

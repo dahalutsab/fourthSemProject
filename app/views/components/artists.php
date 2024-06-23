@@ -20,6 +20,11 @@
                         <div class="row" id="card-design">
                             <!-- Artist cards will be appended here -->
                         </div>
+                        <nav>
+                            <ul class="pagination justify-content-center" id="pagination-controls">
+                                <!-- Pagination controls will be appended here -->
+                            </ul>
+                        </nav>
                     </div>
                 </div>
             </div>
@@ -28,3 +33,4 @@
 </section>
 
 <script src="<?= BASE_JS_PATH ?>load_artist_cards.js"></script>
+
