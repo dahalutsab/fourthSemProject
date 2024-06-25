@@ -167,9 +167,18 @@ class DashboardViewController
         $this->render(compact('pageTitle', 'content'));
     }
 
+    public function userInfo(): void
+    {
+        $pageTitle = 'User Info';
+        $content = '../components/user_info';
+        $this->render(compact('pageTitle', 'content'));
+    }
+
     private function render(array $data): void
     {
         extract($data);
         require_once __DIR__ . '/../views/layouts/dashboard_main.php';
     }
+
+
 }

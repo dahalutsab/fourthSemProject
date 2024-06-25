@@ -1,7 +1,6 @@
 <?php
 
 use app\repository\implementation\RequiredFieldsForArtists;
-use app\service\implementation\MailerService;
 use config\Database;
 
 $role = $_SESSION[SESSION_ROLE];

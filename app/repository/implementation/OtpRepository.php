@@ -19,6 +19,12 @@ class OtpRepository implements OtpRepositoryInterface
 
     public function save(Otp $otp): void
     {
+//        if already exists delete
+        $stmt = $this->database->getConnection()->prepare("DELETE FROM otp WHERE user_id = ?");
+        $userId1 = $otp->getUserId();
+        $stmt->bind_param("i", $userId1);
+        $stmt->execute();
+        $stmt->close();
         $stmt = $this->database->getConnection()->prepare("INSERT INTO otp (user_id, otp, created_at, expires_at) VALUES (?, ?, ?, ?)");
 
         // Get values from the $otp object
@@ -65,6 +71,11 @@ class OtpRepository implements OtpRepositoryInterface
 
             if ($expiresAt > $currentDateTime) {
                 return new Otp($userId, $otp); // OTP is valid and not expired
+            } else {
+//                delete otp
+                $this->deleteOtp(new Otp($userId, $otp));
+                $_SESSION['otp-error'] = "OTP has expired. Please try again.";
+                throw new Exception("OTP has expired. Please try again.");
             }
         }
         else {

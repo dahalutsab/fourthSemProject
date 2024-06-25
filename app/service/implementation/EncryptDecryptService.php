@@ -10,7 +10,7 @@ class EncryptDecryptService
         $cipher = "aes-256-cbc";
         $ivlen = openssl_cipher_iv_length($cipher);
         $iv = openssl_random_pseudo_bytes($ivlen);
-        $encrypted = openssl_encrypt($data, $cipher, ENCRYPTION_KEY, OPENSSL_RAW_DATA, $iv);
+        $encrypted = openssl_encrypt($data, $cipher, "404E635266556A586E3272357538782F413F4428472B4B6250645367566B5970", OPENSSL_RAW_DATA, $iv);
         return base64_encode($iv . $encrypted);
     }
 
@@ -20,7 +20,8 @@ class EncryptDecryptService
         $encrypted = base64_decode($encrypted);
         $ivlen = openssl_cipher_iv_length($cipher);
         $iv = substr($encrypted, 0, $ivlen);
-        return openssl_decrypt(substr($encrypted, $ivlen), $cipher, ENCRYPTION_KEY, OPENSSL_RAW_DATA, $iv);
+        $encryptedData = substr($encrypted, $ivlen);
+        return openssl_decrypt($encryptedData, $cipher, "404E635266556A586E3272357538782F413F4428472B4B6250645367566B5970", OPENSSL_RAW_DATA, $iv);
     }
 
 

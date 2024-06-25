@@ -56,7 +56,7 @@
                     const amount = booking.advance_amount;
                     const tax_amount = 0;
                     let total_amount = parseFloat(amount) + tax_amount;
-                    total_amount = total_amount.toFixed(0);
+                    // total_amount = total_amount.toFixed(0);
                     const transaction_uuid = generateUniqueTransactionUuid();
                     const product_code = 'EPAYTEST';
                     const product_service_charge = 0;
@@ -143,7 +143,9 @@
                 if (data.success) {
                     console.log('Booking:', data.data);
                     const booking = data.data;
-                    const amount = 1000;
+                    const amount = booking.advance_amount;
+                    // define amount in number
+
 
                     const form = document.createElement('form');
                     form.method = 'POST';

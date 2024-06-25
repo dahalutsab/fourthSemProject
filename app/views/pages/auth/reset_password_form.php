@@ -8,10 +8,12 @@ use app\service\implementation\EncryptDecryptService;
      }
     else {
         $encryptedData = $_GET['data'];
+        echo $encryptedData;
         $encryptDecryptService = new EncryptDecryptService();
         $decryptedData = $encryptDecryptService->decryptData($encryptedData);
+        echo "decrypted: ". $decryptedData;
         if (!$decryptedData) {
-            $_SESSION['forgot-password-error'] = "Invalid request. Please try again.";
+            $_SESSION['forgot-password-error'] = "Invalid data. Please try again.";
             header('Location: /forgot-password');
             return;
         }
@@ -22,7 +24,7 @@ use app\service\implementation\EncryptDecryptService;
         $otpService = new OtpRepository();
         try {
             $isValid = $otpService->verifyUserOtp($userId, $otp);
-            if($_SESSION['otp-error']) {
+            if(isset($_SESSION['otp-error'])) {
                 $_SESSION['forgot-password-error'] = $_SESSION['otp-error'];
                 unset($_SESSION['otp-error']);
                 header('Location: /forgot-password');

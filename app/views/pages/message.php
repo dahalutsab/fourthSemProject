@@ -112,6 +112,11 @@
             cursor: pointer;
         }
 
+        .list-group {
+            overflow-y: scroll;
+            height: 400px;
+        }
+
 </style>
 <div class="container mt-5">
     <div class="row">

@@ -75,6 +75,8 @@ $router->get('api/v1/home', [ViewController::class, 'index']);
 //navbar dashboard details
 $router->get('/api/navbar/details', [UserController::class, 'getNavbarDetails']);
 
+//user info
+$router->get('/dashboard/user-info', [DashboardViewController::class, 'userInfo']);
 // route to signup
 $router->get('/signup', [ViewController::class, 'signup']);
 $router->post('/api/user/create-user', [UserController::class, 'signup']);

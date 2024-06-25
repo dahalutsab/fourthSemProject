@@ -34,7 +34,6 @@ signupForm.addEventListener('submit', function(event) {
     // Clear previous error messages
     const errorMessages = document.getElementById('error-messages');
     const errorList = document.getElementById('error-list');
-    errorMessages.style.display = 'none';
     errorList.innerHTML = '';
 
     // Collect form data
@@ -55,13 +54,17 @@ signupForm.addEventListener('submit', function(event) {
                 // Handle error response
                 return response.json().then(data => {
                     // Display error messages
-                    displayErrorMessages(data.error);
+                    displaySignupErrors(data.error);
                 });
             }
         })
         .catch(error => {
             console.error('Error:', error);
             // You can display a generic error message to the user
-            displayErrorMessages('An error occurred. Please try again.')
+            displaySignupErrors('An error occurred. Please try again.')
         });
 });
+
+function displaySignupErrors(errorMessage) {
+    toastr.error(errorMessage);
+}

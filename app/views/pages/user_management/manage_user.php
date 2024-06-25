@@ -33,7 +33,7 @@
                 }
             } else if (event.target.classList.contains('view-user')) {
                 const userId = event.target.closest('tr').dataset.userId;
-                alert('Viewing user with ID: ' + userId); // Replace with your view logic
+                viewUser(userId);
             }
         });
     });
@@ -74,6 +74,10 @@
             }
         };
         xhr.send();
+    }
+
+    function viewUser(userId) {
+        window.location.href = '/dashboard/user-info?id=' + userId;
     }
 
     function deleteUser(userId) {

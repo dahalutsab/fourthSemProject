@@ -31,7 +31,6 @@ use config\Database;
         if (empty($artistDetails['full_name'])){
             $message[] = "Full Name";
         }
-        echo $artistDetails['full_name'];
 
         if (empty($artistDetails['phone'])){
             $message[] = "Phone Number";

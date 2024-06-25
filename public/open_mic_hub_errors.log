@@ -203,3 +203,40 @@ Stack trace:
 [23-Jun-2024 11:09:51 UTC] PHP Warning:  Trying to access array offset on null in C:\xampp\htdocs\OpenMicHub\app\repository\implementation\RequiredFieldsForArtists.php on line 34
 [23-Jun-2024 11:10:00 UTC] PHP Warning:  Trying to access array offset on null in C:\xampp\htdocs\OpenMicHub\app\repository\implementation\RequiredFieldsForArtists.php on line 34
 [23-Jun-2024 11:10:00 UTC] PHP Warning:  Trying to access array offset on null in C:\xampp\htdocs\OpenMicHub\app\repository\implementation\RequiredFieldsForArtists.php on line 34
+[23-Jun-2024 22:42:23 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at C:\xampp\htdocs\OpenMicHub\app\views\components\navbar.php:35) in C:\xampp\htdocs\OpenMicHub\app\views\pages\auth\reset_password_form.php on line 15
+[23-Jun-2024 22:42:51 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at C:\xampp\htdocs\OpenMicHub\app\views\components\navbar.php:35) in C:\xampp\htdocs\OpenMicHub\app\views\pages\auth\reset_password_form.php on line 15
+[23-Jun-2024 22:42:52 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at C:\xampp\htdocs\OpenMicHub\app\views\components\navbar.php:35) in C:\xampp\htdocs\OpenMicHub\app\views\pages\auth\reset_password_form.php on line 15
+[23-Jun-2024 22:43:37 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at C:\xampp\htdocs\OpenMicHub\app\views\components\navbar.php:35) in C:\xampp\htdocs\OpenMicHub\app\views\pages\auth\reset_password_form.php on line 15
+[23-Jun-2024 22:46:36 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at C:\xampp\htdocs\OpenMicHub\app\views\components\navbar.php:35) in C:\xampp\htdocs\OpenMicHub\app\views\pages\auth\reset_password_form.php on line 15
+[23-Jun-2024 22:47:10 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at C:\xampp\htdocs\OpenMicHub\app\views\components\navbar.php:35) in C:\xampp\htdocs\OpenMicHub\app\views\pages\auth\reset_password_form.php on line 15
+[23-Jun-2024 22:53:12 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at C:\xampp\htdocs\OpenMicHub\app\views\components\navbar.php:35) in C:\xampp\htdocs\OpenMicHub\app\views\pages\auth\reset_password_form.php on line 17
+[23-Jun-2024 22:53:14 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at C:\xampp\htdocs\OpenMicHub\app\views\components\navbar.php:35) in C:\xampp\htdocs\OpenMicHub\app\views\pages\auth\reset_password_form.php on line 17
+[23-Jun-2024 22:53:15 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at C:\xampp\htdocs\OpenMicHub\app\views\components\navbar.php:35) in C:\xampp\htdocs\OpenMicHub\app\views\pages\auth\reset_password_form.php on line 17
+[23-Jun-2024 22:53:16 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at C:\xampp\htdocs\OpenMicHub\app\views\components\navbar.php:35) in C:\xampp\htdocs\OpenMicHub\app\views\pages\auth\reset_password_form.php on line 17
+[23-Jun-2024 22:54:53 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at C:\xampp\htdocs\OpenMicHub\app\views\components\navbar.php:35) in C:\xampp\htdocs\OpenMicHub\app\views\pages\auth\reset_password_form.php on line 17
+[23-Jun-2024 22:55:23 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at C:\xampp\htdocs\OpenMicHub\app\views\components\navbar.php:35) in C:\xampp\htdocs\OpenMicHub\app\views\pages\auth\reset_password_form.php on line 17
+[23-Jun-2024 22:57:16 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at C:\xampp\htdocs\OpenMicHub\app\views\components\navbar.php:35) in C:\xampp\htdocs\OpenMicHub\app\views\pages\auth\reset_password_form.php on line 17
+[23-Jun-2024 22:57:52 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at C:\xampp\htdocs\OpenMicHub\app\views\components\navbar.php:35) in C:\xampp\htdocs\OpenMicHub\app\views\pages\auth\reset_password_form.php on line 17
+[23-Jun-2024 22:57:53 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at C:\xampp\htdocs\OpenMicHub\app\views\components\navbar.php:35) in C:\xampp\htdocs\OpenMicHub\app\views\pages\auth\reset_password_form.php on line 17
+[23-Jun-2024 22:58:07 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at C:\xampp\htdocs\OpenMicHub\app\views\components\navbar.php:35) in C:\xampp\htdocs\OpenMicHub\app\views\pages\auth\reset_password_form.php on line 17
+[23-Jun-2024 22:58:09 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at C:\xampp\htdocs\OpenMicHub\app\views\components\navbar.php:35) in C:\xampp\htdocs\OpenMicHub\app\views\pages\auth\reset_password_form.php on line 17
+[23-Jun-2024 23:11:08 UTC] PHP Warning:  Trying to access array offset on null in C:\xampp\htdocs\OpenMicHub\app\repository\implementation\RequiredFieldsForArtists.php on line 34
+[23-Jun-2024 23:11:08 UTC] PHP Warning:  Trying to access array offset on null in C:\xampp\htdocs\OpenMicHub\app\repository\implementation\RequiredFieldsForArtists.php on line 34
+[23-Jun-2024 23:21:24 UTC] PHP Warning:  Trying to access array offset on null in C:\xampp\htdocs\OpenMicHub\app\repository\implementation\RequiredFieldsForArtists.php on line 34
+[23-Jun-2024 23:21:24 UTC] PHP Warning:  Trying to access array offset on null in C:\xampp\htdocs\OpenMicHub\app\repository\implementation\RequiredFieldsForArtists.php on line 34
+[23-Jun-2024 23:25:35 UTC] PHP Warning:  Trying to access array offset on null in C:\xampp\htdocs\OpenMicHub\app\repository\implementation\RequiredFieldsForArtists.php on line 34
+[23-Jun-2024 23:25:35 UTC] PHP Warning:  Trying to access array offset on null in C:\xampp\htdocs\OpenMicHub\app\repository\implementation\RequiredFieldsForArtists.php on line 34
+[23-Jun-2024 23:25:57 UTC] PHP Fatal error:  Uncaught TypeError: app\dto\response\ArtistDetailsResponse::__construct(): Argument #1 ($userDetails) must be of type app\models\ArtistDetails, null given, called in C:\xampp\htdocs\OpenMicHub\app\service\implementation\ArtistDetailsService.php on line 71 and defined in C:\xampp\htdocs\OpenMicHub\app\dto\response\ArtistDetailsResponse.php:11
+Stack trace:
+#0 C:\xampp\htdocs\OpenMicHub\app\service\implementation\ArtistDetailsService.php(71): app\dto\response\ArtistDetailsResponse->__construct()
+#1 C:\xampp\htdocs\OpenMicHub\app\controllers\ArtistDetailsController.php(73): app\service\implementation\ArtistDetailsService->saveProfilePicture()
+#2 [internal function]: app\controllers\ArtistDetailsController->saveProfilePicture()
+#3 C:\xampp\htdocs\OpenMicHub\app\Router.php(81): call_user_func_array()
+#4 C:\xampp\htdocs\OpenMicHub\app\Routes.php(250): app\Router->run()
+#5 C:\xampp\htdocs\OpenMicHub\public\index.php(14): require_once('...')
+#6 {main}
+  thrown in C:\xampp\htdocs\OpenMicHub\app\dto\response\ArtistDetailsResponse.php on line 11
+[23-Jun-2024 23:32:50 UTC] PHP Warning:  Trying to access array offset on null in C:\xampp\htdocs\OpenMicHub\app\repository\implementation\RequiredFieldsForArtists.php on line 34
+[23-Jun-2024 23:32:50 UTC] PHP Warning:  Trying to access array offset on null in C:\xampp\htdocs\OpenMicHub\app\repository\implementation\RequiredFieldsForArtists.php on line 34
+[23-Jun-2024 23:41:09 UTC] PHP Warning:  Trying to access array offset on null in C:\xampp\htdocs\OpenMicHub\app\repository\implementation\RequiredFieldsForArtists.php on line 34
+[23-Jun-2024 23:41:09 UTC] PHP Warning:  Trying to access array offset on null in C:\xampp\htdocs\OpenMicHub\app\repository\implementation\RequiredFieldsForArtists.php on line 34

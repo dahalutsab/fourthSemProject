@@ -2,7 +2,7 @@
     <div class="col-lg-4 col-md-6 col-12 mb-4 mb-lg-0">
         <div class="card shadow">
             <h4 class="card-title mt-3 text-center">Create Account</h4>
-            <div class="alert alert-danger error-message" id="error-messages" role="alert" style="display:none;">
+            <div class="alert alert-danger error-message" id="signup-error-messages" role="alert" style="display:none;">
                 <ul id="error-list"></ul>
             </div>
             <form id="signup-form">

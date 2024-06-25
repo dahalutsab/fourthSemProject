@@ -22,7 +22,10 @@ class KhaltiIntegration
     {
 
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            $amount = $_POST['amount'] * 100; // Convert to paisa
+            $amount = $_POST['amount'];
+//            convert amount to float by removing commas
+            $amount = $amount * 100;
+//            var_dump($amount);
             $purchase_order_id = $_POST['purchase_order_id'];
             $purchase_order_name = $_POST['purchase_order_name'];
 

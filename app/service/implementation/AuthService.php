@@ -36,8 +36,9 @@ class AuthService implements AuthServiceInterface {
         if(!$user->getIsActive()) {
             throw new Exception("User account doesnt exist. Please create a new account to continue.");
         }
-        if (!password_verify($password, $user->getPassword())) {
-            throw new Exception("Invalid email or password.");
+
+        if ($user->getIsBlocked()) {
+            throw new Exception("User account is blocked. Please contact support for assistance.");
         }
         $_SESSION[SESSION_USER_ID] = $user->getId();
         $_SESSION[SESSION_ROLE] = $user->getRole();
