@@ -22,10 +22,9 @@ class KhaltiIntegration
     {
 
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            $user_id = $_POST['user_id'];
             $amount = $_POST['amount'];
-//            convert amount to float by removing commas
             $amount = $amount * 100;
-//            var_dump($amount);
             $purchase_order_id = $_POST['purchase_order_id'];
             $purchase_order_name = $_POST['purchase_order_name'];
 
@@ -34,15 +33,23 @@ class KhaltiIntegration
                 "website_url" => "http://openmichub.com",
                 "amount" => $amount,
                 "purchase_order_id" => $purchase_order_id,
-                "purchase_order_name" => $purchase_order_name,
+                "purchase_order_name" => $purchase_order_name
 
             ];
+            $userDetails = $this->transactionService->getUserInfo($user_id);
+            if ($userDetails) {
+                $postFields['customer_info'] = [
+                    "name" => $userDetails['username'],
+                    "email" => $userDetails['email']
+                ];
+            }
 
             $this->initiatePayment($postFields);
         } else {
             echo 'Invalid request method';
         }
     }
+
 
     private function initiatePayment(array $postFields): void
     {
@@ -129,8 +136,8 @@ class KhaltiIntegration
             };
 
             // Save the transaction details to the database
-            $this->transactionService->savePayment($bookingId, $status, $transaction_id, 'KHALTI');
             if ($status === 'success') {
+                $this->transactionService->savePayment($bookingId, $status, $transaction_id, 'KHALTI');
                 $mailService = new MailerService();
                 $mailService->sendPaymentConfirmation($bookingId);
                 header('Location: /dashboard/user/booking');

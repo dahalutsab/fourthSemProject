@@ -25,4 +25,9 @@ class TransactionService
         $this->transactionRepository->savePayment($bookingId, $status, $transactionId, $paymentService);
 
     }
+
+    public function getUserInfo($user_id): false|array|null
+    {
+        return $this->transactionRepository->getUserInfo($user_id);
+    }
 }

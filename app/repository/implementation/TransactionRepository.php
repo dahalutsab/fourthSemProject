@@ -47,4 +47,19 @@ class TransactionRepository
 
         return $data;
     }
+
+    public function getUserInfo($user_id): false|array|null
+    {
+        $sql = "SELECT * FROM users WHERE id = ?";
+        $stmt = $this->database->getConnection()->prepare($sql);
+        $stmt->bind_param("i", $user_id);
+        $stmt->execute();
+
+        $result = $stmt->get_result();
+        $data = $result->fetch_assoc();
+
+        $stmt->close();
+
+        return $data;
+    }
 }

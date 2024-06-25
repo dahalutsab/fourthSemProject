@@ -145,13 +145,14 @@
                     const booking = data.data;
                     const amount = booking.advance_amount;
                     // define amount in number
-
+                    const user_id = booking.user_id;
 
                     const form = document.createElement('form');
                     form.method = 'POST';
                     form.action = '/payment/khalti';
 
                     const fields = {
+                        user_id: user_id,
                         amount: amount,
                         purchase_order_id: bookingId,
                         purchase_order_name: 'Booking Payment',
