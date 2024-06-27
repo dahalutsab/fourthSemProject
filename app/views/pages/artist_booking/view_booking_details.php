@@ -12,6 +12,7 @@
         }
 </style>
 <div class="container booking-details">
+    <button id="download" class="btn btn-primary">Download PDF</button>
     <div class="card booking-card">
         <div class="card-header">
             Booking Details
@@ -59,6 +60,26 @@
             return;
         }
         fetchBookingDetails(bookingId);
+
+        document.getElementById('download').addEventListener('click', function() {
+            const doc = new jsPDF();
+            doc.text('Booking Details', 10, 10);
+            doc.text(`Artist Name: ${document.getElementById('artist-name').textContent}`, 10, 20);
+            doc.text(`Artist Email: ${document.getElementById('artist-email').textContent}`, 10, 30);
+            doc.text(`User Name: ${document.getElementById('user-name').textContent}`, 10, 40);
+            doc.text(`User Email: ${document.getElementById('user-email').textContent}`, 10, 50);
+            doc.text(`Booking Date: ${document.getElementById('booking-date').textContent}`, 10, 60);
+            doc.text(`Event Start Time: ${document.getElementById('start-time').textContent}`, 10, 70);
+            doc.text(`Event End Time: ${document.getElementById('end-time').textContent}`, 10, 80);
+            doc.text(`Province: ${document.getElementById('province').textContent}`, 10, 90);
+            doc.text(`District: ${document.getElementById('district').textContent}`, 10, 100);
+            doc.text(`Municipality: ${document.getElementById('municipality').textContent}`, 10, 110);
+            doc.text(`Local Area: ${document.getElementById('location').textContent}`, 10, 120);
+            doc.text(`Total Cost: ${document.getElementById('total-cost').textContent}`, 10, 130);
+            doc.text(`Advance Amount: ${document.getElementById('advance-amount').textContent}`, 10, 140);
+            doc.text(`Remaining Amount: ${document.getElementById('remaining-amount').textContent}`, 10, 150);
+            doc.save('booking-details.pdf');
+        });
     });
 
     function populateBookingDetails(bookingDetails) {
@@ -93,4 +114,6 @@
                 console.error(error);
             });
     }
+
+
 </script>

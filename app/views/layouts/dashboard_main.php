@@ -21,6 +21,7 @@
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
     <script src="<?= BASE_JS_PATH?>toastr.js"></script>
     <script src="https://kit.fontawesome.com/3ab31dc8a0.js" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.5.3/jspdf.debug.js"></script>
 
 </head>
 <body>

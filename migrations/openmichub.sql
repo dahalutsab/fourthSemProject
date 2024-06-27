@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 16, 2024 at 04:33 AM
+-- Generation Time: Jun 27, 2024 at 10:35 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -24,6 +24,58 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `artistsocialmedia`
+--
+
+CREATE TABLE `artistsocialmedia` (
+                                     `id` int(11) NOT NULL,
+                                     `artist_id` int(11) DEFAULT NULL,
+                                     `platform_id` int(11) DEFAULT NULL,
+                                     `url` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `artistsocialmedia`
+--
+
+INSERT INTO `artistsocialmedia` (`id`, `artist_id`, `platform_id`, `url`) VALUES
+                                                                              (36, 42, 1, 'test'),
+                                                                              (37, 42, 2, 'instatest'),
+                                                                              (48, 43, 1, 'www.facebook.com/utsab'),
+                                                                              (49, 44, 1, 'https://www.facebook.com/hari'),
+                                                                              (50, 44, 2, 'https://www.instagram.com/hari'),
+                                                                              (51, 44, 3, 'https://www.youtube.com/hari'),
+                                                                              (52, 44, 4, 'https://www.twitter.com/hari'),
+                                                                              (53, 46, 1, 'www.facebook.com/dhiraj'),
+                                                                              (54, 46, 2, 'www.instagram.com/dhiraj'),
+                                                                              (55, 47, 1, 'www.facebook.com/bishal'),
+                                                                              (56, 47, 4, 'www.twitter.com/bishal'),
+                                                                              (57, 48, 1, 'www.facebook.com/pasang'),
+                                                                              (58, 48, 3, 'www.youtube.com/pasang'),
+                                                                              (59, 45, 2, 'www.instagram.com/apson'),
+                                                                              (60, 45, 3, 'www.youtube.com/apson'),
+                                                                              (61, 49, 1, 'www.facebook.com/bibek'),
+                                                                              (62, 49, 4, 'www.twitter.com/bibek'),
+                                                                              (63, 50, 1, 'www.facebook.com/suresh'),
+                                                                              (64, 50, 2, 'www.instagram.com/suresh'),
+                                                                              (65, 50, 3, 'www.youtube.com/suresh'),
+                                                                              (66, 51, 1, 'https://www.facebook.com/bikash'),
+                                                                              (67, 51, 2, 'https://www.instagram.com/bikash'),
+                                                                              (68, 52, 1, 'https://www.facebook.com/naresh'),
+                                                                              (69, 52, 2, 'https://www.instagram.com/naresh'),
+                                                                              (70, 53, 1, 'https://www.facebook.com/nigam'),
+                                                                              (71, 53, 4, 'https://www.twitter.com/nigam'),
+                                                                              (72, 54, 2, 'https://www.instagram.com/raj'),
+                                                                              (73, 54, 3, 'https://www.youtube.com/raj'),
+                                                                              (74, 55, 1, 'https://www.facebook.com/tshiring'),
+                                                                              (75, 55, 2, 'https://www.instagram.com/tshiring'),
+                                                                              (76, 55, 3, 'https://www.youtube.com/tshiring'),
+                                                                              (77, 56, 1, 'https://www.facebook.com/nirmal'),
+                                                                              (78, 56, 4, 'https://www.twitter.com/nirmal');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `artist_details`
 --
 
@@ -38,7 +90,6 @@ CREATE TABLE `artist_details` (
                                   `bio` text DEFAULT NULL,
                                   `description` text DEFAULT NULL,
                                   `profile_picture` varchar(255) DEFAULT NULL,
-                                  `social_media` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_bin DEFAULT NULL CHECK (json_valid(`social_media`)),
                                   `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
                                   `updated_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
@@ -47,10 +98,21 @@ CREATE TABLE `artist_details` (
 -- Dumping data for table `artist_details`
 --
 
-INSERT INTO `artist_details` (`id`, `full_name`, `user_id`, `stage_name`, `phone`, `address`, `category_id`, `bio`, `description`, `profile_picture`, `social_media`, `created_at`, `updated_at`) VALUES
-                                                                                                                                                                                                      (19, '', 13, 'utsab', '9862506862', 'kathmandu', 4, '', 'test', NULL, NULL, '2024-03-22 15:48:29', '2024-03-22 15:48:29'),
-                                                                                                                                                                                                      (46, 'Utsab Dahal ', 19, 'utsab', '9862506861', 'Kapan', 4, 'Hello there', 'hello ', 'uploads/profile_pictures/19_1717471213_665e87ed407a1.jpg', NULL, '2024-03-26 11:52:19', '2024-06-04 03:20:13'),
-                                                                                                                                                                                                      (48, 'Test Test', 36, 'test', '9862506862', 'Kapan, Ktm', 2, 'Its a test bio.\r\n', 'Its a test description.', 'uploads/profile_pictures/36_1716437912_664ec398b87a4.jpg', NULL, '2024-05-23 04:18:00', '2024-05-23 04:18:32');
+INSERT INTO `artist_details` (`id`, `full_name`, `user_id`, `stage_name`, `phone`, `address`, `category_id`, `bio`, `description`, `profile_picture`, `created_at`, `updated_at`) VALUES
+                                                                                                                                                                                      (50, '', 43, 'comedian_utsab', '9862506862', 'Kuntadevi', 2, 'my bio', 'Are you comedy me?', 'uploads/profile_pictures/43_1718964182_66754fd627a58.jpg', '2024-06-19 06:07:49', '2024-06-21 10:03:02'),
+                                                                                                                                                                                      (51, 'Hari Tamang', 44, 'hari', '9812345678', 'Kapan, Kathmandu', 1, 'Be yourself', 'Its me hari. A wonderful singer', 'uploads/profile_pictures/default-profile.png', '2024-06-23 11:10:30', '2024-06-23 11:13:03'),
+                                                                                                                                                                                      (52, 'Dhiraj Jirel', 46, 'dhiraj', '9824512425', 'Jiri, Dolakha', 4, 'Its me Dhiraj Jirel.', 'Its me a talented poet from Jiri.', 'uploads/profile_pictures/46_1719184438_6678ac365d8fb.jpg', '2024-06-23 23:13:30', '2024-06-23 23:17:48'),
+                                                                                                                                                                                      (53, 'Bishal Acharya', 47, 'Bishal', '9862506862', 'Laure Tole, Bouddha', 1, 'Sing With me', 'None can sing better than me.', 'uploads/profile_pictures/47_1719185264_6678af707dc3e.jpg', '2024-06-23 23:27:18', '2024-06-23 23:27:44'),
+                                                                                                                                                                                      (56, 'Pasang Gelbu Sherpa', 48, 'pasang', '9862506862', 'Narayantaar, KTM', 3, 'A storyteller with a passion for weaving tales that captivate and inspire. I believe every story has the power to touch hearts.', ' My captivating storytelling skills and rich imagination bring his stories to life, leaving audiences enthralled.', 'uploads/profile_pictures/48_1719186188_6678b30c4cd05.jpg', '2024-06-23 23:41:36', '2024-06-23 23:43:08'),
+                                                                                                                                                                                      (57, 'Apson Jirel', 45, 'Apson', '9862506864', 'Nayabasti, Bouddha', 1, 'A singer who finds joy in every note I sing. Music is my language, and I use it to connect with people on a deeper level.', 'My  powerful vocals and emotional delivery make her a standout performer in both live concerts and studio recordings.', 'uploads/profile_pictures/45_1719189041_6678be31ec4fb.jpg', '2024-06-24 00:28:25', '2024-06-24 00:30:41'),
+                                                                                                                                                                                      (58, 'Bibek Shrestha', 49, 'bibek', '9862506892', 'Kavre', 3, 'A storyteller who enjoys sharing tales of love, loss, and everything in between. Stories are my way of connecting with people.', 'My suspenseful stories and dramatic delivery keep  listeners on the edge of their seats, eagerly awaiting the next twist.', 'uploads/profile_pictures/49_1719190032_6678c210b5e9b.jpg', '2024-06-24 00:44:07', '2024-06-24 00:47:12'),
+                                                                                                                                                                                      (59, 'Suresh Moktan', 50, 'suresh', '9862503892', 'Sankhu, Kathmandu', 2, 'A standup comedian who loves to joke about everything under the sun. Comedy is my way of lightening the mood.', 'My diverse range of jokes and infectious laughter make his performances a hit with audiences of all ages.', 'uploads/profile_pictures/50_1719367107_667b75c304a56.jpg', '2024-06-24 00:54:24', '2024-06-26 01:58:27'),
+                                                                                                                                                                                      (60, 'Bikash Khanal', 51, 'bikash', '', '', 3, 'Smooth like butter.', '', 'uploads/profile_pictures/51_1719193943_6678d15748965.jpg', '2024-06-24 01:47:57', '2024-06-24 01:52:23'),
+                                                                                                                                                                                      (61, 'Naresh Shahi', 52, 'naresh', '9822334455', 'Kapan, Ktm', 3, 'Its me Naresh.', 'A storyteller who enjoys creating suspense and mystery in my tales. Stories are my way of thrilling my audience.', 'uploads/profile_pictures/default-profile.png', '2024-06-24 02:00:30', '2024-06-24 02:00:30'),
+                                                                                                                                                                                      (62, 'Utsab Dahal', 53, 'nigam', '9861225637', 'Kuntadevi', 4, 'I slam the poetry.', 'I am the best', 'uploads/profile_pictures/default-profile.png', '2024-06-26 02:01:44', '2024-06-26 02:53:45'),
+                                                                                                                                                                                      (63, 'Raj Shrestha', 54, 'raj', '', 'Gokarna, Kathmandu', 1, 'A lover of music, telling stories through song.', 'A lover of music, telling stories through song.', 'uploads/profile_pictures/54_1719367982_667b792ee01f9.jpg', '2024-06-26 02:11:17', '2024-06-26 02:13:02'),
+                                                                                                                                                                                      (64, 'Tshiring Sherpa', 55, 'Tshiring', '9862506873', 'Kapan, Kathmandu', 1, '', 'Sharing my voice, one song at a time.', 'uploads/profile_pictures/55_1719368179_667b79f39e0d8.jpg', '2024-06-26 02:16:13', '2024-06-26 02:16:19'),
+                                                                                                                                                                                      (65, 'Nirmal Deuja', 56, 'Nirmal', '9862506972', 'Kathmandu', 2, 'Sharing funny anecdotes and witty observations about life.', 'Catch me on stage or here for your daily dose of humor! 🌟 #ComedyLife #LaughsForDays 🎭\"', 'uploads/profile_pictures/56_1719369015_667b7d37ed06d.jpg', '2024-06-26 02:29:23', '2024-06-26 02:30:15');
 
 -- --------------------------------------------------------
 
@@ -73,7 +135,7 @@ CREATE TABLE `bookings` (
                             `advance_amount` decimal(10,2) NOT NULL,
                             `remaining_amount` decimal(10,2) NOT NULL,
                             `performance_type_id` int(11) NOT NULL,
-                            `status` enum('approved','pending','declined') NOT NULL DEFAULT 'pending',
+                            `status` enum('approved','pending','declined','cancelled') NOT NULL DEFAULT 'pending',
                             `created_at` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -82,19 +144,11 @@ CREATE TABLE `bookings` (
 --
 
 INSERT INTO `bookings` (`booking_id`, `user_id`, `artist_id`, `province_id`, `district_id`, `municipality_id`, `local_area`, `event_date`, `event_start_time`, `event_end_time`, `total_cost`, `advance_amount`, `remaining_amount`, `performance_type_id`, `status`, `created_at`) VALUES
-                                                                                                                                                                                                                                                                                        (1, 19, 19, 6, 59, 3, 'Kuntadevi', '2024-05-31', '09:11:00', '01:07:00', 3.00, 836.50, 2.00, 4, 'pending', '2024-05-25 03:33:27'),
-                                                                                                                                                                                                                                                                                        (2, 19, 19, 6, 59, 3, 'Kuntadevi', '2024-05-31', '09:11:00', '01:07:00', 3.00, 836.50, 2.00, 4, 'pending', '2024-05-25 03:37:30'),
-                                                                                                                                                                                                                                                                                        (3, 19, 19, 6, 59, 3, 'Kuntadevi', '2024-05-31', '09:11:00', '01:07:00', 3.00, 836.50, 2.00, 4, 'pending', '2024-05-25 03:38:32'),
-                                                                                                                                                                                                                                                                                        (4, 19, 19, 6, 59, 3, 'Kuntadevi', '2024-05-31', '09:11:00', '01:07:00', 3.00, 836.50, 2.00, 4, 'pending', '2024-05-25 03:39:18'),
-                                                                                                                                                                                                                                                                                        (5, 19, 19, 6, 59, 3, 'Kuntadevi', '2024-05-31', '09:11:00', '01:07:00', 3.00, 836.50, 2.00, 4, 'pending', '2024-05-25 03:39:39'),
-                                                                                                                                                                                                                                                                                        (6, 19, 19, 6, 59, 67, 'hjdks', '2024-05-30', '09:30:00', '09:28:00', 5.00, 1.00, 3.00, 4, 'pending', '2024-05-25 03:42:57'),
-                                                                                                                                                                                                                                                                                        (7, 19, 19, 4, 37, 110, 'fd', '2024-05-30', '11:30:00', '09:31:00', 4.00, 1.00, 3.00, 4, 'pending', '2024-05-25 03:46:01'),
-                                                                                                                                                                                                                                                                                        (8, 19, 19, 4, 36, 8, 'fd', '2024-05-30', '11:30:00', '09:31:00', 4.00, 1.00, 3.00, 4, 'pending', '2024-05-25 03:47:14'),
-                                                                                                                                                                                                                                                                                        (9, 19, 19, 4, 36, 85, 'qwsd', '2024-05-30', '09:34:00', '09:33:00', 5.00, 1.00, 3.00, 4, 'pending', '2024-05-25 03:47:44'),
-                                                                                                                                                                                                                                                                                        (10, 13, 19, 3, 23, 90, 'hjdks', '2024-05-31', '09:56:00', '09:54:00', 5.00, 1.00, 3.00, 4, 'pending', '2024-05-25 04:10:14'),
-                                                                                                                                                                                                                                                                                        (11, 13, 19, 3, 23, 90, 'vbnm', '2024-05-31', '11:28:00', '10:27:00', 4.00, 1.00, 3.00, 4, 'pending', '2024-05-25 05:43:05'),
-                                                                                                                                                                                                                                                                                        (12, 19, 19, 1, 7, 337, 'Kuntadevi', '2024-05-25', '20:23:00', '20:20:00', 5.00, 1.00, 3.00, 4, 'pending', '2024-05-25 14:37:21'),
-                                                                                                                                                                                                                                                                                        (13, 19, 19, 1, 6, 240, 'Test', '2024-05-31', '21:11:00', '19:08:00', 4.00, 1.00, 3.00, 4, 'pending', '2024-05-25 15:23:19');
+                                                                                                                                                                                                                                                                                        (31, 42, 43, 3, 24, 489, 'Likhu', '2024-06-29', '13:11:00', '15:11:00', 3600.00, 900.00, 2700.00, 9, 'approved', '2024-06-21 14:17:22'),
+                                                                                                                                                                                                                                                                                        (32, 42, 43, 2, 16, 136, 'TEST BODY', '2024-06-29', '11:11:00', '22:22:00', 20130.00, 5032.50, 15097.50, 9, 'approved', '2024-06-21 14:23:05'),
+                                                                                                                                                                                                                                                                                        (33, 42, 43, 3, 24, 236, 'FINAL HTML BODY TEST', '2024-07-04', '13:13:00', '14:14:00', 1830.00, 457.50, 1372.50, 9, 'declined', '2024-06-21 14:25:53'),
+                                                                                                                                                                                                                                                                                        (34, 42, 43, 6, 62, 662, 'HadiGaon', '2024-06-27', '11:15:00', '13:01:00', 3180.00, 795.00, 2385.00, 9, 'cancelled', '2024-06-22 01:12:35'),
+                                                                                                                                                                                                                                                                                        (35, 43, 45, 3, 26, 64, 'near school', '2024-06-26', '17:41:00', '20:41:00', 8400.00, 2100.00, 6300.00, 19, 'pending', '2024-06-24 10:56:39');
 
 -- --------------------------------------------------------
 
@@ -140,13 +194,47 @@ CREATE TABLE `comments` (
 --
 
 INSERT INTO `comments` (`id`, `user_id`, `artist_id`, `rating`, `text`, `upvotes`, `parent_id`, `created_at`) VALUES
-                                                                                                                  (4, 19, 36, 3, 'gh', 1, NULL, '2024-06-14 04:13:21'),
-                                                                                                                  (5, 19, 36, 4, 'another one', 0, NULL, '2024-06-14 08:58:47'),
-                                                                                                                  (6, 13, 36, 3, 'test 3', 0, NULL, '2024-06-14 09:40:21'),
-                                                                                                                  (9, 13, 36, NULL, 'test success', 0, 6, '2024-06-14 10:03:40'),
-                                                                                                                  (10, 13, 36, NULL, 'test', 0, 4, '2024-06-14 10:04:42'),
-                                                                                                                  (11, 19, 36, NULL, '', 0, 6, '2024-06-14 15:29:08'),
-                                                                                                                  (12, 19, 36, NULL, '', 0, 6, '2024-06-14 15:29:10');
+                                                                                                                  (14, 42, 43, 3, 'test', 0, NULL, '2024-06-21 01:15:30'),
+                                                                                                                  (15, 42, 43, NULL, 'test success', 0, 14, '2024-06-21 01:16:40'),
+                                                                                                                  (16, 42, 43, NULL, '', 0, 14, '2024-06-21 01:17:10'),
+                                                                                                                  (17, 42, 43, NULL, 'hello test', 0, 14, '2024-06-21 01:19:06'),
+                                                                                                                  (18, 42, 43, NULL, 'final test', 0, 14, '2024-06-21 01:21:28'),
+                                                                                                                  (19, 42, 43, NULL, 'test', 0, 14, '2024-06-21 01:22:09'),
+                                                                                                                  (20, 42, 43, NULL, 'test 1', 0, 14, '2024-06-21 01:24:28'),
+                                                                                                                  (21, 42, 43, NULL, 'it may be final', 0, 14, '2024-06-21 01:25:59'),
+                                                                                                                  (22, 42, 43, NULL, 'test 2', 0, 14, '2024-06-21 01:27:39'),
+                                                                                                                  (23, 42, 43, NULL, 'test toastr', 0, 14, '2024-06-21 01:31:03'),
+                                                                                                                  (24, 42, 43, 2, 'test', 0, NULL, '2024-06-21 01:33:13'),
+                                                                                                                  (25, 42, 43, NULL, 'test 2', 0, 14, '2024-06-21 01:33:46'),
+                                                                                                                  (26, 43, 43, NULL, 'replied', 0, 24, '2024-06-21 02:16:42'),
+                                                                                                                  (27, 43, 43, NULL, 'test 3', 0, 24, '2024-06-21 02:22:38'),
+                                                                                                                  (28, 43, 43, 4, 'test for code push', 0, NULL, '2024-06-21 02:41:23'),
+                                                                                                                  (29, 43, 43, NULL, 'success or wott?', 0, 28, '2024-06-21 02:46:55'),
+                                                                                                                  (30, 43, 45, 4, 'Very Good performance', 0, NULL, '2024-06-24 10:53:01'),
+                                                                                                                  (31, 46, 45, NULL, 'yes indeed', 0, 30, '2024-06-24 10:54:01');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `contact_us`
+--
+
+CREATE TABLE `contact_us` (
+                              `id` int(11) NOT NULL,
+                              `name` varchar(255) NOT NULL,
+                              `email` varchar(255) NOT NULL,
+                              `subject` varchar(255) NOT NULL,
+                              `message` text NOT NULL,
+                              `submitted_at` timestamp NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `contact_us`
+--
+
+INSERT INTO `contact_us` (`id`, `name`, `email`, `subject`, `message`, `submitted_at`) VALUES
+                                                                                           (1, 'Utsab Dahal', 'utsab.dahal78@aadimcollege.edu.np', 'Test', 'Test using Ajax', '2024-06-18 11:18:14'),
+                                                                                           (2, 'Utsab Dahal', 'utsab.dahal78@aadimcollege.edu.np', 'test 2', 'second test using jquery and ajax', '2024-06-18 11:19:13');
 
 -- --------------------------------------------------------
 
@@ -276,14 +364,13 @@ CREATE TABLE `media` (
 --
 
 INSERT INTO `media` (`media_id`, `user_id`, `media_type`, `media_url`, `title`, `description`, `created_at`) VALUES
-                                                                                                                 (20, 19, 'video', 'uploads/video/Wolfenstein 3D 2023.06.16 - 18.39.37.01.mp4', 'test video', 'video test', '2024-05-21 07:28:57'),
-                                                                                                                 (21, 19, 'photo', 'uploads/photo/Utsab.jpg', 'test image', 'test', '2024-05-21 08:43:22'),
-                                                                                                                 (22, 19, 'video', 'uploads/video/Jiunu nai hola (cover)Tribal rain_apson jirel.mp4', 'Test ', 'Its a test upload', '2024-05-25 00:07:34'),
-                                                                                                                 (23, 19, 'video', 'uploads/video/Wolfenstein 3D 2023.06.16 - 18.39.37.01.mp4', 'test loader', 'loader', '2024-05-27 07:59:47'),
-                                                                                                                 (24, 19, 'video', 'uploads/video/Wolfenstein 3D 2023.06.16 - 18.39.37.01.mp4', 'hfjk', 'ghdjsjklk', '2024-05-27 09:56:56'),
-                                                                                                                 (25, 19, 'video', 'uploads/video/Wolfenstein 3D 2023.06.16 - 18.39.37.01.mp4', 'ghjdkvnbsdmn,am', 'hjbdnm', '2024-05-27 10:03:36'),
-                                                                                                                 (26, 19, 'video', 'uploads/video/Wolfenstein 3D 2023.06.16 - 18.39.37.01.mp4', 'ghjdkvnbsdmn,am', 'hjbdnm', '2024-05-27 10:03:45'),
-                                                                                                                 (27, 19, 'video', 'uploads/video/Wolfenstein 3D 2023.06.16 - 18.39.37.01.mp4', 'jnmhvgj', 'hbkjn', '2024-05-27 10:04:58');
+                                                                                                                 (32, 46, 'video', 'uploads/video/0-02-03-481c08817caee709045dbdc764397a2da940aff568db1e6662ebd821f6431a7e_d3eb6bdb8a8e5071.mp4', 'Dhiraj Performance', 'Test', '2024-06-23 23:15:47'),
+                                                                                                                 (33, 48, 'video', 'uploads/video/pasang_.mp4', 'College Story', 'its a story', '2024-06-23 23:53:06'),
+                                                                                                                 (34, 48, 'video', 'uploads/video/63229-506616446_medium.mp4', 'Heal', 'Healing Sound', '2024-06-24 00:00:02'),
+                                                                                                                 (35, 47, 'video', 'uploads/video/Warriyo - Mortals (feat. Laura Brehm) _ Future Trap _ NCS - Copyright Free Music.mp4', 'Bishal Performance', 'Performance by bishal', '2024-06-24 00:16:59'),
+                                                                                                                 (36, 45, 'video', 'uploads/video/Jiunu nai hola (cover)Tribal rain_apson jirel.mp4', 'My Cover', 'Cover by me', '2024-06-24 00:34:29'),
+                                                                                                                 (37, 45, 'video', 'uploads/video/__Timi uta ma Yeta__Short Cover__apson_jirel__.mp4', 'Timi Uta Ma Yeta Cover', 'Its a cover', '2024-06-24 00:37:37'),
+                                                                                                                 (38, 50, 'video', 'uploads/video/Life Changing Story To Stop Mind\'s Chatter _ Nepali Story to Stop Mind\'s Chatter _ Gyankunda.mp4', 'Suresh ', 'my video', '2024-06-24 02:56:56');
 
 -- --------------------------------------------------------
 
@@ -307,38 +394,15 @@ CREATE TABLE `messages` (
 --
 
 INSERT INTO `messages` (`id`, `sender_id`, `receiver_id`, `type`, `content`, `status`, `created_at`, `updated_at`) VALUES
-                                                                                                                       (1, 19, 36, 'text', 'hello test', '', '2024-05-31 05:18:07', '2024-05-31 08:10:52'),
-                                                                                                                       (2, 19, 33, 'text', 'oii', 'sent', '2024-05-31 05:19:12', '2024-05-31 05:19:12'),
-                                                                                                                       (3, 19, 36, 'text', 'message for test user', 'sent', '2024-05-31 05:22:07', '2024-05-31 05:22:07'),
-                                                                                                                       (4, 13, 19, 'text', 'hey', 'sent', '2024-05-31 05:47:07', '2024-05-31 05:47:07'),
-                                                                                                                       (5, 19, 13, 'text', 'hello', 'sent', '2024-05-31 05:52:50', '2024-05-31 05:52:50'),
-                                                                                                                       (6, 13, 19, 'text', 'how you doing buddy', 'sent', '2024-05-31 05:53:15', '2024-05-31 05:53:15'),
-                                                                                                                       (7, 19, 13, 'text', 'all good and you?', 'sent', '2024-05-31 05:53:26', '2024-05-31 05:53:26'),
-                                                                                                                       (8, 19, 33, 'text', 'k xa?', 'sent', '2024-05-31 07:49:17', '2024-05-31 07:49:17'),
-                                                                                                                       (9, 19, 13, 'text', 'oii', 'sent', '2024-05-31 07:49:43', '2024-05-31 07:49:43'),
-                                                                                                                       (10, 13, 19, 'text', 'van', 'sent', '2024-05-31 07:50:39', '2024-05-31 07:50:39'),
-                                                                                                                       (11, 19, 13, 'text', 'hello', 'sent', '2024-05-31 07:51:27', '2024-05-31 07:51:27'),
-                                                                                                                       (12, 13, 19, 'text', 'hey', 'sent', '2024-05-31 07:51:32', '2024-05-31 07:51:32'),
-                                                                                                                       (13, 13, 19, 'text', 'whats up buddy?', 'sent', '2024-05-31 07:51:39', '2024-05-31 07:51:39'),
-                                                                                                                       (14, 19, 13, 'text', 'all good', 'sent', '2024-05-31 07:51:45', '2024-05-31 07:51:45'),
-                                                                                                                       (15, 19, 13, 'text', 'wanna go out?', 'sent', '2024-05-31 07:52:26', '2024-05-31 07:52:26'),
-                                                                                                                       (16, 13, 19, 'text', 'no i am busy?', 'sent', '2024-05-31 07:52:38', '2024-05-31 07:52:38'),
-                                                                                                                       (17, 13, 19, 'text', 'i will call you at 6', 'sent', '2024-05-31 07:52:55', '2024-05-31 07:52:55'),
-                                                                                                                       (18, 19, 13, 'text', 'okey then', 'sent', '2024-05-31 07:53:02', '2024-05-31 07:53:02'),
-                                                                                                                       (19, 19, 13, 'text', 'okey', 'sent', '2024-05-31 07:56:47', '2024-05-31 07:56:47'),
-                                                                                                                       (20, 19, 13, 'text', 'test', 'sent', '2024-05-31 08:01:15', '2024-05-31 08:01:15'),
-                                                                                                                       (21, 13, 19, 'text', 'is it successful?', 'sent', '2024-05-31 08:02:14', '2024-05-31 08:02:14'),
-                                                                                                                       (22, 19, 13, 'text', 'no', 'sent', '2024-05-31 08:05:22', '2024-05-31 08:05:22'),
-                                                                                                                       (23, 19, 13, 'text', 'lets try again', 'sent', '2024-05-31 08:06:46', '2024-05-31 08:06:46'),
-                                                                                                                       (24, 19, 13, 'text', 'what about now', 'sent', '2024-05-31 08:07:03', '2024-05-31 08:07:03'),
-                                                                                                                       (25, 13, 19, 'text', 'lets see it again', 'sent', '2024-05-31 08:08:23', '2024-05-31 08:08:23'),
-                                                                                                                       (26, 19, 13, 'text', 'okey', 'sent', '2024-05-31 08:08:51', '2024-05-31 08:08:51'),
-                                                                                                                       (27, 19, 13, 'text', 'what now?', 'sent', '2024-05-31 08:10:26', '2024-05-31 08:10:26'),
-                                                                                                                       (28, 13, 19, 'text', 'lets see', 'sent', '2024-05-31 08:11:02', '2024-05-31 08:11:02'),
-                                                                                                                       (29, 19, 13, 'text', 'done?', 'sent', '2024-05-31 08:57:10', '2024-05-31 08:57:10'),
-                                                                                                                       (30, 19, 36, 'text', 'test', 'sent', '2024-05-31 09:00:30', '2024-05-31 09:00:30'),
-                                                                                                                       (31, 19, 13, 'text', 'not yet?', 'sent', '2024-05-31 10:34:10', '2024-05-31 10:34:10'),
-                                                                                                                       (32, 19, 13, 'text', 'any update?', 'sent', '2024-06-04 02:45:27', '2024-06-04 02:45:27');
+                                                                                                                       (33, 43, 41, 'text', 'hey', 'sent', '2024-06-19 12:57:02', '2024-06-19 12:57:02'),
+                                                                                                                       (34, 43, 41, 'text', 'hello', 'sent', '2024-06-19 12:57:23', '2024-06-19 12:57:23'),
+                                                                                                                       (35, 43, 42, 'text', 'hey', 'sent', '2024-06-19 12:57:35', '2024-06-19 12:57:35'),
+                                                                                                                       (36, 42, 43, 'text', 'hello', '', '2024-06-19 13:55:47', '2024-06-19 13:55:47'),
+                                                                                                                       (37, 42, 43, 'text', 'hey are you free?', '', '2024-06-21 05:23:21', '2024-06-21 05:23:21'),
+                                                                                                                       (38, 46, 43, 'text', 'hey', 'sent', '2024-06-24 10:50:14', '2024-06-24 10:50:14'),
+                                                                                                                       (39, 43, 46, 'text', 'hello', '', '2024-06-24 10:50:27', '2024-06-24 10:50:27'),
+                                                                                                                       (40, 43, 46, 'text', 'how you doing?', '', '2024-06-24 10:51:09', '2024-06-24 10:51:09'),
+                                                                                                                       (41, 46, 45, 'text', 'hey', '', '2024-06-24 10:54:24', '2024-06-24 10:54:24');
 
 -- --------------------------------------------------------
 
@@ -1125,6 +1189,13 @@ CREATE TABLE `otp` (
                        `expires_at` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Dumping data for table `otp`
+--
+
+INSERT INTO `otp` (`id`, `user_id`, `otp`, `created_at`, `expires_at`) VALUES
+    (54, 43, '175796', '2024-06-24 01:13:06', '2024-06-24 07:03:06');
+
 -- --------------------------------------------------------
 
 --
@@ -1144,8 +1215,23 @@ CREATE TABLE `performance_types` (
 --
 
 INSERT INTO `performance_types` (`performance_type_id`, `performance_type`, `artist_id`, `cost_per_hour`, `is_deleted`) VALUES
-                                                                                                                            (4, 'test', 19, 210.00, 0),
-                                                                                                                            (5, 'Concert', 19, 1000.00, 1);
+                                                                                                                            (8, 'Concert', 43, 1500.00, 1),
+                                                                                                                            (9, 'solo', 43, 1800.00, 0),
+                                                                                                                            (10, 'venue', 46, 800.00, 0),
+                                                                                                                            (11, 'Home', 46, 700.00, 0),
+                                                                                                                            (12, 'Talk Show', 47, 2000.00, 0),
+                                                                                                                            (13, 'Wedding', 47, 3500.00, 0),
+                                                                                                                            (14, 'Live Storytelling Events', 48, 1570.00, 0),
+                                                                                                                            (15, 'Digital Storytelling', 48, 500.00, 0),
+                                                                                                                            (16, 'Concert', 47, 2500.00, 0),
+                                                                                                                            (17, 'Studio Recordings', 47, 2200.00, 0),
+                                                                                                                            (18, 'Charity and Benefit Concerts', 45, 1200.00, 0),
+                                                                                                                            (19, 'Covers and Tributes', 45, 2800.00, 0),
+                                                                                                                            (20, 'School Performances', 45, 3200.00, 0),
+                                                                                                                            (21, 'Digital Storytelling', 49, 1300.00, 0),
+                                                                                                                            (22, 'Live Storytelling Event', 49, 2700.00, 0),
+                                                                                                                            (23, 'Educational Program', 43, 1780.00, 0),
+                                                                                                                            (24, 'Stage Performance', 50, 2500.00, 0);
 
 -- --------------------------------------------------------
 
@@ -1194,35 +1280,24 @@ INSERT INTO `roles` (`role_id`, `role_name`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `socialmedialinks`
+-- Table structure for table `socialmediaplatforms`
 --
 
-CREATE TABLE `socialmedialinks` (
-                                    `id` int(11) NOT NULL,
-                                    `user_id` int(11) DEFAULT NULL,
-                                    `name` varchar(20) DEFAULT NULL,
-                                    `link` varchar(255) DEFAULT NULL
+CREATE TABLE `socialmediaplatforms` (
+                                        `platform_id` int(11) NOT NULL,
+                                        `platform_name` varchar(255) NOT NULL,
+                                        `icon_class` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data for table `socialmedialinks`
+-- Dumping data for table `socialmediaplatforms`
 --
 
-INSERT INTO `socialmedialinks` (`id`, `user_id`, `name`, `link`) VALUES
-                                                                     (1, 6, 'Facebook', 'http://facebook.com/johndoe'),
-                                                                     (2, 6, 'Twitter', 'http://twitter.com/johndoe'),
-                                                                     (3, 7, 'Facebook', 'http://facebook.com/johndoe'),
-                                                                     (4, 7, 'Twitter', 'http://twitter.com/johndoe'),
-                                                                     (5, 8, 'Facebook', 'http://facebook.com/johndoe'),
-                                                                     (6, 8, 'Twitter', 'http://twitter.com/johndoe'),
-                                                                     (7, 9, 'Facebook', 'http://facebook.com/johndoe'),
-                                                                     (8, 9, 'Twitter', 'http://twitter.com/johndoe'),
-                                                                     (9, 10, 'Facebook', 'http://facebook.com/johndoe'),
-                                                                     (10, 10, 'Twitter', 'http://twitter.com/johndoe'),
-                                                                     (11, 11, 'Facebook', 'http://facebook.com/johndoe'),
-                                                                     (12, 11, 'Twitter', 'http://twitter.com/johndoe'),
-                                                                     (13, 12, 'Facebook', 'http://facebook.com/johndoe'),
-                                                                     (14, 12, 'Twitter', 'http://twitter.com/johndoe');
+INSERT INTO `socialmediaplatforms` (`platform_id`, `platform_name`, `icon_class`) VALUES
+                                                                                      (1, 'Facebook', 'fa-brands fa-facebook'),
+                                                                                      (2, 'Instagram', 'fa-brands fa-instagram'),
+                                                                                      (3, 'YouTube', 'fa-brands fa-youtube'),
+                                                                                      (4, 'Twitter', 'fa-brands fa-twitter');
 
 -- --------------------------------------------------------
 
@@ -1244,12 +1319,10 @@ CREATE TABLE `transactions` (
 --
 
 INSERT INTO `transactions` (`transaction_id`, `booking_id`, `transaction_uuid`, `payment_service`, `status`, `created_at`) VALUES
-                                                                                                                               (8, 10, 'openmichubWYQ9J5A6S', 'ESEWA', 'success', '2024-05-27 02:47:13'),
-                                                                                                                               (10, 10, 'openmichubWYQ9J5A6S', 'ESEWA', 'success', '2024-05-27 03:01:36'),
-                                                                                                                               (11, 10, 'syNJSx5nE3kFXSVd6QNLJE', 'KHALTI', 'success', '2024-05-27 03:04:49'),
-                                                                                                                               (12, 10, 'syNJSx5nE3kFXSVd6QNLJE', 'KHALTI', 'success', '2024-05-27 03:19:00'),
-                                                                                                                               (13, 10, 'openmichubWYQ9J5A6S', 'ESEWA', 'success', '2024-05-27 03:20:29'),
-                                                                                                                               (14, 10, 'openmichubWYQ9J5A6S', 'ESEWA', 'success', '2024-05-27 03:21:20');
+                                                                                                                               (24, 31, 'openmichub7071JXCZS', 'ESEWA', 'success', '2024-06-22 01:28:38'),
+                                                                                                                               (25, 32, '9goK8DRQNtgULDBN5NUQsQ', 'KHALTI', 'success', '2024-06-22 02:23:48'),
+                                                                                                                               (26, 32, '9goK8DRQNtgULDBN5NUQsQ', 'KHALTI', 'success', '2024-06-22 02:23:52'),
+                                                                                                                               (27, 33, 'ieRZzsVy35GQ5YzKWhYnDm', 'KHALTI', 'success', '2024-06-22 02:28:07');
 
 -- --------------------------------------------------------
 
@@ -1274,15 +1347,7 @@ CREATE TABLE `userdetails` (
 --
 
 INSERT INTO `userdetails` (`id`, `fullName`, `phone`, `address`, `profilePicture`, `bio`, `created_at`, `updated_at`, `user_id`) VALUES
-                                                                                                                                     (6, 'John Doe', '1234567890', '123 Street, City, Country', 'http://example.com/profile.jpg', 'This is a sample bio', '2024-04-04 01:54:24', NULL, NULL),
-                                                                                                                                     (7, 'John Doe', '1234567890', '123 Street, City, Country', 'http://example.com/profile.jpg', 'This is a sample bio', '2024-04-04 02:05:50', NULL, NULL),
-                                                                                                                                     (8, 'John Doe', '1234567890', '123 Street, City, Country', 'http://example.com/profile.jpg', 'This is a sample bio', '2024-04-04 02:11:35', NULL, NULL),
-                                                                                                                                     (9, 'John Doe', '1234567890', '123 Street, City, Country', 'http://example.com/profile.jpg', 'This is a sample bio', '2024-04-04 02:12:32', NULL, NULL),
-                                                                                                                                     (10, 'John Doe', '1234567890', '123 Street, City, Country', 'http://example.com/profile.jpg', 'This is a sample bio', '2024-04-04 02:16:42', NULL, NULL),
-                                                                                                                                     (11, 'John Doe', '1234567890', '123 Street, City, Country', 'http://example.com/profile.jpg', 'This is a sample bio', '2024-04-04 02:18:08', NULL, NULL),
-                                                                                                                                     (12, 'John Doe', '1234567890', '123 Street, City, Country', 'http://example.com/profile.jpg', 'This is a sample bio', '2024-04-04 02:18:23', NULL, NULL),
-                                                                                                                                     (13, 'Ramesh Dahal', '9862506862', 'Kapan, Ktm', 'uploads/profile_pictures/13_1716263417_664c19f9402b4.png', 'Its a testing phase 2', '2024-04-22 20:58:43', '0000-00-00 00:00:00', 13),
-                                                                                                                                     (14, 'Utsab Dahal', '9862506862', 'Kuntadevi', 'uploads/profile_pictures/33_1717471535_665e892f51279.jpg', '', '2024-06-03 21:40:15', NULL, 33);
+    (15, 'Utsab Dahal', '9862506862', 'kathmandu', 'uploads/profile_pictures/42_1718776741_667273a57d5f9.jpg', 'Its me Utsab(user).', '2024-06-18 23:54:05', '0000-00-00 00:00:00', 42);
 
 -- --------------------------------------------------------
 
@@ -1299,26 +1364,43 @@ CREATE TABLE `users` (
                          `created_at` datetime NOT NULL,
                          `updated_at` datetime DEFAULT NULL,
                          `is_verified` tinyint(1) DEFAULT 0,
-                         `is_active` tinyint(1) DEFAULT 1
+                         `is_active` tinyint(1) DEFAULT 1,
+                         `is_blocked` tinyint(1) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`id`, `username`, `email`, `password`, `role_id`, `created_at`, `updated_at`, `is_verified`, `is_active`) VALUES
-                                                                                                                                   (13, 'utsab', 'dlutsab2120@gmail.com', '$2y$10$niLwjvS55ARIAVcJMwulG.u.Gd7J5z0ejXKvVuk/.hjGXA9aV5Rca', 3, '2024-03-22 07:08:52', NULL, 1, 1),
-                                                                                                                                   (19, 'utsabdahal', 'utsab.dahal78@aadimcollege.edu.np', '$2y$10$2klm7x2gRZuLKEP1P81kyOz8HPycMDQZ0G9ZERK3CYI4WBBRFsMQa', 2, '2024-03-23 01:05:19', NULL, 1, 1),
-                                                                                                                                   (21, 'apson', 'apsonjirel47@yopmail.com', '$2y$10$DCkGFgUNROOsiZTOAo2XJuh.8YruYTkIboCaCXTWuBYrW3y46O.RK', 2, '2024-03-23 06:06:29', NULL, 0, 1),
-                                                                                                                                   (31, 'ram123', 'ram@yopmail.com', '$2y$10$M12Qa04Cyl54hz7oH3ucZ..1LmZc7QU6.O4ocRJtSfGgL0buII7ke', 2, '2024-03-26 04:03:52', NULL, 1, 1),
-                                                                                                                                   (32, 'admin', 'admin111@yopmail.com', '$2y$10$bTkaHImImj7CINjWs9QsuurbiU1Difz8vTGIdpDYNnz6GAx84AXau', 2, '2024-03-26 04:14:40', NULL, 1, 1),
-                                                                                                                                   (33, 'ujjwal', 'dlujjwal2120@gmail.com', '$2y$10$ekS6LhviESk9HmxkaiI9C.6P0kSNx6iHU.WG2mk5sdVtuQ72Jmpza', 3, '2024-04-06 05:41:09', NULL, 1, 1),
-                                                                                                                                   (35, 'hari', 'hari@yopmail.com', '$2y$10$BRUHFI2S8/kqfxoH9/vS4.vabQJ08kLpLkFG.98mZ1moQ0Ah56Mb2', 3, '2024-04-22 09:28:05', NULL, 1, 1),
-                                                                                                                                   (36, 'test', 'test123@yopmail.com', '$2y$10$VkjtUAcaznFkewQKcbCiUeXEgL6ABUVT1lU6BFA21ZkbQ5bB8KbVi', 2, '2024-05-23 04:16:11', NULL, 1, 1);
+INSERT INTO `users` (`id`, `username`, `email`, `password`, `role_id`, `created_at`, `updated_at`, `is_verified`, `is_active`, `is_blocked`) VALUES
+                                                                                                                                                 (41, 'admin', 'admin@gmail.com', '$2y$10$IE755OS.aDbWkkcCojNb3.fzwHWpVcBF8clhmdo5twmba9i1mwqi6', 1, '0000-00-00 00:00:00', NULL, 1, 1, 0),
+                                                                                                                                                 (42, 'utsab', 'dlutsab2120@gmail.com', '$2y$10$zXrZuCahtaO0WromTdRaIu2e3zFqtAEw8bHPmfxzY948qXLFX413a', 3, '2024-06-19 05:25:25', NULL, 1, 1, 0),
+                                                                                                                                                 (43, 'artist_utsab', 'utsab.dahal78@aadimcollege.edu.np', '$2y$10$RxjAQmX6Vyb3TBlvqUdwNOr5L6au0UmstTHRdaxklZn4GbWkadr3u', 2, '2024-06-19 06:00:02', NULL, 1, 1, 0),
+                                                                                                                                                 (44, 'hari', 'hari@yopmail.com', '$2y$10$GuBmzWqKJok3ZChCSGdXV.HOlkVtmShwsLnoFw6RcBuPl2XIHcqZm', 2, '2024-06-23 11:09:03', '2024-06-23 11:35:32', 1, 1, 1),
+                                                                                                                                                 (45, 'apson', 'apsonjirel@yopmail.com', '$2y$10$pGGdZV8vzngaUODKdfpABe0rx0P38H501rKH0FIE15q/JsIRvokra', 2, '2024-06-24 00:38:14', '2024-06-24 00:30:57', 1, 1, 0),
+                                                                                                                                                 (46, 'dhiraj', 'dhirajjirel@yopmail.com', '$2y$10$yndradGYLTgDHXFV9m3dn.zhFBnUjcz.iXJ5shGEhblJ.DoFKKifa', 2, '2024-06-23 23:10:19', NULL, 1, 1, 0),
+                                                                                                                                                 (47, 'Bishal', 'chitraprasad@yopmail.com', '$2y$10$kbTCOwIsyqgyiaUXVVvCxuFuB0uY/LrvtTxDOH1x0vdelXWCDQFMy', 2, '2024-06-23 23:20:47', NULL, 1, 1, 0),
+                                                                                                                                                 (48, 'pasang', 'pasangsherpa@yopmail.com', '$2y$10$2MtR0KnsS8zAfVBN/HrR9eifomr.hFW2X/4mCbwJCFZdHPRTR93Fe', 2, '2024-06-23 23:32:06', NULL, 1, 1, 0),
+                                                                                                                                                 (49, 'bibek', 'bibekshrestha@yopmail.com', '$2y$10$nFc6Rrj8qmn4DeVtB3sEZusSJtTqdwecD06p4gTRWIjE64/ZvDOAW', 2, '2024-06-24 00:40:30', NULL, 1, 1, 0),
+                                                                                                                                                 (50, 'suresh', 'sureshmoktan@yopmail.com', '$2y$10$E3NElU1FGwvWTlJWlKkLIuoMFeFPB0HKxrBjNU39x90ZAI1pzrqCy', 2, '2024-06-24 02:52:19', NULL, 1, 1, 0),
+                                                                                                                                                 (51, 'bikash', 'bikashkhanal@yopmail.com', '$2y$10$00FUHSaWv4r.2VP38Tkmee5cNCB28rRPTlhHpRlT8vEwC7cBG6OoC', 2, '2024-06-24 03:46:45', NULL, 1, 1, 0),
+                                                                                                                                                 (52, 'naresh', 'nareshshahi@yopmail.com', '$2y$10$A62jY8e3GWkaML/yHMOefuR6NTzQ8wMXlp0h0Q/OOkn6QDX8gQiqC', 2, '2024-06-24 03:57:44', NULL, 1, 1, 0),
+                                                                                                                                                 (53, 'nigam', 'nigamrai@yopmail.com', '$2y$10$OJDh9L48Qpa89hnvPTa69uwr4OX7Fvmgp0wXKoMPJOjlKpQmDOx.a', 2, '2024-06-26 04:00:00', NULL, 1, 1, 0),
+                                                                                                                                                 (54, 'rajkumar', 'rajshrestha@yopmail.com', '$2y$10$e18UpH3q6lPBRQ4.UW1af.LnsQVhvgGF/.qNSKrBVO0ZxsxLrCgaW', 2, '2024-06-26 04:08:41', NULL, 1, 1, 0),
+                                                                                                                                                 (55, 'tshiring', 'tshiringsherpa@yopmail.com', '$2y$10$DSJln44RkpnQ9F8YC.ogC.fChI2t3pkmi9jCIhZdQoZI8xs1OykS2', 2, '2024-06-26 04:14:35', NULL, 1, 1, 0),
+                                                                                                                                                 (56, 'nirmal', 'nirmaldeuja@yopmail.com', '$2y$10$eesXbEr5L4yt0tAtJRgCguSu62M6L04TWMKZZYZa/80F/b0TZ58pC', 2, '2024-06-26 04:25:24', NULL, 1, 1, 0);
 
 --
 -- Indexes for dumped tables
 --
+
+--
+-- Indexes for table `artistsocialmedia`
+--
+ALTER TABLE `artistsocialmedia`
+    ADD PRIMARY KEY (`id`),
+    ADD KEY `artist_id` (`artist_id`),
+    ADD KEY `platform_id` (`platform_id`);
 
 --
 -- Indexes for table `artist_details`
@@ -1353,6 +1435,12 @@ ALTER TABLE `comments`
     ADD KEY `user_id` (`user_id`),
     ADD KEY `artist_id` (`artist_id`),
     ADD KEY `parent_id` (`parent_id`);
+
+--
+-- Indexes for table `contact_us`
+--
+ALTER TABLE `contact_us`
+    ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `districts`
@@ -1417,11 +1505,10 @@ ALTER TABLE `roles`
     ADD PRIMARY KEY (`role_id`);
 
 --
--- Indexes for table `socialmedialinks`
+-- Indexes for table `socialmediaplatforms`
 --
-ALTER TABLE `socialmedialinks`
-    ADD PRIMARY KEY (`id`),
-    ADD KEY `user_id` (`user_id`);
+ALTER TABLE `socialmediaplatforms`
+    ADD PRIMARY KEY (`platform_id`);
 
 --
 -- Indexes for table `transactions`
@@ -1450,16 +1537,22 @@ ALTER TABLE `users`
 --
 
 --
+-- AUTO_INCREMENT for table `artistsocialmedia`
+--
+ALTER TABLE `artistsocialmedia`
+    MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=79;
+
+--
 -- AUTO_INCREMENT for table `artist_details`
 --
 ALTER TABLE `artist_details`
-    MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=49;
+    MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=66;
 
 --
 -- AUTO_INCREMENT for table `bookings`
 --
 ALTER TABLE `bookings`
-    MODIFY `booking_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+    MODIFY `booking_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=36;
 
 --
 -- AUTO_INCREMENT for table `categories`
@@ -1471,7 +1564,13 @@ ALTER TABLE `categories`
 -- AUTO_INCREMENT for table `comments`
 --
 ALTER TABLE `comments`
-    MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+    MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
+
+--
+-- AUTO_INCREMENT for table `contact_us`
+--
+ALTER TABLE `contact_us`
+    MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `districts`
@@ -1483,13 +1582,13 @@ ALTER TABLE `districts`
 -- AUTO_INCREMENT for table `media`
 --
 ALTER TABLE `media`
-    MODIFY `media_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
+    MODIFY `media_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=39;
 
 --
 -- AUTO_INCREMENT for table `messages`
 --
 ALTER TABLE `messages`
-    MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
+    MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=42;
 
 --
 -- AUTO_INCREMENT for table `municipalities`
@@ -1501,13 +1600,13 @@ ALTER TABLE `municipalities`
 -- AUTO_INCREMENT for table `otp`
 --
 ALTER TABLE `otp`
-    MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
+    MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=61;
 
 --
 -- AUTO_INCREMENT for table `performance_types`
 --
 ALTER TABLE `performance_types`
-    MODIFY `performance_type_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+    MODIFY `performance_type_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
 
 --
 -- AUTO_INCREMENT for table `provinces`
@@ -1522,32 +1621,39 @@ ALTER TABLE `roles`
     MODIFY `role_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
--- AUTO_INCREMENT for table `socialmedialinks`
+-- AUTO_INCREMENT for table `socialmediaplatforms`
 --
-ALTER TABLE `socialmedialinks`
-    MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+ALTER TABLE `socialmediaplatforms`
+    MODIFY `platform_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `transactions`
 --
 ALTER TABLE `transactions`
-    MODIFY `transaction_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+    MODIFY `transaction_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
 
 --
 -- AUTO_INCREMENT for table `userdetails`
 --
 ALTER TABLE `userdetails`
-    MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+    MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-    MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=37;
+    MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=57;
 
 --
 -- Constraints for dumped tables
 --
+
+--
+-- Constraints for table `artistsocialmedia`
+--
+ALTER TABLE `artistsocialmedia`
+    ADD CONSTRAINT `artistsocialmedia_ibfk_1` FOREIGN KEY (`artist_id`) REFERENCES `users` (`id`) ON DELETE CASCADE,
+    ADD CONSTRAINT `artistsocialmedia_ibfk_2` FOREIGN KEY (`platform_id`) REFERENCES `socialmediaplatforms` (`platform_id`) ON DELETE CASCADE;
 
 --
 -- Constraints for table `artist_details`
@@ -1610,12 +1716,6 @@ ALTER TABLE `otp`
 --
 ALTER TABLE `performance_types`
     ADD CONSTRAINT `performance_types_ibfk_1` FOREIGN KEY (`artist_id`) REFERENCES `users` (`id`);
-
---
--- Constraints for table `socialmedialinks`
---
-ALTER TABLE `socialmedialinks`
-    ADD CONSTRAINT `socialmedialinks_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `userdetails` (`id`);
 
 --
 -- Constraints for table `transactions`
