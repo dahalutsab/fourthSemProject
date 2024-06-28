@@ -84,6 +84,7 @@ $router->get('/api/user/get-user', [UserController::class, 'getUser']);
 
 //block user
 $router->post('/api/blockUser', [UserController::class, 'blockUser']);
+$router->post('/api/unblockUser', [UserController::class, 'unblockUser']);
 
 // route to log in
 $router->get('/login', [ViewController::class, 'login']);

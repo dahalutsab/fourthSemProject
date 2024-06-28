@@ -180,4 +180,19 @@ class UserController
              APIResponse::error($exception->getMessage());
         }
     }
+
+    public function unblockUser(): void
+    {
+        try {
+            $data = json_decode(file_get_contents('php://input'), true);
+            $userId = $data['userId'] ?? '';
+
+            $this->userService->unblockUser($userId);
+
+            // User unblocked successfully
+             APIResponse::success([], ['message' => 'User unblocked successfully.']);
+        } catch (Exception $exception) {
+             APIResponse::error($exception->getMessage());
+        }
+    }
 }

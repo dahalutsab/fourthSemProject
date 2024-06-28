@@ -240,4 +240,12 @@ class UserRepository implements UserRepositoryInterface {
         $stmt->execute();
         return true;
     }
+
+    public function unblockUser($userId): true
+    {
+        $stmt = $this->database->getConnection()->prepare("UPDATE users SET is_blocked = false WHERE id = ?");
+        $stmt->bind_param("i", $userId);
+        $stmt->execute();
+        return true;
+    }
 }

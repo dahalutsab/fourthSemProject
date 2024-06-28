@@ -18,4 +18,6 @@ interface UserServiceInterface {
     public function changePassword($data);
 
     public function blockUser($userId);
+
+    public function unblockUser($userId);
 }

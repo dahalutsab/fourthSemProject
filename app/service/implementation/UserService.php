@@ -92,4 +92,12 @@ class UserService implements UserServiceInterface {
         return $this->userRepository->blockUser($userId);
     }
 
+    /**
+     * @throws Exception
+     */
+    public function unblockUser($userId): bool
+    {
+        return $this->userRepository->unblockUser($userId);
+    }
+
 }

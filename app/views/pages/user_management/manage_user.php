@@ -1,6 +1,4 @@
-<h1>
-    Users List
-</h1>
+<h1>Users List</h1>
 
 <div class="container">
     <table class="table table-striped">
@@ -24,16 +22,20 @@
     document.addEventListener('DOMContentLoaded', function() {
         fetchAndDisplayUsers();
 
-        // Event delegation for delete button
+        // Event delegation for buttons in the action column
         document.querySelector('table').addEventListener('click', function(event) {
-            if (event.target.classList.contains('delete-user')) {
-                const userId = event.target.closest('tr').dataset.userId;
+            const userId = event.target.closest('tr').dataset.userId;
+
+            if (event.target.classList.contains('view-user')) {
+                viewUser(userId);
+            } else if (event.target.classList.contains('delete-user')) {
                 if (confirm('Are you sure you want to block this user?')) {
                     deleteUser(userId);
                 }
-            } else if (event.target.classList.contains('view-user')) {
-                const userId = event.target.closest('tr').dataset.userId;
-                viewUser(userId);
+            } else if (event.target.classList.contains('unblock-user')) {
+                if (confirm('Are you sure you want to unblock this user?')) {
+                    unblockUser(userId);
+                }
             }
         });
     });
@@ -52,15 +54,18 @@
                         users.forEach(function(user, index) {
                             const tr = document.createElement('tr');
                             tr.dataset.userId = user.id;
-                            tr.innerHTML = '<td>' + (index + 1) + '</td>' +
-                                '<td>' + user.username + '</td>' +
-                                '<td>' + user.email + '</td>' +
-                                '<td>' + (user.isVerified ? 'Yes' : 'No') + '</td>' +
-                                '<td>' + (user.isBlocked ? 'Yes' : 'No') + '</td>' +
-                                '<td>' +
-                                '<button type="button" class="btn btn-success view-user">View</button> ' +
-                                '<button type="button" class="btn btn-danger delete-user">Block</button>' +
-                                '</td>';
+                            tr.innerHTML = `
+                                <td>${index + 1}</td>
+                                <td>${user.username}</td>
+                                <td>${user.email}</td>
+                                <td>${user.isVerified ? 'Yes' : 'No'}</td>
+                                <td>${user.isBlocked ? 'Yes' : 'No'}</td>
+                                <td>
+                                    <button type="button" class="btn btn-success view-user">View</button>
+                                    ${user.isBlocked
+                                ? `<button type="button" class="btn btn-primary unblock-user">Unblock</button>`
+                                : `<button type="button" class="btn btn-danger delete-user">Block</button>`}
+                                </td>`;
                             tbody.appendChild(tr);
                         });
                     } else {
@@ -89,16 +94,40 @@
                 try {
                     const response = JSON.parse(xhr.responseText);
                     if (response.success) {
-                        alert('User blocked successfully.');
+                        toastr.success('User blocked successfully.');
                         fetchAndDisplayUsers();
                     } else {
-                        alert(response.message);
+                        toastr.error(response.error);
                     }
                 } catch (e) {
-                    alert('Failed to parse response.');
+                    toastr.error('Failed to parse response.');
                 }
             } else {
-                alert('Failed to block user.');
+                toastr.error('Failed to block user.');
+            }
+        };
+        xhr.send(JSON.stringify({ userId: userId }));
+    }
+
+    function unblockUser(userId) {
+        const xhr = new XMLHttpRequest();
+        xhr.open('POST', '/api/unblockUser', true);
+        xhr.setRequestHeader('Content-Type', 'application/json');
+        xhr.onload = function() {
+            if (xhr.status === 200) {
+                try {
+                    const response = JSON.parse(xhr.responseText);
+                    if (response.success) {
+                        toastr.success('User unblocked successfully.');
+                        fetchAndDisplayUsers();
+                    } else {
+                        toastr.error(response.error);
+                    }
+                } catch (e) {
+                    toastr.error('Failed to parse response.');
+                }
+            } else {
+                toastr.error('Failed to unblock user.');
             }
         };
         xhr.send(JSON.stringify({ userId: userId }));
