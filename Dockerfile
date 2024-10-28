@@ -17,6 +17,9 @@ WORKDIR /app
 # Copy the application code
 COPY . /app
 
+# Set environment variable to allow Composer to run as root
+ENV COMPOSER_ALLOW_SUPERUSER=1
+
 # Install PHP dependencies
 RUN composer install --no-dev --optimize-autoloader
 
