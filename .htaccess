@@ -1,0 +1,11 @@
+# Redirect all requests to the public/ directory
+RewriteEngine On
+RewriteBase /
+
+# If the requested resource does not exist, redirect to public/
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^(.*)$ public/$1 [L]
+
+# If you want to redirect the root URL to public/index.php
+RewriteRule ^$ public/index.php [L]

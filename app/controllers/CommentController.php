@@ -7,7 +7,6 @@ use app\repository\implementation\CommentRepository;
 use app\response\APIResponse;
 use app\service\implementation\CommentService;
 use app\validator\CommentValidator;
-use Exception;
 
 
 class CommentController {

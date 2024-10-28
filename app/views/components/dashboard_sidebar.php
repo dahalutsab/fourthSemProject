@@ -109,12 +109,7 @@
         <?php } ?>
 
         <?php if ($role === 'ADMIN') { ?>
-        <li class="nav-item">
-            <a class="nav-link <?php echo $currentPath === '/dashboard/category' ? 'active' : '' ?>" href="/dashboard/category">
-                <i class="fa-solid fa-list"></i>
-                <span>Category</span>
-            </a>
-        </li><!-- End Category Nav -->
+
 
         <li class="nav-item">
             <a class="nav-link <?php echo $currentPath === '/dashboard/contactUs' ? 'active' : '' ?>" href="/dashboard/contactUs">

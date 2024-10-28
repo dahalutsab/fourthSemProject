@@ -48,7 +48,7 @@ elseif ($role === 'ARTIST') {
     $stmt->execute();
     $totalBookings = $stmt->get_result()->fetch_assoc()['total_bookings'];
 
-    $query = "SELECT SUM(total_cost) as total_payment FROM bookings WHERE artist_id = ?";
+    $query = "SELECT SUM(total_cost) as total_payment FROM bookings WHERE artist_id = ? and status = 'approved'";
     $stmt = $connection->prepare($query);
     $stmt->bind_param('i', $_SESSION[SESSION_USER_ID]);
     $stmt->execute();
@@ -60,8 +60,7 @@ elseif ($role === 'ARTIST') {
     $mediaMessage = $requiredFields->getRequiredFieldsForMedia();
     $performanceTypeMessage = $requiredFields->getRequiredFieldsForPerformanceType();
     $allMessages = array_merge($artistDetailsMessage, $mediaMessage, $performanceTypeMessage);
-}
-else {
+    }else {
     $query = "SELECT COUNT(*) as total_bookings FROM bookings WHERE user_id = ?";
     $stmt = $connection->prepare($query);
     $stmt->bind_param('i', $_SESSION[SESSION_USER_ID]);
