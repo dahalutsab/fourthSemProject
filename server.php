@@ -7,19 +7,36 @@ use Ratchet\Server\IoServer;
 use Ratchet\Http\HttpServer;
 use Ratchet\WebSocket\WsServer;
 
-echo "Starting WebSocket server...\n";
+function isWebSocketServerRunning($host, $port): bool
+{
+    $connection = @fsockopen($host, $port, $errno, $errstr, 2);
+    if ($connection) {
+        fclose($connection);
+        return true;
+    }
+    return false;
+}
 
-$server = IoServer::factory(
-    new HttpServer(
-        new WsServer(
-            new WebSocketService()
-        )
-    ),
-    8909
-);
+$host = 'openmichub.onrender.com';
+$port = 8909;
 
-echo "WebSocket server is running at ws://localhost:8080\n";
+if (!isWebSocketServerRunning($host, $port)) {
+    echo "Starting WebSocket server...\n";
 
-$server->run();
+    $server = IoServer::factory(
+        new HttpServer(
+            new WsServer(
+                new WebSocketService()
+            )
+        ),
+        $port
+    );
 
-echo "WebSocket server has stopped.\n";
+    echo "WebSocket server is running at ws://$host:$port\n";
+
+    $server->run();
+
+    echo "WebSocket server has stopped.\n";
+} else {
+    echo "WebSocket server is already running at ws://$host:$port\n";
+}

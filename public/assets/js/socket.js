@@ -1,4 +1,8 @@
-const socket = new WebSocket('ws://openmichub.onrender.com:8909');
+let socket = new WebSocket('wss://openmichub.onrender.com:8909');
+
+if (!socket) {
+    socket = new WebSocket('ws://localhost:8909');
+}
 
 socket.onopen = function() {
     console.log('WebSocket connection opened');

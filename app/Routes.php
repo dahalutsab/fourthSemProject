@@ -1,6 +1,8 @@
 <?php
 declare(strict_types=1);
 
+namespace app;
+
 use app\controllers\ArtistDetailsController;
 use app\controllers\AuthController;
 use app\controllers\BookingController;
@@ -21,7 +23,6 @@ use app\controllers\ViewController;
 use app\interceptor\Interceptor;
 use app\payment\EsewaIntegration;
 use app\payment\KhaltiIntegration;
-use app\Router;
 
 require_once __DIR__ . '/../vendor/autoload.php';
 $admin = 'ADMIN';
@@ -243,7 +244,7 @@ $router->get('/access-denied', [ErrorViewController::class, 'accessDenied']);
 // route to 404 if any error
 $router->addNotFoundHandler(function () {
     $title = '404 - Not Found';
-    require_once __DIR__ . '/../App/views/error/404.php';
+    require_once __DIR__ . '/../app/views/error/404.php';
 });
 
 //route to delete all the tables and their data
