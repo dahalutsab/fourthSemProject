@@ -63,6 +63,7 @@ document.addEventListener('DOMContentLoaded', function () {
         })
         .catch(error => console.error('Error fetching categories:', error));
 
+
     function fetchArtists(apiUrl, page = 1, limit = 12) {
         fetch(`${apiUrl}?page=${page}&limit=${limit}`)
             .then(response => response.json())
@@ -78,36 +79,36 @@ document.addEventListener('DOMContentLoaded', function () {
                         let socialMediaLinksHTML = '';
                         artist.social_media_links.forEach(link => {
                             socialMediaLinksHTML += `
-                                <li class="social-icon-item mx-lg-3 m-md-2 mx-sm-1">
-                                    <a href="${link.url}" class="social-icon-link">
-                                        <i class="${link.platform_icon}"></i>
-                                    </a>
-                                </li>
-                            `;
+                            <li class="social-icon-item mx-lg-3 m-md-2 mx-sm-1">
+                                <a href="${link.url}" class="social-icon-link">
+                                    <i class="${link.platform_icon}"></i>
+                                </a>
+                            </li>
+                        `;
                         });
 
                         card.innerHTML = `
-                            <div class="artist-aboutUs-content artist-block shadow mb-2">
-                                <div class="artist-img-block">
-                                    <img src="${artist.profile_picture ? artist.profile_picture : 'default-image.jpg'}" alt="image">
-                                </div>
-                                <div class="text-block">
-                                    <h2>${artist.full_name ? artist.full_name : artist.stage_name}</h2>
-                                    <div class="Stars" style="--rating: ${artist.rating};"></div>
-                                    <p>${artist.description ? artist.description : 'No description available.'}</p>
-                                </div>
-                                <div class="social-share">
-                                    <ul class="social-icon">
-                                        ${socialMediaLinksHTML}
-                                    </ul>
-                                </div>
-                                <div class="hero-button">
-                                    <a href="/artist-details?id=${artist.id}" class="cus-btn primary m-lg-2 m-md-1">
-                                        <i class="fa-solid fa-circle-info"></i> View Details
-                                    </a>
-                                </div>
+                        <div class="artist-aboutUs-content artist-block shadow mb-2">
+                            <div class="artist-img-block">
+                                <img src="${artist.profile_picture ? artist.profile_picture : 'default-image.jpg'}" alt="image">
                             </div>
-                        `;
+                            <div class="text-block">
+                                <h2>${artist.full_name ? artist.full_name : artist.stage_name}</h2>
+                                <div class="Stars" style="--rating: ${artist.rating};"></div>
+                                <p>${artist.description ? artist.description : 'No description available.'}</p>
+                            </div>
+                            <div class="social-share">
+                                <ul class="social-icon">
+                                    ${socialMediaLinksHTML}
+                                </ul>
+                            </div>
+                            <div class="hero-button">
+                                <a href="/artist-details?id=${artist.id}" class="cus-btn primary m-lg-2 m-md-1">
+                                    <i class="fa-solid fa-circle-info"></i> View Details
+                                </a>
+                            </div>
+                        </div>
+                    `;
 
                         cardContainer.appendChild(card);
                     });
@@ -116,7 +117,7 @@ document.addEventListener('DOMContentLoaded', function () {
                     paginationContainer.innerHTML = '';
 
                     // Only create and append pagination controls if there are multiple pages
-                    if (data.pagination.total_pages > 1) {
+                    if (data.pagination && data.pagination.total_pages > 1) {
                         const paginationControl = createPaginationControl(data.pagination.current_page, data.pagination.total_pages);
                         paginationContainer.appendChild(paginationControl);
                     }
