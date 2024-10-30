@@ -20,6 +20,12 @@ COPY . /app
 # Set environment variable to allow Composer to run as root
 ENV COMPOSER_ALLOW_SUPERUSER=1
 
+# Clear Composer cache
+RUN composer clear-cache
+
+# Create missing directory
+RUN mkdir -p /app/vendor/symfony/polyfill-php83/Resources/stubs
+
 # Install PHP dependencies
 RUN composer install --no-dev --optimize-autoloader
 
