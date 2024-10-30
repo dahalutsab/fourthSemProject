@@ -6,7 +6,7 @@ RUN apt-get update && apt-get install -y \
     git \
     unzip \
     libzip-dev \
-    && docker-php-ext-install zip mysqli  # Add mysqli extension here
+    && docker-php-ext-install zip mysqli
 
 # Install Composer
 COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
@@ -14,20 +14,22 @@ COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 # Set the working directory
 WORKDIR /app
 
-# Copy the application code
-COPY . /app
+# Copy only composer files initially to leverage Docker cache
+COPY composer.json composer.lock /app/
 
-# Set environment variable to allow Composer to run as root
-ENV COMPOSER_ALLOW_SUPERUSER=1
+# Install PHP dependencies (without the application code yet)
+RUN composer install --no-dev --optimize-autoloader
 
-# Clear Composer cache
+# Clear Composer cache after installing dependencies
 RUN composer clear-cache
 
-# Create missing directory
-RUN mkdir -p /app/vendor/symfony/polyfill-php83/Resources/stubs
+# Copy the rest of the application code
+COPY . /app
 
-# Install PHP dependencies
-RUN composer install --no-dev --optimize-autoloader
+# Ensure necessary directories are created and permissions are set
+RUN mkdir -p /app/vendor/symfony/polyfill-php83/Resources/stubs \
+    && chown -R www-data:www-data /app \
+    && chmod -R 755 /app
 
 # Expose port 80
 EXPOSE 80
