@@ -123,7 +123,6 @@ class ArtistDetailsService implements ArtistDetailsServiceInterface
      */
     public function getArtistById($id): array
     {
-
         try {
              return $this->artistDetailsRepository->getArtistById($id);
         } catch (Exception $exception) {

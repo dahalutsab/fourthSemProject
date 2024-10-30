@@ -34,8 +34,8 @@ class SocialMediaLinkService
         return $this->socialMediaLinkRepository->getAllSocialMediaPlatforms();
     }
 
-    public function deleteByArtistId(mixed $artistId): null
+    public function deleteByArtistId(mixed $artistId): void
     {
-        return $this->socialMediaLinkRepository->deleteByArtistId($artistId);
+         $this->socialMediaLinkRepository->deleteByArtistId($artistId);
     }
 }

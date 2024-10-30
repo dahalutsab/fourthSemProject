@@ -37,7 +37,7 @@ class SocialMediaLinkRepository
 
     public function getSocialMediaLinksByUserId(int $userId): array
     {
-        $sql = "SELECT asm.id, asm.artist_id, smp.platform_name as platform, asm.url 
+        $sql = "SELECT DISTINCT asm.id, asm.artist_id, smp.platform_name as platform, asm.url 
             FROM artistsocialmedia asm 
             INNER JOIN socialmediaplatforms smp ON asm.platform_id = smp.platform_id 
             WHERE asm.artist_id = ?";

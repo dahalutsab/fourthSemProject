@@ -207,7 +207,7 @@ class UserRepository implements UserRepositoryInterface {
     /**
      * @throws Exception
      */
-    public function changePassword($data): true
+    public function changePassword($data): bool
     {
         $userId = $_SESSION[SESSION_USER_ID];
         $stmt = $this->database->getConnection()->prepare("SELECT password FROM users WHERE id = ?");
@@ -233,7 +233,7 @@ class UserRepository implements UserRepositoryInterface {
         }
     }
 
-    public function blockUser($userId): true
+    public function blockUser($userId): bool
     {
         $stmt = $this->database->getConnection()->prepare("UPDATE users SET is_blocked = true WHERE id = ?");
         $stmt->bind_param("i", $userId);
@@ -241,7 +241,7 @@ class UserRepository implements UserRepositoryInterface {
         return true;
     }
 
-    public function unblockUser($userId): true
+    public function unblockUser($userId): bool
     {
         $stmt = $this->database->getConnection()->prepare("UPDATE users SET is_blocked = false WHERE id = ?");
         $stmt->bind_param("i", $userId);

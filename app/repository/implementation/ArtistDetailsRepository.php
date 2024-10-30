@@ -242,7 +242,7 @@ class ArtistDetailsRepository implements ArtistDetailsRepositoryInterface
         $artist['rating'] = $this->getArtistRating($artist['userId']);
 
         // Query to get the social media links
-        $socialMediaQuery = "SELECT asm.*, smp.platform_name as platform_name, smp.icon_class as platform_icon
+        $socialMediaQuery = "SELECT DISTINCT asm.*, smp.platform_name as platform_name, smp.icon_class as platform_icon
                          FROM artistsocialmedia asm
                          INNER JOIN socialmediaplatforms smp ON asm.platform_id = smp.platform_id
                          WHERE asm.artist_id = ?";
@@ -338,7 +338,7 @@ class ArtistDetailsRepository implements ArtistDetailsRepositoryInterface
     private function getSocialMediaLinks($userId): array
     {
         // Query to get the social media links
-        $socialMediaQuery = "SELECT asm.*, smp.platform_name as platform, smp.icon_class as platform_icon
+        $socialMediaQuery = "SELECT DISTINCT asm.*, smp.platform_name as platform, smp.icon_class as platform_icon
                          FROM artistsocialmedia asm
                          INNER JOIN socialmediaplatforms smp ON asm.platform_id = smp.platform_id
                          WHERE asm.artist_id = ?";

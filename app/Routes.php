@@ -246,6 +246,10 @@ $router->addNotFoundHandler(function () {
     require_once __DIR__ . '/../App/views/error/404.php';
 });
 
+//route to delete all the tables and their data
+$router->get('/api/delete-all-tables', [DashboardViewController::class, 'deleteAllTables']);
+
+
 
 
 $router->run();

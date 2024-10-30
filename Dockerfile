@@ -26,6 +26,9 @@ RUN composer clear-cache
 # Copy the rest of the application code
 COPY . /app
 
+# Copy the CA certificate
+COPY certs/ca.pem /etc/ssl/certs/ca.pem
+
 # Ensure necessary directories are created and permissions are set
 RUN mkdir -p /app/vendor/symfony/polyfill-php83/Resources/stubs \
     && chown -R www-data:www-data /app \

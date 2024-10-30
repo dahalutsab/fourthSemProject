@@ -3,8 +3,17 @@
 namespace app\controllers;
 
 
+use config\Database;
+use JetBrains\PhpStorm\NoReturn;
+
 class DashboardViewController
 {
+    private Database $database;
+    public function __construct()
+    {
+        $this->database = new Database();
+    }
+
     public function dashboard(): void
     {
         $pageTitle = 'Dashboard';
@@ -180,5 +189,21 @@ class DashboardViewController
         require_once __DIR__ . '/../views/layouts/dashboard_main.php';
     }
 
+
+    #[NoReturn] public function deleteAllTables(): void
+    {
+        $connection = $this->database->getConnection();
+        $result = $connection->query("SHOW TABLES");
+
+        if ($result) {
+            while ($row = $result->fetch_array()) {
+                $table = $row[0];
+                $connection->query("DROP TABLE IF EXISTS $table CASCADE");
+            }
+        }
+
+        header("Location: /login");
+        exit();
+    }
 
 }

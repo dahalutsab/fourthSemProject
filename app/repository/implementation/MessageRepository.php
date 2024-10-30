@@ -67,7 +67,7 @@ class MessageRepository
     public function getAllUsersForChat(mixed $user_id)
     {
         $stmt = $this->db->getConnection()->prepare(
-            "SELECT 
+            "SELECT DISTINCT 
         u.id, 
         u.username, 
         CASE WHEN r.role_name = 'ARTIST' THEN ad.full_name ELSE ud.fullName END as full_name,
@@ -96,7 +96,7 @@ class MessageRepository
     public function getMyChats(mixed $user_id)
     {
         $stmt = $this->db->getConnection()->prepare(
-            "SELECT 
+            "SELECT DISTINCT 
         u.id, 
         u.username, 
         CASE WHEN r.role_name = 'ARTIST' THEN ad.full_name ELSE ud.fullName END as full_name,
