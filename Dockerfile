@@ -6,7 +6,7 @@ RUN apt-get update && apt-get install -y \
     git \
     unzip \
     libzip-dev \
-    && docker-php-ext-install zip mysqli
+    && docker-php-ext-install zip mysqli sockets
 
 # Install Composer
 COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
@@ -34,8 +34,8 @@ RUN mkdir -p /app/vendor/symfony/polyfill-php83/Resources/stubs \
     && chown -R www-data:www-data /app \
     && chmod -R 755 /app
 
-# Expose port 80
-EXPOSE 80
+# Expose ports for HTTP and WebSocket
+EXPOSE 80 8080
 
 # Set the entry point
 CMD ["php", "-S", "0.0.0.0:80", "-t", "public"]

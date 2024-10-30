@@ -5,15 +5,9 @@ services:
     build: .
     ports:
       - "80:80"
+      - "8080:8080"
     volumes:
       - .:/app
-      - ./certs/certificate.crt:/path/to/certificate.crt
     environment:
       - APP_ENV=production
-      - DB_HOST=open-mic-hub-open-mic-hub.e.aivencloud.com
-      - DB_PORT=10668
-      - DB_DATABASE=defaultdb
-      - DB_USERNAME=avnadmin
-      - DB_PASSWORD=AVNS_VcooH8q6NlN_3ZrOsX_
-      - DB_SSL_MODE=REQUIRED
-      - DB_SSL_CERT=/path/to/certificate.crt
+    command: ["sh", "-c", "php -S 0.0.0.0:80 -t public & php server.php"]
